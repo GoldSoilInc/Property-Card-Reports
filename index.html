@@ -1854,10 +1854,13 @@ function showCard(id) {
           const expBg = exp >= 90 ? 'var(--green-bg)' : exp >= 50 ? 'var(--amber-bg)' : 'var(--red-bg)';
           const expText = exp >= 90 ? 'var(--green-text)' : exp >= 50 ? 'var(--amber-text)' : 'var(--red-text)';
           const expLabel = exp >= 90 ? 'Optimal' : exp >= 70 ? 'Strong' : exp >= 50 ? 'Moderate' : exp >= 30 ? 'Sub-Par' : 'Poor';
-          const hasR = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('realtor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('realtor'));
-          const hasI = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('investor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('investor'));
-          const hasB = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('buyer')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('buyer'));
-          const hasN = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('neighbor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('neighbor'));
+          // Same three-source check as calcExposure — keeps the pill colors consistent with the score
+          const dcExp = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
+          const dispoHas = (kw) => dcExp.some(c => ((c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase()).includes(kw));
+          const hasR = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('realtor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('realtor')) || dispoHas('realtor');
+          const hasI = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('investor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('investor')) || dispoHas('investor');
+          const hasB = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('buyer')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('buyer')) || dispoHas('buyer');
+          const hasN = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('neighbor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('neighbor')) || dispoHas('neighbor');
           const channels = l.mls ? [
             { label: 'MLS', weight: 35, active: l.mls },
             { label: 'Facebook Marketplace', weight: 15, active: l.fb },
