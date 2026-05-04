@@ -1925,10 +1925,19 @@ function showCard(id) {
             const matched = channels.find(c => p.source ? c.source === p.source : (p.match && p.match(c.source)));
             if (matched) togglePillNames.add(matched.source);
             const hasLeads = matched && matched.sourced > 0;
-            const bg = hasLeads ? 'var(--green-bg)' : 'var(--bg2)';
-            const color = hasLeads ? 'var(--green-text)' : p.listed ? 'var(--text2)' : 'var(--text3)';
-            const border = hasLeads ? 'var(--green-border)' : p.listed ? 'var(--border2)' : 'var(--border)';
-            const leadCount = hasLeads ? ` · ${matched.sourced} leads` : '';
+            // Three states:
+            //   green  — leads exist (channel is working)
+            //   blue   — listed but no leads (deployed, not converting — investigate)
+            //   gray   — not listed (channel not deployed yet)
+            let bg, color, border;
+            if (hasLeads) {
+              bg = 'var(--green-bg)'; color = 'var(--green-text)'; border = 'var(--green-border)';
+            } else if (p.listed) {
+              bg = 'var(--blue-bg)'; color = 'var(--blue-text)'; border = 'var(--blue-border)';
+            } else {
+              bg = 'var(--bg2)'; color = 'var(--text3)'; border = 'var(--border)';
+            }
+            const leadCount = hasLeads ? ` · ${matched.sourced} leads` : (p.listed ? ' · listed, no leads' : '');
             return `<span style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;background:${bg};color:${color};border:1px solid ${border}">${p.label}${p.sub ? ' · ' + p.sub : ''}${leadCount}</span>`;
           }).join('');
           // Extra pills for sources observed in data that aren't already covered above
