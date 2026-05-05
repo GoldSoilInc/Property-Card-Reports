@@ -22,7 +22,7 @@
     --amber-bg: #faeeda; --amber-text: #854f0b; --amber-border: #ef9f27;
     --green-bg: #eaf3de; --green-text: #3b6d11; --green-border: #639922;
     --blue-bg: #e6f1fb; --blue-text: #185fa5; --blue-border: #378add;
-    --purple-bg: #eeedfe; --purple-text: #534ab7;
+    --purple-bg: #eeedfe; --purple-text: #534ab7; --purple-border: #7a72d8;
     --teal-bg: #e1f5ee; --teal-text: #0f6e56;
     --score-size: 38px;
   }
@@ -244,8 +244,8 @@
   <!-- LOADER -->
   <div class="loader-bar" id="loaderBar">
     <div>
-      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px">MaxAcres.com · Portfolio Dashboard</div>
-      <div style="font-size:11px;color:var(--text3)">Live data from GitHub · Auto-refreshes every 4 hours</div>
+      <div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">MaxAcres.com · Portfolio Dashboard</div>
+      <div style="font-size:12px;color:var(--text3)">Live data from GitHub · Auto-refreshes every 4 hours</div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
       <button class="refresh-btn" id="refreshBtn" onclick="loadFromSheets()">⟳ Refresh</button>
@@ -254,6 +254,7 @@
         <div class="loader-dot" id="dot-pd"><div class="dot"></div><span>Price drops</span></div>
         <div class="loader-dot" id="dot-camp"><div class="dot"></div><span>Campaigns</span></div>
         <div class="loader-dot" id="dot-dispo"><div class="dot"></div><span>Dispo</span></div>
+        <div class="loader-dot" id="dot-ib"><div class="dot"></div><span>Inbound</span></div>
         <div class="loader-dot" id="dot-zillow"><div class="dot"></div><span>Zillow</span></div>
       </div>
       <div id="lastRefreshed" style="font-size:10px;color:var(--text3)"></div>
@@ -340,6 +341,7 @@
           <th class="sortable" onclick="setSort('spread')">Spread <span class="sort-arrow">↕</span></th>
           <th class="sortable" onclick="setSort('dom')">DOM <span class="sort-arrow">↕</span></th>
           <th class="sortable" onclick="setSort('expiry')">Expiry <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('zdom')">ZDOM <span class="sort-arrow">↕</span></th>
           <th class="sortable" onclick="setSort('zViews')">ZViews <span class="sort-arrow">↕</span></th>
           <th class="sortable" onclick="setSort('saves')">ZSaves <span class="sort-arrow">↕</span></th>
           <th>Incoming</th>
@@ -361,8 +363,8 @@
 
 <script>
 // ── STATE ──────────────────────────────────────────────────────────────────
-let listings = [], camps = [], fbacks = [], outboundLeads = [], priceDropData = [], zillowData = [], dispoData = [];
-let sfOk = false, campOk = false, pdOk = false, zillowOk = false, dispoOk = false;
+let listings = [], camps = [], fbacks = [], outboundLeads = [], priceDropData = [], zillowData = [], dispoData = [], inboundLeads = [];
+let sfOk = false, campOk = false, pdOk = false, zillowOk = false, dispoOk = false, ibOk = false;
 let podFilter = 'all', stageFilter = [], expiryFilter = 'all', stateFilter = [], titleFilter = [], peiFilter = 'all', dropsFilter = 'all', dropAgeFilter = 'all';
 let priceStaleFilter = false, noMlsFilter = false;
 let sortCol = 'expiry', sortDir = 'asc';
@@ -376,7 +378,8 @@ const SOURCES = {
   pd:     BASE + 'price-drop-report.csv',
   camp:   BASE + 'outbound-campaigns-leads.csv',
   zillow: BASE + 'zillow-reports.csv',
-  dispo:  BASE + 'dispo-campaigns'
+  dispo:  BASE + 'dispo-campaigns',
+  ib:     BASE + 'inbound-leads.csv'
 };
 
 function setDot(id, state) {
@@ -425,15 +428,36 @@ async function loadFromSheets() {
   btn.disabled = true;
   btn.textContent = '⟳ Loading...';
 
-  const [sfRows, pdRows, campRows, zillowRows, dispoRows] = await Promise.all([
-    fetchCSV('sf'), fetchCSV('pd'), fetchCSV('camp'), fetchCSV('zillow'), fetchCSV('dispo')
+  const [sfRows, pdRows, campRows, zillowRows, dispoRows, ibRows] = await Promise.all([
+    fetchCSV('sf'), fetchCSV('pd'), fetchCSV('camp'), fetchCSV('zillow'), fetchCSV('dispo'), fetchCSV('ib')
   ]);
 
-  if (sfRows.length > 0) { listings = sfRows.map(parseRow).filter(Boolean); sfOk = true; }
+  if (sfRows.length > 0) {
+    listings = sfRows.map(parseRow).filter(Boolean);
+    sfOk = true;
+    // Diagnostic: surface column names so we can match against expected variants
+    const cols = Object.keys(sfRows[0] || {});
+    console.log('[Property Performance Report] all columns:', cols);
+    console.log('[Property Performance Report] view-related:', cols.filter(c => /view/i.test(c)));
+    console.log('[Property Performance Report] save-related:', cols.filter(c => /save/i.test(c)));
+    console.log('[Property Performance Report] dom-related:',  cols.filter(c => /dom/i.test(c)));
+    console.log('[Property Performance Report] deal-related:', cols.filter(c => /deal|type/i.test(c)));
+    // Sample dealType values from the first 5 listings
+    console.log('[Property Performance Report] dealType sample:', listings.slice(0, 5).map(l => ({ id: l.mainListing || l.id, dealType: l.dealType })));
+  }
   if (pdRows.length > 0) { priceDropData = pdRows.filter(r => r['Listing #']); pdOk = true; }
   if (campRows.length > 0) { outboundLeads = campRows.filter(r => r['The Market Hub #']); campOk = true; }
   if (zillowRows.length > 0) { zillowData = zillowRows.filter(r => r['Listing #']); zillowOk = true; }
-  if (dispoRows.length > 0) { dispoData = dispoRows.filter(r => r['The Market Hub #'] || r['Listing #']); dispoOk = true; }
+  if (dispoRows.length > 0) {
+    dispoData = dispoRows.filter(r => r['The Market Hub #'] || r['Listing #']);
+    dispoOk = true;
+    // Diagnostic — show columns in dispo CSV and a sample row, so we can verify the matcher is reading the right fields
+    const cols = Object.keys(dispoRows[0] || {});
+    console.log('[Dispo CSV] all columns:', cols);
+    console.log('[Dispo CSV] sample row:', dispoRows[0]);
+    console.log('[Dispo CSV] campaign-name-related columns:', cols.filter(c => /campaign|name|objective/i.test(c)));
+  }
+  if (ibRows.length > 0) { inboundLeads = ibRows.filter(r => r['The Market Hub']); ibOk = true; }
 
   if (sfOk) {
     enrichListingsWithPriceData();
@@ -456,6 +480,10 @@ async function loadFromSheets() {
 // Load on open + auto-refresh every 4 hours
 window.addEventListener('DOMContentLoaded', loadFromSheets);
 setInterval(loadFromSheets, 4 * 60 * 60 * 1000);
+// Esc closes the open card
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && activeCardId) closeCard();
+});
 
 // ── DATA PARSING ──────────────────────────────────────────────────────────
 function gv(row, ...keys) {
@@ -468,7 +496,11 @@ function gv(row, ...keys) {
 
 function parseRow(row) {
   const id = gv(row, 'The Sales Hub', 'Sales Hub', 'SH ID'); if (!id) return null;
-  const n = v => parseFloat(v) || null;
+  const n = v => {
+    if (v === null || v === undefined || v === '') return null;
+    const num = parseFloat(v);
+    return isNaN(num) ? null : num;
+  };
   const i = v => parseInt(v) || 0;
   const b = v => (v || '').toString().toLowerCase() === 'yes';
   const listP = n(gv(row, 'Current Cash Price'));
@@ -481,14 +513,14 @@ function parseRow(row) {
     mainListing: gv(row, 'Main Listing', 'main listing') || '',
     sfPropertyId: gv(row, 'Salesforce Record ID', 'SF Record ID', 'Record ID', 'Property ID') || '',
     sellerName: gv(row, 'Seller Name', 'Seller', 'Owner Name', 'Owner') || '',
-    txn: gv(row, 'Transaction') || '', listingId: gv(row, 'MLS') || '', websiteId: gv(row, 'Website') || '',
+    txn: gv(row, 'Transaction') || '', dealType: gv(row, 'Type of Deal', 'Deal Type', 'Type Of Deal') || '', listingId: gv(row, 'MLS') || '', websiteId: gv(row, 'Website') || '',
     txnLink: gv(row, 'Transaction Link', 'transaction link') || '',
     marketHubLink: gv(row, 'The Market Hub Link', 'Property Link', 'property link', 'Market Hub Link') || '',
     ppp: gv(row, 'PPP: PPP Name') || '', cpi: gv(row, 'CPI') || '', lds: n(gv(row, 'LDS')),
-    listP, contractP, spread: listP !== null ? listP - contractP : null,
+    listP, contractP,
     lastListP: n(gv(row, 'Last Cash List Price')), profit: n(gv(row, 'Potential Profit')),
     equity: n(gv(row, 'Equity Capture')), pricePct: (() => { const v = gv(row, 'Price Drop %'); if (!v) return 0; const s = v.toString().replace('%','').trim(); return parseFloat(s) / (s.includes('.') && parseFloat(s) < 1 ? 1 : 100) || 0; })(),
-    saves: n(gv(row, 'Zillow Saves')), zViews: n(gv(row, 'Zillow Views', 'ZViews', 'Zillow_Views')), mlsSaves: n(gv(row, 'MLS Saves')),
+    saves: n(gv(row, 'Zillow Saves', 'ZSaves', 'Zillow_Saves', 'Saves', 'Z Saves')), zViews: n(gv(row, 'Zillow Views', 'ZViews', 'Zillow_Views', 'Views', 'Z Views', 'Zillow Page Views', 'Page Views', 'Property Views', 'Listing Views', 'Zillow Property Views', 'Total Views', 'Zillow Last 30 Days')), mlsSaves: n(gv(row, 'MLS Saves')),
     zillowLink: gv(row, 'Zillow Link', 'Zillow URL', 'zillow link') || '',
     dom: n(gv(row, 'MLS DOM')), webDom: n(gv(row, 'Website DOM')),
     expiry: n(gv(row, '# of Days to Expiration')), drops: i(gv(row, '# of Price Drops')),
@@ -520,7 +552,13 @@ function enrichListingsFromPriceDrop() {
   listings.forEach(l => {
     const pd = l.mainListing ? getPriceDrop(l.mainListing) : null;
     if (!pd) return;
-    const n = v => (v !== null && v !== undefined && !isNaN(parseFloat(v))) ? parseFloat(v) : null;
+    const n = v => {
+      if (v === null || v === undefined || v === '') return null;
+      const str = String(v).replace(/[$,\s]/g, '');
+      if (str === '') return null;
+      const num = parseFloat(str);
+      return isNaN(num) ? null : num;
+    };
     const history = parsePriceDropHistory(pd);
     const drops = history.filter(d => d.label !== 'Original');
 
@@ -537,7 +575,6 @@ function enrichListingsFromPriceDrop() {
     }
     l.createdDate = gv(pd, 'Created Date');
     if (l.origPrice && l.listP) l.pricePct = (l.origPrice - l.listP) / l.origPrice;
-    l.spread = l.listP !== null ? l.listP - l.contractP : null;
     l.pricingOption = pd['Current Pricing Option'] || pd['Current'] || 'Cash Only';
     l.sfPrice = n(pd['Current Seller Financing Price']) || null;
     l.sfDownPayment = n(pd['Current Downpayment']) || null;
@@ -554,9 +591,11 @@ function enrichListingsFromZillow() {
     const zrow = zillowData.find(r => (gv(r, 'Listing #') || '').toString().trim() === l.mainListing.toString().trim());
     if (!zrow) return;
     const n = v => (v !== null && v !== undefined && v !== '' && !isNaN(parseFloat(v))) ? parseFloat(v) : null;
-    if (n(zrow['Zillow Saves']) !== null) l.saves = n(zrow['Zillow Saves']);
-    if (n(zrow['Zillow Views']) !== null) l.zViews = n(zrow['Zillow Views']);
-    if (n(zrow['MLS DOM']) !== null) l.dom = n(zrow['MLS DOM']);
+    // Property Performance Report is source of truth for saves/views/dom — only fill from Zillow CSV if Property Performance had no value
+    if (l.saves  === null && n(zrow['Zillow Saves']) !== null) l.saves  = n(zrow['Zillow Saves']);
+    if (l.zViews === null && n(zrow['Zillow Views']) !== null) l.zViews = n(zrow['Zillow Views']);
+    if (l.dom    === null && n(zrow['MLS DOM'])      !== null) l.dom    = n(zrow['MLS DOM']);
+    // Link and capture date are Zillow-CSV-only
     if (zrow['Zillow Link'] && !l.zillowLink) l.zillowLink = zrow['Zillow Link'];
     if (zrow['Date Captured']) l.zillowCaptured = zrow['Date Captured'];
   });
@@ -609,41 +648,52 @@ function getPriceDrop(mainListing) {
 function parsePriceDropHistory(pd) {
   if (!pd) return [];
   const drops = [];
-  const n = v => (v !== null && v !== undefined && v !== '' && !isNaN(parseFloat(v))) ? parseFloat(v) : null;
+  // Strip currency formatting before parsing so "$55,900" and "55,900" both parse correctly
+  const n = v => {
+    if (v === null || v === undefined || v === '') return null;
+    const str = String(v).replace(/[$,\s]/g, '');
+    if (str === '') return null;
+    const num = parseFloat(str);
+    return isNaN(num) ? null : num;
+  };
 
-  // Helper — case-insensitive trimmed key lookup
-  const get = (obj, key) => {
-    const kl = key.toLowerCase().trim();
-    for (const k of Object.keys(obj)) {
-      if (k.toLowerCase().trim() === kl && obj[k] !== null && obj[k] !== undefined && obj[k] !== '') return obj[k];
+  // Helper — case-insensitive trimmed key lookup, accepts multiple key variants
+  const get = (obj, ...keys) => {
+    for (const key of keys) {
+      const kl = key.toLowerCase().trim();
+      for (const k of Object.keys(obj)) {
+        if (k.toLowerCase().trim() === kl && obj[k] !== null && obj[k] !== undefined && obj[k] !== '') return obj[k];
+      }
     }
     return null;
   };
 
   // Original price
-  if (n(get(pd, 'Original Cash Price'))) {
-    drops.push({ date: null, price: n(get(pd, 'Original Cash Price')), label: 'Original' });
+  if (n(get(pd, 'Original Cash Price', 'Original Price'))) {
+    drops.push({ date: null, price: n(get(pd, 'Original Cash Price', 'Original Price')), label: 'Original' });
   }
 
-  // PD 1 — field name has no number suffix
-  if (n(get(pd, 'PD 1 Cash Price')) && get(pd, 'Proposed Price Drop Date')) {
-    drops.push({ date: get(pd, 'Proposed Price Drop Date'), price: n(get(pd, 'PD 1 Cash Price')), label: 'Drop 1' });
+  // PD 1 — date field has no number suffix
+  const pd1Price = n(get(pd, 'PD 1 Cash Price', 'PD1 Cash Price'));
+  const pd1Date = get(pd, 'Proposed Price Drop Date', 'Proposed Price Drop Date 1', 'PD 1 Date');
+  if (pd1Price) {
+    drops.push({ date: pd1Date || null, price: pd1Price, label: 'Drop 1' });
   }
 
-  // PD 2–5
+  // PD 2–5 — keep drops even when date is missing (will be interpolated at render time)
   for (let i = 2; i <= 5; i++) {
-    const price = n(get(pd, `PD ${i} Cash Price`));
-    const date = get(pd, `Proposed Price Drop Date ${i}`);
-    if (price && date) {
-      drops.push({ date, price, label: `Drop ${i}` });
+    const price = n(get(pd, `PD ${i} Cash Price`, `PD${i} Cash Price`));
+    const date = get(pd, `Proposed Price Drop Date ${i}`, `Proposed Price Drop Date${i}`, `PD ${i} Date`);
+    if (price) {
+      drops.push({ date: date || null, price, label: `Drop ${i}` });
     }
   }
 
   // Final drop
-  const finalPrice = n(get(pd, 'Final PD Cash Price'));
-  const finalDate = get(pd, 'Proposed Final Price Drop Date');
-  if (finalPrice && finalDate) {
-    drops.push({ date: finalDate, price: finalPrice, label: 'Final' });
+  const finalPrice = n(get(pd, 'Final PD Cash Price', 'Final Cash Price'));
+  const finalDate = get(pd, 'Proposed Final Price Drop Date', 'Final PD Date');
+  if (finalPrice) {
+    drops.push({ date: finalDate || null, price: finalPrice, label: 'Final' });
   }
 
   return drops;
@@ -657,6 +707,82 @@ function getOutboundLeads(mainListing) {
     const mh = (gv(r, 'The Market Hub #', 'Market Hub') || '').toString().trim();
     return mh === mainListing.toString().trim();
   });
+}
+
+function getInboundLeads(mainListing) {
+  return inboundLeads.filter(r => {
+    const mh = (r['The Market Hub'] || '').toString().trim();
+    return mh === mainListing.toString().trim();
+  });
+}
+
+// Cumulative funnel categorization — a "Qualified" lead also counts as Sourced + Appt
+function categorizeInboundStatus(status) {
+  const s = (status || '').toString().toLowerCase().trim();
+  const cats = { sourced: false, appt: false, qual: false, noEmd: false, emd: false };
+  // Decide the deepest stage reached, then mark all stages up to and including it
+  let stage = 0; // 0=none, 1=sourced, 2=appt, 3=qual, 4=noEmd, 5=emd
+  if (s.includes('buyer won')) stage = 5;
+  else if (s.includes('contract signed') && s.includes('w/o emd')) stage = 4;
+  else if (s.includes('contract signed') && !s.includes('w/o')) stage = 5; // contract signed (assume w/ EMD)
+  else if (s.includes('obj handling') || s.includes('price neg') || s.includes('negotiat')) stage = 3;
+  else if (s.includes('qualified')) stage = 3;
+  else if (s.includes('appointment') || s.includes('appt')) stage = 2;
+  else if (s.includes("buyer's list") || s.includes('buyers list') || s.includes('lead') || s.includes('sourced')) stage = 1;
+  else if (s) stage = 1; // unknown but non-empty status → treat as sourced
+  if (stage >= 1) cats.sourced = true;
+  if (stage >= 2) cats.appt = true;
+  if (stage >= 3) cats.qual = true;
+  if (stage >= 4) cats.noEmd = true;
+  if (stage >= 5) cats.emd = true;
+  return cats;
+}
+
+function aggregateInboundLeads(leads) {
+  // Tolerant lookup — handles Appointment Sched / Appointment Scheduled / Appt Sched / Appt Scheduled, any case, any spacing
+  const apptKey = (() => {
+    if (leads.length === 0) return null;
+    const variants = ['appointment sched', 'appointment scheduled', 'appt sched', 'appt scheduled'];
+    for (const k of Object.keys(leads[0])) {
+      if (variants.includes(k.toLowerCase().trim())) return k;
+    }
+    return null;
+  })();
+
+  const map = {};
+  leads.forEach(r => {
+    const src = (r['Lead Source'] || '').toString().trim() || 'Unknown';
+    if (!map[src]) map[src] = {
+      source: src, total: 0,
+      sourced: 0, appt: 0, qual: 0, noEmd: 0, emd: 0,
+      sourcedLeads: [], apptLeads: [], qualLeads: [], noEmdLeads: [], emdLeads: []
+    };
+    const cats = categorizeInboundStatus(r['Lead Status']);
+    const lead = {
+      name: [r['First Name'], r['Last Name']].map(s => (s || '').trim()).filter(Boolean).join(' ') || '—',
+      status: (r['Lead Status'] || '—').toString().trim(),
+      source: src,
+      apptSched: apptKey ? (r[apptKey] || '').toString().trim() : ''
+    };
+    map[src].total++;
+    if (cats.sourced) { map[src].sourced++; map[src].sourcedLeads.push(lead); }
+    if (cats.appt)    { map[src].appt++;    map[src].apptLeads.push(lead); }
+    if (cats.qual)    { map[src].qual++;    map[src].qualLeads.push(lead); }
+    if (cats.noEmd)   { map[src].noEmd++;   map[src].noEmdLeads.push(lead); }
+    if (cats.emd)     { map[src].emd++;     map[src].emdLeads.push(lead); }
+  });
+  return Object.values(map).sort((a, b) => b.total - a.total);
+}
+
+function inboundBadgeClass(src) {
+  const s = (src || '').toLowerCase();
+  if (s === 'mls') return 'b-bl';
+  if (s.includes('fb')) return 'b-p';
+  if (s.includes('website') || s.includes('maxacres')) return 'b-teal';
+  if (s.includes('sign')) return 'b-a';
+  if (s.includes('referral')) return 'b-g';
+  if (s.includes('land')) return 'b-bl';
+  return 'b-gr';
 }
 
 function getDispoCampaigns(mainListing) {
@@ -688,14 +814,23 @@ function aggregateCampaigns(leads) {
 // ── SCORING & FLAGS ───────────────────────────────────────────────────────
 function calcExposure(l, lc, ol) {
   ol = ol || [];
+  const dc = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
+  const dispoMatches = (kw) => dc.some(c => {
+    const obj = (c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase();
+    return obj.includes(kw);
+  });
   const hasRealtor = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('realtor')) ||
-                     ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('realtor'));
+                     ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('realtor')) ||
+                     dispoMatches('realtor');
   const hasInvestor = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('investor')) ||
-                      ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('investor'));
+                      ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('investor')) ||
+                      dispoMatches('investor');
   const hasBuyer = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('buyer')) ||
-                   ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('buyer'));
+                   ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('buyer')) ||
+                   dispoMatches('buyer');
   const hasNeighbor = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('neighbor')) ||
-                      ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('neighbor'));
+                      ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('neighbor')) ||
+                      dispoMatches('neighbor');
 
   if (l.mls) {
     let score = 35;
@@ -774,6 +909,15 @@ function fmtDate(v) { if (!v) return '—'; if (v instanceof Date) return v.toLo
 function stageClass(s) { return s === 'TAH - Owned' ? 'b-p' : s === 'Due Diligence' ? 'b-a' : s === 'Clear to Flip' ? 'b-bl' : s === 'At Closing' ? 'b-g' : s === 'Clearing to Close' ? 'b-teal' : 'b-gr'; }
 function scoreClass(s) { return s < 45 ? 'sr-r' : s < 65 ? 'sr-a' : 'sr-g'; }
 function campTypeClass(t) { const tl = (t||'').toLowerCase(); return tl.includes('realtor') ? 'b-bl' : tl.includes('investor') ? 'b-teal' : tl.includes('buyer') ? 'b-p' : tl.includes('neighbor') ? 'b-a' : 'b-gr'; }
+function dealTypeClass(t) {
+  const tl = (t||'').toLowerCase().trim();
+  if (tl.includes('buy') && tl.includes('flip')) return 'b-p';        // Buy & Flip — heavy capital, purple
+  if (tl.includes('buy') && tl.includes('subdivide')) return 'b-bl';  // Buy & Subdivide — multi-parcel play, blue
+  if (tl.includes('pot') && tl.includes('subd')) return 'b-teal';     // Pot. SubD — potential subdivide, teal
+  if (tl.includes('wholesale')) return 'b-g';                         // Wholesale Only — fast exit, green
+  if (tl.includes('undertermined') || tl.includes('undetermined')) return 'b-a'; // Undertermined — needs decision, amber
+  return 'b-gr';
+}
 function buyerStatusClass(s) { const sl = (s||'').toLowerCase(); return sl.includes('hot') ? 'hot' : sl.includes('warm') ? 'warm' : sl.includes('cold') ? 'cold' : sl.includes('back') ? 'backed' : sl.includes('contract') ? 'uc' : ''; }
 function chipHtml(yes, label) { return `<span class="badge ${yes ? 'b-g' : 'b-gr'}">${yes ? '+ ' : '— '}${label}</span>`; }
 
@@ -833,8 +977,9 @@ function renderPortfolio() {
         case 'contractP': return l.contractP || 0;
         case 'listP': return l.listP || 0;
         case 'daysDrop': return l.daysDrop !== null ? l.daysDrop : 9999;
-        case 'spread': return (l.listP || 0) - (l.contractP || 0);
-        case 'dom': return l.dom !== null ? l.dom : 9999;
+        case 'spread': return l.profit !== null && l.profit !== undefined ? l.profit : -Infinity;
+        case 'dom': return l.webDom !== null ? l.webDom : 9999;
+        case 'zdom': return l.dom !== null ? l.dom : 9999;
         case 'zViews': return l.zViews !== null ? l.zViews : -1;
         case 'saves': return l.saves !== null ? l.saves : -1;
         default: return l.expiry === null ? 9999 : l.expiry < 0 ? -9999 : l.expiry;
@@ -873,11 +1018,12 @@ function renderPortfolio() {
     const lc = getCamps(l.id);
     const pei = calcExposure(l, lc, l.mainListing ? getOutboundLeads(l.mainListing) : []);
     const peiColor = pei >= 90 ? 'sr-g' : pei >= 50 ? 'sr-a' : 'sr-r';
-    const sp = l.listP !== null ? l.listP - l.contractP : null;
+    const sp = l.profit !== null && l.profit !== undefined ? l.profit : null;
     const spHtml = sp === null ? '—' : sp < 0 ? `<span class="red">${fmt(sp)}</span>` : sp < 10000 ? `<span class="amber">${fmt(sp)}</span>` : fmt(sp);
     const zViewsHtml = l.zViews === null ? '<span class="muted">—</span>' : `${l.zViews.toLocaleString()}`;
     const zSavesHtml = l.saves === null ? '<span class="muted">—</span>' : l.saves === 0 ? '<span class="red">0</span>' : l.saves < 10 ? `<span class="amber">${l.saves}</span>` : `<span class="green">${l.saves}</span>`;
-    const domHtml = l.dom === null ? '<span class="muted">—</span>' : l.dom > 90 ? `<span class="red">${l.dom}</span>` : l.dom > 45 ? `<span class="amber">${l.dom}</span>` : l.dom;
+    const domHtml  = l.webDom === null ? '<span class="muted">—</span>' : l.webDom > 90 ? `<span class="red">${l.webDom}</span>` : l.webDom > 45 ? `<span class="amber">${l.webDom}</span>` : l.webDom;
+    const zdomHtml = l.dom    === null ? '<span class="muted">—</span>' : l.dom    > 90 ? `<span class="red">${l.dom}</span>`    : l.dom    > 45 ? `<span class="amber">${l.dom}</span>`    : l.dom;
     const expHtml = l.expiry === null ? '—' : l.expiry < 0 ? '<span class="red">Expired</span>' : l.expiry > 3650 ? '<span class="muted">None</span>' : l.expiry < 15 ? `<span class="red">${l.expiry}d</span>` : l.expiry < 30 ? `<span class="amber">${l.expiry}d</span>` : l.expiry + 'd';
     const daysSinceDrop = l.daysDrop !== null ? l.daysDrop : null;
     const ldHtml = daysSinceDrop === null ? '<span class="muted">—</span>' : daysSinceDrop > 30 ? `<span class="red">${daysSinceDrop}d</span>` : daysSinceDrop > 7 ? `<span class="amber">${daysSinceDrop}d</span>` : daysSinceDrop + 'd';
@@ -896,6 +1042,7 @@ function renderPortfolio() {
       <td>${spHtml}</td>
       <td>${domHtml}</td>
       <td>${expHtml}</td>
+      <td>${zdomHtml}</td>
       <td>${zViewsHtml}</td>
       <td>${zSavesHtml}</td>
       <td>
@@ -909,13 +1056,23 @@ function renderPortfolio() {
         <div style="display:flex;gap:5px;align-items:center">
           ${[['BB','buyer'], ['RT','realtor'], ['IV','investor'], ['NG','neighbor']].map(([init, type]) => {
             const ol2 = l.mainListing ? getOutboundLeads(l.mainListing) : [];
+            const dc2 = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
             const ran = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes(type)) ||
-                        ol2.some(r => (r['Campaign Objective'] || '').toLowerCase().includes(type));
+                        ol2.some(r => (r['Campaign Objective'] || '').toLowerCase().includes(type)) ||
+                        dc2.some(c => ((c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase()).includes(type));
             return `<div style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:${ran ? 'var(--blue-bg)' : 'var(--bg2)'};color:${ran ? 'var(--blue-text)' : 'var(--text3)'};border:1.5px solid ${ran ? 'var(--blue-border)' : 'var(--border)'}">${init}</div>`;
           }).join('')}
         </div>
       </td>`;
     tbody.appendChild(tr);
+    // Inline card host directly under this row, when active
+    if (activeCardId === l.id) {
+      const hostTr = document.createElement('tr');
+      hostTr.className = 'inline-card-row';
+      hostTr.id = 'inline-card-row-' + l.id;
+      hostTr.innerHTML = `<td colspan="15" style="padding:0;background:var(--bg3);border-bottom:0.5px solid var(--border)"><div id="inlineCardArea"></div></td>`;
+      tbody.appendChild(hostTr);
+    }
   });
   updateSortHeader();
 }
@@ -928,6 +1085,12 @@ function showCard(id) {
   const lc = getCamps(id), lf = getFbacks(id);
   const ol = l.mainListing ? getOutboundLeads(l.mainListing) : [];
   const dc = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
+  // Diagnostic for the outgoing-column matcher
+  console.log('[Outgoing] listing', l.mainListing || l.id, '— dispo rows:', dc.length, dc.map(r => ({
+    objective: r['Campaign Objective'],
+    name: r['Campaign Name'],
+    keys: Object.keys(r)
+  })));
   const pdRow = l.mainListing ? getPriceDrop(l.mainListing) : null;
   const pdHistory = parsePriceDropHistory(pdRow);
   const pdStatus = pdRow ? (pdRow['Price Drop Status'] || '') : '';
@@ -1106,7 +1269,13 @@ function showCard(id) {
 
   const flagsHtml = f.length > 0 ? f.map(x => `<span class="badge b-r">${x}</span>`).join(' ') : '<span class="badge b-g">No flags</span>';
 
-  document.getElementById('cardArea').innerHTML = `
+  // Make sure the inline host row exists — renderPortfolio creates it but if showCard is called from a place that hasn't re-rendered, force a render.
+  if (!document.getElementById('inlineCardArea')) {
+    renderPortfolio();
+  }
+  const target = document.getElementById('inlineCardArea');
+  if (!target) return;
+  target.innerHTML = `
   <div class="card-wrap">
 
     <div class="card-head">
@@ -1131,6 +1300,7 @@ function showCard(id) {
         <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
           ${l.zillowLink ? `<a href="${l.zillowLink}" target="_blank" style="font-size:11px;font-weight:600;color:var(--teal-text);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--teal-text);background:var(--teal-bg);white-space:nowrap">Zillow ↗</a>` : ''}
           ${l.landId ? `<a href="${l.landId}" target="_blank" style="font-size:11px;font-weight:600;color:var(--blue-text);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--blue-border);background:var(--blue-bg);white-space:nowrap">LandID ↗</a>` : ''}
+          <button onclick="closeCard()" title="Close card (Esc)" style="position:sticky;top:60px;font-size:14px;font-weight:600;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);width:32px;height:32px;border-radius:var(--r-md);cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;margin-left:4px;z-index:10" onmouseover="this.style.background='var(--red-bg)';this.style.color='var(--red-text)';this.style.borderColor='var(--red-border)'" onmouseout="this.style.background='var(--bg2)';this.style.color='var(--text2)';this.style.borderColor='var(--border2)'">✕</button>
         </div>
       </div>
       <!-- Row 2: Address / State / County -->
@@ -1167,7 +1337,7 @@ function showCard(id) {
           <div style="font-size:13px;font-weight:500;color:var(--text)">${l.lds !== null ? l.lds : '—'}</div>
         </div>
       </div>
-      <!-- Row 4: Transaction # / Title Status / Stage / POD -->
+      <!-- Row 4: Transaction # / Type of Deal / Title Status / Stage / POD -->
       <div style="display:flex;gap:40px;flex-wrap:wrap">
         <div>
           <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Transaction #</div>
@@ -1177,6 +1347,10 @@ function showCard(id) {
               : `<div style="font-size:13px;font-weight:500;color:var(--text)">${l.txn || '—'}</div>`}
             ${l.txn ? `<a href="#" style="font-size:10px;color:var(--text3);text-decoration:none;padding:2px 8px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg2)">SF ↗</a>` : `<span style="font-size:10px;color:var(--text3);padding:2px 8px;border-radius:4px;border:0.5px solid var(--border);background:var(--bg2);opacity:0.4">SF ↗</span>`}
           </div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Type of Deal</div>
+          <div><span class="badge ${dealTypeClass(l.dealType)}">${l.dealType || '—'}</span></div>
         </div>
         <div>
           <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Title Status</div>
@@ -1200,15 +1374,21 @@ function showCard(id) {
         ${(() => {
           const today = new Date();
           const contractDate = l.contractDate ? new Date(l.contractDate) : null;
-          const listingDom = l.webDom !== null ? l.webDom : l.dom;
-          const listDate = listingDom !== null ? new Date(today.getTime() - listingDom * 86400000) : null;
+          const listDate = l.webDom !== null ? new Date(today.getTime() - l.webDom * 86400000) : (l.dom !== null ? new Date(today.getTime() - l.dom * 86400000) : null);
           const createdDate = l.createdDate ? new Date(l.createdDate) : null;
           const expiryDate = l.expiry !== null && l.expiry >= 0 && l.expiry < 3650 ? new Date(today.getTime() + l.expiry * 86400000) : null;
 
           if (!contractDate) return '<div class="no-data">Timeline unavailable — missing contract date</div>';
 
           // If no expiry, use contract date + 2 years as display window
-          const effectiveExpiry = expiryDate || new Date(contractDate.getTime() + 730 * 86400000);
+          // If no expiry date, anchor to Today + ~30 days so Today sits near the right and drops aren't compressed
+          // Also extend to cover any drop dates that fall after Today (rare but keeps them visible)
+          const latestDropTime = pdHistory
+            .map(d => d.date ? new Date(d.date).getTime() : NaN)
+            .filter(t => !isNaN(t))
+            .reduce((a, b) => Math.max(a, b), today.getTime());
+          const fallbackExpiry = new Date(Math.max(today.getTime(), latestDropTime) + 30 * 86400000);
+          const effectiveExpiry = expiryDate || fallbackExpiry;
           const noExpiry = !expiryDate;
 
           const start = contractDate.getTime();
@@ -1224,55 +1404,188 @@ function showCard(id) {
           const validCreated = (createdDate && !isNaN(createdDate.getTime())) ? createdDate : null;
           const createdPct = validCreated ? pct(validCreated.getTime()) : null;
 
-          // Real price drop dots from price drop report
+          // Price drop dots — including drops with missing dates (interpolated)
           const origPriceEntry = pdHistory.find(d => d.label === 'Original');
-          const realDrops = pdHistory
-            .filter(d => d.date && d.label !== 'Original')
-            .map(d => ({ date: new Date(d.date), price: d.price, label: d.label }))
-            .filter(d => !isNaN(d.date.getTime()))
-            .sort((a, b) => a.date - b.date);
+          const dropEntries = pdHistory.filter(d => d.label !== 'Original');
 
-          // Build milestones — fixed alternating above/below
+          // Build dated drops — interpolate any missing dates between known ones
+          const realDrops = (() => {
+            // Pass 1: parse explicit dates
+            const parsed = dropEntries.map(d => {
+              const dt = d.date ? new Date(d.date) : null;
+              return { label: d.label, price: d.price, date: dt && !isNaN(dt.getTime()) ? dt : null, estimated: false };
+            });
+            // Pass 2: fill missing dates by interpolating between known anchors
+            const fallbackStart = listDate || contractDate;
+            for (let i = 0; i < parsed.length; i++) {
+              if (parsed[i].date) continue;
+              let prevIdx = -1, nextIdx = -1;
+              for (let j = i - 1; j >= 0; j--) if (parsed[j].date) { prevIdx = j; break; }
+              for (let j = i + 1; j < parsed.length; j++) if (parsed[j].date) { nextIdx = j; break; }
+              const prevTime = prevIdx >= 0 ? parsed[prevIdx].date.getTime() : fallbackStart.getTime();
+              const nextTime = nextIdx >= 0 ? parsed[nextIdx].date.getTime() : today.getTime();
+              const slots = (nextIdx >= 0 ? nextIdx : parsed.length) - prevIdx;
+              const offset = i - prevIdx;
+              parsed[i].date = new Date(prevTime + (nextTime - prevTime) * (offset / slots));
+              parsed[i].estimated = true;
+            }
+            return parsed.filter(p => p.date && !isNaN(p.date.getTime()))
+              .sort((a, b) => a.date - b.date);
+          })();
+
+          // DEBUG — log raw PD column values + parsed history so we can diagnose missing drops
+          if (pdRow) {
+            const pdSlots = {};
+            for (let i = 1; i <= 5; i++) {
+              pdSlots[`PD ${i}`] = {
+                price: pdRow[`PD ${i} Cash Price`] ?? pdRow[`PD${i} Cash Price`] ?? '(no col)',
+                date: pdRow[`Proposed Price Drop Date ${i}`] ?? pdRow[`Proposed Price Drop Date${i}`] ?? (i === 1 ? pdRow['Proposed Price Drop Date'] : null) ?? '(no col)'
+              };
+            }
+            pdSlots['Final'] = {
+              price: pdRow['Final PD Cash Price'] ?? pdRow['Final Cash Price'] ?? '(no col)',
+              date: pdRow['Proposed Final Price Drop Date'] ?? pdRow['Final PD Date'] ?? '(no col)'
+            };
+            console.log('[Timeline]', l.mainListing || l.id, '— raw PD slots:', pdSlots);
+            console.log('[Timeline]', l.mainListing || l.id, '— parsed pdHistory:', pdHistory);
+            console.log('[Timeline]', l.mainListing || l.id, '— rendered realDrops:', realDrops.map(d => ({ label: d.label, price: d.price, date: d.date.toISOString().slice(0,10), estimated: d.estimated })));
+          }
+
+          // Listed milestone — carries the original price as the headline label when we have one
+          const listedMilestone = listPct !== null
+            ? {
+                pct: listPct,
+                color: 'var(--blue-border)',
+                label: origPriceEntry ? fmt(origPriceEntry.price) : 'Listed',
+                sublabel: origPriceEntry ? 'Listed · Original' : null,
+                date: fmtShort(listDate),
+                above: true,
+                isOriginal: !!origPriceEntry
+              }
+            : (origPriceEntry
+                ? {
+                    pct: 0,
+                    color: 'var(--blue-border)',
+                    label: fmt(origPriceEntry.price),
+                    sublabel: 'Original',
+                    date: fmtShort(contractDate),
+                    above: true,
+                    isOriginal: true
+                  }
+                : null);
+
+          // Priced milestone — when Created Date is in the price drop report
+          const pricedMilestone = createdPct !== null
+            ? { pct: createdPct, color: 'var(--purple-border)', label: 'Priced', date: fmtShort(validCreated), above: true }
+            : null;
+
+          // Build milestones — first pass assigns alternating above/below, then we run a collision detector
+          // to push overlapping labels into multiple lanes (up to 3 above, 3 below).
+          const dropOffset = (listedMilestone ? 1 : 0) + (pricedMilestone ? 1 : 0);
           const milestones = [
-            { pct: 0, color: 'var(--green-border)', label: origPriceEntry ? fmt(origPriceEntry.price) : 'Contracted', date: fmtShort(contractDate), above: false },
-            ...(createdPct !== null ? [{ pct: createdPct, color: 'var(--purple-border)', label: 'Priced', date: fmtShort(validCreated), above: true }] : []),
-            ...(listPct !== null ? [{ pct: listPct, color: 'var(--blue-border)', label: 'Listed', date: fmtShort(listDate), above: createdPct !== null ? false : true }] : []),
+            { pct: 0, color: 'var(--green-border)', label: 'Contracted', date: fmtShort(contractDate), above: false },
+            ...(pricedMilestone ? [pricedMilestone] : []),
+            ...(listedMilestone ? [{ ...listedMilestone, above: pricedMilestone ? false : listedMilestone.above }] : []),
             ...realDrops.map((d, i) => ({
               pct: pct(d.date.getTime()),
               color: 'var(--amber-border)',
               label: fmt(d.price),
+              sublabel: d.label + (d.estimated ? ' (est)' : ''),
               date: fmtShort(d.date),
-              above: (i + (listPct !== null ? 1 : 0) + (createdPct !== null ? 1 : 0)) % 2 === 0,
+              above: (i + dropOffset) % 2 === 0,
               isPriceDrop: true
             })),
             { pct: todayPct, color: barColor, label: 'Today', date: fmtShort(today), above: true, isToday: true },
             ...(noExpiry ? [] : [{ pct: 100, color: daysLeft !== null && daysLeft < 15 ? 'var(--red-border)' : 'var(--text3)', label: 'Expires', date: fmtShort(effectiveExpiry) + ' · ' + (daysLeft < 0 ? 'Expired' : daysLeft + 'd left'), above: false, isEnd: true }]),
           ];
 
-          const ABOVE_TOP = 6;
-          const BELOW_TOP = 22;
+          // Collision-aware lane assignment.
+          // Each label is ~80px wide. With a 1100px-ish bar, that's ~7% of bar per label.
+          // We use 6% as the collision threshold. Lanes 0/1/2 stack above, lanes 0/1/2 stack below.
+          // Today and Expires are pinned to lane 0 (closest to bar) so they read first.
+          const COLLISION_PCT = 6;
+          const aboveLanes = [];  // each lane is array of milestone indices
+          const belowLanes = [];
 
-          const dotHtml = m => `
+          // Clone & sort by pct so collision check walks left-to-right
+          const ordered = milestones.map((m, i) => ({ m, originalIdx: i })).sort((a, b) => a.m.pct - b.m.pct);
+
+          for (const { m, originalIdx } of ordered) {
+            // Pinned milestones stay on their original side, lane 0
+            if (m.isToday || m.isEnd || m.label === 'Contracted') {
+              m.lane = 0;
+              const lanes = m.above ? aboveLanes : belowLanes;
+              if (!lanes[0]) lanes[0] = [];
+              lanes[0].push(m);
+              continue;
+            }
+            // Try original side first (preserves the alternating pattern when there's room)
+            const tryOrder = m.above ? ['above', 'below'] : ['below', 'above'];
+            let placed = false;
+            for (const side of tryOrder) {
+              const lanes = side === 'above' ? aboveLanes : belowLanes;
+              for (let lane = 0; lane < 3; lane++) {
+                const existing = lanes[lane] || [];
+                const collides = existing.some(other => Math.abs(other.pct - m.pct) < COLLISION_PCT);
+                if (!collides) {
+                  if (!lanes[lane]) lanes[lane] = [];
+                  lanes[lane].push(m);
+                  m.above = (side === 'above');
+                  m.lane = lane;
+                  placed = true;
+                  break;
+                }
+              }
+              if (placed) break;
+            }
+            // Fallback — if all 6 lanes are full at this pct, force into bottom lane 2 (overflow case)
+            if (!placed) {
+              if (!belowLanes[2]) belowLanes[2] = [];
+              belowLanes[2].push(m);
+              m.above = false;
+              m.lane = 2;
+            }
+          }
+
+          // Lane heights — each lane needs ~38px to fit price + sublabel + date stacked (3 lines @ 12px line-height)
+          const LANE_HEIGHT = 38;
+          const BAR_GAP = 6; // gap between bar edge and innermost label
+
+          const dotHtml = m => {
+            const lane = m.lane || 0;
+            const labelOffset = BAR_GAP + lane * LANE_HEIGHT;
+            return `
             <div style="position:absolute;left:${m.pct}%;top:50%;transform:translate(-50%,-50%);z-index:2">
               ${m.isToday
                 ? `<div style="width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid ${m.color};box-shadow:0 0 0 3px ${m.color}22"></div>`
-                : m.isPriceDrop
-                  ? `<div style="width:10px;height:10px;border-radius:50%;background:var(--amber-border);border:2px solid var(--bg)"></div>`
-                  : `<div style="width:12px;height:12px;border-radius:50%;background:${m.color};border:2px solid var(--bg)"></div>`}
-              <div style="position:absolute;${m.above ? 'bottom:' + ABOVE_TOP + 'px' : 'top:' + BELOW_TOP + 'px'};${m.isEnd ? 'right:0;text-align:right' : 'left:50%;transform:translateX(-50%);text-align:center'};white-space:nowrap;line-height:1.5">
-                <div style="font-size:9px;font-weight:${m.isToday ? '700' : '600'};color:${m.isToday ? m.color : m.isPriceDrop ? 'var(--amber-text)' : 'var(--text3)'};text-transform:uppercase;letter-spacing:0.04em">${m.label}</div>
+                : m.isOriginal
+                  ? `<div style="width:11px;height:11px;border-radius:50%;background:var(--blue-border);border:2px solid var(--bg)"></div>`
+                  : m.isPriceDrop
+                    ? `<div style="width:10px;height:10px;border-radius:50%;background:var(--amber-border);border:2px solid var(--bg)"></div>`
+                    : `<div style="width:12px;height:12px;border-radius:50%;background:${m.color};border:2px solid var(--bg)"></div>`}
+              <div style="position:absolute;${m.above ? 'bottom:' + labelOffset + 'px' : 'top:' + (labelOffset + 16) + 'px'};${m.isEnd ? 'right:0;text-align:right' : 'left:50%;transform:translateX(-50%);text-align:center'};white-space:nowrap;line-height:1.4">
+                <div style="font-size:9px;font-weight:${m.isToday ? '700' : '600'};color:${m.isToday ? m.color : m.isOriginal ? 'var(--blue-text)' : m.isPriceDrop ? 'var(--amber-text)' : 'var(--text3)'};text-transform:uppercase;letter-spacing:0.04em">${m.label}</div>
+                ${m.sublabel ? `<div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;margin-top:1px">${m.sublabel}</div>` : ''}
                 <div style="font-size:10px;color:${m.label === 'Expires' && daysLeft < 15 ? 'var(--red-text)' : 'var(--text2)'}">${m.date}</div>
               </div>
             </div>`;
+          };
+
+          // Container height adapts to deepest lane in use
+          const maxAboveLane = aboveLanes.length;
+          const maxBelowLane = belowLanes.length;
+          const aboveHeight = Math.max(50, BAR_GAP + maxAboveLane * LANE_HEIGHT + 8);
+          const belowHeight = Math.max(50, BAR_GAP + maxBelowLane * LANE_HEIGHT + 8);
+          const totalHeight = aboveHeight + belowHeight + 4; // 4px for the bar itself
 
           return `
-            <div style="position:relative;height:100px;margin:0 8px">
-              <div style="position:absolute;top:50%;left:0;right:0;height:4px;background:var(--bg3);border-radius:2px;transform:translateY(-50%)">
+            <div style="position:relative;height:${totalHeight}px;margin:0 8px">
+              <div style="position:absolute;top:${aboveHeight}px;left:0;right:0;height:4px;background:var(--bg3);border-radius:2px">
                 <div style="position:absolute;left:0;top:0;height:100%;width:${todayPct}%;background:${barColor};border-radius:2px"></div>
                 ${milestones.map(dotHtml).join('')}
               </div>
             </div>
-            ${realDrops.length > 0 ? '' : pdOk ? '<div style="font-size:10px;color:var(--text3);margin-top:4px;text-align:center">No price drop dates in report for this listing</div>' : ''}`;
+            ${realDrops.some(d => d.estimated) ? '<div style="font-size:10px;color:var(--text3);margin-top:4px;text-align:center;font-style:italic">Some drop dates missing in price drop report — positions estimated</div>' : ''}`;
         })()}
       </div>
 
@@ -1551,10 +1864,13 @@ function showCard(id) {
           const expBg = exp >= 90 ? 'var(--green-bg)' : exp >= 50 ? 'var(--amber-bg)' : 'var(--red-bg)';
           const expText = exp >= 90 ? 'var(--green-text)' : exp >= 50 ? 'var(--amber-text)' : 'var(--red-text)';
           const expLabel = exp >= 90 ? 'Optimal' : exp >= 70 ? 'Strong' : exp >= 50 ? 'Moderate' : exp >= 30 ? 'Sub-Par' : 'Poor';
-          const hasR = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('realtor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('realtor'));
-          const hasI = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('investor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('investor'));
-          const hasB = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('buyer')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('buyer'));
-          const hasN = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('neighbor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('neighbor'));
+          // Same three-source check as calcExposure — keeps the pill colors consistent with the score
+          const dcExp = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
+          const dispoHas = (kw) => dcExp.some(c => ((c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase()).includes(kw));
+          const hasR = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('realtor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('realtor')) || dispoHas('realtor');
+          const hasI = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('investor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('investor')) || dispoHas('investor');
+          const hasB = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('buyer')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('buyer')) || dispoHas('buyer');
+          const hasN = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('neighbor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('neighbor')) || dispoHas('neighbor');
           const channels = l.mls ? [
             { label: 'MLS', weight: 35, active: l.mls },
             { label: 'Facebook Marketplace', weight: 15, active: l.fb },
@@ -1601,56 +1917,113 @@ function showCard(id) {
       <!-- INBOUND -->
       <div class="sec">
         ${(() => {
-          const channels = [
-            { label: 'MLS', data: l.inMls, listed: l.mls, sub: l.dom !== null ? l.dom + 'd DOM' : null, badge: 'b-bl' },
-            { label: 'Facebook Marketplace', data: l.inFb, listed: l.fb, sub: null, badge: 'b-p' },
-            { label: 'MaxAcres.com', data: l.inWeb, listed: false, sub: null, badge: 'b-teal' },
-            { label: 'Sign Board', data: l.inSign, listed: l.signBoards, sub: null, badge: 'b-a' },
-            { label: 'Realtor Campaign', data: l.inRealtor, listed: false, sub: null, badge: 'b-bl' },
-            { label: 'Investor Base', data: l.inInvestor, listed: false, sub: null, badge: 'b-teal' },
-            { label: 'Buyer Base', data: l.inBuyer, listed: false, sub: null, badge: 'b-p' },
-            { label: 'Neighbor', data: l.inNeighbor, listed: l.neighbor, sub: null, badge: 'b-a' },
-          ];
-          const totalInbound = channels.reduce((s, c) => s + (c.data ? c.data.sourced : 0), 0);
-          const hasData = channels.some(c => c.data && c.data.sourced > 0);
+          const ibLeads = l.mainListing ? getInboundLeads(l.mainListing) : [];
+          const channels = aggregateInboundLeads(ibLeads);
+          const totalInbound = channels.reduce((s, c) => s + c.sourced, 0);
 
-          const pills = channels.map(c => {
-            const hasLeads = c.data && c.data.sourced > 0;
-            const bg = hasLeads ? 'var(--green-bg)' : 'var(--bg2)';
-            const color = hasLeads ? 'var(--green-text)' : c.listed ? 'var(--text2)' : 'var(--text3)';
-            const border = hasLeads ? 'var(--green-border)' : c.listed ? 'var(--border2)' : 'var(--border)';
-            const leadCount = hasLeads ? ` · ${c.data.sourced} leads` : '';
-            return `<span style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;background:${bg};color:${color};border:1px solid ${border}">${c.label}${c.sub ? ' · ' + c.sub : ''}${leadCount}</span>`;
+          // Pills row — listing-level channel toggles + sources observed in leads
+          const observedSources = new Set(channels.map(c => c.source));
+          const togglePills = [
+            { label: 'MLS', listed: l.mls, source: 'MLS', sub: l.dom !== null ? l.dom + 'd DOM' : null },
+            { label: 'Facebook Marketplace', listed: l.fb, source: null, match: s => s.toLowerCase().includes('fb') },
+            { label: 'MaxAcres.com', listed: true, source: 'Website', match: s => s.toLowerCase() === 'website' || s.toLowerCase().includes('maxacres') },
+            { label: 'Sign Board', listed: l.signBoards, source: 'Sign Board' },
+          ];
+          const togglePillNames = new Set();
+          const pills = togglePills.map(p => {
+            // Find a matching channel (by exact source or matcher)
+            const matched = channels.find(c => p.source ? c.source === p.source : (p.match && p.match(c.source)));
+            if (matched) togglePillNames.add(matched.source);
+            const hasLeads = matched && matched.sourced > 0;
+            // Three states:
+            //   green  — leads exist (channel is working)
+            //   blue   — listed but no leads (deployed, not converting — investigate)
+            //   gray   — not listed (channel not deployed yet)
+            let bg, color, border;
+            if (hasLeads) {
+              bg = 'var(--green-bg)'; color = 'var(--green-text)'; border = 'var(--green-border)';
+            } else if (p.listed) {
+              bg = 'var(--blue-bg)'; color = 'var(--blue-text)'; border = 'var(--blue-border)';
+            } else {
+              bg = 'var(--bg2)'; color = 'var(--text3)'; border = 'var(--border)';
+            }
+            const leadCount = hasLeads ? ` · ${matched.sourced} leads` : (p.listed ? ' · listed, no leads' : '');
+            return `<span style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;background:${bg};color:${color};border:1px solid ${border}">${p.label}${p.sub ? ' · ' + p.sub : ''}${leadCount}</span>`;
+          }).join('');
+          // Extra pills for sources observed in data that aren't already covered above
+          const extraPills = channels.filter(c => !togglePillNames.has(c.source)).map(c => {
+            return `<span style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;background:var(--green-bg);color:var(--green-text);border:1px solid var(--green-border)">${c.source} · ${c.sourced} leads</span>`;
           }).join('');
 
-          const rows = hasData ? channels.filter(c => c.data && c.data.sourced > 0).map(c => `
-            <tr>
-              <td><span class="badge ${c.badge}">${c.label}</span></td>
-              <td style="text-align:center;font-weight:600">${c.data.sourced}</td>
-              <td style="text-align:center;font-weight:600">${c.data.appt}</td>
-              <td style="text-align:center;font-weight:600">${c.data.qual}</td>
-              <td style="text-align:center;font-weight:600">${c.data.noEmd}</td>
-              <td style="text-align:center;font-weight:600;color:var(--green-text)">${c.data.emd}</td>
-            </tr>`).join('') + `
+          // Build expandable rows — one per source with leads
+          const rowsHtml = channels.length > 0 ? channels.map(c => {
+            const safeBase = 'ib' + Math.abs(c.source.split('').reduce((a,ch) => ((a<<5)-a)+ch.charCodeAt(0)|0, 0)).toString(36);
+
+            const mkBtn = (val, leadList, suffix) => {
+              if (!val || val === 0) return `<span style="color:var(--text3)">0</span>`;
+              if (leadList.length === 0) return `<span style="font-weight:600">${val}</span>`;
+              const safeKey = safeBase + suffix;
+              return `<span onclick="toggleCampLeads('${safeKey}')" style="font-weight:700;color:var(--blue-text);cursor:pointer;text-decoration:underline dotted" title="Click to see leads">${val} ▾</span>`;
+            };
+
+            const mkDetail = (leadList, suffix) => {
+              if (leadList.length === 0) return '';
+              const safeKey = safeBase + suffix;
+              return `<tr id="leads_${safeKey}" style="display:none">
+                <td colspan="6" style="padding:8px 8px 12px 32px;background:var(--bg3);border-bottom:0.5px solid var(--border)">
+                  <table style="width:100%;font-size:11px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden">
+                    <thead><tr style="background:var(--bg3)">
+                      <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Name</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Status</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Source</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Appt scheduled</th>
+                    </tr></thead>
+                    <tbody>
+                      ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''}">
+                        <td style="padding:8px 14px;font-weight:600;color:var(--text)">${r.name}</td>
+                        <td style="padding:8px 14px;color:var(--text2)">${r.status}</td>
+                        <td style="padding:8px 14px;color:var(--text3)">${r.source}</td>
+                        <td style="padding:8px 14px;color:${r.apptSched ? 'var(--blue-text)' : 'var(--text3)'};font-weight:${r.apptSched ? '500' : '400'}">${r.apptSched || '—'}</td>
+                      </tr>`).join('')}
+                    </tbody>
+                  </table>
+                </td>
+              </tr>`;
+            };
+
+            return `<tr>
+              <td><span class="badge ${inboundBadgeClass(c.source)}">${c.source}</span></td>
+              <td style="text-align:center">${mkBtn(c.sourced, c.sourcedLeads, 's')}</td>
+              <td style="text-align:center">${mkBtn(c.appt, c.apptLeads, 'a')}</td>
+              <td style="text-align:center">${mkBtn(c.qual, c.qualLeads, 'q')}</td>
+              <td style="text-align:center">${mkBtn(c.noEmd, c.noEmdLeads, 'n')}</td>
+              <td style="text-align:center;color:${c.emd > 0 ? 'var(--green-text)' : 'var(--text3)'}">${mkBtn(c.emd, c.emdLeads, 'e')}</td>
+            </tr>
+            ${mkDetail(c.sourcedLeads, 's')}
+            ${mkDetail(c.apptLeads, 'a')}
+            ${mkDetail(c.qualLeads, 'q')}
+            ${mkDetail(c.noEmdLeads, 'n')}
+            ${mkDetail(c.emdLeads, 'e')}`;
+          }).join('') + `
             <tr style="border-top:2px solid var(--border);background:var(--bg3)">
               <td style="font-weight:700;font-size:11px">TOTAL</td>
-              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+(c.data?.sourced||0),0)}</td>
-              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+(c.data?.appt||0),0)}</td>
-              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+(c.data?.qual||0),0)}</td>
-              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+(c.data?.noEmd||0),0)}</td>
-              <td style="text-align:center;font-weight:700;color:var(--green-text)">${channels.reduce((s,c) => s+(c.data?.emd||0),0)}</td>
+              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.sourced,0)}</td>
+              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.appt,0)}</td>
+              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.qual,0)}</td>
+              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.noEmd,0)}</td>
+              <td style="text-align:center;font-weight:700;color:var(--green-text)">${channels.reduce((s,c) => s+c.emd,0)}</td>
             </tr>`
-          : `<tr><td colspan="6"><div class="no-data">No inbound leads recorded yet for this listing</div></td></tr>`;
+          : `<tr><td colspan="6"><div class="no-data">${ibOk ? 'No inbound leads recorded yet for this listing' : 'Inbound leads file not loaded'}</div></td></tr>`;
 
           return `
             <div class="sec-title">Inbound${totalInbound > 0 ? ' · ' + totalInbound + ' total leads' : ''}</div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px">${pills}</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px">${pills}${extraPills}</div>
             <div class="data-tbl-wrap">
               <table class="data-tbl">
                 <thead><tr>
                   <th>Source</th><th style="text-align:center">Sourced</th><th style="text-align:center">Appt set</th><th style="text-align:center">Qualified</th><th style="text-align:center">w/o EMD</th><th style="text-align:center">w/ EMD</th>
                 </tr></thead>
-                <tbody>${rows}</tbody>
+                <tbody>${rowsHtml}</tbody>
               </table>
             </div>`;
         })()}
@@ -1708,14 +2081,28 @@ function showCard(id) {
     </div>
   </div>`;
 
-  document.getElementById('cardArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Only scroll if the row is actually off-screen. 'nearest' uses minimal movement.
+  const dataRow = [...document.querySelectorAll('tr.dr')].find(r => r.textContent.includes(l.mainListing || l.id));
+  const hostRow = document.getElementById('inline-card-row-' + l.id);
+  setTimeout(() => {
+    if (!dataRow) return;
+    const rect = dataRow.getBoundingClientRect();
+    const offscreen = rect.top < 60 || rect.bottom > (window.innerHeight - 100);
+    if (offscreen) {
+      dataRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    // If row is on screen but the card extends below the fold, do nothing — user can scroll naturally.
+  }, 50);
   setTimeout(() => renderCharts(id, savesData, priceData), 150);
 }
 
 function closeCard() {
   activeCardId = null;
   destroyCharts();
-  document.getElementById('cardArea').innerHTML = '';
+  const legacyArea = document.getElementById('cardArea');
+  if (legacyArea) legacyArea.innerHTML = '';
+  const inlineArea = document.getElementById('inlineCardArea');
+  if (inlineArea) inlineArea.innerHTML = '';
   renderPortfolio();
 }
 
