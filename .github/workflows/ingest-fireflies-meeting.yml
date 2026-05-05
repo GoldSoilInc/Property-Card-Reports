@@ -1,0 +1,53 @@
+name: Ingest Fireflies meeting
+
+# Triggered by Make.com via the GitHub repository_dispatch API endpoint.
+# Make sends:
+#   POST https://api.github.com/repos/GoldSoilInc/Property-Card-Reports/dispatches
+#   Headers: Authorization: Bearer <PAT>, Accept: application/vnd.github+json
+#   Body:    {"event_type": "fireflies-meeting-ready", "client_payload": {"meeting_id": "abc123"}}
+
+on:
+  repository_dispatch:
+    types: [fireflies-meeting-ready]
+  workflow_dispatch:
+    inputs:
+      meeting_id:
+        description: 'Fireflies meeting ID (for manual testing)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fireflies-ingest-${{ github.event.client_payload.meeting_id || inputs.meeting_id }}
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Ingest meeting
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          FIREFLIES_API_KEY: ${{ secrets.FIREFLIES_API_KEY }}
+          FIREFLIES_INBOX_DATABASE_ID: ${{ vars.FIREFLIES_INBOX_DATABASE_ID }}
+          MEETING_ID: ${{ github.event.client_payload.meeting_id || inputs.meeting_id }}
+          # Property name overrides — set to match your actual Notion column names.
+          PROP_TITLE: 'Title'
+          PROP_TRANSCRIPT: 'Full Transcript'
+          PROP_MEETING_ID: 'Fireflies ID'
+          PROP_DATE: 'Date'
+          PROP_HOST: 'Host'
+          PROP_URL: 'Source'
+          # Skip duration — your database doesn't have a Duration column
+          PROP_DURATION: ''
+        run: python scripts/ingest_fireflies_meeting.py
