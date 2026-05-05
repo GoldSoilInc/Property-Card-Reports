@@ -2,7 +2,7 @@ name: Sync Notion meeting notes
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # every 30 minutes
+    - cron: '0 */2 * * *'  # every 2 hours, on the hour
   workflow_dispatch: {}     # allow manual trigger from the Actions tab
 
 permissions:
