@@ -1,6 +1,45 @@
 {
-  "lastSynced": "2026-05-05T20:00:20.421792+00:00",
+  "lastSynced": "2026-05-05T20:04:24.118049+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
-  "byTransaction": {}
+  "byTransaction": {
+    "TR-SC-065391": {
+      "notionPageId": "3560bd65-db0b-80d2-ab9e-f5f8aff91930",
+      "notionUrl": "https://www.notion.so/TR-SC-065391-3560bd65db0b80d2ab9ef5f8aff91930",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-04-29",
+          "label": "📊 Portfolio Review — 2026-04-29",
+          "bullets": [
+            "🏷️ TR-SC-065391 · Virginia commercial lot · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM: 37 days · Days to expire: 41 · Current list price: (not stated) · Notes: appointment set mentioned; Salesforce stage not updated",
+            "Channels: MLS (assumed) + Facebook (mentioned)",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: → $18,900 (per meeting)",
+            "BUYER & LEAD ACTIVITY",
+            "Appointment set mentioned; prior buyer no longer interested"
+          ],
+          "blockId": "502f570a-dbc8-420b-bbcd-b288938d0ce9"
+        },
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-04-28",
+          "label": "📊 Pricing Meeting — 2026-04-28",
+          "bullets": [
+            "🏷️ TR-SC-065391 · USB International Incorporated · 8.51 acres · LDS 6.8",
+            "PRICING DECISION",
+            "Final list price: $74,900 · Contract price: $50,000 · Floor: $68,000–$67,000 (negotiation target) · Min spread: $25,000",
+            "Strategy: Price conservatively but leave room to negotiate while protecting a $25k+ spread.",
+            "Anshul: “Perk test is… suitable for a non conventional septic system.”",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Keeps ~$25k spread while staying attractive for an 8.51-acre A1-zoned property with road frontage."
+          ],
+          "blockId": "6c3d1924-2cd0-4c47-918b-f0ee283789c1"
+        }
+      ]
+    }
+  }
 }
