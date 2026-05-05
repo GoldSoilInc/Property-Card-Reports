@@ -1221,7 +1221,8 @@ function showCard(id) {
 
           const todayPct = pct(today.getTime());
           const listPct = listDate ? pct(listDate.getTime()) : null;
-          const createdPct = (createdDate && !isNaN(createdDate.getTime())) ? pct(createdDate.getTime()) : null;
+          const validCreated = (createdDate && !isNaN(createdDate.getTime())) ? createdDate : null;
+          const createdPct = validCreated ? pct(validCreated.getTime()) : null;
 
           // Real price drop dots from price drop report
           const origPriceEntry = pdHistory.find(d => d.label === 'Original');
@@ -1234,7 +1235,7 @@ function showCard(id) {
           // Build milestones — fixed alternating above/below
           const milestones = [
             { pct: 0, color: 'var(--green-border)', label: origPriceEntry ? fmt(origPriceEntry.price) : 'Contracted', date: fmtShort(contractDate), above: false },
-            ...(createdPct !== null ? [{ pct: createdPct, color: 'var(--purple-border)', label: 'Priced', date: fmtShort(createdDate), above: true }] : []),
+            ...(createdPct !== null ? [{ pct: createdPct, color: 'var(--purple-border)', label: 'Priced', date: fmtShort(validCreated), above: true }] : []),
             ...(listPct !== null ? [{ pct: listPct, color: 'var(--blue-border)', label: 'Listed', date: fmtShort(listDate), above: createdPct !== null ? false : true }] : []),
             ...realDrops.map((d, i) => ({
               pct: pct(d.date.getTime()),
