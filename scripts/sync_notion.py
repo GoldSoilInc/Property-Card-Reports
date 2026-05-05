@@ -126,19 +126,26 @@ def block_to_text(block):
 
 
 def is_meeting_toggle(block):
-    """Return the meeting type if this is a toggle whose label starts with one. Else None."""
+    """Return the meeting type if this is a toggle whose label starts with one. Else None.
+    Tolerant of leading emojis, whitespace, and other decorative non-letter prefixes —
+    e.g. '📊 Pricing Meeting — 2026-04-28' still matches 'Pricing Meeting'.
+    """
     if block.get("type") != "toggle":
         return None
     text = block_to_text(block).strip()
+    # Strip any leading characters that aren't letters/digits — emojis, symbols, extra spaces.
+    stripped = re.sub(r"^[^A-Za-z0-9]+", "", text)
     for mt in MEETING_TYPES:
-        if text.startswith(mt):
+        if stripped.startswith(mt):
             return mt
     return None
 
 
 def parse_meeting_date(label, expected_type):
-    """Extract a date string from 'Pricing Meeting — 2026-04-28' style labels."""
-    rest = label[len(expected_type):].strip(" -—:·")
+    """Extract a date string from 'Pricing Meeting — 2026-04-28' style labels.
+    Tolerant of leading emojis/symbols/whitespace before the meeting type."""
+    stripped = re.sub(r"^[^A-Za-z0-9]+", "", label)
+    rest = stripped[len(expected_type):].strip(" -—:·")
     m = re.search(r"\d{4}-\d{2}-\d{2}", rest)
     if m:
         return m.group(0)
@@ -211,37 +218,18 @@ def page_url(page):
 
 def process_page(page):
     """Return (transaction_id, meetings_list) for a single Notion page."""
-    page_id = page["id"]
-    # Diagnostic: show ALL property names and types found on this page
-    props = page.get("properties", {})
-    prop_summary = ", ".join(f"{name}({p.get('type','?')})" for name, p in props.items())
-    print(f"  Page {page_id}: properties=[{prop_summary}]", file=sys.stderr)
-
     txn = get_transaction_value(page)
     if not txn:
-        print(f"    -> SKIP: no value found at property '{TRANSACTION_PROPERTY}'", file=sys.stderr)
-        # Show what the property looked like, if it exists at all
-        target = props.get(TRANSACTION_PROPERTY)
-        if target:
-            print(f"       (property exists, type={target.get('type')}, raw={json.dumps(target)[:200]})", file=sys.stderr)
-        else:
-            print(f"       (property '{TRANSACTION_PROPERTY}' does NOT exist on this page — check exact spelling/casing)", file=sys.stderr)
         return None, []
-    print(f"    Transaction = {txn!r}", file=sys.stderr)
 
     blocks = fetch_blocks(page["id"])
-    print(f"    Page has {len(blocks)} top-level blocks", file=sys.stderr)
-    block_types = ", ".join(b.get("type", "?") for b in blocks[:20])
-    print(f"    Block types: {block_types}{' ...' if len(blocks) > 20 else ''}", file=sys.stderr)
-
     meeting_blocks = find_meeting_blocks(blocks)
-    print(f"    Found {len(meeting_blocks)} meeting toggle(s)", file=sys.stderr)
+    print(f"  {txn}: {len(meeting_blocks)} meeting toggle(s)", file=sys.stderr)
 
     meetings = []
     for block, mt in meeting_blocks:
         label = block_to_text(block).strip()
         date = parse_meeting_date(label, mt)
-        print(f"      -> {mt}: label={label!r} date={date!r}", file=sys.stderr)
         try:
             children = fetch_blocks(block["id"])
             bullets = extract_bullets(children)
