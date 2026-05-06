@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-06T14:29:24.035857+00:00",
+  "lastSynced": "2026-05-06T17:46:49.547914+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -38,6 +38,72 @@
             "Why this price: Keeps ~$25k spread while staying attractive for an 8.51-acre A1-zoned property with road frontage."
           ],
           "blockId": "6c3d1924-2cd0-4c47-918b-f0ee283789c1"
+        }
+      ]
+    },
+    "TR-SC-066611": {
+      "notionPageId": "3580bd65-db0b-801f-876b-fdb2ca88f95e",
+      "notionUrl": "https://www.notion.so/TR-SC-066611-3580bd65db0b801f876bfdb2ca88f95e",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-06",
+          "label": "📊 Pricing Meeting — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-066611 · Albany, NY (seller: “Smart Luzi”) · acreage not stated · LDS not stated",
+            "PRICING DECISION",
+            "Pricing not stated on this call (Art to set price today and email team)",
+            "Strategy: fast timeline (30-day close); push to market to lock a buyer quickly; likely buy & flip if buyer not locked in time",
+            "RATIONALE",
+            "Comps: Not stated",
+            "Why this price: timeline-driven; prioritize speed to lock buyer",
+            "PROPERTY SHORTCOMINGS"
+          ],
+          "blockId": "5d31d60d-da83-48dd-b543-aaf688acd890"
+        }
+      ]
+    },
+    "TR-SC-066142": {
+      "notionPageId": "3580bd65-db0b-801f-96b0-c61686181702",
+      "notionUrl": "https://www.notion.so/TR-SC-066142-3580bd65db0b801f96b0c61686181702",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-06",
+          "label": "📊 Pricing Meeting — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-066142 · Steven Jeffcoat · 15 acres (subdivide) · LDS not stated",
+            "PRICING DECISION",
+            "Not stated for flag lot on this call (prior discussion referenced 15,000/acre for flag lot and 16,000/acre for other lots; confirm in subdivide spreadsheet)",
+            "Strategy: subdivide into three 5-acre lots; source at least one off-market buyer for the flag lot (no MLS)",
+            "RATIONALE",
+            "Comps: Not stated",
+            "Why this price: avoid pricing confusion across subdivided lots; all costs (survey, septic permits, realtor, etc.) must be baked into per-lot economics",
+            "GENERAL CONSTRAINTS"
+          ],
+          "blockId": "53813281-ad2b-4975-8111-230654c74e2d"
+        }
+      ]
+    },
+    "TR-SC-066670": {
+      "notionPageId": "3580bd65-db0b-8055-9d96-f15bcd13b813",
+      "notionUrl": "https://www.notion.so/TR-SC-066670-3580bd65db0b80559d96f15bcd13b813",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-06",
+          "label": "📊 Pricing Meeting — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-066670 · Catherine Hilden Burger · 0.2 acres · LDS not stated",
+            "PRICING DECISION",
+            "Final list price: 34,900 (raised from initial 29,500) · Contract price: 15,000 · Floor: not stated · Min spread: not stated",
+            "Strategy: price into a strong infill-lot demand pocket near Baltimore; leverage lack of comps (buyer also lacks comps)",
+            "RATIONALE",
+            "Comps: none stated; pricing derived from nearby sold homes/land",
+            "Why this price: stretch price due to scarcity + proximity to Baltimore",
+            "GENERAL CONSTRAINTS"
+          ],
+          "blockId": "4c35a932-0fd9-45ab-ba91-e806f1563f20"
         }
       ]
     }
