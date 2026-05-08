@@ -40,13 +40,13 @@
     }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 13px; background: var(--bg3); color: var(--text); min-height: 100vh; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:14px; background: var(--bg3); color: var(--text); min-height: 100vh; }
 
   /* ── TOP BAR ── */
   .topbar { background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 100; }
   .logo { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
   .logo span { color: var(--blue-text); }
-  .topbar-right { font-size: 11px; color: var(--text3); }
+  .topbar-right { font-size:12px; color: var(--text3); }
 
   /* ── MAIN LAYOUT ── */
   .main { width: 100%; padding: 16px 20px; box-sizing: border-box; }
@@ -54,16 +54,16 @@
   /* ── LOADER ── */
   .loader-bar { background: var(--bg); border-radius: var(--r-lg); padding: 20px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 0.5px solid var(--border); }
   .loader-status { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-  .loader-dot { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+  .loader-dot { display: flex; align-items: center; gap: 6px; font-size:13px; color: var(--text2); }
   .loader-dot .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border2); flex-shrink: 0; }
   .loader-dot.ok .dot { background: var(--green-border); }
   .loader-dot.err .dot { background: var(--red-border); }
   .loader-dot.loading .dot { background: var(--amber-border); animation: pulse 1s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .refresh-btn { font-size: 12px; padding: 7px 16px; border-radius: var(--r-md); border: 0.5px solid var(--blue-border); background: var(--blue-bg); color: var(--blue-text); cursor: pointer; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+  .refresh-btn { font-size:13px; padding: 7px 16px; border-radius: var(--r-md); border: 0.5px solid var(--blue-border); background: var(--blue-bg); color: var(--blue-text); cursor: pointer; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
   .refresh-btn:hover { opacity: 0.85; }
   .refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  .sheet-url-input { flex: 1; font-size: 11px; padding: 6px 10px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: var(--bg2); color: var(--text); min-width: 0; }
+  .sheet-url-input { flex: 1; font-size:12px; padding: 6px 10px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: var(--bg2); color: var(--text); min-width: 0; }
   .sheet-url-input::placeholder { color: var(--text3); }
 
   /* ── SUMMARY BAR ── */
@@ -73,16 +73,58 @@
   .sm-filter:hover { border-color: var(--amber-border); background: var(--amber-bg); }
   .sm-active { border-color: var(--amber-border) !important; background: var(--amber-bg) !important; }
   .sm-v { font-size: 22px; font-weight: 600; color: var(--text); }
-  .sm-l { font-size: 10px; color: var(--text3); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .sm-l { font-size:11px; color: var(--text3); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
   .sm-v.red { color: var(--red-text); } .sm-v.amber { color: var(--amber-text); } .sm-v.green { color: var(--green-text); }
 
   /* ── FILTERS ── */
+  .filter-bar { background: var(--bg); border-radius: var(--r-md); padding: 12px 14px; margin-bottom: 6px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
   .filter-section { background: var(--bg); border-radius: var(--r-md); padding: 10px 14px; margin-bottom: 6px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-  .filter-label { font-size: 10px; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; margin-right: 4px; font-weight: 700; }
+  .filter-label { font-size:13px; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; margin-right: 4px; font-weight: 700; }
   .filter-sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
-  .fb { font-size: 11px; padding: 4px 10px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: transparent; color: var(--text3); cursor: pointer; transition: all 0.1s; }
+  .fb { font-size:13px; padding: 5px 11px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: transparent; color: var(--text3); cursor: pointer; transition: all 0.1s; }
   .fb:hover { background: var(--bg2); color: var(--text2); }
   .fb.on { background: var(--blue-bg); color: var(--blue-text); border-color: var(--blue-border); font-weight: 600; }
+
+  /* Filter field — label + dropdown pair */
+  .ff { display: inline-flex; align-items: center; gap: 8px; }
+
+  /* Custom dropdown component (handles both single-select and multi-select) */
+  .dd { position: relative; display: inline-block; }
+  .dd-btn {
+    font-size:14px; padding: 7px 12px; border-radius: var(--r-md);
+    border: 0.5px solid var(--border2); background: var(--bg);
+    color: var(--text); cursor: pointer; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 10px;
+    min-width: 160px; justify-content: space-between;
+    transition: all 0.15s;
+    line-height: 1.3;
+  }
+  .dd-btn:hover { border-color: var(--blue-border); background: var(--bg2); }
+  .dd.has-selection .dd-btn { background: var(--blue-bg); border-color: var(--blue-border); color: var(--blue-text); font-weight: 600; }
+  .dd-chevron { font-size:11px; opacity: 0.6; transition: transform 0.15s; }
+  .dd.open .dd-chevron { transform: rotate(180deg); }
+  .dd-panel {
+    position: absolute; top: calc(100% + 4px); left: 0; z-index: 100;
+    background: var(--bg); border: 0.5px solid var(--border2); border-radius: var(--r-md);
+    padding: 4px; min-width: 220px; max-height: 340px; overflow-y: auto;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+    display: none;
+  }
+  .dd.open .dd-panel { display: block; }
+  .dd-opt {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; border-radius: 4px; cursor: pointer;
+    font-size:14px; color: var(--text); user-select: none;
+  }
+  .dd-opt:hover { background: var(--bg2); }
+  .dd-opt.selected { background: var(--blue-bg); color: var(--blue-text); font-weight: 500; }
+  .dd-opt input { margin: 0; pointer-events: none; cursor: pointer; }
+  .dd-clear {
+    font-size:12px; color: var(--text3); text-align: center;
+    padding: 7px; cursor: pointer; border-top: 0.5px solid var(--border);
+    margin-top: 4px; user-select: none;
+  }
+  .dd-clear:hover { color: var(--red-text); background: var(--red-bg); }
 
   /* ── TABLE ── */
   .table-wrap { background: var(--bg); border-radius: var(--r-lg); overflow-x: auto; margin-bottom: 16px; width: 100%; }
@@ -100,30 +142,30 @@
   .tile-sub { font-size: 14px; color: var(--text3); margin-bottom: 14px; }
   .tile-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
   .tile-metric { background: var(--bg2); border-radius: var(--r-md); padding: 8px 10px; }
-  .tile-ml { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+  .tile-ml { font-size:11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
   .tile-mv { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.1; }
-  .tile-ms { font-size: 11px; color: var(--text3); margin-top: 1px; }
+  .tile-ms { font-size:12px; color: var(--text3); margin-top: 1px; }
   .tile-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
   .tile-stat { text-align: center; }
   .tile-stat-v { font-size: 28px; font-weight: 700; color: var(--text); }
-  .tile-stat-l { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .tile-stat-l { font-size:12px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; }
   .tile-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 0.5px solid var(--border); }
   .tile-flags { display: flex; gap: 4px; flex-wrap: wrap; }
-  .tbl th { font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; padding: 11px 16px; text-align: left; border-bottom: 0.5px solid var(--border); white-space: nowrap; background: var(--bg2); }
+  .tbl th { font-size:11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; padding: 11px 16px; text-align: left; border-bottom: 0.5px solid var(--border); white-space: nowrap; background: var(--bg2); }
   .tbl th.sortable { cursor: pointer; user-select: none; }
   .tbl th.sortable:hover { color: var(--text); background: var(--bg3); }
   .tbl th.sort-active { color: var(--blue-text); }
-  .sort-arrow { margin-left: 4px; opacity: 0.5; font-size: 9px; }
+  .sort-arrow { margin-left: 4px; opacity: 0.5; font-size:10px; }
   .sort-active .sort-arrow { opacity: 1; }
-  .tbl td { padding: 11px 16px; border-bottom: 0.5px solid var(--border); vertical-align: middle; font-size: 12px; }
+  .tbl td { padding: 11px 16px; border-bottom: 0.5px solid var(--border); vertical-align: middle; font-size:13px; }
   .tbl td:first-child { min-width: 220px; }
   .tbl tr.dr:hover td { background: var(--bg2); cursor: pointer; }
   .tbl tr.dr.active td { background: var(--blue-bg); }
-  .prop-name { font-size: 12px; font-weight: 500; color: var(--text); }
-  .prop-sub { font-size: 10px; color: var(--text3); margin-top: 1px; }
+  .prop-name { font-size:13px; font-weight: 500; color: var(--text); }
+  .prop-sub { font-size:11px; color: var(--text3); margin-top: 1px; }
 
   /* ── BADGES ── */
-  .badge { font-size: 10px; padding: 2px 7px; border-radius: 10px; white-space: nowrap; display: inline-block; line-height: 1.4; }
+  .badge { font-size:11px; padding: 2px 7px; border-radius: 10px; white-space: nowrap; display: inline-block; line-height: 1.4; }
   .b-r { background: var(--red-bg); color: var(--red-text); }
   .b-a { background: var(--amber-bg); color: var(--amber-text); }
   .b-g { background: var(--green-bg); color: var(--green-text); }
@@ -133,7 +175,7 @@
   .b-gr { background: var(--bg2); color: var(--text2); border: 0.5px solid var(--border); }
 
   /* ── SCORE RING ── */
-  .score-ring { display: inline-flex; align-items: center; justify-content: center; width: var(--score-size); height: var(--score-size); border-radius: 50%; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+  .score-ring { display: inline-flex; align-items: center; justify-content: center; width: var(--score-size); height: var(--score-size); border-radius: 50%; font-size:12px; font-weight: 600; flex-shrink: 0; }
   .sr-r { background: var(--red-bg); color: var(--red-text); border: 2px solid var(--red-border); }
   .sr-a { background: var(--amber-bg); color: var(--amber-text); border: 2px solid var(--amber-border); }
   .sr-g { background: var(--green-bg); color: var(--green-text); border: 2px solid var(--green-border); }
@@ -151,7 +193,7 @@
   .card-wrap { background: var(--bg); border-radius: var(--r-lg); overflow: hidden; margin-bottom: 24px; border: 0.5px solid var(--border); }
   .card-head { padding: 24px 28px 20px; border-bottom: 0.5px solid var(--border); background: var(--bg); }
   .card-addr { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-  .card-meta { font-size: 11px; color: var(--text2); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; }
+  .card-meta { font-size:12px; color: var(--text2); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; }
   .card-meta .sep { color: var(--border2); }
   .card-badges { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
   .card-body { padding: 0; }
@@ -159,7 +201,7 @@
   /* ── CARD SECTIONS ── */
   .sec { padding: 16px 24px; border-bottom: 0.5px solid var(--border); }
   .sec:last-child { border-bottom: none; }
-  .sec-title { font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+  .sec-title { font-size:11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
 
   /* ── METRIC GRIDS ── */
   .g5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
@@ -168,30 +210,30 @@
   .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .mt8 { margin-top: 8px; }
   .mc { background: var(--bg2); border-radius: var(--r-md); padding: 10px 14px; }
-  .mc-l { font-size: 10px; color: var(--text3); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .mc-l { font-size:11px; color: var(--text3); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.03em; }
   .mc-v { font-size: 18px; font-weight: 600; color: var(--text); line-height: 1.2; }
-  .mc-s { font-size: 10px; color: var(--text3); margin-top: 3px; }
+  .mc-s { font-size:11px; color: var(--text3); margin-top: 3px; }
 
   /* ── PANEL BOXES ── */
   .panel-box { background: var(--bg2); border-radius: var(--r-md); padding: 12px 14px; }
-  .panel-title { font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 0.5px solid var(--border); }
+  .panel-title { font-size:11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 0.5px solid var(--border); }
   .drow { display: flex; justify-content: space-between; align-items: flex-start; padding: 4px 0; border-bottom: 0.5px solid var(--border); }
   .drow:last-child { border-bottom: none; }
-  .drl { font-size: 11px; color: var(--text2); }
-  .drv { font-size: 11px; font-weight: 500; color: var(--text); text-align: right; max-width: 58%; word-break: break-word; }
+  .drl { font-size:12px; color: var(--text2); }
+  .drv { font-size:12px; font-weight: 500; color: var(--text); text-align: right; max-width: 58%; word-break: break-word; }
 
   /* ── CHARTS ── */
   .chart-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .chart-box { background: var(--bg2); border-radius: var(--r-md); padding: 12px 14px; }
-  .chart-title { font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+  .chart-title { font-size:11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
 
   /* ── RECOMMENDATION BAR ── */
   .rec-bar { border-radius: var(--r-md); border-left: 3px solid var(--red-border); padding: 12px 16px; background: var(--bg2); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .rec-bar.wa { border-left-color: var(--amber-border); }
   .rec-bar.go { border-left-color: var(--green-border); }
-  .rec-label { font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 3px; }
-  .rec-text { font-size: 12px; color: var(--text); line-height: 1.5; }
-  .engine-btn { font-size: 11px; padding: 6px 14px; border-radius: var(--r-md); border: 0.5px solid var(--blue-border); background: var(--blue-bg); color: var(--blue-text); cursor: pointer; font-weight: 500; white-space: nowrap; }
+  .rec-label { font-size:11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 3px; }
+  .rec-text { font-size:13px; color: var(--text); line-height: 1.5; }
+  .engine-btn { font-size:12px; padding: 6px 14px; border-radius: var(--r-md); border: 0.5px solid var(--blue-border); background: var(--blue-bg); color: var(--blue-text); cursor: pointer; font-weight: 500; white-space: nowrap; }
   .engine-btn:hover { opacity: 0.85; }
 
   /* ── MKTG CHIPS ── */
@@ -199,12 +241,12 @@
 
   /* ── DATA TABLES ── */
   .data-tbl-wrap { background: var(--bg2); border-radius: var(--r-md); overflow: hidden; }
-  .data-tbl { width: 100%; border-collapse: collapse; font-size: 11px; }
-  .data-tbl th { font-size: 10px; color: var(--text3); padding: 8px 10px; text-align: left; border-bottom: 0.5px solid var(--border); font-weight: 500; white-space: nowrap; background: var(--bg3); }
+  .data-tbl { width: 100%; border-collapse: collapse; font-size:12px; }
+  .data-tbl th { font-size:11px; color: var(--text3); padding: 8px 10px; text-align: left; border-bottom: 0.5px solid var(--border); font-weight: 500; white-space: nowrap; background: var(--bg3); }
   .data-tbl td { padding: 7px 10px; border-bottom: 0.5px solid var(--border); vertical-align: top; color: var(--text); line-height: 1.45; }
   .data-tbl tr:last-child td { border-bottom: none; }
   .data-tbl tr:nth-child(even) td { background: var(--bg3); }
-  .no-data { font-size: 11px; color: var(--text3); font-style: italic; padding: 16px; text-align: center; }
+  .no-data { font-size:12px; color: var(--text3); font-style: italic; padding: 16px; text-align: center; }
   .hot { color: var(--red-text); font-weight: 600; }
   .warm { color: var(--amber-text); font-weight: 500; }
   .cold { color: var(--blue-text); }
@@ -213,14 +255,14 @@
 
   /* ── CLOSE BAR ── */
   .close-bar { padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--border); background: var(--bg2); }
-  .close-btn { font-size: 11px; padding: 6px 14px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: var(--bg); color: var(--text2); cursor: pointer; }
+  .close-btn { font-size:12px; padding: 6px 14px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: var(--bg); color: var(--text2); cursor: pointer; }
   .close-btn:hover { background: var(--bg3); }
-  .close-meta { font-size: 10px; color: var(--text3); }
+  .close-meta { font-size:11px; color: var(--text3); }
 
   /* ── EMPTY STATE ── */
   .empty { text-align: center; padding: 60px 24px; color: var(--text3); }
   .empty-title { font-size: 16px; font-weight: 500; color: var(--text2); margin-bottom: 8px; }
-  .empty-sub { font-size: 13px; }
+  .empty-sub { font-size:14px; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
@@ -245,7 +287,7 @@
   <div class="loader-bar" id="loaderBar">
     <div>
       <div style="font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px">MaxAcres.com · Portfolio Dashboard</div>
-      <div style="font-size:12px;color:var(--text3)">Live data from GitHub · Auto-refreshes every 4 hours</div>
+      <div style="font-size:13px;color:var(--text3)">Live data from GitHub · Auto-refreshes every 4 hours</div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
       <button class="refresh-btn" id="refreshBtn" onclick="loadFromSheets()">⟳ Refresh</button>
@@ -257,75 +299,165 @@
         <div class="loader-dot" id="dot-ib"><div class="dot"></div><span>Inbound</span></div>
         <div class="loader-dot" id="dot-zillow"><div class="dot"></div><span>Zillow</span></div>
       </div>
-      <div id="lastRefreshed" style="font-size:10px;color:var(--text3)"></div>
+      <div id="lastRefreshed" style="font-size:11px;color:var(--text3)"></div>
     </div>
   </div>
 
   <!-- PORTFOLIO -->
   <div id="portfolioSection" style="display:none">
     <div style="display:flex;justify-content:flex-end;margin-bottom:6px">
-      <button id="clearFiltersBtn" onclick="clearAllFilters()" style="font-size:11px;padding:5px 12px;border-radius:var(--r-md);border:0.5px solid var(--border2);background:var(--bg);color:var(--text3);cursor:pointer;transition:all 0.15s" onmouseover="this.style.color='var(--red-text)';this.style.borderColor='var(--red-border)';this.style.background='var(--red-bg)'" onmouseout="this.style.color='var(--text3)';this.style.borderColor='var(--border2)';this.style.background='var(--bg)'">✕ Clear all filters</button>
+      <button id="clearFiltersBtn" onclick="clearAllFilters()" style="font-size:12px;padding:5px 12px;border-radius:var(--r-md);border:0.5px solid var(--border2);background:var(--bg);color:var(--text3);cursor:pointer;transition:all 0.15s" onmouseover="this.style.color='var(--red-text)';this.style.borderColor='var(--red-border)';this.style.background='var(--red-bg)'" onmouseout="this.style.color='var(--text3)';this.style.borderColor='var(--border2)';this.style.background='var(--bg)'">✕ Clear all filters</button>
     </div>
-    <div class="filter-section">
-      <span class="filter-label">Stage</span>
-      <button class="fb stage-btn stage-all-btn on" onclick="fstage('all',this)">All</button>
-      <button class="fb stage-btn" onclick="fstage('Clear to Flip',this)">Clear to flip</button>
-      <button class="fb stage-btn" onclick="fstage('TAH - Owned',this)">TAH owned</button>
-      <button class="fb stage-btn" onclick="fstage('Due Diligence',this)">Due diligence</button>
-      <button class="fb stage-btn" onclick="fstage('At Closing',this)">At closing</button>
-      <button class="fb stage-btn" onclick="fstage('Clearing to Close',this)">Clearing to close</button>
-    </div>
-    <div class="filter-section">
-      <span class="filter-label">LEI</span>
-      <button class="fb on" onclick="fpei('all',this)">All</button>
-      <button class="fb" onclick="fpei('optimal',this)">Optimal 90%+</button>
-      <button class="fb" onclick="fpei('strong',this)">Strong 70–89%</button>
-      <button class="fb" onclick="fpei('moderate',this)">Moderate 50–69%</button>
-      <button class="fb" onclick="fpei('subpar',this)">Sub-Par 30–49%</button>
-      <button class="fb" onclick="fpei('poor',this)">Poor &lt;30%</button>
-    </div>
-    <div class="filter-section" id="titleFilterRow" style="display:none">
-      <span class="filter-label">Title status</span>
-      <button class="fb title-btn title-all-btn on" onclick="ftitle('all',this)">All</button>
-      <span id="titleButtons"></span>
-    </div>
-    <div class="filter-section">
-      <span class="filter-label">Expiry</span>
-      <button class="fb on" onclick="fexpiry('all',this)">All</button>
-      <button class="fb" onclick="fexpiry('critical',this)">Under 15 days</button>
-      <button class="fb" onclick="fexpiry('urgent',this)">15–30 days</button>
-      <button class="fb" onclick="fexpiry('watch',this)">30–60 days</button>
-      <button class="fb" onclick="fexpiry('good',this)">60+ days</button>
-    </div>
-    <div class="filter-section">
-      <span class="filter-label">Price drops</span>
-      <button class="fb on" onclick="fdrops('all',this)">All</button>
-      <button class="fb" onclick="fdrops('0',this)">0</button>
-      <button class="fb" onclick="fdrops('1',this)">1</button>
-      <button class="fb" onclick="fdrops('2',this)">2</button>
-      <button class="fb" onclick="fdrops('3',this)">3</button>
-      <button class="fb" onclick="fdrops('4',this)">4</button>
-      <button class="fb" onclick="fdrops('5+',this)">5+</button>
-    </div>
-    <div class="filter-section">
-      <span class="filter-label">Last drop age</span>
-      <button class="fb on" onclick="fdropAge('all',this)">All</button>
-      <button class="fb" onclick="fdropAge('lt7',this)">&lt;7 days</button>
-      <button class="fb" onclick="fdropAge('7to15',this)">7–15 days</button>
-      <button class="fb" onclick="fdropAge('15to30',this)">15–30 days</button>
-      <button class="fb" onclick="fdropAge('30to60',this)">30–60 days</button>
-      <button class="fb" onclick="fdropAge('gt60',this)">&gt;60 days</button>
-    </div>
-    <div class="filter-section" id="stateFilterRow" style="display:none">
-      <span class="filter-label">State</span>
-      <button class="fb state-btn state-all-btn on" onclick="fstate('all',this)">All</button>
-      <span id="stateButtons"></span>
-    </div>
-    <div class="filter-section">
-      <span class="filter-label">POD</span>
-      <button class="fb on" onclick="fpod('all',this)">All</button>
-      <button class="fb" onclick="fpod('Jose',this)">Jose</button>
-      <button class="fb" onclick="fpod('Gabriel',this)">Gabriel</button>
+    <div class="filter-bar">
+      <!-- Stage — multi-select -->
+      <div class="ff">
+        <span class="filter-label">Stage</span>
+        <div class="dd" id="dd_stage" data-all-label="All stages">
+          <button type="button" class="dd-btn" onclick="ddToggle('stage', event)">
+            <span class="dd-btn-label">All stages</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt" data-value="Clear to Flip" onclick="ddPickMulti('stage','Clear to Flip',event)"><input type="checkbox"> Clear to flip</div>
+            <div class="dd-opt" data-value="TAH - Owned" onclick="ddPickMulti('stage','TAH - Owned',event)"><input type="checkbox"> TAH owned</div>
+            <div class="dd-opt" data-value="Due Diligence" onclick="ddPickMulti('stage','Due Diligence',event)"><input type="checkbox"> Due diligence</div>
+            <div class="dd-opt" data-value="At Closing" onclick="ddPickMulti('stage','At Closing',event)"><input type="checkbox"> At closing</div>
+            <div class="dd-opt" data-value="Clearing to Close" onclick="ddPickMulti('stage','Clearing to Close',event)"><input type="checkbox"> Clearing to close</div>
+            <div class="dd-clear" onclick="ddClearMulti('stage',event)">Clear selection</div>
+          </div>
+        </div>
+      </div>
+      <!-- LEI — single-select -->
+      <div class="ff">
+        <span class="filter-label">LEI</span>
+        <div class="dd" id="dd_pei" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('pei', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('pei','all','All',event)">All</div>
+            <div class="dd-opt" data-value="optimal" onclick="ddPickSingle('pei','optimal','Optimal 90%+',event)">Optimal 90%+</div>
+            <div class="dd-opt" data-value="strong" onclick="ddPickSingle('pei','strong','Strong 70–89%',event)">Strong 70–89%</div>
+            <div class="dd-opt" data-value="moderate" onclick="ddPickSingle('pei','moderate','Moderate 50–69%',event)">Moderate 50–69%</div>
+            <div class="dd-opt" data-value="subpar" onclick="ddPickSingle('pei','subpar','Sub-Par 30–49%',event)">Sub-Par 30–49%</div>
+            <div class="dd-opt" data-value="poor" onclick="ddPickSingle('pei','poor','Poor &lt;30%',event)">Poor &lt;30%</div>
+          </div>
+        </div>
+      </div>
+      <!-- Title status — multi-select, options built dynamically -->
+      <div class="ff" id="titleFilterRow" style="display:none">
+        <span class="filter-label">Title status</span>
+        <div class="dd" id="dd_title" data-all-label="All title statuses">
+          <button type="button" class="dd-btn" onclick="ddToggle('title', event)">
+            <span class="dd-btn-label">All title statuses</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="titleDropdownPanel"></div>
+        </div>
+      </div>
+      <!-- Title commitment — multi-select, options built dynamically -->
+      <div class="ff" id="titleCommitFilterRow" style="display:none">
+        <span class="filter-label">Title commitment</span>
+        <div class="dd" id="dd_titleCommit" data-all-label="All commitments">
+          <button type="button" class="dd-btn" onclick="ddToggle('titleCommit', event)">
+            <span class="dd-btn-label">All commitments</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="titleCommitDropdownPanel"></div>
+        </div>
+      </div>
+      <!-- Listing status — multi-select, options built dynamically -->
+      <div class="ff" id="listingStatusFilterRow" style="display:none">
+        <span class="filter-label">Listing status</span>
+        <div class="dd" id="dd_listingStatus" data-all-label="All listing statuses">
+          <button type="button" class="dd-btn" onclick="ddToggle('listingStatus', event)">
+            <span class="dd-btn-label">All listing statuses</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="listingStatusDropdownPanel"></div>
+        </div>
+      </div>
+      <!-- Expiry — single-select -->
+      <div class="ff">
+        <span class="filter-label">Expiry</span>
+        <div class="dd" id="dd_expiry" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('expiry', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('expiry','all','All',event)">All</div>
+            <div class="dd-opt" data-value="critical" onclick="ddPickSingle('expiry','critical','Under 15 days',event)">Under 15 days</div>
+            <div class="dd-opt" data-value="urgent" onclick="ddPickSingle('expiry','urgent','15–30 days',event)">15–30 days</div>
+            <div class="dd-opt" data-value="watch" onclick="ddPickSingle('expiry','watch','30–60 days',event)">30–60 days</div>
+            <div class="dd-opt" data-value="good" onclick="ddPickSingle('expiry','good','60+ days',event)">60+ days</div>
+          </div>
+        </div>
+      </div>
+      <!-- Price drops — single-select -->
+      <div class="ff">
+        <span class="filter-label">Price drops</span>
+        <div class="dd" id="dd_drops" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('drops', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('drops','all','All',event)">All</div>
+            <div class="dd-opt" data-value="0" onclick="ddPickSingle('drops','0','0 drops',event)">0 drops</div>
+            <div class="dd-opt" data-value="1" onclick="ddPickSingle('drops','1','1 drop',event)">1 drop</div>
+            <div class="dd-opt" data-value="2" onclick="ddPickSingle('drops','2','2 drops',event)">2 drops</div>
+            <div class="dd-opt" data-value="3" onclick="ddPickSingle('drops','3','3 drops',event)">3 drops</div>
+            <div class="dd-opt" data-value="4" onclick="ddPickSingle('drops','4','4 drops',event)">4 drops</div>
+            <div class="dd-opt" data-value="5+" onclick="ddPickSingle('drops','5+','5+ drops',event)">5+ drops</div>
+          </div>
+        </div>
+      </div>
+      <!-- Last drop age — single-select -->
+      <div class="ff">
+        <span class="filter-label">Last drop age</span>
+        <div class="dd" id="dd_dropAge" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('dropAge', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('dropAge','all','All',event)">All</div>
+            <div class="dd-opt" data-value="lt7" onclick="ddPickSingle('dropAge','lt7','&lt;7 days',event)">&lt;7 days</div>
+            <div class="dd-opt" data-value="7to15" onclick="ddPickSingle('dropAge','7to15','7–15 days',event)">7–15 days</div>
+            <div class="dd-opt" data-value="15to30" onclick="ddPickSingle('dropAge','15to30','15–30 days',event)">15–30 days</div>
+            <div class="dd-opt" data-value="30to60" onclick="ddPickSingle('dropAge','30to60','30–60 days',event)">30–60 days</div>
+            <div class="dd-opt" data-value="gt60" onclick="ddPickSingle('dropAge','gt60','&gt;60 days',event)">&gt;60 days</div>
+          </div>
+        </div>
+      </div>
+      <!-- State — multi-select, options built dynamically -->
+      <div class="ff" id="stateFilterRow" style="display:none">
+        <span class="filter-label">State</span>
+        <div class="dd" id="dd_state" data-all-label="All states">
+          <button type="button" class="dd-btn" onclick="ddToggle('state', event)">
+            <span class="dd-btn-label">All states</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="stateDropdownPanel"></div>
+        </div>
+      </div>
+      <!-- POD — single-select -->
+      <div class="ff">
+        <span class="filter-label">POD</span>
+        <div class="dd" id="dd_pod" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('pod', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('pod','all','All',event)">All</div>
+            <div class="dd-opt" data-value="Jose" onclick="ddPickSingle('pod','Jose','Jose',event)">Jose</div>
+            <div class="dd-opt" data-value="Gabriel" onclick="ddPickSingle('pod','Gabriel','Gabriel',event)">Gabriel</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="summary-bar" id="summaryBar"></div>
     <div class="table-wrap">
@@ -367,6 +499,7 @@ let listings = [], camps = [], fbacks = [], outboundLeads = [], priceDropData = 
 let meetingsData = null; // synced from Notion via .github/workflows/sync-notion.yml every 30 min
 let sfOk = false, campOk = false, pdOk = false, zillowOk = false, dispoOk = false, ibOk = false;
 let podFilter = 'all', stageFilter = [], expiryFilter = 'all', stateFilter = [], titleFilter = [], peiFilter = 'all', dropsFilter = 'all', dropAgeFilter = 'all';
+let titleCommitFilter = [], listingStatusFilter = [];
 let priceStaleFilter = false, noMlsFilter = false;
 let sortCol = 'expiry', sortDir = 'asc';
 let activeCardId = null;
@@ -489,6 +622,8 @@ async function loadFromSheets() {
     document.getElementById('portfolioSection').style.display = 'block';
     buildStateButtons();
     buildTitleButtons();
+    buildTitleCommitDropdown();
+    buildListingStatusDropdown();
     renderPortfolio();
     if (activeCardId) showCard(activeCardId);
   }
@@ -538,6 +673,7 @@ function parseRow(row) {
     sfPropertyId: gv(row, 'Salesforce Record ID', 'SF Record ID', 'Record ID', 'Property ID') || '',
     sellerName: gv(row, 'Seller Name', 'Seller', 'Owner Name', 'Owner') || '',
     txn: gv(row, 'Transaction') || '', dealType: gv(row, 'Type of Deal', 'Deal Type', 'Type Of Deal') || '', listingId: gv(row, 'MLS') || '', websiteId: gv(row, 'Website') || '',
+    exitStrategy: gv(row, 'Exit Strategy', 'Exit Plan', 'Disposition Strategy', 'Strategy', 'Dispo Strategy') || '',
     txnLink: gv(row, 'Transaction Link', 'transaction link') || '',
     marketHubLink: gv(row, 'The Market Hub Link', 'Property Link', 'property link', 'Market Hub Link') || '',
     ppp: gv(row, 'PPP: PPP Name') || '', cpi: gv(row, 'CPI') || '', lds: n(gv(row, 'LDS')),
@@ -937,6 +1073,24 @@ function dealTypeClass(t) {
   if (tl.includes('undertermined') || tl.includes('undetermined')) return 'b-a'; // Undertermined — needs decision, amber
   return 'b-gr';
 }
+function exitStrategyClass(s) {
+  // Mirrors dealTypeClass conceptually, but exit strategy is forward-looking — what we plan to do.
+  // Color rules:
+  //   green   = fast clean exit (assignment / wholesale)
+  //   purple  = capital-intensive (buy and flip, buy and subdivide)
+  //   teal    = creative / hybrid exits (seller financing, sub-to)
+  //   amber   = undetermined / pending decision
+  //   gray    = unknown / unmapped
+  const sl = (s||'').toLowerCase().trim();
+  if (!sl) return 'b-gr';
+  if (sl.includes('assign')) return 'b-g';
+  if (sl.includes('wholesale')) return 'b-g';
+  if (sl.includes('buy') && sl.includes('flip')) return 'b-p';
+  if (sl.includes('buy') && sl.includes('subdivide')) return 'b-bl';
+  if (sl.includes('seller fin') || sl.includes('sub-to') || sl.includes('sub to') || sl.includes('hybrid')) return 'b-teal';
+  if (sl.includes('undetermined') || sl.includes('tbd')) return 'b-a';
+  return 'b-gr';
+}
 function buyerStatusClass(s) { const sl = (s||'').toLowerCase(); return sl.includes('hot') ? 'hot' : sl.includes('warm') ? 'warm' : sl.includes('cold') ? 'cold' : sl.includes('back') ? 'backed' : sl.includes('contract') ? 'uc' : ''; }
 function chipHtml(yes, label) { return `<span class="badge ${yes ? 'b-g' : 'b-gr'}">${yes ? '+ ' : '— '}${label}</span>`; }
 
@@ -947,6 +1101,8 @@ function renderPortfolio() {
     if (stageFilter.length > 0 && !stageFilter.includes(l.stage)) return false;
     if (stateFilter.length > 0 && !stateFilter.includes(l.state)) return false;
     if (titleFilter.length > 0 && !titleFilter.includes(l.title)) return false;
+    if (titleCommitFilter.length > 0 && !titleCommitFilter.includes(l.titleCommit)) return false;
+    if (listingStatusFilter.length > 0 && !listingStatusFilter.includes(l.listingStatus)) return false;
     if (expiryFilter !== 'all') {
       const e = l.expiry;
       if (expiryFilter === 'critical' && !(e !== null && e < 15)) return false;
@@ -1026,7 +1182,7 @@ function renderPortfolio() {
     <div class="sm sm-filter ${noMlsFilter ? 'sm-active' : ''}" onclick="toggleNoMls()" title="Click to filter">
       <div class="sm-v ${noMlsProfit < 0 ? 'red' : 'amber'}">${fmt(noMlsProfit)}</div>
       <div class="sm-l">Profit at stake</div>
-      <div style="font-size:10px;color:var(--text3);margin-top:3px">${totalPotentialProfit !== 0 ? Math.round(noMlsProfit / totalPotentialProfit * 100) : 0}% of portfolio</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:3px">${totalPotentialProfit !== 0 ? Math.round(noMlsProfit / totalPotentialProfit * 100) : 0}% of portfolio</div>
     </div>`;
 
   const tbody = document.getElementById('portfolioBody');
@@ -1051,9 +1207,9 @@ function renderPortfolio() {
     tr.className = 'dr' + (activeCardId === l.id ? ' active' : '');
     tr.onclick = () => showCard(l.id);
     tr.innerHTML = `
-      <td><div class="prop-name" style="font-size:11px;white-space:nowrap">${l.addr}</div><div class="prop-sub">${l.state} · ${l.county}</div></td>
-      <td><span style="font-size:11px;font-weight:600;color:var(--blue-text)">${l.mainListing || l.id}</span></td>
-      <td>${l.landId ? `<a href="${l.landId}" target="_blank" style="font-size:11px;color:var(--blue-text);text-decoration:none;font-weight:500">LandID ↗</a>` : '<span class="muted">—</span>'}${l.zillowLink ? `<br><a href="${l.zillowLink}" target="_blank" style="font-size:10px;color:var(--teal-text);text-decoration:none;font-weight:500">Zillow ↗</a>` : ''}</td>
+      <td><div class="prop-name" style="font-size:12px;white-space:nowrap">${l.addr}</div><div class="prop-sub">${l.state} · ${l.county}</div></td>
+      <td><span style="font-size:12px;font-weight:600;color:var(--blue-text)">${l.mainListing || l.id}</span></td>
+      <td>${l.landId ? `<a href="${l.landId}" target="_blank" style="font-size:12px;color:var(--blue-text);text-decoration:none;font-weight:500">LandID ↗</a>` : '<span class="muted">—</span>'}${l.zillowLink ? `<br><a href="${l.zillowLink}" target="_blank" style="font-size:11px;color:var(--teal-text);text-decoration:none;font-weight:500">Zillow ↗</a>` : ''}</td>
       <td><span class="score-ring ${peiColor}">${pei}%</span></td>
       <td>${fmt(l.contractP)}</td>
       <td>${fmt(l.listP)}</td>
@@ -1067,7 +1223,7 @@ function renderPortfolio() {
       <td>
         <div style="display:flex;gap:5px;align-items:center">
           ${[['ML', l.mls], ['FB', l.fb]].map(([init, active]) =>
-            `<div style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:${active ? 'var(--green-bg)' : 'var(--bg2)'};color:${active ? 'var(--green-text)' : 'var(--text3)'};border:1.5px solid ${active ? 'var(--green-border)' : 'var(--border)'}">${init}</div>`
+            `<div style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;background:${active ? 'var(--green-bg)' : 'var(--bg2)'};color:${active ? 'var(--green-text)' : 'var(--text3)'};border:1.5px solid ${active ? 'var(--green-border)' : 'var(--border)'}">${init}</div>`
           ).join('')}
         </div>
       </td>
@@ -1079,7 +1235,7 @@ function renderPortfolio() {
             const ran = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes(type)) ||
                         ol2.some(r => (r['Campaign Objective'] || '').toLowerCase().includes(type)) ||
                         dc2.some(c => ((c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase()).includes(type));
-            return `<div style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:${ran ? 'var(--blue-bg)' : 'var(--bg2)'};color:${ran ? 'var(--blue-text)' : 'var(--text3)'};border:1.5px solid ${ran ? 'var(--blue-border)' : 'var(--border)'}">${init}</div>`;
+            return `<div style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;background:${ran ? 'var(--blue-bg)' : 'var(--bg2)'};color:${ran ? 'var(--blue-text)' : 'var(--text3)'};border:1.5px solid ${ran ? 'var(--blue-border)' : 'var(--border)'}">${init}</div>`;
           }).join('')}
         </div>
       </td>`;
@@ -1191,12 +1347,12 @@ function showCard(id) {
           const safeKey = safeBase + suffix;
           return `<tr id="leads_${safeKey}" style="display:none">
             <td colspan="9" style="padding:8px 8px 12px 32px;background:var(--bg3);border-bottom:0.5px solid var(--border)">
-              <table style="width:100%;font-size:11px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden">
+              <table style="width:100%;font-size:12px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden">
                 <thead><tr style="background:var(--bg3)">
-                  <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Name</th>
-                  <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Status</th>
-                  <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Source</th>
-                  <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Appt scheduled</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Name</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Status</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Source</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Appt scheduled</th>
                 </tr></thead>
                 <tbody>
                   ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''}">
@@ -1220,7 +1376,7 @@ function showCard(id) {
           <td style="text-align:center">${mkBtn(leads.qual||0, qualLeads, 'q')}</td>
           <td style="text-align:center;font-weight:${(leads.contractSent||0)>0?'600':'400'};color:${(leads.contractSent||0)>0?'var(--text)':'var(--text3)'}">${leads.contractSent||0}</td>
           <td style="text-align:center">${mkBtn(leads.emd||0, emdLeads, 'e')}</td>
-          <td style="font-size:10px;color:var(--text3)">${pod}</td>
+          <td style="font-size:11px;color:var(--text3)">${pod}</td>
         </tr>
         ${mkDetail(sourcedLeads, 's')}
         ${mkDetail(apptLeads, 'a')}
@@ -1230,7 +1386,7 @@ function showCard(id) {
 
       const totals = Object.values(leadsMap).reduce((t, c) => ({ sourced: t.sourced+c.sourced, appt: t.appt+c.appt, qual: t.qual+c.qual, contractSent: t.contractSent+c.contractSent, emd: t.emd+c.emd }), { sourced:0, appt:0, qual:0, contractSent:0, emd:0 });
       const totalsRow = `<tr style="border-top:2px solid var(--border);background:var(--bg3)">
-        <td style="font-weight:700;font-size:11px">TOTAL</td><td></td><td></td>
+        <td style="font-weight:700;font-size:12px">TOTAL</td><td></td><td></td>
         <td style="text-align:center;font-weight:700">${totals.sourced}</td>
         <td style="text-align:center;font-weight:700">${totals.appt}</td>
         <td style="text-align:center;font-weight:700">${totals.qual}</td>
@@ -1250,7 +1406,7 @@ function showCard(id) {
         <td><span class="badge ${campTypeClass(c.type)}">${c.type}</span></td>
         <td>${fmtDate(c.date)}</td><td style="color:var(--text3)">—</td>
         <td style="text-align:center;font-weight:600">${c.sourced||0}</td>
-        <td style="text-align:center;font-weight:600">${c.appt||0}${c.apptSched?`<div style="font-size:9px;color:var(--blue-text)">${fmtDate(c.apptSched)}</div>`:''}</td>
+        <td style="text-align:center;font-weight:600">${c.appt||0}${c.apptSched?`<div style="font-size:10px;color:var(--blue-text)">${fmtDate(c.apptSched)}</div>`:''}</td>
         <td style="text-align:center;font-weight:600">${c.qual||0}</td>
         <td style="text-align:center;font-weight:600">${c.contractSent||0}</td>
         <td style="text-align:center;font-weight:600;color:var(--green-text)">${c.emd||0}</td>
@@ -1302,58 +1458,58 @@ function showCard(id) {
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px">
         <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
           <div>
-            <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Owner</div>
+            <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Owner</div>
             <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1">${l.sellerName || '—'}</div>
           </div>
           <div style="width:1px;height:36px;background:var(--border)"></div>
           <div>
-            <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Listing ID</div>
+            <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Listing ID</div>
             <div style="display:flex;align-items:center;gap:8px">
               ${l.marketHubLink
                 ? `<a href="${l.marketHubLink}" target="_blank" style="font-size:18px;font-weight:700;color:var(--blue-text);line-height:1;text-decoration:none;">${l.mainListing || l.id}</a>`
                 : `<div style="font-size:18px;font-weight:700;color:var(--blue-text);line-height:1">${l.mainListing || l.id}</div>`}
-              <a href="#" style="font-size:10px;color:var(--text3);text-decoration:none;padding:2px 8px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg2)" title="Open in Salesforce">SF ↗</a>
+              <a href="#" style="font-size:11px;color:var(--text3);text-decoration:none;padding:2px 8px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg2)" title="Open in Salesforce">SF ↗</a>
             </div>
           </div>
         </div>
         <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
-          ${l.zillowLink ? `<a href="${l.zillowLink}" target="_blank" style="font-size:11px;font-weight:600;color:var(--teal-text);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--teal-text);background:var(--teal-bg);white-space:nowrap">Zillow ↗</a>` : ''}
-          ${l.landId ? `<a href="${l.landId}" target="_blank" style="font-size:11px;font-weight:600;color:var(--blue-text);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--blue-border);background:var(--blue-bg);white-space:nowrap">LandID ↗</a>` : ''}
+          ${l.zillowLink ? `<a href="${l.zillowLink}" target="_blank" style="font-size:12px;font-weight:600;color:var(--teal-text);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--teal-text);background:var(--teal-bg);white-space:nowrap">Zillow ↗</a>` : ''}
+          ${l.landId ? `<a href="${l.landId}" target="_blank" style="font-size:12px;font-weight:600;color:var(--blue-text);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--blue-border);background:var(--blue-bg);white-space:nowrap">LandID ↗</a>` : ''}
           <button onclick="closeCard()" title="Close card (Esc)" style="position:sticky;top:60px;font-size:14px;font-weight:600;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);width:32px;height:32px;border-radius:var(--r-md);cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;margin-left:4px;z-index:10" onmouseover="this.style.background='var(--red-bg)';this.style.color='var(--red-text)';this.style.borderColor='var(--red-border)'" onmouseout="this.style.background='var(--bg2)';this.style.color='var(--text2)';this.style.borderColor='var(--border2)'">✕</button>
         </div>
       </div>
       <!-- Row 2: Size / Address / State / County  (grid spreads evenly across full width; address gets extra room) -->
       <div style="display:grid;grid-template-columns:1fr 2fr 1fr 1fr;gap:24px;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid var(--border)">
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Size</div>
-          <div style="font-size:13px;font-weight:500;color:var(--text)">${l.size || '—'}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Size</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">${l.size || '—'}</div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Property Address</div>
-          <div style="font-size:13px;font-weight:500;color:var(--text)">${l.addr}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Property Address</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">${l.addr}</div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">State</div>
-          <div style="font-size:13px;font-weight:500;color:var(--text)">${l.state}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">State</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">${l.state}</div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">County</div>
-          <div style="font-size:13px;font-weight:500;color:var(--text)">${l.county}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">County</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">${l.county}</div>
         </div>
       </div>
       <!-- Row 3: Property Type / CPI / LDS  (grid spreads evenly across full width) -->
       <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid var(--border)">
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Property Type</div>
-          <div style="font-size:13px;font-weight:500;color:var(--text)">${l.type || '—'}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Property Type</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">${l.type || '—'}</div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">CPI</div>
-          <div style="font-size:13px;font-weight:600;color:${l.cpi && l.cpi !== 'Not Available' ? 'var(--amber-text)' : 'var(--text3)'}">${l.cpi && l.cpi !== 'Not Available' ? l.cpi : '—'}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">CPI</div>
+          <div style="font-size:14px;font-weight:600;color:${l.cpi && l.cpi !== 'Not Available' ? 'var(--amber-text)' : 'var(--text3)'}">${l.cpi && l.cpi !== 'Not Available' ? l.cpi : '—'}</div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">LDS</div>
-          <div style="font-size:13px;font-weight:500;color:var(--text)">${l.lds !== null ? l.lds : '—'}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">LDS</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">${l.lds !== null ? l.lds : '—'}</div>
         </div>
       </div>
       <!-- Row 4: Transaction # / Type of Deal / Title Status / Title Commitment / Stage / POD  (grid spreads evenly across full width) -->
@@ -1381,40 +1537,44 @@ function showCard(id) {
         const tcLabel = tcRaw || '—';
         const tcSub = tcDaysPending !== null
           ? (tcDaysPending === 0
-              ? '<div style="font-size:10px;color:var(--green-text);margin-top:4px">0 days pending</div>'
-              : `<div style="font-size:10px;color:${tcDaysPending > 45 ? 'var(--red-text)' : tcDaysPending > 21 ? 'var(--amber-text)' : 'var(--text2)'};margin-top:4px">${tcDaysPending} days pending</div>`)
+              ? '<div style="font-size:11px;color:var(--green-text);margin-top:4px">0 days pending</div>'
+              : `<div style="font-size:11px;color:${tcDaysPending > 45 ? 'var(--red-text)' : tcDaysPending > 21 ? 'var(--amber-text)' : 'var(--text2)'};margin-top:4px">${tcDaysPending} days pending</div>`)
           : '';
         return `
-      <div style="display:grid;grid-template-columns:repeat(6, 1fr);gap:24px">
+      <div style="display:grid;grid-template-columns:repeat(7, 1fr);gap:24px">
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Transaction #</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Transaction #</div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
             ${l.txnLink
-              ? `<a href="${l.txnLink}" target="_blank" style="font-size:13px;font-weight:500;color:var(--blue-text);text-decoration:none">${l.txn || '—'}</a>`
-              : `<div style="font-size:13px;font-weight:500;color:var(--text)">${l.txn || '—'}</div>`}
-            ${l.txn ? `<a href="#" style="font-size:10px;color:var(--text3);text-decoration:none;padding:2px 8px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg2)">SF ↗</a>` : `<span style="font-size:10px;color:var(--text3);padding:2px 8px;border-radius:4px;border:0.5px solid var(--border);background:var(--bg2);opacity:0.4">SF ↗</span>`}
+              ? `<a href="${l.txnLink}" target="_blank" style="font-size:14px;font-weight:500;color:var(--blue-text);text-decoration:none">${l.txn || '—'}</a>`
+              : `<div style="font-size:14px;font-weight:500;color:var(--text)">${l.txn || '—'}</div>`}
+            ${l.txn ? `<a href="#" style="font-size:11px;color:var(--text3);text-decoration:none;padding:2px 8px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg2)">SF ↗</a>` : `<span style="font-size:11px;color:var(--text3);padding:2px 8px;border-radius:4px;border:0.5px solid var(--border);background:var(--bg2);opacity:0.4">SF ↗</span>`}
           </div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Type of Deal</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Type of Deal</div>
           <div><span class="badge ${dealTypeClass(l.dealType)}">${l.dealType || '—'}</span></div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Title Status</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Exit Strategy</div>
+          <div><span class="badge ${exitStrategyClass(l.exitStrategy)}">${l.exitStrategy || '—'}</span></div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Title Status</div>
           <div><span class="badge ${l.title === 'Unprocessed' ? 'b-r' : l.title && l.title.includes('Complex') ? 'b-a' : 'b-g'}">${l.title || '—'}</span></div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Title Commitment</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Title Commitment</div>
           <div><span class="badge ${tcBadgeClass}">${tcLabel}</span></div>
           ${tcSub}
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Stage</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Stage</div>
           <div><span class="badge ${stageClass(l.stage)}">${l.stage || '—'}</span></div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">POD</div>
-          <div style="font-size:13px;font-weight:500;color:var(--text)">${l.pod || '—'}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">POD</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">${l.pod || '—'}</div>
         </div>
       </div>`;
       })()}
@@ -1624,9 +1784,9 @@ function showCard(id) {
                     ? `<div style="width:10px;height:10px;border-radius:50%;background:var(--amber-border);border:2px solid var(--bg)"></div>`
                     : `<div style="width:12px;height:12px;border-radius:50%;background:${m.color};border:2px solid var(--bg)"></div>`}
               <div style="position:absolute;${m.above ? 'bottom:' + labelOffset + 'px' : 'top:' + (labelOffset + 16) + 'px'};${m.isEnd ? 'right:0;text-align:right' : 'left:50%;transform:translateX(-50%);text-align:center'};white-space:nowrap;line-height:1.4">
-                <div style="font-size:9px;font-weight:${m.isToday ? '700' : '600'};color:${m.isToday ? m.color : m.isOriginal ? 'var(--blue-text)' : m.isPriceDrop ? 'var(--amber-text)' : m.isTitle ? 'var(--teal-text)' : 'var(--text3)'};text-transform:uppercase;letter-spacing:0.04em">${m.label}</div>
-                ${m.sublabel ? `<div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;margin-top:1px">${m.sublabel}</div>` : ''}
-                <div style="font-size:10px;color:${m.label === 'Expires' && daysLeft < 15 ? 'var(--red-text)' : 'var(--text2)'}">${m.date}</div>
+                <div style="font-size:10px;font-weight:${m.isToday ? '700' : '600'};color:${m.isToday ? m.color : m.isOriginal ? 'var(--blue-text)' : m.isPriceDrop ? 'var(--amber-text)' : m.isTitle ? 'var(--teal-text)' : 'var(--text3)'};text-transform:uppercase;letter-spacing:0.04em">${m.label}</div>
+                ${m.sublabel ? `<div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;margin-top:1px">${m.sublabel}</div>` : ''}
+                <div style="font-size:11px;color:${m.label === 'Expires' && daysLeft < 15 ? 'var(--red-text)' : 'var(--text2)'}">${m.date}</div>
               </div>
             </div>`;
           };
@@ -1645,7 +1805,7 @@ function showCard(id) {
                 ${milestones.map(dotHtml).join('')}
               </div>
             </div>
-            ${realDrops.some(d => d.estimated) ? '<div style="font-size:10px;color:var(--text3);margin-top:4px;text-align:center;font-style:italic">Some drop dates missing in price drop report — positions estimated</div>' : ''}`;
+            ${realDrops.some(d => d.estimated) ? '<div style="font-size:11px;color:var(--text3);margin-top:4px;text-align:center;font-style:italic">Some drop dates missing in price drop report — positions estimated</div>' : ''}`;
         })()}
       </div>
 
@@ -1685,7 +1845,7 @@ function showCard(id) {
             <div class="sec">
               <div class="sec-title">Property Timeline · ${escapeHtml(txn)}${syncedLabel}</div>
               <div class="no-data">No Pricing Meeting or Portfolio Review notes synced yet for this transaction</div>
-              ${notionLink ? `<div style="font-size:11px;color:var(--text3);margin-top:6px;text-align:center">${notionLink}</div>` : ''}
+              ${notionLink ? `<div style="font-size:12px;color:var(--text3);margin-top:6px;text-align:center">${notionLink}</div>` : ''}
             </div>`;
         }
 
@@ -1695,9 +1855,9 @@ function showCard(id) {
           const bullets = (m.bullets || []).slice(0, 8);
           const bulletsHtml = bullets.length > 0
             ? `<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px">${
-                bullets.map(b => `<li style="font-size:11px;color:var(--text);line-height:1.55">${escapeHtml(b)}</li>`).join('')
+                bullets.map(b => `<li style="font-size:12px;color:var(--text);line-height:1.55">${escapeHtml(b)}</li>`).join('')
               }</ul>`
-            : `<div style="font-size:11px;color:var(--text3);font-style:italic">No bullet content extracted — open in Notion for full notes</div>`;
+            : `<div style="font-size:12px;color:var(--text3);font-style:italic">No bullet content extracted — open in Notion for full notes</div>`;
           const blockId = (m.blockId || '').replace(/-/g, '');
           const anchorUrl = entry.notionUrl + (blockId ? '#' + blockId : '');
           return `
@@ -1705,9 +1865,9 @@ function showCard(id) {
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px;flex-wrap:wrap">
                 <div style="display:flex;align-items:center;gap:8px">
                   <span class="badge ${typeBadge}">${m.type}</span>
-                  <span style="font-size:11px;color:var(--text2);font-weight:500">${escapeHtml(m.date || '—')}</span>
+                  <span style="font-size:12px;color:var(--text2);font-weight:500">${escapeHtml(m.date || '—')}</span>
                 </div>
-                <a href="${anchorUrl}" target="_blank" style="font-size:10px;color:var(--text3);text-decoration:none;padding:3px 9px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg)">Open in Notion ↗</a>
+                <a href="${anchorUrl}" target="_blank" style="font-size:11px;color:var(--text3);text-decoration:none;padding:3px 9px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg)">Open in Notion ↗</a>
               </div>
               ${bulletsHtml}
             </div>`;
@@ -1857,7 +2017,7 @@ function showCard(id) {
             <div class="sec-title">Red flags</div>
             <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--green-bg);border-radius:var(--r-md);border:1px solid var(--green-border)">
               <span style="font-size:16px">✓</span>
-              <span style="font-size:12px;color:var(--green-text);font-weight:500">No active red flags — listing is in good standing</span>
+              <span style="font-size:13px;color:var(--green-text);font-weight:500">No active red flags — listing is in good standing</span>
             </div>
           </div>`;
 
@@ -1869,10 +2029,10 @@ function showCard(id) {
                 <div style="border-radius:var(--r-md);border-left:3px solid ${flag.level === 'critical' ? 'var(--red-border)' : 'var(--amber-border)'};background:${flag.level === 'critical' ? 'var(--red-bg)' : 'var(--amber-bg)'};padding:12px 16px">
                   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
                     <div style="flex:1">
-                      <div style="font-size:12px;font-weight:700;color:${flag.level === 'critical' ? 'var(--red-text)' : 'var(--amber-text)'};margin-bottom:4px">${flag.level === 'critical' ? '🚨' : '⚠️'} ${flag.title}</div>
-                      <div style="font-size:11px;color:var(--text);line-height:1.6">${flag.body}</div>
+                      <div style="font-size:13px;font-weight:700;color:${flag.level === 'critical' ? 'var(--red-text)' : 'var(--amber-text)'};margin-bottom:4px">${flag.level === 'critical' ? '🚨' : '⚠️'} ${flag.title}</div>
+                      <div style="font-size:12px;color:var(--text);line-height:1.6">${flag.body}</div>
                     </div>
-                    <div style="flex-shrink:0;font-size:10px;font-weight:600;padding:4px 10px;border-radius:20px;background:${flag.level === 'critical' ? 'var(--red-text)' : 'var(--amber-text)'};color:#fff;white-space:nowrap">${flag.action}</div>
+                    <div style="flex-shrink:0;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;background:${flag.level === 'critical' ? 'var(--red-text)' : 'var(--amber-text)'};color:#fff;white-space:nowrap">${flag.action}</div>
                   </div>
                 </div>`).join('')}
             </div>
@@ -1895,7 +2055,7 @@ function showCard(id) {
           </div>
           <div class="mc">
             <div class="mc-l">Pricing option</div>
-            <div class="mc-v" style="font-size:13px;color:${pdf.pricingOption === 'With Seller Financing' ? 'var(--teal-text)' : 'var(--text)'}">${pdf.pricingOption || 'Cash Only'}</div>
+            <div class="mc-v" style="font-size:14px;color:${pdf.pricingOption === 'With Seller Financing' ? 'var(--teal-text)' : 'var(--text)'}">${pdf.pricingOption || 'Cash Only'}</div>
             <div class="mc-s">${pdf.pricingOption === 'With Seller Financing' ? 'SF active' : 'No SF'}</div>
           </div>
           <div class="mc">
@@ -1910,7 +2070,7 @@ function showCard(id) {
           </div>
           <div class="mc">
             <div class="mc-l">Last drop date</div>
-            <div class="mc-v" style="font-size:13px">${lastDropDate ? (() => { const d = new Date(lastDropDate); return isNaN(d) ? lastDropDate : (d.getMonth()+1).toString().padStart(2,'0') + '/' + d.getDate().toString().padStart(2,'0') + '/' + d.getFullYear(); })() : '—'}</div>
+            <div class="mc-v" style="font-size:14px">${lastDropDate ? (() => { const d = new Date(lastDropDate); return isNaN(d) ? lastDropDate : (d.getMonth()+1).toString().padStart(2,'0') + '/' + d.getDate().toString().padStart(2,'0') + '/' + d.getFullYear(); })() : '—'}</div>
             <div class="mc-s">${lastDropDate ? Math.round((new Date() - new Date(lastDropDate)) / 86400000) + 'd ago' : '—'}</div>
           </div>
           <div class="mc">
@@ -1926,7 +2086,7 @@ function showCard(id) {
         </div>
         ${pdf.pricingOption === 'With Seller Financing' ? `
         <div style="margin-top:8px;padding-top:8px;border-top:0.5px solid var(--border)">
-          <div style="font-size:10px;font-weight:600;color:var(--teal-text);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Seller financing details</div>
+          <div style="font-size:11px;font-weight:600;color:var(--teal-text);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Seller financing details</div>
           <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
             <div class="mc" style="border:1px solid var(--teal-bg)">
               <div class="mc-l">SF price</div>
@@ -1960,7 +2120,7 @@ function showCard(id) {
       <!-- ZILLOW -->
       <div class="sec">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <div class="sec-title" style="margin-bottom:0">Zillow${l.zillowCaptured ? `<span style="font-weight:400;color:var(--text3);font-size:10px;margin-left:8px;text-transform:none;letter-spacing:0">captured ${fmtDate(l.zillowCaptured)}</span>` : ''}</div>
+          <div class="sec-title" style="margin-bottom:0">Zillow${l.zillowCaptured ? `<span style="font-weight:400;color:var(--text3);font-size:11px;margin-left:8px;text-transform:none;letter-spacing:0">captured ${fmtDate(l.zillowCaptured)}</span>` : ''}</div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
           <div class="mc">
@@ -1970,7 +2130,7 @@ function showCard(id) {
           </div>
           <div class="mc">
             <div class="mc-l">MLS DOM</div>
-            <div class="mc-v ${l.dom !== null && l.dom > 90 ? 'red' : l.dom !== null && l.dom > 45 ? 'amber' : ''}">${fmtN(l.dom)}<span style="font-size:12px;font-weight:400">d</span></div>
+            <div class="mc-v ${l.dom !== null && l.dom > 90 ? 'red' : l.dom !== null && l.dom > 45 ? 'amber' : ''}">${fmtN(l.dom)}<span style="font-size:13px;font-weight:400">d</span></div>
             <div class="mc-s">Days on market</div>
           </div>
           <div class="mc">
@@ -2020,7 +2180,7 @@ function showCard(id) {
                 </div>
                 <div>
                   <div style="font-size:14px;font-weight:600;color:${expText}">${expLabel}</div>
-                  <div style="font-size:11px;color:var(--text3);margin-top:2px">${exp < 100 ? (100 - exp) + '% untapped' : 'Full coverage'}</div>
+                  <div style="font-size:12px;color:var(--text3);margin-top:2px">${exp < 100 ? (100 - exp) + '% untapped' : 'Full coverage'}</div>
                 </div>
               </div>
               <div style="flex:1;min-width:200px">
@@ -2029,7 +2189,7 @@ function showCard(id) {
                 </div>
                 <div style="display:flex;flex-wrap:wrap;gap:6px">
                   ${channels.filter(ch => ch.weight > 0 || ch.active).map(ch => `
-                    <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;background:${ch.active ? 'var(--green-bg)' : 'var(--bg2)'};color:${ch.active ? 'var(--green-text)' : 'var(--text3)'};border:1px solid ${ch.active ? 'var(--green-border)' : 'var(--border)'}">
+                    <span style="padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500;background:${ch.active ? 'var(--green-bg)' : 'var(--bg2)'};color:${ch.active ? 'var(--green-text)' : 'var(--text3)'};border:1px solid ${ch.active ? 'var(--green-border)' : 'var(--border)'}">
                       ${ch.label}${ch.weight > 0 ? ' · ' + ch.weight + '%' : ''}${ch.note ? ' · ' + ch.note : ''}
                     </span>`).join('')}
                 </div>
@@ -2072,11 +2232,11 @@ function showCard(id) {
               bg = 'var(--bg2)'; color = 'var(--text3)'; border = 'var(--border)';
             }
             const leadCount = hasLeads ? ` · ${matched.sourced} leads` : (p.listed ? ' · listed, no leads' : '');
-            return `<span style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;background:${bg};color:${color};border:1px solid ${border}">${p.label}${p.sub ? ' · ' + p.sub : ''}${leadCount}</span>`;
+            return `<span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;background:${bg};color:${color};border:1px solid ${border}">${p.label}${p.sub ? ' · ' + p.sub : ''}${leadCount}</span>`;
           }).join('');
           // Extra pills for sources observed in data that aren't already covered above
           const extraPills = channels.filter(c => !togglePillNames.has(c.source)).map(c => {
-            return `<span style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;background:var(--green-bg);color:var(--green-text);border:1px solid var(--green-border)">${c.source} · ${c.sourced} leads</span>`;
+            return `<span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;background:var(--green-bg);color:var(--green-text);border:1px solid var(--green-border)">${c.source} · ${c.sourced} leads</span>`;
           }).join('');
 
           // Build expandable rows — one per source with leads
@@ -2095,12 +2255,12 @@ function showCard(id) {
               const safeKey = safeBase + suffix;
               return `<tr id="leads_${safeKey}" style="display:none">
                 <td colspan="6" style="padding:8px 8px 12px 32px;background:var(--bg3);border-bottom:0.5px solid var(--border)">
-                  <table style="width:100%;font-size:11px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden">
+                  <table style="width:100%;font-size:12px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden">
                     <thead><tr style="background:var(--bg3)">
-                      <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Name</th>
-                      <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Status</th>
-                      <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Source</th>
-                      <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Appt scheduled</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Name</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Status</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Source</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Appt scheduled</th>
                     </tr></thead>
                     <tbody>
                       ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''}">
@@ -2130,7 +2290,7 @@ function showCard(id) {
             ${mkDetail(c.emdLeads, 'e')}`;
           }).join('') + `
             <tr style="border-top:2px solid var(--border);background:var(--bg3)">
-              <td style="font-weight:700;font-size:11px">TOTAL</td>
+              <td style="font-weight:700;font-size:12px">TOTAL</td>
               <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.sourced,0)}</td>
               <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.appt,0)}</td>
               <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.qual,0)}</td>
@@ -2165,7 +2325,7 @@ function showCard(id) {
             const ran = ranAgg || ranDc || ranLc;
             const lastAgg = aggCamps.filter(c => c.type.toLowerCase().includes(keywords[idx])).sort((a,b) => new Date(b.date)-new Date(a.date))[0];
             const dateStr = lastAgg ? ' · ' + fmtDate(lastAgg.date) : '';
-            return `<span style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;background:${ran ? 'var(--green-bg)' : 'var(--bg2)'};color:${ran ? 'var(--green-text)' : 'var(--text3)'};border:1px solid ${ran ? 'var(--green-border)' : 'var(--border)'}">${label}${dateStr}</span>`;
+            return `<span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;background:${ran ? 'var(--green-bg)' : 'var(--bg2)'};color:${ran ? 'var(--green-text)' : 'var(--text3)'};border:1px solid ${ran ? 'var(--green-border)' : 'var(--border)'}">${label}${dateStr}</span>`;
           }).join('')}
         </div>
         <div class="data-tbl-wrap">
@@ -2189,10 +2349,10 @@ function showCard(id) {
           const podColor = pod.toLowerCase().includes('jose') ? 'var(--blue-text)' : pod.toLowerCase().includes('gabriel') ? 'var(--teal-text)' : 'var(--text3)';
           return `<div style="padding:10px 0;border-bottom:0.5px solid var(--border)">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <span style="font-size:11px;font-weight:600;color:${podColor}">${pod || 'Closer'}</span>
-              <span style="font-size:10px;color:var(--text3)">${date}${status ? ' · ' + status : ''}</span>
+              <span style="font-size:12px;font-weight:600;color:${podColor}">${pod || 'Closer'}</span>
+              <span style="font-size:11px;color:var(--text3)">${date}${status ? ' · ' + status : ''}</span>
             </div>
-            <div style="font-size:12px;color:var(--text);line-height:1.5">${notes || 'No notes recorded'}</div>
+            <div style="font-size:13px;color:var(--text);line-height:1.5">${notes || 'No notes recorded'}</div>
           </div>`;
         }).join('') : `<div class="no-data">No sales feedback yet — Jose and Gabriel add notes in the activity log</div>`}
       </div>
@@ -2371,95 +2531,208 @@ function destroyCharts() {
 function togglePriceStale() { priceStaleFilter = !priceStaleFilter; closeCard(); renderPortfolio(); }
 function toggleNoMls() { noMlsFilter = !noMlsFilter; closeCard(); renderPortfolio(); }
 
+// ── DROPDOWN FILTER COMPONENT ─────────────────────────────────────────────
+// Unified dropdown that handles both single-select and multi-select.
+// Single-select filters: pei, expiry, drops, dropAge, pod
+// Multi-select filters:  stage, title, titleCommit, listingStatus, state
+
+// Toggle a dropdown panel — closes any other open dropdown first.
+function ddToggle(id, evt) {
+  if (evt) evt.stopPropagation();
+  const el = document.getElementById('dd_' + id);
+  if (!el) return;
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.dd.open').forEach(d => d.classList.remove('open'));
+  if (!wasOpen) el.classList.add('open');
+}
+
+// Close any open dropdown when the user clicks anywhere outside one.
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.dd')) {
+    document.querySelectorAll('.dd.open').forEach(d => d.classList.remove('open'));
+  }
+});
+
+// Update the visible button label for a single-select dropdown.
+function ddSetSingleLabel(id, displayLabel, hasSelection) {
+  const dd = document.getElementById('dd_' + id);
+  if (!dd) return;
+  const label = dd.querySelector('.dd-btn-label');
+  if (label) label.innerHTML = displayLabel;
+  dd.classList.toggle('has-selection', !!hasSelection);
+}
+
+// Update the visible button label for a multi-select dropdown based on the
+// underlying filter array.
+function ddSetMultiLabel(id, arr) {
+  const dd = document.getElementById('dd_' + id);
+  if (!dd) return;
+  const label = dd.querySelector('.dd-btn-label');
+  const allLabel = dd.dataset.allLabel || 'All';
+  if (!label) return;
+  if (!arr || arr.length === 0) {
+    label.textContent = allLabel;
+    dd.classList.remove('has-selection');
+  } else if (arr.length === 1) {
+    label.textContent = arr[0];
+    dd.classList.add('has-selection');
+  } else {
+    label.textContent = arr.length + ' selected';
+    dd.classList.add('has-selection');
+  }
+}
+
+// Single-select pick — sets the underlying filter var, updates UI, closes panel.
+function ddPickSingle(id, value, displayLabel, evt) {
+  if (evt) evt.stopPropagation();
+  switch (id) {
+    case 'pei':     peiFilter = value; break;
+    case 'expiry':  expiryFilter = value; break;
+    case 'drops':   dropsFilter = value; break;
+    case 'dropAge': dropAgeFilter = value; break;
+    case 'pod':     podFilter = value; break;
+  }
+  // Highlight the selected option in the panel
+  const panel = document.querySelector('#dd_' + id + ' .dd-panel');
+  if (panel) {
+    panel.querySelectorAll('.dd-opt').forEach(o => o.classList.remove('selected'));
+    const sel = panel.querySelector('.dd-opt[data-value="' + value + '"]');
+    if (sel) sel.classList.add('selected');
+  }
+  ddSetSingleLabel(id, displayLabel, value !== 'all');
+  document.getElementById('dd_' + id).classList.remove('open');
+  closeCard();
+  renderPortfolio();
+}
+
+// Multi-select toggle — adds/removes the value, keeps panel open.
+function ddPickMulti(id, value, evt) {
+  if (evt) evt.stopPropagation();
+  let arr;
+  switch (id) {
+    case 'stage':          arr = stageFilter; break;
+    case 'title':          arr = titleFilter; break;
+    case 'titleCommit':    arr = titleCommitFilter; break;
+    case 'listingStatus':  arr = listingStatusFilter; break;
+    case 'state':          arr = stateFilter; break;
+    default: return;
+  }
+  const idx = arr.indexOf(value);
+  if (idx === -1) arr.push(value);
+  else arr.splice(idx, 1);
+  // Update visual state of the option row
+  const opt = document.querySelector('#dd_' + id + ' .dd-opt[data-value="' + cssEscape(value) + '"]');
+  if (opt) {
+    opt.classList.toggle('selected', arr.includes(value));
+    const cb = opt.querySelector('input[type=checkbox]');
+    if (cb) cb.checked = arr.includes(value);
+  }
+  ddSetMultiLabel(id, arr);
+  closeCard();
+  renderPortfolio();
+}
+
+// Clear all selections in a multi-select.
+function ddClearMulti(id, evt) {
+  if (evt) evt.stopPropagation();
+  let arr;
+  switch (id) {
+    case 'stage':          arr = stageFilter; break;
+    case 'title':          arr = titleFilter; break;
+    case 'titleCommit':    arr = titleCommitFilter; break;
+    case 'listingStatus':  arr = listingStatusFilter; break;
+    case 'state':          arr = stateFilter; break;
+    default: return;
+  }
+  arr.length = 0;
+  const panel = document.querySelector('#dd_' + id + ' .dd-panel');
+  if (panel) {
+    panel.querySelectorAll('.dd-opt').forEach(o => o.classList.remove('selected'));
+    panel.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = false);
+  }
+  ddSetMultiLabel(id, arr);
+  closeCard();
+  renderPortfolio();
+}
+
+// Tiny CSS attribute-selector escape — we use values like "Clear / Commit" in data-value.
+function cssEscape(s) { return String(s).replace(/(["\\])/g, '\\$1'); }
+
+// Build the multi-select panel for the Title Status filter from the data.
 function buildTitleButtons() {
   const titles = [...new Set(listings.map(l => l.title).filter(Boolean))].sort();
-  const container = document.getElementById('titleButtons');
+  if (titles.length === 0) return;
   const labelMap = {
-    'Clear / Commit': 'Clear / Commit',
-    'Clear / Commit NA': 'Clear / Commit NA',
-    'Complex / Commit': 'Complex / Commit',
-    'Curable / Commit': 'Curable / Commit',
-    'Unprocessed': 'Unprocessed',
     'Prem Title DD In Process (off shore)': 'Title DD In Process',
   };
-  container.innerHTML = titles.map(t =>
-    `<button class="fb title-btn" style="margin-left:4px" onclick="ftitle('${t.replace(/'/g,"\\'")}',this)">${labelMap[t] || t}</button>`
-  ).join('');
-  document.getElementById('titleFilterRow').style.display = 'flex';
+  const panel = document.getElementById('titleDropdownPanel');
+  panel.innerHTML = titles.map(t =>
+    '<div class="dd-opt" data-value="' + escapeHtml(t) + '" onclick="ddPickMulti(\'title\',' + JSON.stringify(t) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(labelMap[t] || t) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'title\',event)">Clear selection</div>';
+  document.getElementById('titleFilterRow').style.display = 'inline-flex';
 }
 
-function ftitle(val, btn) {
-  if (val === 'all') {
-    titleFilter = [];
-    document.querySelectorAll('.title-btn').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-  } else {
-    document.querySelector('.title-all-btn').classList.remove('on');
-    const idx = titleFilter.indexOf(val);
-    if (idx === -1) { titleFilter.push(val); btn.classList.add('on'); }
-    else { titleFilter.splice(idx, 1); btn.classList.remove('on'); }
-    if (titleFilter.length === 0) document.querySelector('.title-all-btn').classList.add('on');
-  }
-  closeCard(); renderPortfolio();
+// Build the multi-select panel for the Title Commitment filter from the data.
+function buildTitleCommitDropdown() {
+  const vals = [...new Set(listings.map(l => l.titleCommit).filter(Boolean))].sort();
+  if (vals.length === 0) return;
+  const panel = document.getElementById('titleCommitDropdownPanel');
+  panel.innerHTML = vals.map(v =>
+    '<div class="dd-opt" data-value="' + escapeHtml(v) + '" onclick="ddPickMulti(\'titleCommit\',' + JSON.stringify(v) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(v) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'titleCommit\',event)">Clear selection</div>';
+  document.getElementById('titleCommitFilterRow').style.display = 'inline-flex';
 }
 
+// Build the multi-select panel for the Listing Status filter from the data.
+function buildListingStatusDropdown() {
+  const vals = [...new Set(listings.map(l => l.listingStatus).filter(Boolean))].sort();
+  if (vals.length === 0) return;
+  const panel = document.getElementById('listingStatusDropdownPanel');
+  panel.innerHTML = vals.map(v =>
+    '<div class="dd-opt" data-value="' + escapeHtml(v) + '" onclick="ddPickMulti(\'listingStatus\',' + JSON.stringify(v) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(v) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'listingStatus\',event)">Clear selection</div>';
+  document.getElementById('listingStatusFilterRow').style.display = 'inline-flex';
+}
+
+// Build the multi-select panel for the State filter from the data.
 function buildStateButtons() {
   const states = [...new Set(listings.map(l => l.state).filter(Boolean))].sort();
-  const container = document.getElementById('stateButtons');
-  container.innerHTML = states.map(s =>
-    `<button class="fb state-btn" style="margin-left:4px" onclick="fstate('${s}',this)">${s}</button>`
-  ).join('');
-  document.getElementById('stateFilterRow').style.display = 'flex';
+  if (states.length === 0) return;
+  const panel = document.getElementById('stateDropdownPanel');
+  panel.innerHTML = states.map(s =>
+    '<div class="dd-opt" data-value="' + escapeHtml(s) + '" onclick="ddPickMulti(\'state\',' + JSON.stringify(s) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(s) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'state\',event)">Clear selection</div>';
+  document.getElementById('stateFilterRow').style.display = 'inline-flex';
 }
 
-function fstate(val, btn) {
-  if (val === 'all') {
-    stateFilter = [];
-    document.querySelectorAll('.state-btn').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-  } else {
-    document.querySelector('.state-all-btn').classList.remove('on');
-    const idx = stateFilter.indexOf(val);
-    if (idx === -1) { stateFilter.push(val); btn.classList.add('on'); }
-    else { stateFilter.splice(idx, 1); btn.classList.remove('on'); }
-    if (stateFilter.length === 0) document.querySelector('.state-all-btn').classList.add('on');
-  }
-  closeCard(); renderPortfolio();
-}
-
-function fdropAge(val, btn) {
-  dropAgeFilter = val;
-  btn.closest('.filter-section').querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  closeCard(); renderPortfolio();
-}
-
+// Reset every filter back to "all" / empty selection.
 function clearAllFilters() {
-  podFilter = 'all'; stageFilter = []; expiryFilter = 'all'; stateFilter = [];
-  titleFilter = []; peiFilter = 'all'; dropsFilter = 'all'; dropAgeFilter = 'all';
+  podFilter = 'all'; expiryFilter = 'all'; peiFilter = 'all'; dropsFilter = 'all'; dropAgeFilter = 'all';
+  // Clear arrays in place — the dropdown panels hold checkbox refs that we want to keep working.
+  stageFilter.length = 0; stateFilter.length = 0; titleFilter.length = 0;
+  titleCommitFilter.length = 0; listingStatusFilter.length = 0;
   priceStaleFilter = false; noMlsFilter = false;
-  // Reset all button states
-  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
-  document.querySelectorAll('.stage-all-btn, .title-all-btn, .state-all-btn').forEach(b => b.classList.add('on'));
-  document.querySelectorAll('.filter-section').forEach(sec => {
-    const first = sec.querySelector('.fb');
-    if (first) first.classList.add('on');
+  // Reset every dropdown's visual state.
+  document.querySelectorAll('.dd').forEach(dd => {
+    dd.classList.remove('has-selection', 'open');
+    const label = dd.querySelector('.dd-btn-label');
+    if (label) label.textContent = dd.dataset.allLabel || 'All';
+    dd.querySelectorAll('.dd-opt').forEach(o => o.classList.remove('selected'));
+    dd.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = false);
+    // Mark the "all" option as selected for single-selects that have one.
+    const allOpt = dd.querySelector('.dd-opt[data-value="all"]');
+    if (allOpt) allOpt.classList.add('selected');
   });
-  closeCard(); renderPortfolio();
-}
-
-function fdrops(val, btn) {
-  dropsFilter = val;
-  btn.closest('.filter-section').querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  closeCard(); renderPortfolio();
-}
-
-function fpei(val, btn) {
-  peiFilter = val;
-  btn.closest('.filter-section').querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  closeCard(); renderPortfolio();
+  closeCard();
+  renderPortfolio();
 }
 
 function updateSortHeader() {
@@ -2488,45 +2761,6 @@ function setSort(col) {
   if (sortCol === col) { sortDir = sortDir === 'asc' ? 'desc' : 'asc'; }
   else { sortCol = col; sortDir = 'asc'; }
   updateSortHeader();
-  closeCard(); renderPortfolio();
-}
-
-function fpod(val, btn) {
-  podFilter = val;
-  btn.closest('.filter-section').querySelectorAll('.fb').forEach(b => { if (['All','Jose','Gabriel'].includes(b.textContent.trim())) b.classList.remove('on'); });
-  btn.classList.add('on');
-  closeCard(); renderPortfolio();
-}
-
-function fexpiry(val, btn) {
-  expiryFilter = val;
-  document.querySelectorAll('.filter-section .fb').forEach(b => {
-    if (['All','Under 15 days','15–30 days','30–60 days','60+ days'].includes(b.textContent.trim())) b.classList.remove('on');
-  });
-  btn.classList.add('on');
-  closeCard(); renderPortfolio();
-}
-
-function fstage(val, btn) {
-  if (val === 'all') {
-    stageFilter = [];
-    document.querySelectorAll('.stage-btn').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-  } else {
-    const allBtn = document.querySelector('.stage-all-btn');
-    allBtn.classList.remove('on');
-    const idx = stageFilter.indexOf(val);
-    if (idx === -1) {
-      stageFilter.push(val);
-      btn.classList.add('on');
-    } else {
-      stageFilter.splice(idx, 1);
-      btn.classList.remove('on');
-    }
-    if (stageFilter.length === 0) {
-      allBtn.classList.add('on');
-    }
-  }
   closeCard(); renderPortfolio();
 }
 </script>
