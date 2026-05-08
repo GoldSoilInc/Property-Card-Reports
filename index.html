@@ -1332,7 +1332,12 @@ function showCard(id) {
       const status = r['Lead Status'] || '—';
       const source = r['Buyer Lead Source'] || '—';
       const apptSched = r['Appointment Sched'] || '';
-      leadsDetail[key].push({ name, status, source, apptSched,
+      // New columns from the updated outbound CSV. Try multiple name variants in case
+      // the apostrophe / spacing in headers varies between exports.
+      const leadUrl = (r['Lead URL'] || r['Lead Link'] || r['URL'] || '').trim();
+      const feedback = (r["Buyer's Feedback"] || r['Buyer Feedback'] || r['Buyers Feedback'] || r['Feedback'] || '').trim();
+      const notes = (r['Sales Notes'] || r['Notes'] || '').trim();
+      leadsDetail[key].push({ name, status, source, apptSched, leadUrl, feedback, notes,
         sourced: parseInt(r['Sourced']||0), appt: parseInt(r['Appointment Set']||0),
         qual: parseInt(r['Qualified']||0), emd: parseInt(r['UC w/ EMD']||0) });
     });
@@ -1368,19 +1373,23 @@ function showCard(id) {
           const safeKey = safeBase + suffix;
           return `<tr id="leads_${safeKey}" style="display:none">
             <td colspan="9" style="padding:8px 8px 12px 32px;background:var(--bg3);border-bottom:0.5px solid var(--border)">
-              <table style="width:100%;font-size:14px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden">
+              <table style="width:100%;font-size:14px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden;table-layout:fixed">
                 <thead><tr style="background:var(--bg3)">
-                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Name</th>
-                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Status</th>
-                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Source</th>
-                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Appt scheduled</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:14%">Name</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:11%">Status</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:9%">Source</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:11%">Appt scheduled</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Buyer's feedback</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Sales notes</th>
                 </tr></thead>
                 <tbody>
-                  ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''}">
-                    <td style="padding:8px 14px;font-weight:600;color:var(--text)">${r.name}</td>
-                    <td style="padding:8px 14px;color:var(--text2)">${r.status}</td>
-                    <td style="padding:8px 14px;color:var(--text3)">${r.source}</td>
-                    <td style="padding:8px 14px;color:${r.apptSched ? 'var(--blue-text)' : 'var(--text3)'};font-weight:${r.apptSched ? '500' : '400'}">${r.apptSched || '—'}</td>
+                  ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''};vertical-align:top">
+                    <td style="padding:8px 14px;font-weight:600;color:var(--text);word-wrap:break-word">${r.leadUrl ? `<a href="${escapeHtml(r.leadUrl)}" target="_blank" style="color:var(--blue-text);text-decoration:none">${escapeHtml(r.name)} ↗</a>` : escapeHtml(r.name)}</td>
+                    <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word">${escapeHtml(r.status)}</td>
+                    <td style="padding:8px 14px;color:var(--text3);word-wrap:break-word">${escapeHtml(r.source)}</td>
+                    <td style="padding:8px 14px;color:${r.apptSched ? 'var(--blue-text)' : 'var(--text3)'};font-weight:${r.apptSched ? '500' : '400'};word-wrap:break-word">${escapeHtml(r.apptSched || '—')}</td>
+                    <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word;white-space:pre-wrap">${r.feedback ? escapeHtml(r.feedback) : '<span style="color:var(--text3)">—</span>'}</td>
+                    <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word;white-space:pre-wrap">${r.notes ? escapeHtml(r.notes) : '<span style="color:var(--text3)">—</span>'}</td>
                   </tr>`).join('')}
                 </tbody>
               </table>
