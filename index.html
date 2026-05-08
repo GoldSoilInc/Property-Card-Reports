@@ -1488,13 +1488,13 @@ function showCard(id) {
           <button onclick="closeCard()" title="Close card (Esc)" style="position:sticky;top:60px;font-size:18px;font-weight:600;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);width:32px;height:32px;border-radius:var(--r-md);cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;margin-left:4px;z-index:10" onmouseover="this.style.background='var(--red-bg)';this.style.color='var(--red-text)';this.style.borderColor='var(--red-border)'" onmouseout="this.style.background='var(--bg2)';this.style.color='var(--text2)';this.style.borderColor='var(--border2)'">✕</button>
         </div>
       </div>
-      <!-- Row 2: Size / Address / State / County  (grid spreads evenly across full width; address gets extra room) -->
-      <div style="display:grid;grid-template-columns:1fr 2fr 1fr 1fr;gap:24px;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid var(--border)">
+      <!-- Row 2: Size / Address / State / County  (7-col grid; Address spans 2 cols for room; left-aligned) -->
+      <div style="display:grid;grid-template-columns:repeat(7, 1fr);gap:24px;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid var(--border)">
         <div>
           <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Size</div>
           <div style="font-size:18px;font-weight:500;color:var(--text)">${l.size || '—'}</div>
         </div>
-        <div>
+        <div style="grid-column:span 2">
           <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Property Address</div>
           <div style="font-size:18px;font-weight:500;color:var(--text)">${l.addr}</div>
         </div>
@@ -1507,9 +1507,9 @@ function showCard(id) {
           <div style="font-size:18px;font-weight:500;color:var(--text)">${l.county}</div>
         </div>
       </div>
-      <!-- Row 3: Property Type / CPI / LDS  (grid spreads evenly across full width) -->
-      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid var(--border)">
-        <div>
+      <!-- Row 3: Property Type / CPI / LDS  (7-col grid; Property Type spans 2 cols for room; left-aligned) -->
+      <div style="display:grid;grid-template-columns:repeat(7, 1fr);gap:24px;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid var(--border)">
+        <div style="grid-column:span 2">
           <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Property Type</div>
           <div style="font-size:18px;font-weight:500;color:var(--text)">${l.type || '—'}</div>
         </div>
@@ -1558,7 +1558,7 @@ function showCard(id) {
             : `<div style="font-size:15px;color:${tcDaysPending > 45 ? 'var(--red-text)' : tcDaysPending > 21 ? 'var(--amber-text)' : 'var(--text2)'};margin-top:4px">${tcDaysPending} days pending</div>`;
         }
         return `
-      <div style="display:grid;grid-template-columns:repeat(6, 1fr);gap:24px">
+      <div style="display:grid;grid-template-columns:repeat(7, 1fr);gap:24px">
         <div>
           <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Type of Deal</div>
           <div><span class="badge ${dealTypeClass(l.dealType)}">${l.dealType || '—'}</span></div>
@@ -1595,7 +1595,10 @@ function showCard(id) {
         ${(() => {
           const today = new Date();
           const contractDate = l.contractDate ? new Date(l.contractDate) : null;
-          const listDate = l.webDom !== null ? new Date(today.getTime() - l.webDom * 86400000) : (l.dom !== null ? new Date(today.getTime() - l.dom * 86400000) : null);
+          // Website list date (from Website DOM) and MLS list date (from MLS DOM) tracked separately
+          // so the timeline can show each as its own milestone when both are populated.
+          const listDate = l.webDom !== null ? new Date(today.getTime() - l.webDom * 86400000) : null;
+          const mlsListDate = l.dom !== null && l.dom > 0 ? new Date(today.getTime() - l.dom * 86400000) : null;
           const createdDate = l.createdDate ? new Date(l.createdDate) : null;
           const expiryDate = l.expiry !== null && l.expiry >= 0 && l.expiry < 3650 ? new Date(today.getTime() + l.expiry * 86400000) : null;
 
@@ -1622,6 +1625,7 @@ function showCard(id) {
 
           const todayPct = pct(today.getTime());
           const listPct = listDate ? pct(listDate.getTime()) : null;
+          const mlsListPct = mlsListDate ? pct(mlsListDate.getTime()) : null;
           const validCreated = (createdDate && !isNaN(createdDate.getTime())) ? createdDate : null;
           const createdPct = validCreated ? pct(validCreated.getTime()) : null;
 
@@ -1706,14 +1710,29 @@ function showCard(id) {
             ? { pct: pct(titleCommitDateObj.getTime()), color: 'var(--teal-text)', label: 'Title Received', date: fmtShort(titleCommitDateObj), above: false, isTitle: true }
             : null;
 
+          // MLS Listed milestone — derived from MLS DOM (today − l.dom days). Distinct from
+          // the website "Listed" milestone above so a property can show both when applicable.
+          const mlsListedMilestone = mlsListPct !== null
+            ? {
+                pct: mlsListPct,
+                color: 'var(--green-text)',
+                label: 'MLS',
+                sublabel: l.dom + 'd on MLS',
+                date: fmtShort(mlsListDate),
+                above: true,
+                isMls: true
+              }
+            : null;
+
           // Build milestones — first pass assigns alternating above/below, then we run a collision detector
           // to push overlapping labels into multiple lanes (up to 3 above, 3 below).
-          const dropOffset = (listedMilestone ? 1 : 0) + (pricedMilestone ? 1 : 0);
+          const dropOffset = (listedMilestone ? 1 : 0) + (pricedMilestone ? 1 : 0) + (mlsListedMilestone ? 1 : 0);
           const milestones = [
             { pct: 0, color: 'var(--green-border)', label: 'Contracted', date: fmtShort(contractDate), above: false },
             ...(titleCommitMilestone ? [titleCommitMilestone] : []),
             ...(pricedMilestone ? [pricedMilestone] : []),
             ...(listedMilestone ? [listedMilestone] : []),
+            ...(mlsListedMilestone ? [mlsListedMilestone] : []),
             ...realDrops.map((d, i) => ({
               pct: pct(d.date.getTime()),
               color: 'var(--amber-border)',
@@ -1792,7 +1811,7 @@ function showCard(id) {
                     ? `<div style="width:10px;height:10px;border-radius:50%;background:var(--amber-border);border:2px solid var(--bg)"></div>`
                     : `<div style="width:12px;height:12px;border-radius:50%;background:${m.color};border:2px solid var(--bg)"></div>`}
               <div style="position:absolute;${m.above ? 'bottom:' + labelOffset + 'px' : 'top:' + (labelOffset + 16) + 'px'};${m.isEnd ? 'right:0;text-align:right' : 'left:50%;transform:translateX(-50%);text-align:center'};white-space:nowrap;line-height:1.4">
-                <div style="font-size:12px;font-weight:${m.isToday ? '700' : '600'};color:${m.isToday ? m.color : m.isOriginal ? 'var(--blue-text)' : m.isPriceDrop ? 'var(--amber-text)' : m.isTitle ? 'var(--teal-text)' : 'var(--text3)'};text-transform:uppercase;letter-spacing:0.04em">${m.label}</div>
+                <div style="font-size:12px;font-weight:${m.isToday ? '700' : '600'};color:${m.isToday ? m.color : m.isOriginal ? 'var(--blue-text)' : m.isPriceDrop ? 'var(--amber-text)' : m.isTitle ? 'var(--teal-text)' : m.isMls ? 'var(--green-text)' : 'var(--text3)'};text-transform:uppercase;letter-spacing:0.04em">${m.label}</div>
                 ${m.sublabel ? `<div style="font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;margin-top:1px">${m.sublabel}</div>` : ''}
                 <div style="font-size:13px;color:${m.label === 'Expires' && daysLeft < 15 ? 'var(--red-text)' : 'var(--text2)'}">${m.date}</div>
               </div>
