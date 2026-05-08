@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-08T19:40:22.651925+00:00",
+  "lastSynced": "2026-05-08T21:09:52.504790+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -169,7 +169,14 @@
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-065340 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Reviewed HOA underwriting/spread; decision was to potentially drop a small amount ($200–$1,000) and standardize HOA comp adjustments going forward",
+            "BLOCKERS",
+            "HOA pricing model/comp adjustment needs standardization (team process item)",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
           "blockId": "7d7e5c46-c9be-46ac-834d-5df7ee92b059"
         }
       ]
