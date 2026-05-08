@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaxAcres.com — Portfolio Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg2: #f6f6f4;
+    --bg3: #efefed;
+    --text: #1a1a18;
+    --text2: #6b6b67;
+    --text3: #9b9a94;
+    --border: rgba(0,0,0,0.1);
+    --border2: rgba(0,0,0,0.18);
+    --r-md: 8px;
+    --r-lg: 12px;
+    --red-bg: #fcebeb; --red-text: #a32d2d; --red-border: #e24b4a;
+    --amber-bg: #faeeda; --amber-text: #854f0b; --amber-border: #ef9f27;
+    --green-bg: #eaf3de; --green-text: #3b6d11; --green-border: #639922;
+    --blue-bg: #e6f1fb; --blue-text: #185fa5; --blue-border: #378add;
+    --purple-bg: #eeedfe; --purple-text: #534ab7; --purple-border: #7a72d8;
+    --teal-bg: #e1f5ee; --teal-text: #0f6e56;
+    --score-size: 38px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1e1e1c; --bg2: #272725; --bg3: #313130;
+      --text: #e8e8e4; --text2: #9b9a94; --text3: #6b6b67;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.18);
+      --red-bg: #3d1010; --red-text: #f09595;
+      --amber-bg: #3d2800; --amber-text: #fac775;
+      --green-bg: #172806; --green-text: #c0dd97;
+      --blue-bg: #0a2240; --blue-text: #85b7eb;
+      --purple-bg: #1e1b40; --purple-text: #afa9ec;
+      --teal-bg: #052820; --teal-text: #5dcaa5;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:16px; background: var(--bg3); color: var(--text); min-height: 100vh; }
+
+  /* ── TOP BAR ── */
+  .topbar { background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size:17px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+  .logo span { color: var(--blue-text); }
+  .topbar-right { font-size:14px; color: var(--text3); }
+
+  /* ── MAIN LAYOUT ── */
+  .main { width: 100%; padding: 16px 20px; box-sizing: border-box; }
+
+  /* ── LOADER ── */
+  .loader-bar { background: var(--bg); border-radius: var(--r-lg); padding: 20px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 0.5px solid var(--border); }
+  .loader-status { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .loader-dot { display: flex; align-items: center; gap: 6px; font-size:15px; color: var(--text2); }
+  .loader-dot .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border2); flex-shrink: 0; }
+  .loader-dot.ok .dot { background: var(--green-border); }
+  .loader-dot.err .dot { background: var(--red-border); }
+  .loader-dot.loading .dot { background: var(--amber-border); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .refresh-btn { font-size:15px; padding: 7px 16px; border-radius: var(--r-md); border: 0.5px solid var(--blue-border); background: var(--blue-bg); color: var(--blue-text); cursor: pointer; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+  .refresh-btn:hover { opacity: 0.85; }
+  .refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .sheet-url-input { flex: 1; font-size:14px; padding: 6px 10px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: var(--bg2); color: var(--text); min-width: 0; }
+  .sheet-url-input::placeholder { color: var(--text3); }
+
+  /* ── SUMMARY BAR ── */
+  .summary-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 10px; margin-bottom: 16px; }
+  .sm { background: var(--bg); border-radius: var(--r-md); padding: 12px 16px; min-height: 72px; display: flex; flex-direction: column; justify-content: center; }
+  .sm-filter { cursor: pointer; transition: all 0.15s; border: 1.5px solid transparent; }
+  .sm-filter:hover { border-color: var(--amber-border); background: var(--amber-bg); }
+  .sm-active { border-color: var(--amber-border) !important; background: var(--amber-bg) !important; }
+  .sm-v { font-size:24px; font-weight: 600; color: var(--text); }
+  .sm-l { font-size:13px; color: var(--text3); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .sm-v.red { color: var(--red-text); } .sm-v.amber { color: var(--amber-text); } .sm-v.green { color: var(--green-text); }
+
+  /* ── FILTERS ── */
+  .filter-bar { background: var(--bg); border-radius: var(--r-md); padding: 12px 14px; margin-bottom: 6px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .filter-section { background: var(--bg); border-radius: var(--r-md); padding: 10px 14px; margin-bottom: 6px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .filter-label { font-size:15px; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; margin-right: 4px; font-weight: 700; }
+  .filter-sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+  .fb { font-size:15px; padding: 5px 11px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: transparent; color: var(--text3); cursor: pointer; transition: all 0.1s; }
+  .fb:hover { background: var(--bg2); color: var(--text2); }
+  .fb.on { background: var(--blue-bg); color: var(--blue-text); border-color: var(--blue-border); font-weight: 600; }
+
+  /* Filter field — label + dropdown pair */
+  .ff { display: inline-flex; align-items: center; gap: 8px; }
+
+  /* Custom dropdown component (handles both single-select and multi-select) */
+  .dd { position: relative; display: inline-block; }
+  .dd-btn {
+    font-size:16px; padding: 7px 12px; border-radius: var(--r-md);
+    border: 0.5px solid var(--border2); background: var(--bg);
+    color: var(--text); cursor: pointer; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 10px;
+    min-width: 160px; justify-content: space-between;
+    transition: all 0.15s;
+    line-height: 1.3;
+  }
+  .dd-btn:hover { border-color: var(--blue-border); background: var(--bg2); }
+  .dd.has-selection .dd-btn { background: var(--blue-bg); border-color: var(--blue-border); color: var(--blue-text); font-weight: 600; }
+  .dd-chevron { font-size:13px; opacity: 0.6; transition: transform 0.15s; }
+  .dd.open .dd-chevron { transform: rotate(180deg); }
+  .dd-panel {
+    position: absolute; top: calc(100% + 4px); left: 0; z-index: 100;
+    background: var(--bg); border: 0.5px solid var(--border2); border-radius: var(--r-md);
+    padding: 4px; min-width: 220px; max-height: 340px; overflow-y: auto;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+    display: none;
+  }
+  .dd.open .dd-panel { display: block; }
+  .dd-opt {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; border-radius: 4px; cursor: pointer;
+    font-size:16px; color: var(--text); user-select: none;
+  }
+  .dd-opt:hover { background: var(--bg2); }
+  .dd-opt.selected { background: var(--blue-bg); color: var(--blue-text); font-weight: 500; }
+  .dd-opt input { margin: 0; pointer-events: none; cursor: pointer; }
+  .dd-clear {
+    font-size:14px; color: var(--text3); text-align: center;
+    padding: 7px; cursor: pointer; border-top: 0.5px solid var(--border);
+    margin-top: 4px; user-select: none;
+  }
+  .dd-clear:hover { color: var(--red-text); background: var(--red-bg); }
+
+  /* ── TABLE ── */
+  .table-wrap { background: var(--bg); border-radius: var(--r-lg); overflow-x: auto; margin-bottom: 16px; width: 100%; }
+  .tbl { width: 100%; border-collapse: collapse; table-layout: auto; }
+  .tile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
+  @media (max-width: 1100px) { .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 700px) { .tile-grid { grid-template-columns: 1fr; } }
+  .tile { background: var(--bg); border-radius: var(--r-lg); padding: 20px; cursor: pointer; border: 1.5px solid var(--border); transition: border-color 0.15s, transform 0.1s; }
+  .tile:hover { border-color: var(--blue-border); transform: translateY(-1px); }
+  .tile.active { border-color: var(--blue-border); border-width: 2px; }
+  .tile.tile-urgent { border-left: 4px solid var(--red-border); }
+  .tile.tile-watch { border-left: 4px solid var(--amber-border); }
+  .tile.tile-good { border-left: 4px solid var(--green-border); }
+  .tile-addr { font-size:24px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 4px; }
+  .tile-sub { font-size:16px; color: var(--text3); margin-bottom: 14px; }
+  .tile-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+  .tile-metric { background: var(--bg2); border-radius: var(--r-md); padding: 8px 10px; }
+  .tile-ml { font-size:13px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+  .tile-mv { font-size:24px; font-weight: 700; color: var(--text); line-height: 1.1; }
+  .tile-ms { font-size:14px; color: var(--text3); margin-top: 1px; }
+  .tile-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+  .tile-stat { text-align: center; }
+  .tile-stat-v { font-size: 28px; font-weight: 700; color: var(--text); }
+  .tile-stat-l { font-size:14px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .tile-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 0.5px solid var(--border); }
+  .tile-flags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tbl th { font-size:13px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; padding: 11px 16px; text-align: left; border-bottom: 0.5px solid var(--border); white-space: nowrap; background: var(--bg2); }
+  .tbl th.sortable { cursor: pointer; user-select: none; }
+  .tbl th.sortable:hover { color: var(--text); background: var(--bg3); }
+  .tbl th.sort-active { color: var(--blue-text); }
+  .sort-arrow { margin-left: 4px; opacity: 0.5; font-size:12px; }
+  .sort-active .sort-arrow { opacity: 1; }
+  .tbl td { padding: 11px 16px; border-bottom: 0.5px solid var(--border); vertical-align: middle; font-size:15px; }
+  .tbl td:first-child { min-width: 220px; }
+  .tbl tr.dr:hover td { background: var(--bg2); cursor: pointer; }
+  .tbl tr.dr.active td { background: var(--blue-bg); }
+  .prop-name { font-size:15px; font-weight: 500; color: var(--text); }
+  .prop-sub { font-size:13px; color: var(--text3); margin-top: 1px; }
+
+  /* ── BADGES ── */
+  .badge { font-size:13px; padding: 2px 7px; border-radius: 10px; white-space: nowrap; display: inline-block; line-height: 1.4; }
+  .b-r { background: var(--red-bg); color: var(--red-text); }
+  .b-a { background: var(--amber-bg); color: var(--amber-text); }
+  .b-g { background: var(--green-bg); color: var(--green-text); }
+  .b-bl { background: var(--blue-bg); color: var(--blue-text); }
+  .b-p { background: var(--purple-bg); color: var(--purple-text); }
+  .b-teal { background: var(--teal-bg); color: var(--teal-text); }
+  .b-gr { background: var(--bg2); color: var(--text2); border: 0.5px solid var(--border); }
+
+  /* ── SCORE RING ── */
+  .score-ring { display: inline-flex; align-items: center; justify-content: center; width: var(--score-size); height: var(--score-size); border-radius: 50%; font-size:14px; font-weight: 600; flex-shrink: 0; }
+  .sr-r { background: var(--red-bg); color: var(--red-text); border: 2px solid var(--red-border); }
+  .sr-a { background: var(--amber-bg); color: var(--amber-text); border: 2px solid var(--amber-border); }
+  .sr-g { background: var(--green-bg); color: var(--green-text); border: 2px solid var(--green-border); }
+
+  /* ── PIPELINE BAR ── */
+  .pip { display: flex; gap: 2px; }
+  .pp { height: 5px; border-radius: 2px; width: 13px; background: var(--border2); }
+  .pf { background: var(--blue-border); } .pa { background: var(--green-border); }
+
+  /* ── COLOR UTILS ── */
+  .red { color: var(--red-text); } .amber { color: var(--amber-text); } .green { color: var(--green-text); }
+  .muted { color: var(--text3); }
+
+  /* ── PROPERTY CARD ── */
+  .card-wrap { background: var(--bg); border-radius: var(--r-lg); overflow: hidden; margin-bottom: 24px; border: 0.5px solid var(--border); }
+  .card-head { padding: 24px 28px 20px; border-bottom: 0.5px solid var(--border); background: var(--bg); }
+  .card-addr { font-size:22px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .card-meta { font-size:14px; color: var(--text2); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; }
+  .card-meta .sep { color: var(--border2); }
+  .card-badges { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+  .card-body { padding: 0; }
+
+  /* ── CARD SECTIONS ── */
+  .sec { padding: 16px 24px; border-bottom: 0.5px solid var(--border); }
+  .sec:last-child { border-bottom: none; }
+  .sec-title { font-size:13px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+
+  /* ── METRIC GRIDS ── */
+  .g5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mt8 { margin-top: 8px; }
+  .mc { background: var(--bg2); border-radius: var(--r-md); padding: 10px 14px; }
+  .mc-l { font-size:13px; color: var(--text3); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .mc-v { font-size:20px; font-weight: 600; color: var(--text); line-height: 1.2; }
+  .mc-s { font-size:13px; color: var(--text3); margin-top: 3px; }
+
+  /* ── PANEL BOXES ── */
+  .panel-box { background: var(--bg2); border-radius: var(--r-md); padding: 12px 14px; }
+  .panel-title { font-size:13px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 0.5px solid var(--border); }
+  .drow { display: flex; justify-content: space-between; align-items: flex-start; padding: 4px 0; border-bottom: 0.5px solid var(--border); }
+  .drow:last-child { border-bottom: none; }
+  .drl { font-size:14px; color: var(--text2); }
+  .drv { font-size:14px; font-weight: 500; color: var(--text); text-align: right; max-width: 58%; word-break: break-word; }
+
+  /* ── CHARTS ── */
+  .chart-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .chart-box { background: var(--bg2); border-radius: var(--r-md); padding: 12px 14px; }
+  .chart-title { font-size:13px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+
+  /* ── RECOMMENDATION BAR ── */
+  .rec-bar { border-radius: var(--r-md); border-left: 3px solid var(--red-border); padding: 12px 16px; background: var(--bg2); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .rec-bar.wa { border-left-color: var(--amber-border); }
+  .rec-bar.go { border-left-color: var(--green-border); }
+  .rec-label { font-size:13px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 3px; }
+  .rec-text { font-size:15px; color: var(--text); line-height: 1.5; }
+  .engine-btn { font-size:14px; padding: 6px 14px; border-radius: var(--r-md); border: 0.5px solid var(--blue-border); background: var(--blue-bg); color: var(--blue-text); cursor: pointer; font-weight: 500; white-space: nowrap; }
+  .engine-btn:hover { opacity: 0.85; }
+
+  /* ── MKTG CHIPS ── */
+  .mktg-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+
+  /* ── DATA TABLES ── */
+  .data-tbl-wrap { background: var(--bg2); border-radius: var(--r-md); overflow: hidden; }
+  .data-tbl { width: 100%; border-collapse: collapse; font-size:14px; }
+  .data-tbl th { font-size:13px; color: var(--text3); padding: 8px 10px; text-align: left; border-bottom: 0.5px solid var(--border); font-weight: 500; white-space: nowrap; background: var(--bg3); }
+  .data-tbl td { padding: 7px 10px; border-bottom: 0.5px solid var(--border); vertical-align: top; color: var(--text); line-height: 1.45; }
+  .data-tbl tr:last-child td { border-bottom: none; }
+  .data-tbl tr:nth-child(even) td { background: var(--bg3); }
+  .no-data { font-size:14px; color: var(--text3); font-style: italic; padding: 16px; text-align: center; }
+  .hot { color: var(--red-text); font-weight: 600; }
+  .warm { color: var(--amber-text); font-weight: 500; }
+  .cold { color: var(--blue-text); }
+  .backed { color: var(--text3); }
+  .uc { color: var(--green-text); font-weight: 600; }
+
+  /* ── CLOSE BAR ── */
+  .close-bar { padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--border); background: var(--bg2); }
+  .close-btn { font-size:14px; padding: 6px 14px; border-radius: var(--r-md); border: 0.5px solid var(--border2); background: var(--bg); color: var(--text2); cursor: pointer; }
+  .close-btn:hover { background: var(--bg3); }
+  .close-meta { font-size:13px; color: var(--text3); }
+
+  /* ── EMPTY STATE ── */
+  .empty { text-align: center; padding: 60px 24px; color: var(--text3); }
+  .empty-title { font-size:18px; font-weight: 500; color: var(--text2); margin-bottom: 8px; }
+  .empty-sub { font-size:16px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .g5 { grid-template-columns: repeat(3, 1fr); }
+    .g4 { grid-template-columns: repeat(2, 1fr); }
+    .g3 { grid-template-columns: repeat(2, 1fr); }
+    .summary-bar { grid-template-columns: repeat(3, 1fr); }
+    .chart-pair { grid-template-columns: 1fr; }
+    .upload-row { grid-template-columns: 1fr; }  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo"><span>MaxAcres.com</span> &nbsp;·&nbsp; Portfolio Dashboard</div>
+  <div class="topbar-right" id="topbarMeta"></div>
+</div>
+
+<div class="main">
+
+  <!-- LOADER -->
+  <div class="loader-bar" id="loaderBar">
+    <div>
+      <div style="font-size:20px;font-weight:600;color:var(--text);margin-bottom:4px">MaxAcres.com · Portfolio Dashboard</div>
+      <div style="font-size:15px;color:var(--text3)">Live data from GitHub · Auto-refreshes every 4 hours</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
+      <button class="refresh-btn" id="refreshBtn" onclick="loadFromSheets()">⟳ Refresh</button>
+      <div class="loader-status">
+        <div class="loader-dot" id="dot-sf"><div class="dot"></div><span>Portfolio</span></div>
+        <div class="loader-dot" id="dot-pd"><div class="dot"></div><span>Price drops</span></div>
+        <div class="loader-dot" id="dot-camp"><div class="dot"></div><span>Campaigns</span></div>
+        <div class="loader-dot" id="dot-dispo"><div class="dot"></div><span>Dispo</span></div>
+        <div class="loader-dot" id="dot-ib"><div class="dot"></div><span>Inbound</span></div>
+        <div class="loader-dot" id="dot-zillow"><div class="dot"></div><span>Zillow</span></div>
+      </div>
+      <div id="lastRefreshed" style="font-size:13px;color:var(--text3)"></div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <div id="portfolioSection" style="display:none">
+    <div style="display:flex;justify-content:flex-end;margin-bottom:6px">
+      <button id="clearFiltersBtn" onclick="clearAllFilters()" style="font-size:14px;padding:5px 12px;border-radius:var(--r-md);border:0.5px solid var(--border2);background:var(--bg);color:var(--text3);cursor:pointer;transition:all 0.15s" onmouseover="this.style.color='var(--red-text)';this.style.borderColor='var(--red-border)';this.style.background='var(--red-bg)'" onmouseout="this.style.color='var(--text3)';this.style.borderColor='var(--border2)';this.style.background='var(--bg)'">✕ Clear all filters</button>
+    </div>
+    <div class="filter-bar">
+      <!-- Stage — multi-select -->
+      <div class="ff">
+        <span class="filter-label">Stage</span>
+        <div class="dd" id="dd_stage" data-all-label="All stages">
+          <button type="button" class="dd-btn" onclick="ddToggle('stage', event)">
+            <span class="dd-btn-label">All stages</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt" data-value="Clear to Flip" onclick="ddPickMulti('stage','Clear to Flip',event)"><input type="checkbox"> Clear to flip</div>
+            <div class="dd-opt" data-value="TAH - Owned" onclick="ddPickMulti('stage','TAH - Owned',event)"><input type="checkbox"> TAH owned</div>
+            <div class="dd-opt" data-value="Due Diligence" onclick="ddPickMulti('stage','Due Diligence',event)"><input type="checkbox"> Due diligence</div>
+            <div class="dd-opt" data-value="At Closing" onclick="ddPickMulti('stage','At Closing',event)"><input type="checkbox"> At closing</div>
+            <div class="dd-opt" data-value="Clearing to Close" onclick="ddPickMulti('stage','Clearing to Close',event)"><input type="checkbox"> Clearing to close</div>
+            <div class="dd-clear" onclick="ddClearMulti('stage',event)">Clear selection</div>
+          </div>
+        </div>
+      </div>
+      <!-- LEI — single-select -->
+      <div class="ff">
+        <span class="filter-label">LEI</span>
+        <div class="dd" id="dd_pei" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('pei', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('pei','all','All',event)">All</div>
+            <div class="dd-opt" data-value="optimal" onclick="ddPickSingle('pei','optimal','Optimal 90%+',event)">Optimal 90%+</div>
+            <div class="dd-opt" data-value="strong" onclick="ddPickSingle('pei','strong','Strong 70–89%',event)">Strong 70–89%</div>
+            <div class="dd-opt" data-value="moderate" onclick="ddPickSingle('pei','moderate','Moderate 50–69%',event)">Moderate 50–69%</div>
+            <div class="dd-opt" data-value="subpar" onclick="ddPickSingle('pei','subpar','Sub-Par 30–49%',event)">Sub-Par 30–49%</div>
+            <div class="dd-opt" data-value="poor" onclick="ddPickSingle('pei','poor','Poor &lt;30%',event)">Poor &lt;30%</div>
+          </div>
+        </div>
+      </div>
+      <!-- Title status — multi-select, options built dynamically -->
+      <div class="ff" id="titleFilterRow" style="display:none">
+        <span class="filter-label">Title status</span>
+        <div class="dd" id="dd_title" data-all-label="All title statuses">
+          <button type="button" class="dd-btn" onclick="ddToggle('title', event)">
+            <span class="dd-btn-label">All title statuses</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="titleDropdownPanel"></div>
+        </div>
+      </div>
+      <!-- Title commitment — multi-select, options built dynamically -->
+      <div class="ff" id="titleCommitFilterRow" style="display:none">
+        <span class="filter-label">Title commitment</span>
+        <div class="dd" id="dd_titleCommit" data-all-label="All commitments">
+          <button type="button" class="dd-btn" onclick="ddToggle('titleCommit', event)">
+            <span class="dd-btn-label">All commitments</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="titleCommitDropdownPanel"></div>
+        </div>
+      </div>
+      <!-- Listing status — multi-select, options built dynamically -->
+      <div class="ff" id="listingStatusFilterRow" style="display:none">
+        <span class="filter-label">Listing status</span>
+        <div class="dd" id="dd_listingStatus" data-all-label="All listing statuses">
+          <button type="button" class="dd-btn" onclick="ddToggle('listingStatus', event)">
+            <span class="dd-btn-label">All listing statuses</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="listingStatusDropdownPanel"></div>
+        </div>
+      </div>
+      <!-- Force a wrap to the next row so we get exactly 5 filters per row -->
+      <div style="flex-basis:100%;height:0;margin:0;padding:0"></div>
+      <!-- Expiry — single-select -->
+      <div class="ff">
+        <span class="filter-label">Expiry</span>
+        <div class="dd" id="dd_expiry" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('expiry', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('expiry','all','All',event)">All</div>
+            <div class="dd-opt" data-value="critical" onclick="ddPickSingle('expiry','critical','Under 15 days',event)">Under 15 days</div>
+            <div class="dd-opt" data-value="urgent" onclick="ddPickSingle('expiry','urgent','15–30 days',event)">15–30 days</div>
+            <div class="dd-opt" data-value="watch" onclick="ddPickSingle('expiry','watch','30–60 days',event)">30–60 days</div>
+            <div class="dd-opt" data-value="good" onclick="ddPickSingle('expiry','good','60+ days',event)">60+ days</div>
+          </div>
+        </div>
+      </div>
+      <!-- Price drops — single-select -->
+      <div class="ff">
+        <span class="filter-label">Price drops</span>
+        <div class="dd" id="dd_drops" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('drops', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('drops','all','All',event)">All</div>
+            <div class="dd-opt" data-value="0" onclick="ddPickSingle('drops','0','0 drops',event)">0 drops</div>
+            <div class="dd-opt" data-value="1" onclick="ddPickSingle('drops','1','1 drop',event)">1 drop</div>
+            <div class="dd-opt" data-value="2" onclick="ddPickSingle('drops','2','2 drops',event)">2 drops</div>
+            <div class="dd-opt" data-value="3" onclick="ddPickSingle('drops','3','3 drops',event)">3 drops</div>
+            <div class="dd-opt" data-value="4" onclick="ddPickSingle('drops','4','4 drops',event)">4 drops</div>
+            <div class="dd-opt" data-value="5+" onclick="ddPickSingle('drops','5+','5+ drops',event)">5+ drops</div>
+          </div>
+        </div>
+      </div>
+      <!-- Last drop age — single-select -->
+      <div class="ff">
+        <span class="filter-label">Last drop age</span>
+        <div class="dd" id="dd_dropAge" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('dropAge', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('dropAge','all','All',event)">All</div>
+            <div class="dd-opt" data-value="lt7" onclick="ddPickSingle('dropAge','lt7','&lt;7 days',event)">&lt;7 days</div>
+            <div class="dd-opt" data-value="7to15" onclick="ddPickSingle('dropAge','7to15','7–15 days',event)">7–15 days</div>
+            <div class="dd-opt" data-value="15to30" onclick="ddPickSingle('dropAge','15to30','15–30 days',event)">15–30 days</div>
+            <div class="dd-opt" data-value="30to60" onclick="ddPickSingle('dropAge','30to60','30–60 days',event)">30–60 days</div>
+            <div class="dd-opt" data-value="gt60" onclick="ddPickSingle('dropAge','gt60','&gt;60 days',event)">&gt;60 days</div>
+          </div>
+        </div>
+      </div>
+      <!-- State — multi-select, options built dynamically -->
+      <div class="ff" id="stateFilterRow" style="display:none">
+        <span class="filter-label">State</span>
+        <div class="dd" id="dd_state" data-all-label="All states">
+          <button type="button" class="dd-btn" onclick="ddToggle('state', event)">
+            <span class="dd-btn-label">All states</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="stateDropdownPanel"></div>
+        </div>
+      </div>
+      <!-- POD — single-select -->
+      <div class="ff">
+        <span class="filter-label">POD</span>
+        <div class="dd" id="dd_pod" data-all-label="All">
+          <button type="button" class="dd-btn" onclick="ddToggle('pod', event)">
+            <span class="dd-btn-label">All</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel">
+            <div class="dd-opt selected" data-value="all" onclick="ddPickSingle('pod','all','All',event)">All</div>
+            <div class="dd-opt" data-value="Jose" onclick="ddPickSingle('pod','Jose','Jose',event)">Jose</div>
+            <div class="dd-opt" data-value="Gabriel" onclick="ddPickSingle('pod','Gabriel','Gabriel',event)">Gabriel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="summary-bar" id="summaryBar"></div>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead id="portfolioHead"><tr>
+          <th class="sortable" onclick="setSort('addr')">Property <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('listing')">Listing ID <span class="sort-arrow">↕</span></th>
+          <th>LandID</th>
+          <th class="sortable" onclick="setSort('pei')">LEI <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('contractP')">Contract price <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('listP')">List price <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('daysDrop')">Price age <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('spread')">Spread <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('dom')">DOM <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('expiry')">Expiry <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('zdom')">ZDOM <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('zViews')">ZViews <span class="sort-arrow">↕</span></th>
+          <th class="sortable" onclick="setSort('saves')">ZSaves <span class="sort-arrow">↕</span></th>
+          <th>Incoming</th>
+          <th>Outgoing (BB/RT/IV/NG)</th>
+        </tr></thead>
+        <tbody id="portfolioBody"></tbody>
+      </table>
+    </div>
+    <div id="cardArea"></div>
+  </div>
+
+  <!-- EMPTY -->
+  <div class="empty" id="emptyState">
+    <div class="empty-title">Loading portfolio data...</div>
+    <div class="empty-sub">Fetching from GitHub — this takes a few seconds</div>
+  </div>
+
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+let listings = [], camps = [], fbacks = [], outboundLeads = [], priceDropData = [], zillowData = [], dispoData = [], inboundLeads = [];
+let meetingsData = null; // synced from Notion via .github/workflows/sync-notion.yml every 30 min
+let sfOk = false, campOk = false, pdOk = false, zillowOk = false, dispoOk = false, ibOk = false;
+let podFilter = 'all', stageFilter = [], expiryFilter = 'all', stateFilter = [], titleFilter = [], peiFilter = 'all', dropsFilter = 'all', dropAgeFilter = 'all';
+let titleCommitFilter = [], listingStatusFilter = [];
+let priceStaleFilter = false, noMlsFilter = false;
+let sortCol = 'expiry', sortDir = 'asc';
+let activeCardId = null;
+const activeCharts = {};
+
+// ── DATA SOURCES — GitHub raw CSV ───────────────────────────────────────────
+const BASE = 'https://raw.githubusercontent.com/GoldSoilInc/Property-Card-Reports/main/data/';
+const SOURCES = {
+  sf:     BASE + 'property-performance-report.csv',
+  pd:     BASE + 'price-drop-report.csv',
+  camp:   BASE + 'outbound-campaigns-leads.csv',
+  zillow: BASE + 'zillow-reports.csv',
+  dispo:  BASE + 'dispo-campaigns',
+  ib:     BASE + 'inbound-leads.csv',
+  meetings: BASE + 'notion-meetings.json'
+};
+
+// HTML escape for content coming from Notion (untrusted text → HTML).
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+  );
+}
+
+// Resolve a Notion URL for a given Transaction #.
+//
+// 1. If meetings.json has a direct entry for this transaction (synced from Notion via the
+//    GitHub workflow), return that exact page URL — it deep-links to the specific Notion page.
+// 2. Otherwise, use the top-level `databaseId` from meetings.json to build a database URL
+//    with the Transaction # as a search query. This works for every transaction even if the
+//    sync hasn't picked it up yet (e.g., new transactions, or ones with no meetings logged).
+// 3. If meetings.json is missing entirely, return null and the buttons hide.
+function getNotionUrlForTxn(txn) {
+  if (!txn || !meetingsData) return null;
+  // 1. Direct match — synced page URL
+  const direct = meetingsData.byTransaction && meetingsData.byTransaction[txn];
+  if (direct && direct.notionUrl) return direct.notionUrl;
+  // 2. Database fallback — open the Notion DB with a search query for this Transaction #
+  if (meetingsData.databaseId) {
+    const dbId = String(meetingsData.databaseId).replace(/-/g, '');
+    return 'https://www.notion.so/' + dbId + '?q=' + encodeURIComponent(txn);
+  }
+  return null;
+}
+
+function setDot(id, state) {
+  const el = document.getElementById('dot-' + id);
+  if (el) el.className = 'loader-dot ' + state;
+}
+
+function csvToRows(csv) {
+  const lines = csv.split('\n').filter(l => l.trim());
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim());
+  return lines.slice(1).map(line => {
+    const vals = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"') { inQ = !inQ; }
+      else if (c === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+      else { cur += c; }
+    }
+    vals.push(cur.trim());
+    const row = {};
+    headers.forEach((h, i) => { row[h] = vals[i] !== undefined ? vals[i].replace(/^"|"$/g, '') : null; });
+    return row;
+  });
+}
+
+async function fetchCSV(key) {
+  setDot(key, 'loading');
+  try {
+    const res = await fetch(SOURCES[key] + '?t=' + Date.now());
+    if (res.status === 404) { setDot(key, ''); return []; } // file not uploaded yet — grey
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    setDot(key, 'ok');
+    return csvToRows(text);
+  } catch(e) {
+    setDot(key, 'err');
+    console.error(key + ' failed:', e);
+    return [];
+  }
+}
+
+async function fetchJSON(key) {
+  // No loader dot for meetings — it's a quiet add-on, not a primary data source
+  try {
+    const res = await fetch(SOURCES[key] + '?t=' + Date.now());
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } catch(e) {
+    console.error(key + ' failed:', e);
+    return null;
+  }
+}
+
+async function loadFromSheets() {
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true;
+  btn.textContent = '⟳ Loading...';
+
+  const [sfRows, pdRows, campRows, zillowRows, dispoRows, ibRows, meetingsJson] = await Promise.all([
+    fetchCSV('sf'), fetchCSV('pd'), fetchCSV('camp'), fetchCSV('zillow'), fetchCSV('dispo'), fetchCSV('ib'), fetchJSON('meetings')
+  ]);
+
+  meetingsData = meetingsJson;
+
+  if (sfRows.length > 0) {
+    listings = sfRows.map(parseRow).filter(Boolean);
+    sfOk = true;
+    // Diagnostic: surface column names so we can match against expected variants
+    const cols = Object.keys(sfRows[0] || {});
+    console.log('[Property Performance Report] all columns:', cols);
+    console.log('[Property Performance Report] view-related:', cols.filter(c => /view/i.test(c)));
+    console.log('[Property Performance Report] save-related:', cols.filter(c => /save/i.test(c)));
+    console.log('[Property Performance Report] dom-related:',  cols.filter(c => /dom/i.test(c)));
+    console.log('[Property Performance Report] deal-related:', cols.filter(c => /deal|type/i.test(c)));
+    // Sample dealType values from the first 5 listings
+    console.log('[Property Performance Report] dealType sample:', listings.slice(0, 5).map(l => ({ id: l.mainListing || l.id, dealType: l.dealType })));
+  }
+  if (pdRows.length > 0) { priceDropData = pdRows.filter(r => r['Listing #']); pdOk = true; }
+  if (campRows.length > 0) { outboundLeads = campRows.filter(r => r['The Market Hub #']); campOk = true; }
+  if (zillowRows.length > 0) { zillowData = zillowRows.filter(r => r['Listing #']); zillowOk = true; }
+  if (dispoRows.length > 0) {
+    dispoData = dispoRows.filter(r => r['The Market Hub #'] || r['Listing #']);
+    dispoOk = true;
+    // Diagnostic — show columns in dispo CSV and a sample row, so we can verify the matcher is reading the right fields
+    const cols = Object.keys(dispoRows[0] || {});
+    console.log('[Dispo CSV] all columns:', cols);
+    console.log('[Dispo CSV] sample row:', dispoRows[0]);
+    console.log('[Dispo CSV] campaign-name-related columns:', cols.filter(c => /campaign|name|objective/i.test(c)));
+  }
+  if (ibRows.length > 0) { inboundLeads = ibRows.filter(r => r['The Market Hub']); ibOk = true; }
+
+  if (sfOk) {
+    enrichListingsWithPriceData();
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('portfolioSection').style.display = 'block';
+    buildStateButtons();
+    buildTitleButtons();
+    buildTitleCommitDropdown();
+    buildListingStatusDropdown();
+    renderPortfolio();
+    if (activeCardId) showCard(activeCardId);
+  }
+
+  const now = new Date();
+  const el = document.getElementById('lastRefreshed');
+  if (el) el.textContent = 'Last refreshed: ' + now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' at ' + now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+
+  btn.disabled = false;
+  btn.textContent = '⟳ Refresh';
+}
+
+// Load on open + auto-refresh every 4 hours
+window.addEventListener('DOMContentLoaded', loadFromSheets);
+setInterval(loadFromSheets, 4 * 60 * 60 * 1000);
+// Esc closes the open card
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && activeCardId) closeCard();
+});
+
+// ── DATA PARSING ──────────────────────────────────────────────────────────
+function gv(row, ...keys) {
+  for (const k of keys)
+    for (const col of Object.keys(row))
+      if (col.toLowerCase().trim() === k.toLowerCase().trim() && row[col] !== null && row[col] !== undefined && row[col] !== '')
+        return row[col];
+  return null;
+}
+
+function parseRow(row) {
+  const id = gv(row, 'The Sales Hub', 'Sales Hub', 'SH ID'); if (!id) return null;
+  const n = v => {
+    if (v === null || v === undefined || v === '') return null;
+    const num = parseFloat(v);
+    return isNaN(num) ? null : num;
+  };
+  const i = v => parseInt(v) || 0;
+  const b = v => (v || '').toString().toLowerCase() === 'yes';
+  const listP = n(gv(row, 'Current Cash Price'));
+  const contractP = parseFloat(gv(row, 'Under Contract Price')) || 0;
+  return {
+    id, addr: gv(row, 'Property Address') || '', state: gv(row, 'State') || '', county: gv(row, 'County') || '',
+    type: gv(row, 'Property Type') || '', size: gv(row, 'Total Property Size') || '',
+    pod: gv(row, 'POD') || '', stage: gv(row, 'Transaction Stage') || '',
+    landId: gv(row, 'LandID Link', 'LandID', 'Land ID', 'Land Id', 'landid') || '',
+    mainListing: gv(row, 'Main Listing', 'main listing') || '',
+    sfPropertyId: gv(row, 'Salesforce Record ID', 'SF Record ID', 'Record ID', 'Property ID') || '',
+    sellerName: gv(row, 'Seller Name', 'Seller', 'Owner Name', 'Owner') || '',
+    txn: gv(row, 'Transaction') || '', dealType: gv(row, 'Type of Deal', 'Deal Type', 'Type Of Deal') || '', listingId: gv(row, 'MLS') || '', websiteId: gv(row, 'Website') || '',
+    exitStrategy: gv(row, 'Exit Strategy', 'Exit Plan', 'Disposition Strategy', 'Strategy', 'Dispo Strategy') || '',
+    txnLink: gv(row, 'Transaction Link', 'transaction link') || '',
+    marketHubLink: gv(row, 'The Market Hub Link', 'Property Link', 'property link', 'Market Hub Link') || '',
+    ppp: gv(row, 'PPP: PPP Name') || '', cpi: gv(row, 'CPI') || '', lds: n(gv(row, 'LDS')),
+    listP, contractP,
+    lastListP: n(gv(row, 'Last Cash List Price')), profit: n(gv(row, 'Potential Profit')),
+    equity: n(gv(row, 'Equity Capture')), pricePct: (() => { const v = gv(row, 'Price Drop %'); if (!v) return 0; const s = v.toString().replace('%','').trim(); return parseFloat(s) / (s.includes('.') && parseFloat(s) < 1 ? 1 : 100) || 0; })(),
+    saves: n(gv(row, 'Zillow Saves', 'ZSaves', 'Zillow_Saves', 'Saves', 'Z Saves')), zViews: n(gv(row, 'Zillow Views', 'ZViews', 'Zillow_Views', 'Views', 'Z Views', 'Zillow Page Views', 'Page Views', 'Property Views', 'Listing Views', 'Zillow Property Views', 'Total Views', 'Zillow Last 30 Days')), mlsSaves: n(gv(row, 'MLS Saves')),
+    zillowLink: gv(row, 'Zillow Link', 'Zillow URL', 'zillow link') || '',
+    dom: n(gv(row, 'MLS DOM')), webDom: n(gv(row, 'Website DOM')),
+    expiry: n(gv(row, '# of Days to Expiration')), drops: i(gv(row, '# of Price Drops')),
+    daysDrop: n(gv(row, '# of Days from Last Price Update')), dropDate: gv(row, 'Price Drop Date') || '',
+    contractDate: gv(row, 'Seller Contract Signed Date') || '', daysUnder: n(gv(row, 'Days Under Contract')),
+    dd: gv(row, 'Property DD Status') || '', title: gv(row, 'Title Status') || '',
+    titleCommit: gv(row, 'Title Commitment Status', 'Title Commit Status', 'Title Commit. Status') || '',
+    titleCommitDate: gv(row, 'Title Commit. Received Date', 'Title Commitment Received Date', 'Title Commit Received Date') || '',
+    listingStatus: gv(row, 'Listing Status') || '',
+    mls: b(gv(row, 'Listed on MLS')), fb: b(gv(row, 'Listed on FB?')),
+    neighbor: b(gv(row, 'Neighbor Campaign Complete', 'Neighbor Campaign')), drone: b(gv(row, 'Drone')), ground: b(gv(row, 'Ground Photo')),
+    signBoards: b(gv(row, 'Sign Boards', 'Sign Board', 'Signboards', 'Signs')),
+    sourced: i(gv(row, 'Total Sourced Leads')), appt: i(gv(row, 'Total Appt Set')),
+    qual: i(gv(row, 'Total Qualified Leads')), neg: i(gv(row, 'Total Negotiating')),
+    contractInit: i(gv(row, 'Total Contract Initiated')), noEmd: i(gv(row, 'Total w/o EMD')),
+    emd: i(gv(row, 'Total w/ EMD')),
+    origPrice: null,
+    // Inbound by channel
+    inMls:  { sourced: i(gv(row,'MLS - Sourced')), appt: i(gv(row,'MLS - Appt Set')), qual: i(gv(row,'MLS - Qualified')), noEmd: i(gv(row,'MLS - w/o EMD')), emd: i(gv(row,'MLS - w/ EMD')) },
+    inFb:   { sourced: i(gv(row,'FB (in-house) - Sourced')), appt: i(gv(row,'FB Mkt (in-house) - Appt Set')), qual: i(gv(row,'FB Mkt (in-house) - Qualified')), noEmd: i(gv(row,'FB Mkt (in-house) - w/o EMD')), emd: i(gv(row,'FB Mkt (in-house) - w/ EMD')) },
+    inWeb:  { sourced: i(gv(row,'MaxAcres.com - Sourced')), appt: i(gv(row,'MaxAcres.com - Appt Set')), qual: i(gv(row,'MaxAcres.com - Qualified')), noEmd: i(gv(row,'MaxAcres.com - w/o EMD')), emd: i(gv(row,'MaxAcres.com - w/ EMD')) },
+    inSign: { sourced: i(gv(row,'Sign Board - Sourced')), appt: i(gv(row,'Sign Board - Appt Set')), qual: i(gv(row,'Sign Board - Qualified')), noEmd: i(gv(row,'Sign Board - w/o EMD')), emd: i(gv(row,'Sign Board - w/ EMD')) },
+    inRealtor:  { sourced: i(gv(row,'Realtor - Sourced')), appt: i(gv(row,'Realtor - Appt Set')), qual: i(gv(row,'Realtor - Qualified')), noEmd: i(gv(row,'Realtor - w/o EMD')), emd: i(gv(row,'Realtor - w/ EMD')) },
+    inInvestor: { sourced: i(gv(row,'Investor Base - Sourced')), appt: i(gv(row,'Investor Base - Appt Set')), qual: i(gv(row,'Investor Base - Qualified')), noEmd: i(gv(row,'Investor Base - w/o EMD')), emd: i(gv(row,'Investor Base - w/ EMD')) },
+    inBuyer:    { sourced: i(gv(row,'Buyer Base - Sourced')), appt: i(gv(row,'Buyer Base - Appt Set')), qual: i(gv(row,'Buyer Base - Qualified')), noEmd: i(gv(row,'Buyer Base - w/o EMD')), emd: i(gv(row,'Buyer Base - w/ EMD')) },
+    inNeighbor: { sourced: i(gv(row,'Neighbor - Sourced')), appt: i(gv(row,'Neighbor - Appt Set')), qual: i(gv(row,'Neighbor - Qualified')), noEmd: i(gv(row,'Neighbor - w/o EMD')), emd: i(gv(row,'Neighbor - w/ EMD')) }
+  };
+}
+
+function enrichListingsFromPriceDrop() {
+  listings.forEach(l => {
+    const pd = l.mainListing ? getPriceDrop(l.mainListing) : null;
+    if (!pd) return;
+    const n = v => {
+      if (v === null || v === undefined || v === '') return null;
+      const str = String(v).replace(/[$,\s]/g, '');
+      if (str === '') return null;
+      const num = parseFloat(str);
+      return isNaN(num) ? null : num;
+    };
+    const history = parsePriceDropHistory(pd);
+    const drops = history.filter(d => d.label !== 'Original');
+
+    if (n(pd['Current Cash Price'])) l.listP = n(pd['Current Cash Price']);
+    if (n(pd['Original Cash Price'])) l.origPrice = n(pd['Original Cash Price']);
+    if (n(pd['Under Contract Price'])) l.contractP = n(pd['Under Contract Price']);
+    if (n(pd['Profit']) !== null) l.profit = n(pd['Profit']);
+    if (drops.length >= 2) l.lastListP = drops[drops.length - 2].price;
+    l.drops = drops.length;
+    if (pd['Date of Last Price Update']) {
+      l.dropDate = pd['Date of Last Price Update'];
+      const d = new Date(pd['Date of Last Price Update']);
+      if (!isNaN(d)) l.daysDrop = Math.round((new Date() - d) / 86400000);
+    }
+    l.createdDate = gv(pd, 'Created Date');
+    if (l.origPrice && l.listP) l.pricePct = (l.origPrice - l.listP) / l.origPrice;
+    l.pricingOption = pd['Current Pricing Option'] || pd['Current'] || 'Cash Only';
+    l.sfPrice = n(pd['Current Seller Financing Price']) || null;
+    l.sfDownPayment = n(pd['Current Downpayment']) || null;
+    l.sfLoanAmount = n(pd['Current Loan Amount']) || null;
+    l.sfInterest = pd['Current Interest %'] || null;
+    l.sfMonthly = n(pd['Current Monthly Payments']) || null;
+  });
+}
+
+function enrichListingsFromZillow() {
+  if (!zillowOk || zillowData.length === 0) return;
+  listings.forEach(l => {
+    if (!l.mainListing) return;
+    const zrow = zillowData.find(r => (gv(r, 'Listing #') || '').toString().trim() === l.mainListing.toString().trim());
+    if (!zrow) return;
+    const n = v => (v !== null && v !== undefined && v !== '' && !isNaN(parseFloat(v))) ? parseFloat(v) : null;
+    // Property Performance Report is source of truth for saves/views/dom — only fill from Zillow CSV if Property Performance had no value
+    if (l.saves  === null && n(zrow['Zillow Saves']) !== null) l.saves  = n(zrow['Zillow Saves']);
+    if (l.zViews === null && n(zrow['Zillow Views']) !== null) l.zViews = n(zrow['Zillow Views']);
+    if (l.dom    === null && n(zrow['MLS DOM'])      !== null) l.dom    = n(zrow['MLS DOM']);
+    // Link and capture date are Zillow-CSV-only
+    if (zrow['Zillow Link'] && !l.zillowLink) l.zillowLink = zrow['Zillow Link'];
+    if (zrow['Date Captured']) l.zillowCaptured = zrow['Date Captured'];
+  });
+}
+
+function enrichListingsWithPriceData() {
+  enrichListingsFromPriceDrop();
+  enrichListingsFromCampaigns();
+  enrichListingsFromZillow();
+}
+
+function enrichListingsFromCampaigns() {
+  if (!campOk || outboundLeads.length === 0) return;
+  listings.forEach(l => {
+    if (!l.mainListing) return;
+    const leads = getOutboundLeads(l.mainListing);
+    if (leads.length === 0) return;
+    l.sourced = leads.reduce((s, r) => s + (parseInt(r['Sourced']) || 0), 0);
+    l.appt = leads.reduce((s, r) => s + (parseInt(r['Appointment Set']) || 0), 0);
+    l.qual = leads.reduce((s, r) => s + (parseInt(r['Qualified']) || 0), 0);
+    l.contractInit = leads.reduce((s, r) => s + (parseInt(r['Contract Sent']) || 0), 0);
+    l.emd = leads.reduce((s, r) => s + (parseInt(r['UC w/ EMD']) || 0), 0);
+    l.noEmd = l.sourced - l.emd;
+  });
+}
+
+function getPdFields(l) {
+  return {
+    listP: l.listP,
+    lastListP: l.lastListP,
+    drops: l.drops,
+    lastDropDate: l.dropDate,
+    origPrice: l.origPrice || null,
+    pricePct: l.pricePct,
+    profit: l.profit,
+    contractP: l.contractP,
+    pricingOption: l.pricingOption || 'Cash Only',
+    sfPrice: l.sfPrice || null,
+    sfDownPayment: l.sfDownPayment || null,
+    sfLoanAmount: l.sfLoanAmount || null,
+    sfInterest: l.sfInterest || null,
+    sfMonthly: l.sfMonthly || null
+  };
+}
+
+function getPriceDrop(mainListing) {
+  return priceDropData.find(r => (gv(r, 'Listing #') || '').toString().trim() === mainListing.toString().trim()) || null;
+}
+
+function parsePriceDropHistory(pd) {
+  if (!pd) return [];
+  const drops = [];
+  // Strip currency formatting before parsing so "$55,900" and "55,900" both parse correctly
+  const n = v => {
+    if (v === null || v === undefined || v === '') return null;
+    const str = String(v).replace(/[$,\s]/g, '');
+    if (str === '') return null;
+    const num = parseFloat(str);
+    return isNaN(num) ? null : num;
+  };
+
+  // Helper — case-insensitive trimmed key lookup, accepts multiple key variants
+  const get = (obj, ...keys) => {
+    for (const key of keys) {
+      const kl = key.toLowerCase().trim();
+      for (const k of Object.keys(obj)) {
+        if (k.toLowerCase().trim() === kl && obj[k] !== null && obj[k] !== undefined && obj[k] !== '') return obj[k];
+      }
+    }
+    return null;
+  };
+
+  // Original price
+  if (n(get(pd, 'Original Cash Price', 'Original Price'))) {
+    drops.push({ date: null, price: n(get(pd, 'Original Cash Price', 'Original Price')), label: 'Original' });
+  }
+
+  // PD 1 — date field has no number suffix
+  const pd1Price = n(get(pd, 'PD 1 Cash Price', 'PD1 Cash Price'));
+  const pd1Date = get(pd, 'Proposed Price Drop Date', 'Proposed Price Drop Date 1', 'PD 1 Date');
+  if (pd1Price) {
+    drops.push({ date: pd1Date || null, price: pd1Price, label: 'Drop 1' });
+  }
+
+  // PD 2–5 — keep drops even when date is missing (will be interpolated at render time)
+  for (let i = 2; i <= 5; i++) {
+    const price = n(get(pd, `PD ${i} Cash Price`, `PD${i} Cash Price`));
+    const date = get(pd, `Proposed Price Drop Date ${i}`, `Proposed Price Drop Date${i}`, `PD ${i} Date`);
+    if (price) {
+      drops.push({ date: date || null, price, label: `Drop ${i}` });
+    }
+  }
+
+  // Final drop
+  const finalPrice = n(get(pd, 'Final PD Cash Price', 'Final Cash Price'));
+  const finalDate = get(pd, 'Proposed Final Price Drop Date', 'Final PD Date');
+  if (finalPrice) {
+    drops.push({ date: finalDate || null, price: finalPrice, label: 'Final' });
+  }
+
+  return drops;
+}
+
+function getCamps(id) { return camps.filter(r => (gv(r,'SH ID','sh id') || '').toString().trim() === id.toString().trim()); }
+function getFbacks(id) { return fbacks.filter(r => (gv(r,'SH ID','sh id') || '').toString().trim() === id.toString().trim()); }
+
+function getOutboundLeads(mainListing) {
+  return outboundLeads.filter(r => {
+    const mh = (gv(r, 'The Market Hub #', 'Market Hub') || '').toString().trim();
+    return mh === mainListing.toString().trim();
+  });
+}
+
+function getInboundLeads(mainListing) {
+  return inboundLeads.filter(r => {
+    const mh = (r['The Market Hub'] || '').toString().trim();
+    return mh === mainListing.toString().trim();
+  });
+}
+
+// Cumulative funnel categorization — a "Qualified" lead also counts as Sourced + Appt
+function categorizeInboundStatus(status) {
+  const s = (status || '').toString().toLowerCase().trim();
+  const cats = { sourced: false, appt: false, qual: false, noEmd: false, emd: false };
+  // Decide the deepest stage reached, then mark all stages up to and including it
+  let stage = 0; // 0=none, 1=sourced, 2=appt, 3=qual, 4=noEmd, 5=emd
+  if (s.includes('buyer won')) stage = 5;
+  else if (s.includes('contract signed') && s.includes('w/o emd')) stage = 4;
+  else if (s.includes('contract signed') && !s.includes('w/o')) stage = 5; // contract signed (assume w/ EMD)
+  else if (s.includes('obj handling') || s.includes('price neg') || s.includes('negotiat')) stage = 3;
+  else if (s.includes('qualified')) stage = 3;
+  else if (s.includes('appointment') || s.includes('appt')) stage = 2;
+  else if (s.includes("buyer's list") || s.includes('buyers list') || s.includes('lead') || s.includes('sourced')) stage = 1;
+  else if (s) stage = 1; // unknown but non-empty status → treat as sourced
+  if (stage >= 1) cats.sourced = true;
+  if (stage >= 2) cats.appt = true;
+  if (stage >= 3) cats.qual = true;
+  if (stage >= 4) cats.noEmd = true;
+  if (stage >= 5) cats.emd = true;
+  return cats;
+}
+
+function aggregateInboundLeads(leads) {
+  // Tolerant lookup — handles Appointment Sched / Appointment Scheduled / Appt Sched / Appt Scheduled, any case, any spacing
+  const apptKey = (() => {
+    if (leads.length === 0) return null;
+    const variants = ['appointment sched', 'appointment scheduled', 'appt sched', 'appt scheduled'];
+    for (const k of Object.keys(leads[0])) {
+      if (variants.includes(k.toLowerCase().trim())) return k;
+    }
+    return null;
+  })();
+
+  const map = {};
+  leads.forEach(r => {
+    const src = (r['Lead Source'] || '').toString().trim() || 'Unknown';
+    if (!map[src]) map[src] = {
+      source: src, total: 0,
+      sourced: 0, appt: 0, qual: 0, noEmd: 0, emd: 0,
+      sourcedLeads: [], apptLeads: [], qualLeads: [], noEmdLeads: [], emdLeads: []
+    };
+    const cats = categorizeInboundStatus(r['Lead Status']);
+    const lead = {
+      name: [r['First Name'], r['Last Name']].map(s => (s || '').trim()).filter(Boolean).join(' ') || '—',
+      status: (r['Lead Status'] || '—').toString().trim(),
+      source: src,
+      apptSched: apptKey ? (r[apptKey] || '').toString().trim() : ''
+    };
+    map[src].total++;
+    if (cats.sourced) { map[src].sourced++; map[src].sourcedLeads.push(lead); }
+    if (cats.appt)    { map[src].appt++;    map[src].apptLeads.push(lead); }
+    if (cats.qual)    { map[src].qual++;    map[src].qualLeads.push(lead); }
+    if (cats.noEmd)   { map[src].noEmd++;   map[src].noEmdLeads.push(lead); }
+    if (cats.emd)     { map[src].emd++;     map[src].emdLeads.push(lead); }
+  });
+  return Object.values(map).sort((a, b) => b.total - a.total);
+}
+
+function inboundBadgeClass(src) {
+  const s = (src || '').toLowerCase();
+  if (s === 'mls') return 'b-bl';
+  if (s.includes('fb')) return 'b-p';
+  if (s.includes('website') || s.includes('maxacres')) return 'b-teal';
+  if (s.includes('sign')) return 'b-a';
+  if (s.includes('referral')) return 'b-g';
+  if (s.includes('land')) return 'b-bl';
+  return 'b-gr';
+}
+
+function getDispoCampaigns(mainListing) {
+  return dispoData.filter(r => {
+    const mh = (r['The Market Hub #'] || r['Listing #'] || '').toString().trim();
+    return mh === mainListing.toString().trim();
+  });
+}
+
+function aggregateCampaigns(leads) {
+  const map = {};
+  leads.forEach(r => {
+    const type = (r['Campaign Objective'] || '').trim();
+    const date = r['Campaign Run Date'] || '';
+    const key = type + '||' + date;
+    if (!map[key]) map[key] = { type, date, sourced: 0, appt: 0, apptSched: '', qual: 0, neg: 0, contractSent: 0, noEmd: 0, emd: 0 };
+    map[key].sourced += parseInt(r['Sourced'] || 0);
+    map[key].appt += parseInt(r['Appointment Set'] || 0);
+    map[key].qual += parseInt(r['Qualified'] || 0);
+    map[key].neg += parseInt(r['Negotiation'] || 0);
+    map[key].contractSent += parseInt(r['Contract Sent'] || 0);
+    map[key].noEmd += parseInt(r['UC w/o EMD'] || 0);
+    map[key].emd += parseInt(r['UC w/ EMD'] || 0);
+    if (!map[key].apptSched && r['Appointment Sched']) map[key].apptSched = r['Appointment Sched'];
+  });
+  return Object.values(map).sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+// ── SCORING & FLAGS ───────────────────────────────────────────────────────
+function calcExposure(l, lc, ol) {
+  ol = ol || [];
+  const dc = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
+  const dispoMatches = (kw) => dc.some(c => {
+    const obj = (c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase();
+    return obj.includes(kw);
+  });
+  const hasRealtor = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('realtor')) ||
+                     ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('realtor')) ||
+                     dispoMatches('realtor');
+  const hasInvestor = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('investor')) ||
+                      ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('investor')) ||
+                      dispoMatches('investor');
+  const hasBuyer = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('buyer')) ||
+                   ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('buyer')) ||
+                   dispoMatches('buyer');
+  const hasNeighbor = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('neighbor')) ||
+                      ol.some(r => (r['Campaign Objective'] || '').toLowerCase().includes('neighbor')) ||
+                      dispoMatches('neighbor');
+
+  // MLS is always a permanent slot in the LEI formula. Even if the property cannot
+  // currently be listed on MLS, the team can buy and flip to get on MLS, so the
+  // slot stays in the formula and contributes 0 when inactive (no rebalancing).
+  let score = 0;
+  if (l.mls) score += 35;
+  if (l.fb) score += 15;
+  if (hasRealtor) score += 15;
+  if (hasInvestor) score += 10;
+  if (hasBuyer) score += 10;
+  if (hasNeighbor) score += 10;
+  if (l.signBoards) score += 5;
+  return score;
+}
+
+function calcScore(l) {
+  if (l.stage === 'At Closing') return 85;
+  let s = 50;
+  if (l.saves !== null) { if (l.saves > 30) s += 25; else if (l.saves > 15) s += 15; else if (l.saves < 5 && l.dom > 21) s -= 20; else if (l.saves === 0 && l.dom > 14) s -= 25; }
+  if (l.dom !== null) { if (l.dom < 14) s += 10; else if (l.dom > 90) s -= 20; else if (l.dom > 45) s -= 10; }
+  if (l.qual > 0) s += 15; if (l.neg > 0) s += 10; if (l.emd > 0) s += 20;
+  if (l.profit !== null && l.profit < 0) s -= 30;
+  if (l.expiry !== null && l.expiry < 0) s -= 20;
+  if (l.expiry !== null && l.expiry < 15 && l.emd === 0) s -= 15;
+  if (l.title === 'Unprocessed') s -= 15;
+  if (l.daysDrop !== null && l.daysDrop > 30) s -= 10;
+  else if (l.daysDrop !== null && l.daysDrop > 7) s -= 5;
+  return Math.max(0, Math.min(100, Math.round(s)));
+}
+
+function calcHealth(l) {
+  if (l.profit < 0 || (l.expiry !== null && l.expiry < 0) || (l.expiry !== null && l.expiry < 15 && l.emd === 0) || l.title === 'Unprocessed') return 'urgent';
+  const s = calcScore(l);
+  if (s < 45) return 'urgent'; if (s < 65) return 'watch'; return 'good';
+}
+
+function calcFlags(l) {
+  const f = [];
+  if (l.profit !== null && l.profit < 0) f.push('Negative profit');
+  if (l.expiry !== null && l.expiry < 0) f.push('Contract expired');
+  if (l.expiry !== null && l.expiry >= 0 && l.expiry < 15 && l.emd === 0) f.push('Expiring <15d');
+  if (l.title === 'Unprocessed') f.push('Title unprocessed');
+  if (l.title && l.title.includes('Prem Title DD In Process')) f.push('Title in process');
+  if (l.daysDrop !== null && l.daysDrop > 7) f.push(l.daysDrop + 'd no price drop');
+  if (!l.mls && l.stage === 'Clear to Flip') f.push('Not on MLS');
+  if (l.type && l.type.includes('HOA') && l.dom !== null && l.dom > 30) f.push('HOA >30d DOM');
+  if (l.saves !== null && l.saves === 0 && l.dom !== null && l.dom > 14) f.push('Zero Zillow saves');
+  return f;
+}
+
+function calcRec(l) {
+  if (l.stage === 'At Closing') return 'At closing — transaction team owns this. Confirm wire and closing date with Pracy-Ann.';
+  if (l.profit !== null && l.profit < 0) return 'Negative profit — priced below cost basis. Raise price or escalate to Anshul.';
+  if (l.expiry !== null && l.expiry < 0) return 'Contract expired. Confirm extension or cancellation with transaction team immediately.';
+  if (l.title === 'Unprocessed') return 'Title not opened. Cannot close even with a buyer. Pracy-Ann opens escrow today.';
+  if (l.expiry !== null && l.expiry < 15 && l.emd === 0) return 'Expiring in ' + l.expiry + ' days with no EMD. Aggressive price drop + campaign blast now. Cash only.';
+  if (l.daysDrop !== null && l.daysDrop > 30) return l.daysDrop + ' days since last price update. Drop minimum $100–500 today — weekly drop rule violated.';
+  if (!l.mls && l.stage === 'Clear to Flip') return 'Clear to flip but not on MLS. No Zillow traction data. Get listed now — every day without MLS is a wasted day.';
+  if (l.saves !== null && l.saves === 0 && l.dom !== null && l.dom > 14) return 'Zero saves after ' + l.dom + ' DOM. Check MLS: confirm local area code phone + sales@maxacres.com in agent remarks.';
+  if (l.qual > 0 && l.neg > 0) return 'Active buyer negotiating. Hold price. Push for signed contract + non-refundable EMD this week.';
+  if (l.saves !== null && l.saves > 25 && l.dom !== null && l.dom < 21) return 'Strong early traction — ' + l.saves + ' saves at ' + l.dom + ' DOM. Hold price, work the qualified leads aggressively this week.';
+  return 'Maintain weekly price drops ($100 minimum) and run next campaign in sequence: Realtor → Investor Base → Buyer Base → Neighbor.';
+}
+
+// ── FORMATTING ────────────────────────────────────────────────────────────
+function fmt(n) { if (n === null || n === undefined || isNaN(n)) return '—'; return (n < 0 ? '-$' : '$') + Math.abs(Math.round(n)).toLocaleString(); }
+function fmtN(n) { return (n === null || n === undefined || isNaN(n)) ? '—' : Math.round(n).toString(); }
+function fmtDate(v) { if (!v) return '—'; if (v instanceof Date) return v.toLocaleDateString(); return v.toString().substring(0, 10); }
+function stageClass(s) { return s === 'TAH - Owned' ? 'b-p' : s === 'Due Diligence' ? 'b-a' : s === 'Clear to Flip' ? 'b-bl' : s === 'At Closing' ? 'b-g' : s === 'Clearing to Close' ? 'b-teal' : 'b-gr'; }
+function scoreClass(s) { return s < 45 ? 'sr-r' : s < 65 ? 'sr-a' : 'sr-g'; }
+function campTypeClass(t) { const tl = (t||'').toLowerCase(); return tl.includes('realtor') ? 'b-bl' : tl.includes('investor') ? 'b-teal' : tl.includes('buyer') ? 'b-p' : tl.includes('neighbor') ? 'b-a' : 'b-gr'; }
+function dealTypeClass(t) {
+  const tl = (t||'').toLowerCase().trim();
+  if (tl.includes('buy') && tl.includes('flip')) return 'b-p';        // Buy & Flip — heavy capital, purple
+  if (tl.includes('buy') && tl.includes('subdivide')) return 'b-bl';  // Buy & Subdivide — multi-parcel play, blue
+  if (tl.includes('pot') && tl.includes('subd')) return 'b-teal';     // Pot. SubD — potential subdivide, teal
+  if (tl.includes('wholesale')) return 'b-g';                         // Wholesale Only — fast exit, green
+  if (tl.includes('undertermined') || tl.includes('undetermined')) return 'b-a'; // Undertermined — needs decision, amber
+  return 'b-gr';
+}
+function exitStrategyClass(s) {
+  // Mirrors dealTypeClass conceptually, but exit strategy is forward-looking — what we plan to do.
+  // Color rules:
+  //   green   = fast clean exit (assignment / wholesale)
+  //   purple  = capital-intensive (buy and flip, buy and subdivide)
+  //   teal    = creative / hybrid exits (seller financing, sub-to)
+  //   amber   = undetermined / pending decision
+  //   gray    = unknown / unmapped
+  const sl = (s||'').toLowerCase().trim();
+  if (!sl) return 'b-gr';
+  if (sl.includes('assign')) return 'b-g';
+  if (sl.includes('wholesale')) return 'b-g';
+  if (sl.includes('buy') && sl.includes('flip')) return 'b-p';
+  if (sl.includes('buy') && sl.includes('subdivide')) return 'b-bl';
+  if (sl.includes('seller fin') || sl.includes('sub-to') || sl.includes('sub to') || sl.includes('hybrid')) return 'b-teal';
+  if (sl.includes('undetermined') || sl.includes('tbd')) return 'b-a';
+  return 'b-gr';
+}
+function buyerStatusClass(s) { const sl = (s||'').toLowerCase(); return sl.includes('hot') ? 'hot' : sl.includes('warm') ? 'warm' : sl.includes('cold') ? 'cold' : sl.includes('back') ? 'backed' : sl.includes('contract') ? 'uc' : ''; }
+function chipHtml(yes, label) { return `<span class="badge ${yes ? 'b-g' : 'b-gr'}">${yes ? '+ ' : '— '}${label}</span>`; }
+
+// ── PORTFOLIO RENDER ──────────────────────────────────────────────────────
+function renderPortfolio() {
+  const visible = listings.filter(l => {
+    if (podFilter !== 'all' && l.pod !== podFilter) return false;
+    if (stageFilter.length > 0 && !stageFilter.includes(l.stage)) return false;
+    if (stateFilter.length > 0 && !stateFilter.includes(l.state)) return false;
+    if (titleFilter.length > 0 && !titleFilter.some(label => titleStatusMatches(l.title, label))) return false;
+    if (titleCommitFilter.length > 0 && !titleCommitFilter.includes(l.titleCommit)) return false;
+    if (listingStatusFilter.length > 0 && !listingStatusFilter.includes(l.listingStatus)) return false;
+    if (expiryFilter !== 'all') {
+      const e = l.expiry;
+      if (expiryFilter === 'critical' && !(e !== null && e < 15)) return false;
+      if (expiryFilter === 'urgent' && !(e !== null && e >= 15 && e < 30)) return false;
+      if (expiryFilter === 'watch' && !(e !== null && e >= 30 && e < 60)) return false;
+      if (expiryFilter === 'good' && !(e !== null && e >= 60)) return false;
+    }
+    if (priceStaleFilter && !(l.daysDrop !== null && l.daysDrop > 14)) return false;
+    if (noMlsFilter && l.mls) return false;
+    if (dropsFilter !== 'all') {
+      const d = l.drops;
+      if (dropsFilter === '0' && d !== 0) return false;
+      if (dropsFilter === '1' && d !== 1) return false;
+      if (dropsFilter === '2' && d !== 2) return false;
+      if (dropsFilter === '3' && d !== 3) return false;
+      if (dropsFilter === '4' && d !== 4) return false;
+      if (dropsFilter === '5+' && d < 5) return false;
+    }
+    if (dropAgeFilter !== 'all') {
+      const d = l.daysDrop;
+      if (d === null) return false;
+      if (dropAgeFilter === 'lt7'   && !(d < 7)) return false;
+      if (dropAgeFilter === '7to15' && !(d >= 7 && d < 15)) return false;
+      if (dropAgeFilter === '15to30'&& !(d >= 15 && d <= 30)) return false;
+      if (dropAgeFilter === '30to60'&& !(d > 30 && d <= 60)) return false;
+      if (dropAgeFilter === 'gt60'  && !(d > 60)) return false;
+    }
+    if (peiFilter !== 'all') {
+      const pei = calcExposure(l, getCamps(l.id), l.mainListing ? getOutboundLeads(l.mainListing) : []);
+      if (peiFilter === 'optimal'  && pei < 90) return false;
+      if (peiFilter === 'strong'   && !(pei >= 70 && pei < 90)) return false;
+      if (peiFilter === 'moderate' && !(pei >= 50 && pei < 70)) return false;
+      if (peiFilter === 'subpar'   && !(pei >= 30 && pei < 50)) return false;
+      if (peiFilter === 'poor'     && pei >= 30) return false;
+    }
+    return true;
+  }).sort((a, b) => {
+    const dir = sortDir === 'asc' ? 1 : -1;
+    const getSortVal = l => {
+      const lc2 = getCamps(l.id);
+      const ol2 = l.mainListing ? getOutboundLeads(l.mainListing) : [];
+      switch(sortCol) {
+        case 'expiry': { const e = a === l ? (a.expiry === null ? 9999 : a.expiry < 0 ? -9999 : a.expiry) : (b.expiry === null ? 9999 : b.expiry < 0 ? -9999 : b.expiry); return e; }
+        case 'addr': return (l.addr || '').toLowerCase();
+        case 'listing': return (l.mainListing || '').toLowerCase();
+        case 'pei': return calcExposure(l, lc2, ol2);
+        case 'contractP': return l.contractP || 0;
+        case 'listP': return l.listP || 0;
+        case 'daysDrop': return l.daysDrop !== null ? l.daysDrop : 9999;
+        case 'spread': return l.profit !== null && l.profit !== undefined ? l.profit : -Infinity;
+        case 'dom': return l.webDom !== null ? l.webDom : 9999;
+        case 'zdom': return l.dom !== null ? l.dom : 9999;
+        case 'zViews': return l.zViews !== null ? l.zViews : -1;
+        case 'saves': return l.saves !== null ? l.saves : -1;
+        default: return l.expiry === null ? 9999 : l.expiry < 0 ? -9999 : l.expiry;
+      }
+    };
+    const av = getSortVal(a), bv = getSortVal(b);
+    if (typeof av === 'string') return av.localeCompare(bv) * dir;
+    return (av - bv) * dir;
+  });
+
+  const totalListings = visible.length;
+  const totalPotentialProfit = visible.reduce((s, l) => s + (getPdFields(l).profit || 0), 0);
+  const priceStaleCount = visible.filter(l => l.daysDrop !== null && l.daysDrop > 14).length;
+  const noMlsCount = visible.filter(l => !l.mls).length;
+  const noMlsProfit = visible.filter(l => !l.mls).reduce((s, l) => s + (getPdFields(l).profit || 0), 0);
+
+  document.getElementById('summaryBar').innerHTML = `
+    <div class="sm" style="cursor:default"><div class="sm-v">${totalListings}</div><div class="sm-l">Total listings</div></div>
+    <div class="sm" style="cursor:default"><div class="sm-v ${totalPotentialProfit < 0 ? 'red' : 'green'}">${fmt(totalPotentialProfit)}</div><div class="sm-l">Potential profit</div></div>
+    <div class="sm sm-filter ${priceStaleFilter ? 'sm-active' : ''}" onclick="togglePriceStale()" title="Click to filter"><div class="sm-v amber">${priceStaleCount}</div><div class="sm-l">Last price change >14d ${priceStaleFilter ? '✓' : ''}</div></div>
+    <div class="sm sm-filter ${noMlsFilter ? 'sm-active' : ''}" onclick="toggleNoMls()" title="Click to filter">
+      <div class="sm-v ${noMlsCount > 0 ? 'amber' : 'green'}">${noMlsCount}</div>
+      <div class="sm-l">Not on MLS ${noMlsFilter ? '✓' : ''}</div>
+    </div>
+    <div class="sm sm-filter ${noMlsFilter ? 'sm-active' : ''}" onclick="toggleNoMls()" title="Click to filter">
+      <div class="sm-v ${noMlsProfit < 0 ? 'red' : 'amber'}">${fmt(noMlsProfit)}</div>
+      <div class="sm-l">Profit at stake</div>
+      <div style="font-size:13px;color:var(--text3);margin-top:3px">${totalPotentialProfit !== 0 ? Math.round(noMlsProfit / totalPotentialProfit * 100) : 0}% of portfolio</div>
+    </div>`;
+
+  const tbody = document.getElementById('portfolioBody');
+  tbody.innerHTML = '';
+
+  visible.forEach(l => {
+    const h = calcHealth(l), s = calcScore(l), f = calcFlags(l);
+    const lc = getCamps(l.id);
+    const pei = calcExposure(l, lc, l.mainListing ? getOutboundLeads(l.mainListing) : []);
+    const peiColor = pei >= 90 ? 'sr-g' : pei >= 50 ? 'sr-a' : 'sr-r';
+    const sp = l.profit !== null && l.profit !== undefined ? l.profit : null;
+    const spHtml = sp === null ? '—' : sp < 0 ? `<span class="red">${fmt(sp)}</span>` : sp < 10000 ? `<span class="amber">${fmt(sp)}</span>` : fmt(sp);
+    const zViewsHtml = l.zViews === null ? '<span class="muted">—</span>' : `${l.zViews.toLocaleString()}`;
+    const zSavesHtml = l.saves === null ? '<span class="muted">—</span>' : l.saves === 0 ? '<span class="red">0</span>' : l.saves < 10 ? `<span class="amber">${l.saves}</span>` : `<span class="green">${l.saves}</span>`;
+    const domHtml  = l.webDom === null ? '<span class="muted">—</span>' : l.webDom > 90 ? `<span class="red">${l.webDom}</span>` : l.webDom > 45 ? `<span class="amber">${l.webDom}</span>` : l.webDom;
+    const zdomHtml = l.dom    === null ? '<span class="muted">—</span>' : l.dom    > 90 ? `<span class="red">${l.dom}</span>`    : l.dom    > 45 ? `<span class="amber">${l.dom}</span>`    : l.dom;
+    const expHtml = l.expiry === null ? '—' : l.expiry < 0 ? '<span class="red">Expired</span>' : l.expiry > 3650 ? '<span class="muted">None</span>' : l.expiry < 15 ? `<span class="red">${l.expiry}d</span>` : l.expiry < 30 ? `<span class="amber">${l.expiry}d</span>` : l.expiry + 'd';
+    const daysSinceDrop = l.daysDrop !== null ? l.daysDrop : null;
+    const ldHtml = daysSinceDrop === null ? '<span class="muted">—</span>' : daysSinceDrop > 30 ? `<span class="red">${daysSinceDrop}d</span>` : daysSinceDrop > 7 ? `<span class="amber">${daysSinceDrop}d</span>` : daysSinceDrop + 'd';
+
+    const tr = document.createElement('tr');
+    tr.className = 'dr' + (activeCardId === l.id ? ' active' : '');
+    tr.onclick = () => showCard(l.id);
+    tr.innerHTML = `
+      <td><div class="prop-name" style="font-size:14px;white-space:nowrap">${l.addr}</div><div class="prop-sub">${l.state} · ${l.county}</div></td>
+      <td><span style="font-size:14px;font-weight:600;color:var(--blue-text)">${l.mainListing || l.id}</span></td>
+      <td>${l.landId ? `<a href="${l.landId}" target="_blank" style="font-size:14px;color:var(--blue-text);text-decoration:none;font-weight:500">LandID ↗</a>` : '<span class="muted">—</span>'}${l.zillowLink ? `<br><a href="${l.zillowLink}" target="_blank" style="font-size:13px;color:var(--teal-text);text-decoration:none;font-weight:500">Zillow ↗</a>` : ''}</td>
+      <td><span class="score-ring ${peiColor}">${pei}%</span></td>
+      <td>${fmt(l.contractP)}</td>
+      <td>${fmt(l.listP)}</td>
+      <td>${ldHtml}</td>
+      <td>${spHtml}</td>
+      <td>${domHtml}</td>
+      <td>${expHtml}</td>
+      <td>${zdomHtml}</td>
+      <td>${zViewsHtml}</td>
+      <td>${zSavesHtml}</td>
+      <td>
+        <div style="display:flex;gap:5px;align-items:center">
+          ${[['ML', l.mls], ['FB', l.fb]].map(([init, active]) =>
+            `<div style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:${active ? 'var(--green-bg)' : 'var(--bg2)'};color:${active ? 'var(--green-text)' : 'var(--text3)'};border:1.5px solid ${active ? 'var(--green-border)' : 'var(--border)'}">${init}</div>`
+          ).join('')}
+        </div>
+      </td>
+      <td>
+        <div style="display:flex;gap:5px;align-items:center">
+          ${[['BB','buyer'], ['RT','realtor'], ['IV','investor'], ['NG','neighbor']].map(([init, type]) => {
+            const ol2 = l.mainListing ? getOutboundLeads(l.mainListing) : [];
+            const dc2 = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
+            const ran = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes(type)) ||
+                        ol2.some(r => (r['Campaign Objective'] || '').toLowerCase().includes(type)) ||
+                        dc2.some(c => ((c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase()).includes(type));
+            return `<div style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:${ran ? 'var(--blue-bg)' : 'var(--bg2)'};color:${ran ? 'var(--blue-text)' : 'var(--text3)'};border:1.5px solid ${ran ? 'var(--blue-border)' : 'var(--border)'}">${init}</div>`;
+          }).join('')}
+        </div>
+      </td>`;
+    tbody.appendChild(tr);
+    // Inline card host directly under this row, when active
+    if (activeCardId === l.id) {
+      const hostTr = document.createElement('tr');
+      hostTr.className = 'inline-card-row';
+      hostTr.id = 'inline-card-row-' + l.id;
+      hostTr.innerHTML = `<td colspan="15" style="padding:0;background:var(--bg3);border-bottom:0.5px solid var(--border)"><div id="inlineCardArea"></div></td>`;
+      tbody.appendChild(hostTr);
+    }
+  });
+  updateSortHeader();
+}
+
+// ── CARD RENDER ───────────────────────────────────────────────────────────
+function showCard(id) {
+  activeCardId = id;
+  const l = listings.find(x => x.id === id); if (!l) return;
+  const h = calcHealth(l), s = calcScore(l), f = calcFlags(l);
+  const lc = getCamps(id), lf = getFbacks(id);
+  const ol = l.mainListing ? getOutboundLeads(l.mainListing) : [];
+  const dc = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
+  // Diagnostic for the outgoing-column matcher
+  console.log('[Outgoing] listing', l.mainListing || l.id, '— dispo rows:', dc.length, dc.map(r => ({
+    objective: r['Campaign Objective'],
+    name: r['Campaign Name'],
+    keys: Object.keys(r)
+  })));
+  const pdRow = l.mainListing ? getPriceDrop(l.mainListing) : null;
+  const pdHistory = parsePriceDropHistory(pdRow);
+  const pdStatus = pdRow ? (pdRow['Price Drop Status'] || '') : '';
+  const pdStatusColor = pdStatus.includes('Final') ? 'b-r' : pdStatus.includes('Original') ? 'b-g' : 'b-a';
+
+  // Price fields — use price drop report when available, fall back to Salesforce
+  const pdf = getPdFields(l);
+  const origPrice = pdf.origPrice;
+  const listPrice = pdf.listP;
+  const lastListPrice = pdf.lastListP;
+  const dropCount = pdf.drops;
+  const lastDropDate = pdf.lastDropDate;
+  const pricePctCalc = pdf.pricePct ? (pdf.pricePct * 100).toFixed(1) : null;
+  const aggCamps = ol.length > 0 ? aggregateCampaigns(ol) : [];
+
+  destroyCharts();
+  renderPortfolio();
+
+  const savesData = genSavesHistory(l);
+  const priceData = genPriceHistory(l);
+
+  // Build dispo campaign rows merged with leads data
+  const campRows = (() => {
+    const dispoSorted = [...dc].sort((a, b) => new Date(b['Campaign Run Date']) - new Date(a['Campaign Run Date']));
+
+    // Build leads lookup by campaign objective + date → array of lead rows
+    const leadsMap = {};
+    const leadsDetail = {};
+    ol.forEach(r => {
+      const type = (r['Campaign Objective'] || '').trim();
+      const date = r['Campaign Run Date'] || '';
+      const key = type + '||' + date;
+      if (!leadsMap[key]) { leadsMap[key] = { sourced: 0, appt: 0, apptSched: '', qual: 0, neg: 0, contractSent: 0, noEmd: 0, emd: 0 }; leadsDetail[key] = []; }
+      leadsMap[key].sourced += parseInt(r['Sourced'] || 0);
+      leadsMap[key].appt += parseInt(r['Appointment Set'] || 0);
+      leadsMap[key].qual += parseInt(r['Qualified'] || 0);
+      leadsMap[key].neg += parseInt(r['Negotiation'] || 0);
+      leadsMap[key].contractSent += parseInt(r['Contract Sent'] || 0);
+      leadsMap[key].noEmd += parseInt(r['UC w/o EMD'] || 0);
+      leadsMap[key].emd += parseInt(r['UC w/ EMD'] || 0);
+      if (!leadsMap[key].apptSched && r['Appointment Sched']) leadsMap[key].apptSched = r['Appointment Sched'];
+      const name = [r['First Name'], r['Last Name']].filter(Boolean).join(' ') || '—';
+      const status = r['Lead Status'] || '—';
+      const source = r['Buyer Lead Source'] || '—';
+      const apptSched = r['Appointment Sched'] || '';
+      // New columns from the updated outbound CSV. Try multiple name variants in case
+      // the apostrophe / spacing in headers varies between exports.
+      const leadUrl = (r['Lead URL'] || r['Lead Link'] || r['URL'] || '').trim();
+      const feedback = (r["Buyer's Feedback"] || r['Buyer Feedback'] || r['Buyers Feedback'] || r['Feedback'] || '').trim();
+      const notes = (r['Sales Notes'] || r['Notes'] || '').trim();
+      leadsDetail[key].push({ name, status, source, apptSched, leadUrl, feedback, notes,
+        sourced: parseInt(r['Sourced']||0), appt: parseInt(r['Appointment Set']||0),
+        qual: parseInt(r['Qualified']||0), emd: parseInt(r['UC w/ EMD']||0) });
+    });
+
+
+    if (dispoSorted.length > 0) {
+      // Render ALL campaigns — zero-lead ones dimmed
+      const renderRow = (c) => {
+        const obj = (c['Campaign Objective'] || '').trim();
+        const date = c['Campaign Run Date'] || '';
+        const pod = c['POD Team Name'] || '';
+        const members = parseInt(c['Actual Campaign Members'] || 0);
+        const key = obj + '||' + date;
+        const leads = leadsMap[key] || {};
+        const hasAnyLeads = (leads.sourced||0) > 0 || (leads.appt||0) > 0 || (leads.qual||0) > 0 || (leads.emd||0) > 0;
+        // Use full key hash to avoid collisions
+        const safeBase = 'c' + Math.abs(key.split('').reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0)|0,0)).toString(36);
+
+        const sourcedLeads = (leadsDetail[key]||[]).filter(r => r.sourced > 0);
+        const apptLeads = (leadsDetail[key]||[]).filter(r => r.appt > 0);
+        const qualLeads = (leadsDetail[key]||[]).filter(r => r.qual > 0);
+        const emdLeads = (leadsDetail[key]||[]).filter(r => r.emd > 0);
+
+        const mkBtn = (val, leadList, suffix) => {
+          if (!val || val === 0) return `<span style="color:var(--text3)">0</span>`;
+          if (leadList.length === 0) return `<span style="font-weight:600">${val}</span>`;
+          const safeKey = safeBase + suffix;
+          return `<span onclick="toggleCampLeads('${safeKey}')" style="font-weight:700;color:var(--blue-text);cursor:pointer;text-decoration:underline dotted" title="Click to see leads">${val} ▾</span>`;
+        };
+
+        const mkDetail = (leadList, suffix) => {
+          if (leadList.length === 0) return '';
+          const safeKey = safeBase + suffix;
+          return `<tr id="leads_${safeKey}" style="display:none">
+            <td colspan="9" style="padding:8px 8px 12px 32px;background:var(--bg3);border-bottom:0.5px solid var(--border)">
+              <table style="width:100%;font-size:14px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden;table-layout:fixed">
+                <thead><tr style="background:var(--bg3)">
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:14%">Name</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:11%">Status</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:9%">Source</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:11%">Appt scheduled</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Buyer's feedback</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Sales notes</th>
+                </tr></thead>
+                <tbody>
+                  ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''};vertical-align:top">
+                    <td style="padding:8px 14px;font-weight:600;color:var(--text);word-wrap:break-word">${r.leadUrl ? `<a href="${escapeHtml(r.leadUrl)}" target="_blank" style="color:var(--blue-text);text-decoration:none">${escapeHtml(r.name)} ↗</a>` : escapeHtml(r.name)}</td>
+                    <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word">${escapeHtml(r.status)}</td>
+                    <td style="padding:8px 14px;color:var(--text3);word-wrap:break-word">${escapeHtml(r.source)}</td>
+                    <td style="padding:8px 14px;color:${r.apptSched ? 'var(--blue-text)' : 'var(--text3)'};font-weight:${r.apptSched ? '500' : '400'};word-wrap:break-word">${escapeHtml(r.apptSched || '—')}</td>
+                    <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word;white-space:pre-wrap">${r.feedback ? escapeHtml(r.feedback) : '<span style="color:var(--text3)">—</span>'}</td>
+                    <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word;white-space:pre-wrap">${r.notes ? escapeHtml(r.notes) : '<span style="color:var(--text3)">—</span>'}</td>
+                  </tr>`).join('')}
+                </tbody>
+              </table>
+            </td>
+          </tr>`;
+        };
+
+        return `<tr style="${!hasAnyLeads ? 'opacity:0.4' : ''}">
+          <td><span class="badge ${campTypeClass(obj)}">${obj}</span></td>
+          <td>${fmtDate(date)}</td>
+          <td style="text-align:center;color:var(--text3)">${members ? members.toLocaleString() : '—'}</td>
+          <td style="text-align:center">${mkBtn(leads.sourced||0, sourcedLeads, 's')}</td>
+          <td style="text-align:center">${mkBtn(leads.appt||0, apptLeads, 'a')}</td>
+          <td style="text-align:center">${mkBtn(leads.qual||0, qualLeads, 'q')}</td>
+          <td style="text-align:center;font-weight:${(leads.contractSent||0)>0?'600':'400'};color:${(leads.contractSent||0)>0?'var(--text)':'var(--text3)'}">${leads.contractSent||0}</td>
+          <td style="text-align:center">${mkBtn(leads.emd||0, emdLeads, 'e')}</td>
+          <td style="font-size:13px;color:var(--text3)">${pod}</td>
+        </tr>
+        ${mkDetail(sourcedLeads, 's')}
+        ${mkDetail(apptLeads, 'a')}
+        ${mkDetail(qualLeads, 'q')}
+        ${mkDetail(emdLeads, 'e')}`;
+      };
+
+      const totals = Object.values(leadsMap).reduce((t, c) => ({ sourced: t.sourced+c.sourced, appt: t.appt+c.appt, qual: t.qual+c.qual, contractSent: t.contractSent+c.contractSent, emd: t.emd+c.emd }), { sourced:0, appt:0, qual:0, contractSent:0, emd:0 });
+      const totalsRow = `<tr style="border-top:2px solid var(--border);background:var(--bg3)">
+        <td style="font-weight:700;font-size:14px">TOTAL</td><td></td><td></td>
+        <td style="text-align:center;font-weight:700">${totals.sourced}</td>
+        <td style="text-align:center;font-weight:700">${totals.appt}</td>
+        <td style="text-align:center;font-weight:700">${totals.qual}</td>
+        <td style="text-align:center;font-weight:700">${totals.contractSent}</td>
+        <td style="text-align:center;font-weight:700;color:var(--green-text)">${totals.emd}</td>
+        <td></td>
+      </tr>`;
+
+      return dispoSorted.map(c => renderRow(c)).join('') + totalsRow;
+    }
+
+    // Fallback: leads-only aggregation
+    if (aggCamps.length > 0) {
+      const active = aggCamps.filter(c => c.sourced > 0 || c.appt > 0 || c.qual > 0 || c.emd > 0);
+      if (active.length === 0) return `<tr><td colspan="9"><div class="no-data">No leads recorded yet for any campaign</div></td></tr>`;
+      return active.map(c => `<tr>
+        <td><span class="badge ${campTypeClass(c.type)}">${c.type}</span></td>
+        <td>${fmtDate(c.date)}</td><td style="color:var(--text3)">—</td>
+        <td style="text-align:center;font-weight:600">${c.sourced||0}</td>
+        <td style="text-align:center;font-weight:600">${c.appt||0}${c.apptSched?`<div style="font-size:12px;color:var(--blue-text)">${fmtDate(c.apptSched)}</div>`:''}</td>
+        <td style="text-align:center;font-weight:600">${c.qual||0}</td>
+        <td style="text-align:center;font-weight:600">${c.contractSent||0}</td>
+        <td style="text-align:center;font-weight:600;color:var(--green-text)">${c.emd||0}</td>
+        <td></td>
+      </tr>`).join('') + `<tr style="border-top:2px solid var(--border);background:var(--bg3)"><td style="font-weight:700">TOTAL</td><td></td><td></td>
+        <td style="text-align:center;font-weight:700">${aggCamps.reduce((s,c)=>s+c.sourced,0)}</td>
+        <td style="text-align:center;font-weight:700">${aggCamps.reduce((s,c)=>s+c.appt,0)}</td>
+        <td style="text-align:center;font-weight:700">${aggCamps.reduce((s,c)=>s+c.qual,0)}</td>
+        <td style="text-align:center;font-weight:700">${aggCamps.reduce((s,c)=>s+c.contractSent,0)}</td>
+        <td style="text-align:center;font-weight:700;color:var(--green-text)">${aggCamps.reduce((s,c)=>s+c.emd,0)}</td><td></td></tr>`;
+    }
+
+    return `<tr><td colspan="9"><div class="no-data">No campaigns logged</div></td></tr>`;
+  })();
+
+  const fbRows = lf.length > 0 ? [...lf].sort((a, b) => new Date(b['Date'] || 0) - new Date(a['Date'] || 0)).map(fb => {
+    const buyer = fb['Buyer name / ref'] || fb['Buyer name'] || '—';
+    const bt = fb['Buyer type'] || fb['Buyer Type'] || '—';
+    const it = fb['Interaction type'] || fb['Interaction Type'] || '—';
+    const offer = fb['Offer amount'] || fb['Offer Amount'] || null;
+    const status = fb['Buyer status'] || fb['Buyer Status'] || '—';
+    const next = fb['Next step'] || fb['Next Step'] || '—';
+    const notes = fb['Notes'] || '';
+    return `<tr>
+      <td>${fmtDate(fb['Date'])}</td>
+      <td style="font-weight:500">${buyer}</td>
+      <td><span class="badge b-gr">${bt}</span></td>
+      <td>${it}</td>
+      <td>${offer ? fmt(parseFloat(offer)) : '—'}</td>
+      <td class="${buyerStatusClass(status)}">${status}</td>
+      <td>${next}</td>
+      <td style="color:var(--text3)">${notes}</td>
+    </tr>`;
+  }).join('') : `<tr><td colspan="8"><div class="no-data">No buyer interactions logged — closers to fill in the weekly activity log</div></td></tr>`;
+
+  const flagsHtml = f.length > 0 ? f.map(x => `<span class="badge b-r">${x}</span>`).join(' ') : '<span class="badge b-g">No flags</span>';
+
+  // Make sure the inline host row exists — renderPortfolio creates it but if showCard is called from a place that hasn't re-rendered, force a render.
+  if (!document.getElementById('inlineCardArea')) {
+    renderPortfolio();
+  }
+  const target = document.getElementById('inlineCardArea');
+  if (!target) return;
+  target.innerHTML = `
+  <div class="card-wrap">
+
+    <div class="card-head">
+      <!-- Row 1: Owner + Listing ID + Transaction # + Links -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Owner</div>
+            <div style="font-size:24px;font-weight:700;color:var(--text);line-height:1">${l.sellerName || '—'}</div>
+          </div>
+          <div style="width:1px;height:36px;background:var(--border)"></div>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Listing ID</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              ${l.marketHubLink
+                ? `<a href="${l.marketHubLink}" target="_blank" style="font-size:22px;font-weight:700;color:var(--blue-text);line-height:1;text-decoration:none;">${l.mainListing || l.id}</a>`
+                : `<div style="font-size:22px;font-weight:700;color:var(--blue-text);line-height:1">${l.mainListing || l.id}</div>`}
+              <a href="#" style="font-size:15px;color:var(--text3);text-decoration:none;padding:2px 8px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg2)" title="Open in Salesforce">SF ↗</a>
+            </div>
+          </div>
+          <div style="width:1px;height:36px;background:var(--border)"></div>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Transaction #</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              ${l.txnLink
+                ? `<a href="${l.txnLink}" target="_blank" style="font-size:22px;font-weight:700;color:var(--blue-text);line-height:1;text-decoration:none;">${l.txn || '—'}</a>`
+                : `<div style="font-size:22px;font-weight:700;color:var(--text);line-height:1">${l.txn || '—'}</div>`}
+              ${l.txn ? `<a href="#" style="font-size:15px;color:var(--text3);text-decoration:none;padding:2px 8px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg2)" title="Open in Salesforce">SF ↗</a>` : ''}
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
+          ${(() => {
+            const notionUrl = getNotionUrlForTxn(l.txn);
+            return notionUrl
+              ? `<a href="${notionUrl}" target="_blank" style="font-size:16px;font-weight:600;color:var(--text2);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--border2);background:var(--bg2);white-space:nowrap" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--text2)'" onmouseout="this.style.color='var(--text2)';this.style.borderColor='var(--border2)'">Notion ↗</a>`
+              : '';
+          })()}
+          ${l.zillowLink ? `<a href="${l.zillowLink}" target="_blank" style="font-size:16px;font-weight:600;color:var(--teal-text);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--teal-text);background:var(--teal-bg);white-space:nowrap">Zillow ↗</a>` : ''}
+          ${l.landId ? `<a href="${l.landId}" target="_blank" style="font-size:16px;font-weight:600;color:var(--blue-text);text-decoration:none;padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--blue-border);background:var(--blue-bg);white-space:nowrap">LandID ↗</a>` : ''}
+          <button onclick="closeCard()" title="Close card (Esc)" style="position:sticky;top:60px;font-size:18px;font-weight:600;color:var(--text2);background:var(--bg2);border:1px solid var(--border2);width:32px;height:32px;border-radius:var(--r-md);cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;margin-left:4px;z-index:10" onmouseover="this.style.background='var(--red-bg)';this.style.color='var(--red-text)';this.style.borderColor='var(--red-border)'" onmouseout="this.style.background='var(--bg2)';this.style.color='var(--text2)';this.style.borderColor='var(--border2)'">✕</button>
+        </div>
+      </div>
+      <!-- Row 1: State / County / Property Address / Size / CPI / LDS  (6 cols; col 3 is 2× wide for the long address) -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 2fr 1fr 1fr 1fr;gap:24px;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid var(--border)">
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">State</div>
+          <div style="font-size:18px;font-weight:500;color:var(--text)">${l.state}</div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">County</div>
+          <div style="font-size:18px;font-weight:500;color:var(--text)">${l.county}</div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Property Address</div>
+          <div style="font-size:18px;font-weight:500;color:var(--text)">${l.addr}</div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Size</div>
+          <div style="font-size:18px;font-weight:500;color:var(--text)">${l.size || '—'}</div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">CPI</div>
+          <div style="font-size:18px;font-weight:600;color:${l.cpi && l.cpi !== 'Not Available' ? 'var(--amber-text)' : 'var(--text3)'}">${l.cpi && l.cpi !== 'Not Available' ? l.cpi : '—'}</div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">LDS</div>
+          <div style="font-size:18px;font-weight:500;color:var(--text)">${l.lds !== null ? l.lds : '—'}</div>
+        </div>
+      </div>
+      <!-- Row 2: Stage / Type of Deal / Property Type / Title Commitment / Title Status / POD  (same 6-col template as Row 1; Exit Strategy removed) -->
+      ${(() => {
+        // Title Commitment Status + supporting label.
+        // - If status is "Awaiting Commit.", show "{N} days pending" (today − Seller Contract Signed Date).
+        // - If a Title Commit. Received Date is set, show "Received {date}" instead.
+        // - Otherwise (received but no date), show "0 days pending".
+        const tcRaw = (l.titleCommit || '').trim();
+        const isAwaiting = tcRaw && tcRaw.toLowerCase().includes('await');
+        const fmtDateShort = d => d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : null;
+        const tcReceivedDateObj = l.titleCommitDate ? new Date(l.titleCommitDate) : null;
+        const tcReceivedDateValid = tcReceivedDateObj && !isNaN(tcReceivedDateObj.getTime());
+        let tcDaysPending = null;
+        if (tcRaw) {
+          if (isAwaiting) {
+            if (l.contractDate) {
+              const cd = new Date(l.contractDate);
+              if (!isNaN(cd)) tcDaysPending = Math.max(0, Math.round((new Date() - cd) / 86400000));
+            }
+          } else {
+            tcDaysPending = 0;
+          }
+        }
+        const tcBadgeClass = isAwaiting
+          ? (tcDaysPending !== null && tcDaysPending > 45 ? 'b-r' : 'b-a')
+          : (tcRaw ? 'b-g' : 'b-gr');
+        const tcLabel = tcRaw || '—';
+        let tcSub = '';
+        if (!isAwaiting && tcReceivedDateValid) {
+          // Received with a date — show the actual received date, not "0 days pending".
+          tcSub = '<div style="font-size:15px;color:var(--green-text);margin-top:4px">Received ' + escapeHtml(fmtDateShort(tcReceivedDateObj)) + '</div>';
+        } else if (tcDaysPending !== null) {
+          tcSub = tcDaysPending === 0
+            ? '<div style="font-size:15px;color:var(--green-text);margin-top:4px">0 days pending</div>'
+            : `<div style="font-size:15px;color:${tcDaysPending > 45 ? 'var(--red-text)' : tcDaysPending > 21 ? 'var(--amber-text)' : 'var(--text2)'};margin-top:4px">${tcDaysPending} days pending</div>`;
+        }
+        return `
+      <div style="display:grid;grid-template-columns:1fr 1fr 2fr 1fr 1fr 1fr;gap:24px">
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Stage</div>
+          <div><span class="badge ${stageClass(l.stage)}">${l.stage || '—'}</span></div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Type of Deal</div>
+          <div><span class="badge ${dealTypeClass(l.dealType)}">${l.dealType || '—'}</span></div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Property Type</div>
+          <div style="font-size:18px;font-weight:500;color:var(--text)">${l.type || '—'}</div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Title Commitment</div>
+          <div><span class="badge ${tcBadgeClass}">${tcLabel}</span></div>
+          ${tcSub}
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Title Status</div>
+          <div><span class="badge ${l.title === 'Unprocessed' ? 'b-r' : l.title && l.title.includes('Complex') ? 'b-a' : 'b-g'}">${l.title || '—'}</span></div>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">POD</div>
+          <div style="font-size:18px;font-weight:500;color:var(--text)">${l.pod || '—'}</div>
+        </div>
+      </div>`;
+      })()}
+    </div>
+
+    <div class="card-body">
+
+      <!-- TIMELINE -->
+      <div class="sec">
+        ${(() => {
+          const today = new Date();
+          const contractDate = l.contractDate ? new Date(l.contractDate) : null;
+          // Website list date (from Website DOM) and MLS list date (from MLS DOM) tracked separately
+          // so the timeline can show each as its own milestone when both are populated.
+          const listDate = l.webDom !== null ? new Date(today.getTime() - l.webDom * 86400000) : null;
+          const mlsListDate = l.dom !== null && l.dom > 0 ? new Date(today.getTime() - l.dom * 86400000) : null;
+          const createdDate = l.createdDate ? new Date(l.createdDate) : null;
+          const expiryDate = l.expiry !== null && l.expiry >= 0 && l.expiry < 3650 ? new Date(today.getTime() + l.expiry * 86400000) : null;
+
+          if (!contractDate) return '<div class="no-data">Timeline unavailable — missing contract date</div>';
+
+          // If no expiry, use contract date + 2 years as display window
+          // If no expiry date, anchor to Today + ~30 days so Today sits near the right and drops aren't compressed
+          // Also extend to cover any drop dates that fall after Today (rare but keeps them visible)
+          const latestDropTime = pdHistory
+            .map(d => d.date ? new Date(d.date).getTime() : NaN)
+            .filter(t => !isNaN(t))
+            .reduce((a, b) => Math.max(a, b), today.getTime());
+          const fallbackExpiry = new Date(Math.max(today.getTime(), latestDropTime) + 30 * 86400000);
+          const effectiveExpiry = expiryDate || fallbackExpiry;
+          const noExpiry = !expiryDate;
+
+          const start = contractDate.getTime();
+          const end = effectiveExpiry.getTime();
+          const total = end - start;
+          const pct = t => Math.max(0, Math.min(100, ((t - start) / total) * 100));
+          const fmtShort = d => d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' }) : '—';
+          const daysLeft = l.expiry !== null && l.expiry < 3650 ? l.expiry : null;
+          const barColor = daysLeft === null ? 'var(--blue-border)' : daysLeft < 0 ? 'var(--red-border)' : daysLeft < 15 ? 'var(--red-border)' : daysLeft < 30 ? 'var(--amber-border)' : 'var(--blue-border)';
+
+          const todayPct = pct(today.getTime());
+          const listPct = listDate ? pct(listDate.getTime()) : null;
+          const mlsListPct = mlsListDate ? pct(mlsListDate.getTime()) : null;
+          const validCreated = (createdDate && !isNaN(createdDate.getTime())) ? createdDate : null;
+          const createdPct = validCreated ? pct(validCreated.getTime()) : null;
+
+          // Price drop dots — including drops with missing dates (interpolated)
+          const origPriceEntry = pdHistory.find(d => d.label === 'Original');
+          const dropEntries = pdHistory.filter(d => d.label !== 'Original');
+
+          // Build dated drops — interpolate any missing dates between known ones
+          const realDrops = (() => {
+            // Pass 1: parse explicit dates
+            const parsed = dropEntries.map(d => {
+              const dt = d.date ? new Date(d.date) : null;
+              return { label: d.label, price: d.price, date: dt && !isNaN(dt.getTime()) ? dt : null, estimated: false };
+            });
+            // Pass 2: fill missing dates by interpolating between known anchors
+            const fallbackStart = listDate || contractDate;
+            for (let i = 0; i < parsed.length; i++) {
+              if (parsed[i].date) continue;
+              let prevIdx = -1, nextIdx = -1;
+              for (let j = i - 1; j >= 0; j--) if (parsed[j].date) { prevIdx = j; break; }
+              for (let j = i + 1; j < parsed.length; j++) if (parsed[j].date) { nextIdx = j; break; }
+              const prevTime = prevIdx >= 0 ? parsed[prevIdx].date.getTime() : fallbackStart.getTime();
+              const nextTime = nextIdx >= 0 ? parsed[nextIdx].date.getTime() : today.getTime();
+              const slots = (nextIdx >= 0 ? nextIdx : parsed.length) - prevIdx;
+              const offset = i - prevIdx;
+              parsed[i].date = new Date(prevTime + (nextTime - prevTime) * (offset / slots));
+              parsed[i].estimated = true;
+            }
+            return parsed.filter(p => p.date && !isNaN(p.date.getTime()))
+              .sort((a, b) => a.date - b.date);
+          })();
+
+          // DEBUG — log raw PD column values + parsed history so we can diagnose missing drops
+          if (pdRow) {
+            const pdSlots = {};
+            for (let i = 1; i <= 5; i++) {
+              pdSlots[`PD ${i}`] = {
+                price: pdRow[`PD ${i} Cash Price`] ?? pdRow[`PD${i} Cash Price`] ?? '(no col)',
+                date: pdRow[`Proposed Price Drop Date ${i}`] ?? pdRow[`Proposed Price Drop Date${i}`] ?? (i === 1 ? pdRow['Proposed Price Drop Date'] : null) ?? '(no col)'
+              };
+            }
+            pdSlots['Final'] = {
+              price: pdRow['Final PD Cash Price'] ?? pdRow['Final Cash Price'] ?? '(no col)',
+              date: pdRow['Proposed Final Price Drop Date'] ?? pdRow['Final PD Date'] ?? '(no col)'
+            };
+            console.log('[Timeline]', l.mainListing || l.id, '— raw PD slots:', pdSlots);
+            console.log('[Timeline]', l.mainListing || l.id, '— parsed pdHistory:', pdHistory);
+            console.log('[Timeline]', l.mainListing || l.id, '— rendered realDrops:', realDrops.map(d => ({ label: d.label, price: d.price, date: d.date.toISOString().slice(0,10), estimated: d.estimated })));
+          }
+
+          // Listed milestone — carries the original price as the headline label when we have one
+          const listedMilestone = listPct !== null
+            ? {
+                pct: listPct,
+                color: 'var(--blue-border)',
+                label: origPriceEntry ? fmt(origPriceEntry.price) : 'Listed',
+                sublabel: origPriceEntry ? 'Listed · Original' : null,
+                date: fmtShort(listDate),
+                above: true,
+                isOriginal: !!origPriceEntry
+              }
+            : (origPriceEntry
+                ? {
+                    pct: 0,
+                    color: 'var(--blue-border)',
+                    label: fmt(origPriceEntry.price),
+                    sublabel: 'Original',
+                    date: fmtShort(contractDate),
+                    above: true,
+                    isOriginal: true
+                  }
+                : null);
+
+          // Priced milestone — when Created Date is in the price drop report
+          const pricedMilestone = createdPct !== null
+            ? { pct: createdPct, color: 'var(--purple-border)', label: 'Priced', date: fmtShort(validCreated), above: true }
+            : null;
+
+          // Title Commitment Received milestone — when Title Commit. Received Date is set
+          const titleCommitDateObj = l.titleCommitDate ? new Date(l.titleCommitDate) : null;
+          const titleCommitMilestone = (titleCommitDateObj && !isNaN(titleCommitDateObj.getTime()))
+            ? { pct: pct(titleCommitDateObj.getTime()), color: 'var(--teal-text)', label: 'Title Received', date: fmtShort(titleCommitDateObj), above: false, isTitle: true }
+            : null;
+
+          // MLS Listed milestone — derived from MLS DOM (today − l.dom days). Distinct from
+          // the website "Listed" milestone above so a property can show both when applicable.
+          const mlsListedMilestone = mlsListPct !== null
+            ? {
+                pct: mlsListPct,
+                color: 'var(--green-text)',
+                label: 'MLS',
+                sublabel: l.dom + 'd on MLS',
+                date: fmtShort(mlsListDate),
+                above: true,
+                isMls: true
+              }
+            : null;
+
+          // Build milestones — first pass assigns alternating above/below, then we run a collision detector
+          // to push overlapping labels into multiple lanes (up to 3 above, 3 below).
+          const dropOffset = (listedMilestone ? 1 : 0) + (pricedMilestone ? 1 : 0) + (mlsListedMilestone ? 1 : 0);
+          const milestones = [
+            { pct: 0, color: 'var(--green-border)', label: 'Contracted', date: fmtShort(contractDate), above: false },
+            ...(titleCommitMilestone ? [titleCommitMilestone] : []),
+            ...(pricedMilestone ? [pricedMilestone] : []),
+            ...(listedMilestone ? [listedMilestone] : []),
+            ...(mlsListedMilestone ? [mlsListedMilestone] : []),
+            ...realDrops.map((d, i) => ({
+              pct: pct(d.date.getTime()),
+              color: 'var(--amber-border)',
+              label: fmt(d.price),
+              sublabel: d.label + (d.estimated ? ' (est)' : ''),
+              date: fmtShort(d.date),
+              above: (i + dropOffset) % 2 === 0,
+              isPriceDrop: true
+            })),
+            { pct: todayPct, color: barColor, label: 'Today', date: fmtShort(today), above: true, isToday: true },
+            ...(noExpiry ? [] : [{ pct: 100, color: daysLeft !== null && daysLeft < 15 ? 'var(--red-border)' : 'var(--text3)', label: 'Expires', date: fmtShort(effectiveExpiry) + ' · ' + (daysLeft < 0 ? 'Expired' : daysLeft + 'd left'), above: false, isEnd: true }]),
+          ];
+
+          // Collision-aware lane assignment.
+          // Each label is ~80px wide. With a 1100px-ish bar, that's ~7% of bar per label.
+          // We use 8% as the base collision threshold; pinned end markers (Today/Expires)
+          // get a wider 12% gap because their full date strings are noticeably longer.
+          // Lanes 0/1/2 stack above, lanes 0/1/2 stack below.
+          // Today and Expires are pinned to lane 0 (closest to bar) so they read first.
+          const COLLISION_PCT = 8;
+          const PINNED_COLLISION_PCT = 12;
+          const aboveLanes = [];  // each lane is array of milestones in that lane
+          const belowLanes = [];
+
+          // Clone & sort by pct so collision check walks left-to-right
+          const ordered = milestones.map((m, i) => ({ m, originalIdx: i })).sort((a, b) => a.m.pct - b.m.pct);
+
+          // Pass 1: PIN. Today / Expires / Contracted always claim lane 0 on their preferred side.
+          // Placing them first means later items see them as occupants and route around.
+          for (const { m } of ordered) {
+            if (m.isToday || m.isEnd || m.label === 'Contracted') {
+              m.lane = 0;
+              const lanes = m.above ? aboveLanes : belowLanes;
+              if (!lanes[0]) lanes[0] = [];
+              lanes[0].push(m);
+            }
+          }
+
+          // Pass 2: FILL. Every other milestone finds the first non-colliding lane,
+          // checking its preferred side first, then the opposite side.
+          for (const { m } of ordered) {
+            if (m.isToday || m.isEnd || m.label === 'Contracted') continue;
+            const tryOrder = m.above ? ['above', 'below'] : ['below', 'above'];
+            let placed = false;
+            for (const side of tryOrder) {
+              const lanes = side === 'above' ? aboveLanes : belowLanes;
+              for (let lane = 0; lane < 3; lane++) {
+                const existing = lanes[lane] || [];
+                // Pinned end markers carry wider labels — give them more breathing room
+                const collides = existing.some(other => {
+                  const minDist = (other.isEnd || other.isToday) ? PINNED_COLLISION_PCT : COLLISION_PCT;
+                  return Math.abs(other.pct - m.pct) < minDist;
+                });
+                if (!collides) {
+                  if (!lanes[lane]) lanes[lane] = [];
+                  lanes[lane].push(m);
+                  m.above = (side === 'above');
+                  m.lane = lane;
+                  placed = true;
+                  break;
+                }
+              }
+              if (placed) break;
+            }
+            // Fallback — if all 6 lanes are full at this pct, force into bottom lane 2 (overflow case)
+            if (!placed) {
+              if (!belowLanes[2]) belowLanes[2] = [];
+              belowLanes[2].push(m);
+              m.above = false;
+              m.lane = 2;
+            }
+          }
+
+          // Lane heights — each lane needs to fit label + sublabel + date stacked.
+          // At 13px font with line-height 1.4 that's 3 × ~18.2px ≈ 55px of text per label,
+          // so LANE_HEIGHT must be at least that to keep adjacent lanes from overlapping.
+          const LANE_HEIGHT = 60;
+          const BAR_GAP = 6; // gap between bar edge and innermost label
+
+          const dotHtml = m => {
+            const lane = m.lane || 0;
+            const labelOffset = BAR_GAP + lane * LANE_HEIGHT;
+            return `
+            <div style="position:absolute;left:${m.pct}%;top:50%;transform:translate(-50%,-50%);z-index:2">
+              ${m.isToday
+                ? `<div style="width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid ${m.color};box-shadow:0 0 0 3px ${m.color}22"></div>`
+                : m.isOriginal
+                  ? `<div style="width:11px;height:11px;border-radius:50%;background:var(--blue-border);border:2px solid var(--bg)"></div>`
+                  : m.isPriceDrop
+                    ? `<div style="width:10px;height:10px;border-radius:50%;background:var(--amber-border);border:2px solid var(--bg)"></div>`
+                    : `<div style="width:12px;height:12px;border-radius:50%;background:${m.color};border:2px solid var(--bg)"></div>`}
+              <div style="position:absolute;${m.above ? 'bottom:' + labelOffset + 'px' : 'top:' + (labelOffset + 16) + 'px'};${m.isEnd ? 'right:0;text-align:right' : 'left:50%;transform:translateX(-50%);text-align:center'};white-space:nowrap;line-height:1.4">
+                <div style="font-size:13px;font-weight:${m.isToday ? '700' : '600'};color:${m.isToday ? m.color : m.isOriginal ? 'var(--blue-text)' : m.isPriceDrop ? 'var(--amber-text)' : m.isTitle ? 'var(--teal-text)' : m.isMls ? 'var(--green-text)' : 'var(--text3)'};text-transform:uppercase;letter-spacing:0.04em">${m.label}</div>
+                ${m.sublabel ? `<div style="font-size:13px;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;margin-top:1px">${m.sublabel}</div>` : ''}
+                <div style="font-size:13px;color:${m.label === 'Expires' && daysLeft < 15 ? 'var(--red-text)' : 'var(--text2)'}">${m.date}</div>
+              </div>
+            </div>`;
+          };
+
+          // Container height adapts to deepest lane in use
+          const maxAboveLane = aboveLanes.length;
+          const maxBelowLane = belowLanes.length;
+          const aboveHeight = Math.max(50, BAR_GAP + maxAboveLane * LANE_HEIGHT + 8);
+          const belowHeight = Math.max(50, BAR_GAP + maxBelowLane * LANE_HEIGHT + 8);
+          const totalHeight = aboveHeight + belowHeight + 4; // 4px for the bar itself
+
+          return `
+            <div style="position:relative;height:${totalHeight}px;margin:0 8px">
+              <div style="position:absolute;top:${aboveHeight}px;left:0;right:0;height:4px;background:var(--bg3);border-radius:2px">
+                <div style="position:absolute;left:0;top:0;height:100%;width:${todayPct}%;background:${barColor};border-radius:2px"></div>
+                ${milestones.map(dotHtml).join('')}
+              </div>
+            </div>
+            ${realDrops.some(d => d.estimated) ? '<div style="font-size:13px;color:var(--text3);margin-top:4px;text-align:center;font-style:italic">Some drop dates missing in price drop report — positions estimated</div>' : ''}`;
+        })()}
+      </div>
+
+      <!-- PROPERTY TIMELINE (Notion meetings) -->
+      ${(() => {
+        const txn = (l.txn || '').toString().trim();
+        const synced = meetingsData && meetingsData.lastSynced ? new Date(meetingsData.lastSynced) : null;
+        const syncedLabel = synced && !isNaN(synced) ? ' · synced ' + (() => {
+          const mins = Math.round((new Date() - synced) / 60000);
+          if (mins < 1) return 'just now';
+          if (mins < 60) return mins + ' min ago';
+          const hrs = Math.round(mins / 60);
+          if (hrs < 24) return hrs + 'h ago';
+          return Math.round(hrs / 24) + 'd ago';
+        })() : '';
+
+        // No data yet (first run hasn't completed, or 404) → render nothing
+        if (!meetingsData || !meetingsData.byTransaction) return '';
+
+        // No transaction # on the listing → can't match
+        if (!txn) {
+          return `
+            <div class="sec">
+              <div class="sec-title">Property Timeline${syncedLabel}</div>
+              <div class="no-data">No Transaction # on this listing — can't match to a Notion page</div>
+            </div>`;
+        }
+
+        const entry = meetingsData.byTransaction[txn];
+
+        // Transaction # exists but no entry / no meetings yet
+        if (!entry || !entry.meetings || entry.meetings.length === 0) {
+          const notionLink = entry && entry.notionUrl
+            ? `<a href="${entry.notionUrl}" target="_blank" style="color:var(--blue-text);text-decoration:none">Open page in Notion ↗</a>`
+            : '';
+          return `
+            <div class="sec">
+              <div class="sec-title">Property Timeline · ${escapeHtml(txn)}${syncedLabel}</div>
+              <div class="no-data">No Pricing Meeting or Portfolio Review notes synced yet for this transaction</div>
+              ${notionLink ? `<div style="font-size:14px;color:var(--text3);margin-top:6px;text-align:center">${notionLink}</div>` : ''}
+            </div>`;
+        }
+
+        // Render each meeting card
+        const items = entry.meetings.map(m => {
+          const typeBadge = m.type === 'Pricing Meeting' ? 'b-p' : 'b-teal';
+          const bullets = (m.bullets || []).slice(0, 8);
+          const bulletsHtml = bullets.length > 0
+            ? `<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px">${
+                bullets.map(b => `<li style="font-size:14px;color:var(--text);line-height:1.55">${escapeHtml(b)}</li>`).join('')
+              }</ul>`
+            : `<div style="font-size:14px;color:var(--text3);font-style:italic">No bullet content extracted — open in Notion for full notes</div>`;
+          const blockId = (m.blockId || '').replace(/-/g, '');
+          const anchorUrl = entry.notionUrl + (blockId ? '#' + blockId : '');
+          return `
+            <div style="padding:12px 14px;border:0.5px solid var(--border);border-radius:var(--r-md);background:var(--bg2);margin-bottom:8px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span class="badge ${typeBadge}">${m.type}</span>
+                  <span style="font-size:14px;color:var(--text2);font-weight:500">${escapeHtml(m.date || '—')}</span>
+                </div>
+                <a href="${anchorUrl}" target="_blank" style="font-size:13px;color:var(--text3);text-decoration:none;padding:3px 9px;border-radius:4px;border:0.5px solid var(--border2);background:var(--bg)">Open in Notion ↗</a>
+              </div>
+              ${bulletsHtml}
+            </div>`;
+        }).join('');
+
+        return `
+          <div class="sec">
+            <div class="sec-title">Property Timeline · ${entry.meetings.length} meeting${entry.meetings.length !== 1 ? 's' : ''}${syncedLabel}</div>
+            ${items}
+          </div>`;
+      })()}
+
+      <!-- RED FLAGS -->
+      ${(() => {
+        const flags = [];
+
+        // Not on MLS
+        if (!l.mls) {
+          flags.push({
+            level: 'critical',
+            title: 'Not listed on MLS',
+            body: 'Property has no Zillow or MLS exposure. No saves or DOM data will accrue until listed.',
+            action: 'List on MLS'
+          });
+        }
+
+        // 45 days or less — best price window
+        if (l.expiry !== null && l.expiry <= 45 && l.expiry > 15) {
+          flags.push({
+            level: 'warning',
+            title: `${l.expiry} days to contract expiry`,
+            body: 'Under 45 days remaining on the seller contract. Pricing decisions made now will directly impact the outcome.',
+            action: `${l.expiry}d left`
+          });
+        }
+
+        // 15 days or less — decision required
+        if (l.expiry !== null && l.expiry <= 15 && l.expiry >= 0) {
+          flags.push({
+            level: 'critical',
+            title: `${l.expiry} days to expiry — decision required`,
+            body: 'Contract expires in ' + l.expiry + ' days. Options: Cancel, Extend with seller, or Buy at contract price.',
+            action: 'Cancel · Extend · Buy'
+          });
+        }
+
+        // Expired
+        if (l.expiry !== null && l.expiry < 0) {
+          flags.push({
+            level: 'critical',
+            title: 'Contract expired',
+            body: 'Seller contract expiry date has passed. Confirm current status with transaction team.',
+            action: 'Confirm with Pracy-Ann'
+          });
+        }
+
+        // Negative profit
+        if (l.profit !== null && l.profit < 0) {
+          flags.push({
+            level: 'critical',
+            title: 'Negative profit',
+            body: `List price of ${fmt(l.listP)} is currently below cost basis — selling at this price would result in a loss of ${fmt(Math.abs(l.profit))}.`,
+            action: 'Escalate to Anshul'
+          });
+        }
+
+        // Title unprocessed
+        if (l.title === 'Unprocessed') {
+          flags.push({
+            level: 'critical',
+            title: 'Title not opened',
+            body: 'Escrow has not been opened on this listing. A buyer cannot close until title is processed.',
+            action: 'Open escrow — Pracy-Ann'
+          });
+        }
+
+        // Price drop overdue
+        if (l.daysDrop !== null && l.daysDrop > 15) {
+          flags.push({
+            level: 'warning',
+            title: `${l.daysDrop} days since last price drop`,
+            body: 'Per SOP, a price drop is required every 15 days on every listing to maintain Zillow algorithm visibility.',
+            action: 'Drop price'
+          });
+        }
+
+        // Zillow SOP — Saves vs DOM ratio logic
+        if (l.dom !== null && l.saves !== null && l.dom >= 10) {
+          const dom = l.dom;
+          const saves = l.saves;
+          const sourced = l.sourced || 0;
+          const ratio = saves / dom;
+          const gap = dom - saves;
+
+          // High saves, no inquiries
+          if (saves > dom && sourced === 0) {
+            flags.push({
+              level: 'critical',
+              title: `${saves} saves but zero inquiries`,
+              body: 'Saves exceed DOM but no leads have been sourced. Check that MaxAcres contact info (local phone + sales@maxacres.com) is present in the MLS agent remarks — this is sometimes missed by listing agents.',
+              action: 'Check MLS agent remarks'
+            });
+          }
+          // Saves > DOM — good, no flag
+          else if (saves > dom) { }
+          // Saves ≈ DOM — on track, no flag
+          else if (ratio >= 0.8) { }
+          // Saves << DOM — listing fatigue
+          else if (dom >= 30 && gap > dom * 0.6) {
+            flags.push({
+              level: 'critical',
+              title: `${saves} saves vs ${dom} DOM — large gap`,
+              body: 'Saves are significantly behind days on market. Per SOP, this indicates listing fatigue — common for remote land after 30 days.',
+              action: 'Review with management'
+            });
+          }
+          // Saves < DOM — pricing signal
+          else if (ratio < 0.8) {
+            flags.push({
+              level: dom >= 30 ? 'critical' : 'warning',
+              title: `Saves behind DOM — ${saves} saves vs ${dom} days`,
+              body: dom >= 30
+                ? 'Saves have not kept pace with DOM beyond 30 days. Per SOP, this is the point to reassess pricing and listing quality.'
+                : 'Saves are behind DOM in the 10–30 day window. Per SOP, this is the primary pricing signal period.',
+              action: dom >= 30 ? 'Reassess with management' : 'Review price'
+            });
+          }
+        }
+
+        // HOA property — check mobile homes
+        if (l.type && l.type.toLowerCase().includes('hoa')) {
+          const mobileOk = l.type.toLowerCase().includes('mobile home ok');
+          if (!mobileOk && l.dom !== null && l.dom > 14) {
+            flags.push({
+              level: 'warning',
+              title: 'HOA property — mobile homes not permitted',
+              body: 'HOA lots are hard to sell without mobile home allowance. The primary buyer pool for HOA land is mobile home buyers. Verify with the HOA whether mobile homes are permitted — this is the single biggest selling point for these lots.',
+              action: 'Verify mobile home allowance with HOA'
+            });
+          }
+        }
+
+        // DOM 0–9: too early, no Zillow flags
+
+        if (flags.length === 0) return `
+          <div class="sec">
+            <div class="sec-title">Red flags</div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--green-bg);border-radius:var(--r-md);border:1px solid var(--green-border)">
+              <span style="font-size:18px">✓</span>
+              <span style="font-size:15px;color:var(--green-text);font-weight:500">No active red flags — listing is in good standing</span>
+            </div>
+          </div>`;
+
+        return `
+          <div class="sec">
+            <div class="sec-title">Red flags — ${flags.length} issue${flags.length !== 1 ? 's' : ''} requiring attention</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              ${flags.map(flag => `
+                <div style="border-radius:var(--r-md);border-left:3px solid ${flag.level === 'critical' ? 'var(--red-border)' : 'var(--amber-border)'};background:${flag.level === 'critical' ? 'var(--red-bg)' : 'var(--amber-bg)'};padding:12px 16px">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+                    <div style="flex:1">
+                      <div style="font-size:15px;font-weight:700;color:${flag.level === 'critical' ? 'var(--red-text)' : 'var(--amber-text)'};margin-bottom:4px">${flag.level === 'critical' ? '🚨' : '⚠️'} ${flag.title}</div>
+                      <div style="font-size:14px;color:var(--text);line-height:1.6">${flag.body}</div>
+                    </div>
+                    <div style="flex-shrink:0;font-size:13px;font-weight:600;padding:4px 10px;border-radius:20px;background:${flag.level === 'critical' ? 'var(--red-text)' : 'var(--amber-text)'};color:#fff;white-space:nowrap">${flag.action}</div>
+                  </div>
+                </div>`).join('')}
+            </div>
+          </div>`;
+      })()}
+
+      <!-- DEAL ECONOMICS -->
+      <div class="sec">
+        <div class="sec-title">Deal economics</div>
+        <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:8px">
+          <div class="mc">
+            <div class="mc-l">Contract price</div>
+            <div class="mc-v">${fmt(pdf.contractP)}</div>
+            <div class="mc-s">${l.daysUnder !== null ? l.daysUnder + 'd held' : '—'}</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Original list price</div>
+            <div class="mc-v">${origPrice ? fmt(origPrice) : '—'}</div>
+            <div class="mc-s">At listing</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Pricing option</div>
+            <div class="mc-v" style="font-size:16px;color:${pdf.pricingOption === 'With Seller Financing' ? 'var(--teal-text)' : 'var(--text)'}">${pdf.pricingOption || 'Cash Only'}</div>
+            <div class="mc-s">${pdf.pricingOption === 'With Seller Financing' ? 'SF active' : 'No SF'}</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Current cash list price</div>
+            <div class="mc-v">${fmt(listPrice)}</div>
+            <div class="mc-s">${dropCount} drop${dropCount !== 1 ? 's' : ''}</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Last list price</div>
+            <div class="mc-v">${fmt(lastListPrice)}</div>
+            <div class="mc-s">Before last drop</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Last drop date</div>
+            <div class="mc-v" style="font-size:16px">${lastDropDate ? (() => { const d = new Date(lastDropDate); return isNaN(d) ? lastDropDate : (d.getMonth()+1).toString().padStart(2,'0') + '/' + d.getDate().toString().padStart(2,'0') + '/' + d.getFullYear(); })() : '—'}</div>
+            <div class="mc-s">${lastDropDate ? Math.round((new Date() - new Date(lastDropDate)) / 86400000) + 'd ago' : '—'}</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Net price drop</div>
+            <div class="mc-v ${pricePctCalc && parseFloat(pricePctCalc) > 0 ? 'amber' : ''}">${pricePctCalc ? pricePctCalc + '%' : '—'}</div>
+            <div class="mc-s">${origPrice && listPrice ? fmt(origPrice - listPrice) + ' off' : 'From original'}</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Days to expiry</div>
+            <div class="mc-v ${l.expiry !== null && l.expiry < 0 ? 'red' : l.expiry !== null && l.expiry < 15 ? 'red' : l.expiry !== null && l.expiry < 30 ? 'amber' : ''}">${l.expiry !== null ? (l.expiry < 0 ? 'Expired' : l.expiry > 3650 ? 'None' : l.expiry + 'd') : '—'}</div>
+            <div class="mc-s">${l.contractDate ? 'Signed: ' + fmtDate(l.contractDate) : '—'}</div>
+          </div>
+        </div>
+        ${pdf.pricingOption === 'With Seller Financing' ? `
+        <div style="margin-top:8px;padding-top:8px;border-top:0.5px solid var(--border)">
+          <div style="font-size:13px;font-weight:600;color:var(--teal-text);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Seller financing details</div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+            <div class="mc" style="border:1px solid var(--teal-bg)">
+              <div class="mc-l">SF price</div>
+              <div class="mc-v" style="color:var(--teal-text)">${pdf.sfPrice ? fmt(pdf.sfPrice) : '—'}</div>
+              <div class="mc-s">Total financed price</div>
+            </div>
+            <div class="mc" style="border:1px solid var(--teal-bg)">
+              <div class="mc-l">Down payment</div>
+              <div class="mc-v" style="color:var(--teal-text)">${pdf.sfDownPayment ? fmt(pdf.sfDownPayment) : '—'}</div>
+              <div class="mc-s">Required down</div>
+            </div>
+            <div class="mc" style="border:1px solid var(--teal-bg)">
+              <div class="mc-l">Loan amount</div>
+              <div class="mc-v" style="color:var(--teal-text)">${pdf.sfLoanAmount ? fmt(pdf.sfLoanAmount) : '—'}</div>
+              <div class="mc-s">Balance financed</div>
+            </div>
+            <div class="mc" style="border:1px solid var(--teal-bg)">
+              <div class="mc-l">Interest rate</div>
+              <div class="mc-v" style="font-size:17px;color:var(--teal-text)">${pdf.sfInterest ? (String(pdf.sfInterest).includes('%') ? pdf.sfInterest : pdf.sfInterest + '%') : '—'}</div>
+              <div class="mc-s">Annual rate</div>
+            </div>
+            <div class="mc" style="border:1px solid var(--teal-bg)">
+              <div class="mc-l">Monthly payment</div>
+              <div class="mc-v" style="color:var(--teal-text)">${pdf.sfMonthly ? fmt(pdf.sfMonthly) : '—'}</div>
+              <div class="mc-s">Per month</div>
+            </div>
+          </div>
+        </div>` : ''}
+      </div>
+
+      <!-- ZILLOW -->
+      <div class="sec">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="sec-title" style="margin-bottom:0">Zillow${l.zillowCaptured ? `<span style="font-weight:400;color:var(--text3);font-size:13px;margin-left:8px;text-transform:none;letter-spacing:0">captured ${fmtDate(l.zillowCaptured)}</span>` : ''}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <div class="mc">
+            <div class="mc-l">MLS</div>
+            <div class="mc-v ${l.mls ? 'green' : 'red'}">${l.mls ? 'Yes' : 'No'}</div>
+            <div class="mc-s">${l.listingStatus || '—'}</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">MLS DOM</div>
+            <div class="mc-v ${l.dom !== null && l.dom > 90 ? 'red' : l.dom !== null && l.dom > 45 ? 'amber' : ''}">${fmtN(l.dom)}<span style="font-size:15px;font-weight:400">d</span></div>
+            <div class="mc-s">Days on market</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Zillow saves</div>
+            <div class="mc-v ${l.saves === 0 ? 'red' : l.saves !== null && l.saves < 10 ? 'amber' : 'green'}">${fmtN(l.saves)}</div>
+            <div class="mc-s">30-day rolling</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Zillow views</div>
+            <div class="mc-v ${l.zViews !== null ? '' : 'muted'}">${l.zViews !== null ? l.zViews.toLocaleString() : '—'}</div>
+            <div class="mc-s">${l.zViews !== null ? 'Total views' : 'Not in report yet'}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPOSURE INDEX -->
+      <div class="sec">
+        <div class="sec-title">LEI — Land Exposure Index</div>
+        ${(() => {
+          const exp = calcExposure(l, lc, ol);
+          const expColor = exp >= 90 ? 'var(--green-border)' : exp >= 50 ? 'var(--amber-border)' : 'var(--red-border)';
+          const expBg = exp >= 90 ? 'var(--green-bg)' : exp >= 50 ? 'var(--amber-bg)' : 'var(--red-bg)';
+          const expText = exp >= 90 ? 'var(--green-text)' : exp >= 50 ? 'var(--amber-text)' : 'var(--red-text)';
+          const expLabel = exp >= 90 ? 'Optimal' : exp >= 70 ? 'Strong' : exp >= 50 ? 'Moderate' : exp >= 30 ? 'Sub-Par' : 'Poor';
+          // Same three-source check as calcExposure — keeps the pill colors consistent with the score
+          const dcExp = l.mainListing ? getDispoCampaigns(l.mainListing) : [];
+          const dispoHas = (kw) => dcExp.some(c => ((c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase()).includes(kw));
+          const hasR = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('realtor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('realtor')) || dispoHas('realtor');
+          const hasI = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('investor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('investor')) || dispoHas('investor');
+          const hasB = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('buyer')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('buyer')) || dispoHas('buyer');
+          const hasN = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes('neighbor')) || ol.some(r => (r['Campaign Objective']||'').toLowerCase().includes('neighbor')) || dispoHas('neighbor');
+          // MLS is permanent in the formula — always shown, contributes 35% when active, 0% otherwise.
+          const channels = [
+            { label: 'MLS', weight: 35, active: l.mls, note: l.mls ? null : 'Not listed' },
+            { label: 'Facebook Marketplace', weight: 15, active: l.fb },
+            { label: 'Realtor campaign', weight: 15, active: hasR },
+            { label: 'Investor Base campaign', weight: 10, active: hasI },
+            { label: 'Buyer Base campaign', weight: 10, active: hasB },
+            { label: 'Neighbor campaign', weight: 10, active: hasN },
+            { label: 'Sign boards', weight: 5, active: l.signBoards },
+          ];
+          return `
+            <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+                <div style="width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:${expBg};border:3px solid ${expColor}">
+                  <span style="font-size:22px;font-weight:700;color:${expText}">${exp}%</span>
+                </div>
+                <div>
+                  <div style="font-size:16px;font-weight:600;color:${expText}">${expLabel}</div>
+                  <div style="font-size:14px;color:var(--text3);margin-top:2px">${exp < 100 ? (100 - exp) + '% untapped' : 'Full coverage'}</div>
+                </div>
+              </div>
+              <div style="flex:1;min-width:200px">
+                <div style="height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:10px">
+                  <div style="height:100%;width:${exp}%;background:${expColor};border-radius:4px;transition:width 0.4s"></div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  ${channels.filter(ch => ch.weight > 0 || ch.active).map(ch => `
+                    <span style="padding:3px 10px;border-radius:20px;font-size:14px;font-weight:500;background:${ch.active ? 'var(--green-bg)' : 'var(--bg2)'};color:${ch.active ? 'var(--green-text)' : 'var(--text3)'};border:1px solid ${ch.active ? 'var(--green-border)' : 'var(--border)'}">
+                      ${ch.label}${ch.weight > 0 ? ' · ' + ch.weight + '%' : ''}${ch.note ? ' · ' + ch.note : ''}
+                    </span>`).join('')}
+                </div>
+              </div>
+            </div>`;
+        })()}
+      </div>
+
+      <!-- INBOUND -->
+      <div class="sec">
+        ${(() => {
+          const ibLeads = l.mainListing ? getInboundLeads(l.mainListing) : [];
+          const channels = aggregateInboundLeads(ibLeads);
+          const totalInbound = channels.reduce((s, c) => s + c.sourced, 0);
+
+          // Pills row — listing-level channel toggles + sources observed in leads
+          const observedSources = new Set(channels.map(c => c.source));
+          const togglePills = [
+            { label: 'MLS', listed: l.mls, source: 'MLS', sub: l.dom !== null ? l.dom + 'd DOM' : null },
+            { label: 'Facebook Marketplace', listed: l.fb, source: null, match: s => s.toLowerCase().includes('fb') },
+            { label: 'MaxAcres.com', listed: true, source: 'Website', match: s => s.toLowerCase() === 'website' || s.toLowerCase().includes('maxacres') },
+            { label: 'Sign Board', listed: l.signBoards, source: 'Sign Board' },
+          ];
+          const togglePillNames = new Set();
+          const pills = togglePills.map(p => {
+            // Find a matching channel (by exact source or matcher)
+            const matched = channels.find(c => p.source ? c.source === p.source : (p.match && p.match(c.source)));
+            if (matched) togglePillNames.add(matched.source);
+            const hasLeads = matched && matched.sourced > 0;
+            // Three states:
+            //   green  — leads exist (channel is working)
+            //   blue   — listed but no leads (deployed, not converting — investigate)
+            //   gray   — not listed (channel not deployed yet)
+            let bg, color, border;
+            if (hasLeads) {
+              bg = 'var(--green-bg)'; color = 'var(--green-text)'; border = 'var(--green-border)';
+            } else if (p.listed) {
+              bg = 'var(--blue-bg)'; color = 'var(--blue-text)'; border = 'var(--blue-border)';
+            } else {
+              bg = 'var(--bg2)'; color = 'var(--text3)'; border = 'var(--border)';
+            }
+            const leadCount = hasLeads ? ` · ${matched.sourced} leads` : (p.listed ? ' · listed, no leads' : '');
+            return `<span style="padding:6px 14px;border-radius:20px;font-size:15px;font-weight:500;background:${bg};color:${color};border:1px solid ${border}">${p.label}${p.sub ? ' · ' + p.sub : ''}${leadCount}</span>`;
+          }).join('');
+          // Extra pills for sources observed in data that aren't already covered above
+          const extraPills = channels.filter(c => !togglePillNames.has(c.source)).map(c => {
+            return `<span style="padding:6px 14px;border-radius:20px;font-size:15px;font-weight:500;background:var(--green-bg);color:var(--green-text);border:1px solid var(--green-border)">${c.source} · ${c.sourced} leads</span>`;
+          }).join('');
+
+          // Build expandable rows — one per source with leads
+          const rowsHtml = channels.length > 0 ? channels.map(c => {
+            const safeBase = 'ib' + Math.abs(c.source.split('').reduce((a,ch) => ((a<<5)-a)+ch.charCodeAt(0)|0, 0)).toString(36);
+
+            const mkBtn = (val, leadList, suffix) => {
+              if (!val || val === 0) return `<span style="color:var(--text3)">0</span>`;
+              if (leadList.length === 0) return `<span style="font-weight:600">${val}</span>`;
+              const safeKey = safeBase + suffix;
+              return `<span onclick="toggleCampLeads('${safeKey}')" style="font-weight:700;color:var(--blue-text);cursor:pointer;text-decoration:underline dotted" title="Click to see leads">${val} ▾</span>`;
+            };
+
+            const mkDetail = (leadList, suffix) => {
+              if (leadList.length === 0) return '';
+              const safeKey = safeBase + suffix;
+              return `<tr id="leads_${safeKey}" style="display:none">
+                <td colspan="6" style="padding:8px 8px 12px 32px;background:var(--bg3);border-bottom:0.5px solid var(--border)">
+                  <table style="width:100%;font-size:14px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden">
+                    <thead><tr style="background:var(--bg3)">
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Name</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Status</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Source</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Appt scheduled</th>
+                    </tr></thead>
+                    <tbody>
+                      ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''}">
+                        <td style="padding:8px 14px;font-weight:600;color:var(--text)">${r.name}</td>
+                        <td style="padding:8px 14px;color:var(--text2)">${r.status}</td>
+                        <td style="padding:8px 14px;color:var(--text3)">${r.source}</td>
+                        <td style="padding:8px 14px;color:${r.apptSched ? 'var(--blue-text)' : 'var(--text3)'};font-weight:${r.apptSched ? '500' : '400'}">${r.apptSched || '—'}</td>
+                      </tr>`).join('')}
+                    </tbody>
+                  </table>
+                </td>
+              </tr>`;
+            };
+
+            return `<tr>
+              <td><span class="badge ${inboundBadgeClass(c.source)}">${c.source}</span></td>
+              <td style="text-align:center">${mkBtn(c.sourced, c.sourcedLeads, 's')}</td>
+              <td style="text-align:center">${mkBtn(c.appt, c.apptLeads, 'a')}</td>
+              <td style="text-align:center">${mkBtn(c.qual, c.qualLeads, 'q')}</td>
+              <td style="text-align:center">${mkBtn(c.noEmd, c.noEmdLeads, 'n')}</td>
+              <td style="text-align:center;color:${c.emd > 0 ? 'var(--green-text)' : 'var(--text3)'}">${mkBtn(c.emd, c.emdLeads, 'e')}</td>
+            </tr>
+            ${mkDetail(c.sourcedLeads, 's')}
+            ${mkDetail(c.apptLeads, 'a')}
+            ${mkDetail(c.qualLeads, 'q')}
+            ${mkDetail(c.noEmdLeads, 'n')}
+            ${mkDetail(c.emdLeads, 'e')}`;
+          }).join('') + `
+            <tr style="border-top:2px solid var(--border);background:var(--bg3)">
+              <td style="font-weight:700;font-size:14px">TOTAL</td>
+              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.sourced,0)}</td>
+              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.appt,0)}</td>
+              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.qual,0)}</td>
+              <td style="text-align:center;font-weight:700">${channels.reduce((s,c) => s+c.noEmd,0)}</td>
+              <td style="text-align:center;font-weight:700;color:var(--green-text)">${channels.reduce((s,c) => s+c.emd,0)}</td>
+            </tr>`
+          : `<tr><td colspan="6"><div class="no-data">${ibOk ? 'No inbound leads recorded yet for this listing' : 'Inbound leads file not loaded'}</div></td></tr>`;
+
+          return `
+            <div class="sec-title">Inbound${totalInbound > 0 ? ' · ' + totalInbound + ' total leads' : ''}</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px">${pills}${extraPills}</div>
+            <div class="data-tbl-wrap">
+              <table class="data-tbl">
+                <thead><tr>
+                  <th>Source</th><th style="text-align:center">Sourced</th><th style="text-align:center">Appt set</th><th style="text-align:center">Qualified</th><th style="text-align:center">w/o EMD</th><th style="text-align:center">w/ EMD</th>
+                </tr></thead>
+                <tbody>${rowsHtml}</tbody>
+              </table>
+            </div>`;
+        })()}
+      </div>
+
+      <!-- OUTBOUND -->
+      <div class="sec">
+        <div class="sec-title">Outbound${dc.length > 0 ? ' · ' + dc.length + ' campaign' + (dc.length !== 1 ? 's' : '') : aggCamps.length > 0 ? ' · ' + aggCamps.length + ' campaign' + (aggCamps.length !== 1 ? 's' : '') + ' · ' + ol.length + ' leads' : ''}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+          ${['Realtor','Investor Base','Buyer Base','Neighbor'].map((label, idx) => {
+            const keywords = ['realtor','investor','buyer base','neighbor'];
+            const ranAgg = aggCamps.some(c => c.type.toLowerCase().includes(keywords[idx]));
+            const ranDc = dc.some(c => (c['Campaign Objective'] || c['Campaign Name'] || '').toLowerCase().includes(keywords[idx]));
+            const ranLc = lc.some(c => (c['Campaign type'] || c['Campaign Type'] || '').toLowerCase().includes(keywords[idx]));
+            const ran = ranAgg || ranDc || ranLc;
+            const lastAgg = aggCamps.filter(c => c.type.toLowerCase().includes(keywords[idx])).sort((a,b) => new Date(b.date)-new Date(a.date))[0];
+            const dateStr = lastAgg ? ' · ' + fmtDate(lastAgg.date) : '';
+            return `<span style="padding:6px 14px;border-radius:20px;font-size:15px;font-weight:500;background:${ran ? 'var(--green-bg)' : 'var(--bg2)'};color:${ran ? 'var(--green-text)' : 'var(--text3)'};border:1px solid ${ran ? 'var(--green-border)' : 'var(--border)'}">${label}${dateStr}</span>`;
+          }).join('')}
+        </div>
+        <div class="data-tbl-wrap">
+          <table class="data-tbl">
+            <thead><tr>
+              <th>Campaign</th><th>Date</th><th>Members</th><th>Sourced</th><th>Appt set</th><th>Qualified</th><th>Contract sent</th><th>UC w/ EMD</th><th>POD</th>
+            </tr></thead>
+            <tbody>${campRows}</tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SALES FEEDBACK -->
+      <div class="sec">
+        <div class="sec-title">Sales feedback</div>
+        ${lf.length > 0 ? lf.sort((a, b) => new Date(b['Date'] || 0) - new Date(a['Date'] || 0)).map(fb => {
+          const pod = fb['POD'] || fb['Closer'] || l.pod || '';
+          const date = fmtDate(fb['Date']);
+          const notes = fb['Notes'] || fb['Feedback'] || fb['Sales feedback'] || '';
+          const status = fb['Buyer status'] || fb['Buyer Status'] || '';
+          const podColor = pod.toLowerCase().includes('jose') ? 'var(--blue-text)' : pod.toLowerCase().includes('gabriel') ? 'var(--teal-text)' : 'var(--text3)';
+          return `<div style="padding:10px 0;border-bottom:0.5px solid var(--border)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <span style="font-size:14px;font-weight:600;color:${podColor}">${pod || 'Closer'}</span>
+              <span style="font-size:13px;color:var(--text3)">${date}${status ? ' · ' + status : ''}</span>
+            </div>
+            <div style="font-size:15px;color:var(--text);line-height:1.5">${notes || 'No notes recorded'}</div>
+          </div>`;
+        }).join('') : `<div class="no-data">No sales feedback yet — Jose and Gabriel add notes in the activity log</div>`}
+      </div>
+
+    </div>
+
+    <div class="close-bar">
+      <span class="close-meta">${l.id} · ${l.addr} · LEI ${calcExposure(l, lc, ol)}%</span>
+      <button class="close-btn" onclick="closeCard()">Close card</button>
+    </div>
+  </div>`;
+
+  // Only scroll if the row is actually off-screen. 'nearest' uses minimal movement.
+  const dataRow = [...document.querySelectorAll('tr.dr')].find(r => r.textContent.includes(l.mainListing || l.id));
+  const hostRow = document.getElementById('inline-card-row-' + l.id);
+  setTimeout(() => {
+    if (!dataRow) return;
+    const rect = dataRow.getBoundingClientRect();
+    const offscreen = rect.top < 60 || rect.bottom > (window.innerHeight - 100);
+    if (offscreen) {
+      dataRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    // If row is on screen but the card extends below the fold, do nothing — user can scroll naturally.
+  }, 50);
+  setTimeout(() => renderCharts(id, savesData, priceData), 150);
+}
+
+function closeCard() {
+  activeCardId = null;
+  destroyCharts();
+  const legacyArea = document.getElementById('cardArea');
+  if (legacyArea) legacyArea.innerHTML = '';
+  const inlineArea = document.getElementById('inlineCardArea');
+  if (inlineArea) inlineArea.innerHTML = '';
+  renderPortfolio();
+}
+
+// ── CHART DATA ────────────────────────────────────────────────────────────
+function genSavesHistory(l) {
+  if (l.saves === null) return [0, 0, 0, 0];
+  const c = l.saves;
+  if (l.daysDrop !== null && l.daysDrop < 14 && l.drops > 0) return [Math.max(0, c - 12), Math.max(0, c - 7), Math.max(0, c - 3), c];
+  if (l.daysDrop !== null && l.daysDrop > 14) return [c + 8, c + 5, c + 2, c];
+  return [Math.max(0, c - 5), Math.max(0, c - 3), Math.max(0, c - 1), c];
+}
+
+function genPriceHistory(l) {
+  // Use real price drop history from the price drop report
+  const pdRow = l.mainListing ? getPriceDrop(l.mainListing) : null;
+  const history = parsePriceDropHistory(pdRow);
+  if (history.length >= 2) {
+    return history.map((d, i) => ({
+      label: d.label,
+      price: d.price,
+      date: d.date
+    }));
+  }
+  // Fallback — build from Salesforce fields
+  if (!l.listP) return [];
+  const c = l.listP, drops = l.drops || 0, pct = l.pricePct || 0;
+  if (drops === 0) return [{ label: 'Original', price: c, date: null }, { label: 'Current', price: c, date: null }];
+  const orig = pct > 0 ? Math.round(c / (1 - pct)) : c + drops * 2000;
+  if (drops === 1) return [{ label: 'Original', price: orig, date: null }, { label: 'Current', price: c, date: null }];
+  const step = (orig - c) / drops;
+  return Array.from({ length: Math.min(drops + 1, 7) }, (_, i) => ({
+    label: i === 0 ? 'Original' : i === drops ? 'Current' : 'Drop ' + i,
+    price: Math.round(orig - i * step),
+    date: null
+  }));
+}
+
+// ── CHART RENDER ──────────────────────────────────────────────────────────
+function renderCharts(id, savesData, priceData) {
+  const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const textColor = dark ? '#9b9a94' : '#888780';
+  const gridColor = dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+  const labels4 = ['3 weeks ago', '2 weeks ago', 'Last week', 'This week'];
+
+  const sc = document.getElementById('savesChart_' + id);
+  if (sc) {
+    activeCharts['sc_' + id] = new Chart(sc, {
+      type: 'line',
+      data: {
+        labels: labels4.slice(-savesData.length),
+        datasets: [{
+          label: 'Saves', data: savesData,
+          borderColor: '#378add', backgroundColor: 'rgba(55,138,221,0.1)',
+          borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#378add',
+          tension: 0.35, fill: true
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: textColor, font: { size: 9 } }, grid: { color: gridColor } }, y: { ticks: { color: textColor, font: { size: 9 } }, grid: { color: gridColor }, beginAtZero: true } } }
+    });
+  }
+
+  const pc = document.getElementById('priceChart_' + id);
+  if (pc && priceData.length > 0) {
+    const prices = priceData.map(d => d.price);
+    const labels = priceData.map(d => {
+      if (d.date) {
+        const dt = new Date(d.date);
+        if (!isNaN(dt)) return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      }
+      return d.label;
+    });
+
+    // Color each point: original = grey, drops = amber, current = red
+    const pointColors = priceData.map((d, i) => {
+      if (i === 0) return '#9b9a94';
+      if (i === priceData.length - 1) return '#e24b4a';
+      return '#ef9f27';
+    });
+    const pointRadii = priceData.map((d, i) =>
+      i === 0 || i === priceData.length - 1 ? 6 : 4
+    );
+
+    activeCharts['pc_' + id] = new Chart(pc, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Price',
+          data: prices,
+          borderColor: '#e24b4a',
+          backgroundColor: 'rgba(226,75,74,0.06)',
+          borderWidth: 2.5,
+          pointRadius: pointRadii,
+          pointBackgroundColor: pointColors,
+          pointBorderColor: pointColors,
+          stepped: false,
+          tension: 0,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => '$' + ctx.parsed.y.toLocaleString(),
+              afterLabel: (ctx) => {
+                const d = priceData[ctx.dataIndex];
+                if (!d) return '';
+                const prev = ctx.dataIndex > 0 ? priceData[ctx.dataIndex - 1].price : null;
+                if (prev && d.price < prev) {
+                  const diff = prev - d.price;
+                  const pct = ((diff / prev) * 100).toFixed(1);
+                  return `↓ $${diff.toLocaleString()} (${pct}%)`;
+                }
+                return '';
+              }
+            }
+          }
+        },
+        scales: {
+          x: { ticks: { color: textColor, font: { size: 9 } }, grid: { color: gridColor } },
+          y: {
+            ticks: { color: textColor, font: { size: 9 }, callback: v => '$' + Math.round(v / 1000) + 'k' },
+            grid: { color: gridColor },
+            // Give some padding so the line doesn't hug the top/bottom
+            grace: '5%'
+          }
+        }
+      }
+    });
+  }
+}
+
+function destroyCharts() {
+  Object.keys(activeCharts).forEach(k => { activeCharts[k].destroy(); delete activeCharts[k]; });
+}
+
+// ── FILTERS ───────────────────────────────────────────────────────────────
+function togglePriceStale() { priceStaleFilter = !priceStaleFilter; closeCard(); renderPortfolio(); }
+function toggleNoMls() { noMlsFilter = !noMlsFilter; closeCard(); renderPortfolio(); }
+
+// ── DROPDOWN FILTER COMPONENT ─────────────────────────────────────────────
+// Unified dropdown that handles both single-select and multi-select.
+// Single-select filters: pei, expiry, drops, dropAge, pod
+// Multi-select filters:  stage, title, titleCommit, listingStatus, state
+
+// Toggle a dropdown panel — closes any other open dropdown first.
+function ddToggle(id, evt) {
+  if (evt) evt.stopPropagation();
+  const el = document.getElementById('dd_' + id);
+  if (!el) return;
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.dd.open').forEach(d => d.classList.remove('open'));
+  if (!wasOpen) el.classList.add('open');
+}
+
+// Close any open dropdown when the user clicks anywhere outside one.
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.dd')) {
+    document.querySelectorAll('.dd.open').forEach(d => d.classList.remove('open'));
+  }
+});
+
+// Update the visible button label for a single-select dropdown.
+function ddSetSingleLabel(id, displayLabel, hasSelection) {
+  const dd = document.getElementById('dd_' + id);
+  if (!dd) return;
+  const label = dd.querySelector('.dd-btn-label');
+  if (label) label.innerHTML = displayLabel;
+  dd.classList.toggle('has-selection', !!hasSelection);
+}
+
+// Update the visible button label for a multi-select dropdown based on the
+// underlying filter array.
+function ddSetMultiLabel(id, arr) {
+  const dd = document.getElementById('dd_' + id);
+  if (!dd) return;
+  const label = dd.querySelector('.dd-btn-label');
+  const allLabel = dd.dataset.allLabel || 'All';
+  if (!label) return;
+  if (!arr || arr.length === 0) {
+    label.textContent = allLabel;
+    dd.classList.remove('has-selection');
+  } else if (arr.length === 1) {
+    label.textContent = arr[0];
+    dd.classList.add('has-selection');
+  } else {
+    label.textContent = arr.length + ' selected';
+    dd.classList.add('has-selection');
+  }
+}
+
+// Single-select pick — sets the underlying filter var, updates UI, closes panel.
+function ddPickSingle(id, value, displayLabel, evt) {
+  if (evt) evt.stopPropagation();
+  switch (id) {
+    case 'pei':     peiFilter = value; break;
+    case 'expiry':  expiryFilter = value; break;
+    case 'drops':   dropsFilter = value; break;
+    case 'dropAge': dropAgeFilter = value; break;
+    case 'pod':     podFilter = value; break;
+  }
+  // Highlight the selected option in the panel
+  const panel = document.querySelector('#dd_' + id + ' .dd-panel');
+  if (panel) {
+    panel.querySelectorAll('.dd-opt').forEach(o => o.classList.remove('selected'));
+    const sel = panel.querySelector('.dd-opt[data-value="' + value + '"]');
+    if (sel) sel.classList.add('selected');
+  }
+  ddSetSingleLabel(id, displayLabel, value !== 'all');
+  document.getElementById('dd_' + id).classList.remove('open');
+  closeCard();
+  renderPortfolio();
+}
+
+// Multi-select toggle — adds/removes the value, keeps panel open.
+function ddPickMulti(id, value, evt) {
+  if (evt) evt.stopPropagation();
+  let arr;
+  switch (id) {
+    case 'stage':          arr = stageFilter; break;
+    case 'title':          arr = titleFilter; break;
+    case 'titleCommit':    arr = titleCommitFilter; break;
+    case 'listingStatus':  arr = listingStatusFilter; break;
+    case 'state':          arr = stateFilter; break;
+    default: return;
+  }
+  const idx = arr.indexOf(value);
+  if (idx === -1) arr.push(value);
+  else arr.splice(idx, 1);
+  // Update visual state of the option row
+  const opt = document.querySelector('#dd_' + id + ' .dd-opt[data-value="' + cssEscape(value) + '"]');
+  if (opt) {
+    opt.classList.toggle('selected', arr.includes(value));
+    const cb = opt.querySelector('input[type=checkbox]');
+    if (cb) cb.checked = arr.includes(value);
+  }
+  ddSetMultiLabel(id, arr);
+  closeCard();
+  renderPortfolio();
+}
+
+// Clear all selections in a multi-select.
+function ddClearMulti(id, evt) {
+  if (evt) evt.stopPropagation();
+  let arr;
+  switch (id) {
+    case 'stage':          arr = stageFilter; break;
+    case 'title':          arr = titleFilter; break;
+    case 'titleCommit':    arr = titleCommitFilter; break;
+    case 'listingStatus':  arr = listingStatusFilter; break;
+    case 'state':          arr = stateFilter; break;
+    default: return;
+  }
+  arr.length = 0;
+  const panel = document.querySelector('#dd_' + id + ' .dd-panel');
+  if (panel) {
+    panel.querySelectorAll('.dd-opt').forEach(o => o.classList.remove('selected'));
+    panel.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = false);
+  }
+  ddSetMultiLabel(id, arr);
+  closeCard();
+  renderPortfolio();
+}
+
+// Tiny CSS attribute-selector escape — we use values like "Clear / Commit" in data-value.
+function cssEscape(s) { return String(s).replace(/(["\\])/g, '\\$1'); }
+
+// Title Status filter uses a fixed set of canonical labels. Each label matches any
+// underlying value that begins with it (case-insensitive, word-boundary aware), so
+// "Clear / Commit", "Clear / Commit NA", etc. all match the "Clear" filter.
+const TITLE_STATUS_LABELS = ['Unprocessed', 'Undetermined', 'Clear', 'Curable', 'Complex', 'Incurable'];
+
+function titleStatusMatches(title, label) {
+  if (!title) return false;
+  const t = String(title).toLowerCase().trim();
+  const l = label.toLowerCase();
+  if (t === l) return true;
+  if (!t.startsWith(l)) return false;
+  // Word boundary: the next char (if any) must not be a letter, so "Curable"
+  // doesn't accidentally match "Incurable" or "Curable_extra".
+  const next = t.charAt(l.length);
+  return !next || !/[a-z]/.test(next);
+}
+
+// Build the multi-select panel for the Title Status filter from the canonical list.
+function buildTitleButtons() {
+  const panel = document.getElementById('titleDropdownPanel');
+  panel.innerHTML = TITLE_STATUS_LABELS.map(t =>
+    '<div class="dd-opt" data-value="' + escapeHtml(t) + '" onclick="ddPickMulti(\'title\',' + escapeHtml(JSON.stringify(t)) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(t) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'title\',event)">Clear selection</div>';
+  document.getElementById('titleFilterRow').style.display = 'inline-flex';
+}
+
+// Build the multi-select panel for the Title Commitment filter from the data.
+function buildTitleCommitDropdown() {
+  const vals = [...new Set(listings.map(l => l.titleCommit).filter(Boolean))].sort();
+  if (vals.length === 0) return;
+  const panel = document.getElementById('titleCommitDropdownPanel');
+  panel.innerHTML = vals.map(v =>
+    '<div class="dd-opt" data-value="' + escapeHtml(v) + '" onclick="ddPickMulti(\'titleCommit\',' + escapeHtml(JSON.stringify(v)) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(v) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'titleCommit\',event)">Clear selection</div>';
+  document.getElementById('titleCommitFilterRow').style.display = 'inline-flex';
+}
+
+// Build the multi-select panel for the Listing Status filter from the data.
+function buildListingStatusDropdown() {
+  const vals = [...new Set(listings.map(l => l.listingStatus).filter(Boolean))].sort();
+  if (vals.length === 0) return;
+  const panel = document.getElementById('listingStatusDropdownPanel');
+  panel.innerHTML = vals.map(v =>
+    '<div class="dd-opt" data-value="' + escapeHtml(v) + '" onclick="ddPickMulti(\'listingStatus\',' + escapeHtml(JSON.stringify(v)) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(v) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'listingStatus\',event)">Clear selection</div>';
+  document.getElementById('listingStatusFilterRow').style.display = 'inline-flex';
+}
+
+// Build the multi-select panel for the State filter from the data.
+function buildStateButtons() {
+  const states = [...new Set(listings.map(l => l.state).filter(Boolean))].sort();
+  if (states.length === 0) return;
+  const panel = document.getElementById('stateDropdownPanel');
+  panel.innerHTML = states.map(s =>
+    '<div class="dd-opt" data-value="' + escapeHtml(s) + '" onclick="ddPickMulti(\'state\',' + escapeHtml(JSON.stringify(s)) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(s) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'state\',event)">Clear selection</div>';
+  document.getElementById('stateFilterRow').style.display = 'inline-flex';
+}
+
+// Reset every filter back to "all" / empty selection.
+function clearAllFilters() {
+  podFilter = 'all'; expiryFilter = 'all'; peiFilter = 'all'; dropsFilter = 'all'; dropAgeFilter = 'all';
+  // Clear arrays in place — the dropdown panels hold checkbox refs that we want to keep working.
+  stageFilter.length = 0; stateFilter.length = 0; titleFilter.length = 0;
+  titleCommitFilter.length = 0; listingStatusFilter.length = 0;
+  priceStaleFilter = false; noMlsFilter = false;
+  // Reset every dropdown's visual state.
+  document.querySelectorAll('.dd').forEach(dd => {
+    dd.classList.remove('has-selection', 'open');
+    const label = dd.querySelector('.dd-btn-label');
+    if (label) label.textContent = dd.dataset.allLabel || 'All';
+    dd.querySelectorAll('.dd-opt').forEach(o => o.classList.remove('selected'));
+    dd.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = false);
+    // Mark the "all" option as selected for single-selects that have one.
+    const allOpt = dd.querySelector('.dd-opt[data-value="all"]');
+    if (allOpt) allOpt.classList.add('selected');
+  });
+  closeCard();
+  renderPortfolio();
+}
+
+function updateSortHeader() {
+  const head = document.getElementById('portfolioHead');
+  if (!head) return;
+  head.querySelectorAll('th.sortable').forEach(th => {
+    const thCol = th.getAttribute('onclick').match(/setSort\('(.+?)'\)/)?.[1];
+    const arrow = th.querySelector('.sort-arrow');
+    th.classList.toggle('sort-active', thCol === sortCol);
+    if (arrow) arrow.textContent = thCol === sortCol ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ' ↕';
+  });
+}
+
+function toggleCampLeads(key) {
+  const el = document.getElementById('leads_' + key);
+  if (!el) return;
+  const isOpen = el.style.display !== 'none';
+  // Close siblings from same campaign (same safeBase — all but last char)
+  const base = key.slice(0, -1);
+  document.querySelectorAll('[id^="leads_' + base + '"]').forEach(r => r.style.display = 'none');
+  // Toggle this one
+  if (!isOpen) el.style.display = 'table-row';
+}
+
+function setSort(col) {
+  if (sortCol === col) { sortDir = sortDir === 'asc' ? 'desc' : 'asc'; }
+  else { sortCol = col; sortDir = 'asc'; }
+  updateSortHeader();
+  closeCard(); renderPortfolio();
+}
+</script>
+</body>
+</html>
