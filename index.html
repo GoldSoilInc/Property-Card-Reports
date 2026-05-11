@@ -77,7 +77,7 @@
   .sm-v.red { color: var(--red-text); } .sm-v.amber { color: var(--amber-text); } .sm-v.green { color: var(--green-text); }
 
   /* ── FILTERS ── */
-  .filter-bar { background: var(--bg); border-radius: var(--r-md); padding: 12px 14px; margin-bottom: 6px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .filter-bar { background: var(--bg); border-radius: var(--r-md); padding: 12px 14px; margin-bottom: 6px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
   .filter-section { background: var(--bg); border-radius: var(--r-md); padding: 10px 14px; margin-bottom: 6px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .filter-label { font-size:15px; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; margin-right: 4px; font-weight: 700; }
   .filter-sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
@@ -637,7 +637,7 @@ async function loadFromSheets() {
     console.log('[Dispo CSV] sample row:', dispoRows[0]);
     console.log('[Dispo CSV] campaign-name-related columns:', cols.filter(c => /campaign|name|objective/i.test(c)));
   }
-  if (ibRows.length > 0) { inboundLeads = ibRows.filter(r => r['The Market Hub']); ibOk = true; }
+  if (ibRows.length > 0) { inboundLeads = ibRows.filter(r => r['The Market Hub #'] || r['The Market Hub']); ibOk = true; }
 
   if (sfOk) {
     enrichListingsWithPriceData();
@@ -701,7 +701,7 @@ function parseRow(row) {
     marketHubLink: gv(row, 'The Market Hub Link', 'Property Link', 'property link', 'Market Hub Link') || '',
     ppp: gv(row, 'PPP: PPP Name') || '', cpi: gv(row, 'CPI') || '', lds: n(gv(row, 'LDS')),
     listP, contractP,
-    lastListP: n(gv(row, 'Last Cash List Price')), profit: n(gv(row, 'Potential Profit')),
+    lastListP: n(gv(row, 'Last Cash List Price')), profit: (listP && contractP) ? (listP - contractP) : null,
     equity: n(gv(row, 'Equity Capture')), pricePct: (() => { const v = gv(row, 'Price Drop %'); if (!v) return 0; const s = v.toString().replace('%','').trim(); return parseFloat(s) / (s.includes('.') && parseFloat(s) < 1 ? 1 : 100) || 0; })(),
     saves: n(gv(row, 'Zillow Saves', 'ZSaves', 'Zillow_Saves', 'Saves', 'Z Saves')), zViews: n(gv(row, 'Zillow Views', 'ZViews', 'Zillow_Views', 'Views', 'Z Views', 'Zillow Page Views', 'Page Views', 'Property Views', 'Listing Views', 'Zillow Property Views', 'Total Views', 'Zillow Last 30 Days')), mlsSaves: n(gv(row, 'MLS Saves')),
     zillowLink: gv(row, 'Zillow Link', 'Zillow URL', 'zillow link') || '',
@@ -750,7 +750,9 @@ function enrichListingsFromPriceDrop() {
     if (n(pd['Current Cash Price'])) l.listP = n(pd['Current Cash Price']);
     if (n(pd['Original Cash Price'])) l.origPrice = n(pd['Original Cash Price']);
     if (n(pd['Under Contract Price'])) l.contractP = n(pd['Under Contract Price']);
-    if (n(pd['Profit']) !== null) l.profit = n(pd['Profit']);
+    // Spread = current list price − contract price (straight math, not from a "Profit" column).
+    // Recompute here in case enrichment updated either value.
+    l.profit = (l.listP && l.contractP) ? (l.listP - l.contractP) : null;
     if (drops.length >= 2) l.lastListP = drops[drops.length - 2].price;
     l.drops = drops.length;
     if (pd['Date of Last Price Update']) {
@@ -896,7 +898,7 @@ function getOutboundLeads(mainListing) {
 
 function getInboundLeads(mainListing) {
   return inboundLeads.filter(r => {
-    const mh = (r['The Market Hub'] || '').toString().trim();
+    const mh = (r['The Market Hub #'] || r['The Market Hub'] || '').toString().trim();
     return mh === mainListing.toString().trim();
   });
 }
@@ -936,7 +938,8 @@ function aggregateInboundLeads(leads) {
 
   const map = {};
   leads.forEach(r => {
-    const src = (r['Lead Source'] || '').toString().trim() || 'Unknown';
+    // New CSV uses 'Buyer Lead Source' (matches outbound). Fall back to 'Lead Source' for legacy.
+    const src = (r['Buyer Lead Source'] || r['Lead Source'] || '').toString().trim() || 'Unknown';
     if (!map[src]) map[src] = {
       source: src, total: 0,
       sourced: 0, appt: 0, qual: 0, noEmd: 0, emd: 0,
@@ -947,7 +950,11 @@ function aggregateInboundLeads(leads) {
       name: [r['First Name'], r['Last Name']].map(s => (s || '').trim()).filter(Boolean).join(' ') || '—',
       status: (r['Lead Status'] || '—').toString().trim(),
       source: src,
-      apptSched: apptKey ? (r[apptKey] || '').toString().trim() : ''
+      apptSched: apptKey ? (r[apptKey] || '').toString().trim() : '',
+      // New columns from the updated inbound CSV — matched defensively across name variants.
+      leadUrl: (r['Lead URL'] || r['Lead Link'] || r['URL'] || '').toString().trim(),
+      feedback: (r["Buyer's Feedback"] || r['Buyer Feedback'] || r['Buyers Feedback'] || r['Feedback'] || '').toString().trim(),
+      notes: (r['Sales Notes'] || r['Notes'] || '').toString().trim(),
     };
     map[src].total++;
     if (cats.sourced) { map[src].sourced++; map[src].sourcedLeads.push(lead); }
@@ -1621,8 +1628,9 @@ function showCard(id) {
 
     <div class="card-body">
 
-      <!-- TIMELINE -->
-      <div class="sec">
+      <!-- TIMELINE — hidden per user request ("hide for now"). Wrap in display:none so all logic still parses
+           but renders no UI. Remove the inline style or delete this wrapper to bring it back. -->
+      <div class="sec" style="display:none">
         ${(() => {
           const today = new Date();
           const contractDate = l.contractDate ? new Date(l.contractDate) : null;
@@ -1881,8 +1889,11 @@ function showCard(id) {
         })()}
       </div>
 
-      <!-- PROPERTY TIMELINE (Notion meetings) -->
+      <!-- PROPERTY TIMELINE (Notion meetings) — hidden per user request ("hide for now").
+           Flip HIDE_PROPERTY_TIMELINE to false at the top to re-enable. -->
       ${(() => {
+        const HIDE_PROPERTY_TIMELINE = true;
+        if (HIDE_PROPERTY_TIMELINE) return '';
         const txn = (l.txn || '').toString().trim();
         const synced = meetingsData && meetingsData.lastSynced ? new Date(meetingsData.lastSynced) : null;
         const syncedLabel = synced && !isNaN(synced) ? ' · synced ' + (() => {
@@ -2327,19 +2338,23 @@ function showCard(id) {
               const safeKey = safeBase + suffix;
               return `<tr id="leads_${safeKey}" style="display:none">
                 <td colspan="6" style="padding:8px 8px 12px 32px;background:var(--bg3);border-bottom:0.5px solid var(--border)">
-                  <table style="width:100%;font-size:14px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden">
+                  <table style="width:100%;font-size:14px;border-collapse:collapse;background:var(--bg2);border-radius:6px;overflow:hidden;table-layout:fixed">
                     <thead><tr style="background:var(--bg3)">
-                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Name</th>
-                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Status</th>
-                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Source</th>
-                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Appt scheduled</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:14%">Name</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:11%">Status</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:9%">Source</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;width:11%">Appt scheduled</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Buyer's feedback</th>
+                      <th style="padding:7px 14px;text-align:left;font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em">Sales notes</th>
                     </tr></thead>
                     <tbody>
-                      ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''}">
-                        <td style="padding:8px 14px;font-weight:600;color:var(--text)">${r.name}</td>
-                        <td style="padding:8px 14px;color:var(--text2)">${r.status}</td>
-                        <td style="padding:8px 14px;color:var(--text3)">${r.source}</td>
-                        <td style="padding:8px 14px;color:${r.apptSched ? 'var(--blue-text)' : 'var(--text3)'};font-weight:${r.apptSched ? '500' : '400'}">${r.apptSched || '—'}</td>
+                      ${leadList.map((r, i) => `<tr style="border-top:0.5px solid var(--border);${i%2===1?'background:var(--bg3)':''};vertical-align:top">
+                        <td style="padding:8px 14px;font-weight:600;color:var(--text);word-wrap:break-word">${r.leadUrl ? `<a href="${escapeHtml(r.leadUrl)}" target="_blank" style="color:var(--blue-text);text-decoration:none">${escapeHtml(r.name)} ↗</a>` : escapeHtml(r.name)}</td>
+                        <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word">${escapeHtml(r.status)}</td>
+                        <td style="padding:8px 14px;color:var(--text3);word-wrap:break-word">${escapeHtml(r.source)}</td>
+                        <td style="padding:8px 14px;color:${r.apptSched ? 'var(--blue-text)' : 'var(--text3)'};font-weight:${r.apptSched ? '500' : '400'};word-wrap:break-word">${escapeHtml(r.apptSched || '—')}</td>
+                        <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word;white-space:pre-wrap">${r.feedback ? escapeHtml(r.feedback) : '<span style="color:var(--text3)">—</span>'}</td>
+                        <td style="padding:8px 14px;color:var(--text2);word-wrap:break-word;white-space:pre-wrap">${r.notes ? escapeHtml(r.notes) : '<span style="color:var(--text3)">—</span>'}</td>
                       </tr>`).join('')}
                     </tbody>
                   </table>
