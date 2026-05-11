@@ -1,41 +1,103 @@
 {
-  "lastSynced": "2026-05-11T21:24:34.198443+00:00",
+  "lastSynced": "2026-05-11T23:00:18.147146+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
-    "TR-SC-065391": {
-      "notionPageId": "3560bd65-db0b-80d2-ab9e-f5f8aff91930",
-      "notionUrl": "https://www.notion.so/TR-SC-065391-3560bd65db0b80d2ab9ef5f8aff91930",
+    "TR-SC-065898": {
+      "notionPageId": "3580bd65-db0b-8054-aece-f33aaeedea7c",
+      "notionUrl": "https://www.notion.so/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
       "meetings": [
         {
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
-            "🏷️ TR-SC-065391 · Closer: Gabriel Santos",
+            "🏷️ TR-SC-065898 · Closer: Gabriel Santos",
             "THIS WEEK'S DECISIONS",
-            "Price drop: → $14,500",
+            "Price drop: → $37,900",
             "ACTION ITEMS",
-            "Update listing price to $14,500 across channels — Ellyse Mae — Due: 2026-05-07",
+            "Update listing price to $37,900 across channels — Ellyse Mae — Due: 2026-05-07",
             "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
-          "blockId": "52fa6b19-9a0f-46a3-9bf5-52c46c320678"
-        },
+          "blockId": "5da6ef61-e7e5-4e57-8987-6a7356ce2b11"
+        }
+      ]
+    },
+    "TR-SC-065455": {
+      "notionPageId": "3580bd65-db0b-80ae-b500-e6dc0125d2fb",
+      "notionUrl": "https://www.notion.so/TR-SC-065455-3580bd65db0b80aeb500e6dc0125d2fb",
+      "meetings": [
         {
           "type": "Portfolio Review",
-          "date": "2026-04-29",
-          "label": "📊 Portfolio Review — 2026-04-29",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
-            "🏷️ TR-SC-065391 · Virginia commercial lot · Closer: Gabriel Santos",
-            "CURRENT STATE",
-            "DOM: 37 days · Days to expire: 41 · Current list price: (not stated) · Notes: appointment set mentioned; Salesforce stage not updated",
-            "Channels: MLS (assumed) + Facebook (mentioned)",
+            "🏷️ TR-SC-065455 · Closer: Gabriel Santos",
             "THIS WEEK'S DECISIONS",
-            "Price drop: → $18,900 (per meeting)",
-            "BUYER & LEAD ACTIVITY",
-            "Appointment set mentioned; prior buyer no longer interested"
+            "Reviewed — no change (trending well; price drop already done last week)",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
-          "blockId": "502f570a-dbc8-420b-bbcd-b288938d0ce9"
+          "blockId": "b2d990a3-4a12-41fa-879d-846ac407ba68"
+        }
+      ]
+    },
+    "TR-SC-065942": {
+      "notionPageId": "3580bd65-db0b-8092-8766-ebfa49a0dd1c",
+      "notionUrl": "https://www.notion.so/TR-SC-065942-3580bd65db0b80928766ebfa49a0dd1c",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-065942 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Reviewed — no change (already dropped to ~$8,900 last week)",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
+          "blockId": "20b16d51-fe12-4940-82fb-5c59ba2f39eb"
+        }
+      ]
+    },
+    "TR-SC-065948": {
+      "notionPageId": "3580bd65-db0b-80e8-9807-c5197599274c",
+      "notionUrl": "https://www.notion.so/TR-SC-065948-3580bd65db0b80e89807c5197599274c",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-065948 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Cash price: → $19,900",
+            "Seller financing updated: SF price $25,000; down $5,000; $500/mo; 12.999%",
+            "ACTION ITEMS",
+            "Update cash price to $19,900 across channels — Ellyse Mae — Due: 2026-05-07",
+            "Update seller financing terms (SF price $25,000; down $5,000; $500/mo; 12.999%) — Ellyse Mae — Due: 2026-05-07",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
+          "blockId": "efabcaab-b3d3-48c0-b3f6-71bf66295184"
+        }
+      ]
+    },
+    "TR-SC-065177": {
+      "notionPageId": "3580bd65-db0b-80d3-b9a2-d6d1bfde8781",
+      "notionUrl": "https://www.notion.so/TR-SC-065177-3580bd65db0b80d3b9a2d6d1bfde8781",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-065177 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: → $179,500",
+            "ACTION ITEMS",
+            "Update listing price to $179,500 across channels — Ellyse Mae — Due: 2026-05-07",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
+          "blockId": "54631979-fdfe-4a42-bedf-711649e83a8a"
         }
       ]
     },
@@ -61,85 +123,64 @@
         }
       ]
     },
-    "TR-SC-066611": {
-      "notionPageId": "3580bd65-db0b-801f-876b-fdb2ca88f95e",
-      "notionUrl": "https://www.notion.so/TR-SC-066611-3580bd65db0b801f876bfdb2ca88f95e",
-      "meetings": [
-        {
-          "type": "Pricing Meeting",
-          "date": "2026-05-06",
-          "label": "📊 Pricing Meeting — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-066611 · Albany, NY (seller: “Smart Luzi”) · acreage not stated · LDS not stated",
-            "PRICING DECISION",
-            "Pricing not stated on this call (Art to set price today and email team)",
-            "Strategy: fast timeline (30-day close); push to market to lock a buyer quickly; likely buy & flip if buyer not locked in time",
-            "RATIONALE",
-            "Comps: Not stated",
-            "Why this price: timeline-driven; prioritize speed to lock buyer",
-            "PROPERTY SHORTCOMINGS"
-          ],
-          "blockId": "5d31d60d-da83-48dd-b543-aaf688acd890"
-        }
-      ]
-    },
-    "TR-SC-066142": {
-      "notionPageId": "3580bd65-db0b-801f-96b0-c61686181702",
-      "notionUrl": "https://www.notion.so/TR-SC-066142-3580bd65db0b801f96b0c61686181702",
-      "meetings": [
-        {
-          "type": "Pricing Meeting",
-          "date": "2026-05-06",
-          "label": "📊 Pricing Meeting — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-066142 · Steven Jeffcoat · 15 acres (subdivide) · LDS not stated",
-            "PRICING DECISION",
-            "Not stated for flag lot on this call (prior discussion referenced 15,000/acre for flag lot and 16,000/acre for other lots; confirm in subdivide spreadsheet)",
-            "Strategy: subdivide into three 5-acre lots; source at least one off-market buyer for the flag lot (no MLS)",
-            "RATIONALE",
-            "Comps: Not stated",
-            "Why this price: avoid pricing confusion across subdivided lots; all costs (survey, septic permits, realtor, etc.) must be baked into per-lot economics",
-            "GENERAL CONSTRAINTS"
-          ],
-          "blockId": "53813281-ad2b-4975-8111-230654c74e2d"
-        }
-      ]
-    },
-    "TR-SC-066086": {
-      "notionPageId": "3580bd65-db0b-802f-b062-d116930cb9db",
-      "notionUrl": "https://www.notion.so/TR-SC-066086-3580bd65db0b802fb062d116930cb9db",
+    "TR-SC-065176": {
+      "notionPageId": "3580bd65-db0b-809c-9ff4-e2050e802aca",
+      "notionUrl": "https://www.notion.so/TR-SC-065176-3580bd65db0b809c9ff4e2050e802aca",
       "meetings": [
         {
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
-            "🏷️ TR-SC-066086 · Closer: Jose Membreno",
+            "🏷️ TR-SC-065176 · Closer: Gabriel Santos",
             "THIS WEEK'S DECISIONS",
-            "Reviewed — no change (keep around ~$9,900; maybe tiny refresh to re-trigger)",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
-          ],
-          "blockId": "82ae9161-09a7-45c2-b278-c8e263118a8c"
-        }
-      ]
-    },
-    "TR-SC-063925": {
-      "notionPageId": "3580bd65-db0b-804e-9a28-e264fb7c4f85",
-      "notionUrl": "https://www.notion.so/TR-SC-063925-3580bd65db0b804e9a28e264fb7c4f85",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-05-06",
-          "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-063925 · Closer: Jose Membreno",
-            "THIS WEEK'S DECISIONS",
-            "Continue pursuit (deal not dead): put buyer under contract and coordinate seller conversation (seller wants proof of investor)",
+            "Price drop: → $86,900",
             "ACTION ITEMS",
-            "Send contract with buyer and push to close (neighbor offer ~$250k) — Jose Membreno — Due: 2026-05-08",
+            "Update listing price to $86,900 across channels — Ellyse Mae — Due: 2026-05-07",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC",
+            "Property Timeline"
+          ],
+          "blockId": "52599dbc-9540-4397-bd3a-350c36c1572b"
+        }
+      ]
+    },
+    "TR-SC-065405": {
+      "notionPageId": "3580bd65-db0b-80cd-a4f3-f1d2e8c58d8b",
+      "notionUrl": "https://www.notion.so/TR-SC-065405-3580bd65db0b80cda4f3f1d2e8c58d8b",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-065405 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: → $65,900 (final clarified)",
+            "BLOCKERS",
+            "Non-conventional septic quoted $30k–$50k; use to negotiate if buyer emerges",
+            "ACTION ITEMS",
+            "Update listing price to $65,900 across channels — Ellyse Mae — Due: 2026-05-07",
             "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
-          "blockId": "a63eff86-5ea8-4aeb-a361-9449df538408"
+          "blockId": "7d676aab-cc75-4bf6-82ce-62a4458a9a6f"
+        }
+      ]
+    },
+    "TR-SC-064257": {
+      "notionPageId": "3580bd65-db0b-80b7-96f5-f025ecf49345",
+      "notionUrl": "https://www.notion.so/TR-SC-064257-3580bd65db0b80b796f5f025ecf49345",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-064257 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Push buyers urgently to get offer in before Friday; negotiate seller extension only if buyer is under contract",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
+          "blockId": "093fe0ac-d4bc-401d-8cbb-70e3609544db"
         }
       ]
     },
@@ -161,144 +202,21 @@
         }
       ]
     },
-    "TR-SC-065340": {
-      "notionPageId": "3580bd65-db0b-8053-9567-c970b3558717",
-      "notionUrl": "https://www.notion.so/TR-SC-065340-3580bd65db0b80539567c970b3558717",
+    "TR-SC-063689": {
+      "notionPageId": "3580bd65-db0b-80c2-a42c-e9b496f07ca8",
+      "notionUrl": "https://www.notion.so/TR-SC-063689-3580bd65db0b80c2a42ce9b496f07ca8",
       "meetings": [
         {
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
-            "🏷️ TR-SC-065340 · Closer: Jose Membreno",
+            "🏷️ TR-SC-063689 · Closer: Jose Membreno",
             "THIS WEEK'S DECISIONS",
-            "Reviewed HOA underwriting/spread; decision was to potentially drop a small amount ($200–$1,000) and standardize HOA comp adjustments going forward",
-            "BLOCKERS",
-            "HOA pricing model/comp adjustment needs standardization (team process item)",
+            "Reviewed — no change (investor lot; pricing control not discussed)",
             "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
-          "blockId": "7d7e5c46-c9be-46ac-834d-5df7ee92b059"
-        }
-      ]
-    },
-    "TR-SC-065898": {
-      "notionPageId": "3580bd65-db0b-8054-aece-f33aaeedea7c",
-      "notionUrl": "https://www.notion.so/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-05-06",
-          "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-065898 · Closer: Gabriel Santos",
-            "THIS WEEK'S DECISIONS",
-            "Price drop: → $37,900",
-            "ACTION ITEMS",
-            "Update listing price to $37,900 across channels — Ellyse Mae — Due: 2026-05-07",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
-          ],
-          "blockId": "5da6ef61-e7e5-4e57-8987-6a7356ce2b11"
-        }
-      ]
-    },
-    "TR-SC-066670": {
-      "notionPageId": "3580bd65-db0b-8055-9d96-f15bcd13b813",
-      "notionUrl": "https://www.notion.so/TR-SC-066670-3580bd65db0b80559d96f15bcd13b813",
-      "meetings": [
-        {
-          "type": "Pricing Meeting",
-          "date": "2026-05-06",
-          "label": "📊 Pricing Meeting — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-066670 · Catherine Hilden Burger · 0.2 acres · LDS not stated",
-            "PRICING DECISION",
-            "Final list price: 34,900 (raised from initial 29,500) · Contract price: 15,000 · Floor: not stated · Min spread: not stated",
-            "Strategy: price into a strong infill-lot demand pocket near Baltimore; leverage lack of comps (buyer also lacks comps)",
-            "RATIONALE",
-            "Comps: none stated; pricing derived from nearby sold homes/land",
-            "Why this price: stretch price due to scarcity + proximity to Baltimore",
-            "GENERAL CONSTRAINTS"
-          ],
-          "blockId": "4c35a932-0fd9-45ab-ba91-e806f1563f20"
-        }
-      ]
-    },
-    "TR-SC-065590": {
-      "notionPageId": "3580bd65-db0b-807a-9bf8-eb68954f69d4",
-      "notionUrl": "https://www.notion.so/TR-SC-065590-3580bd65db0b807a9bf8eb68954f69d4",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-05-06",
-          "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-065590 · Closer: Jose Membreno",
-            "THIS WEEK'S DECISIONS",
-            "Price drop: $56,900 → $54,900",
-            "ACTION ITEMS",
-            "Update listing price to $54,900 across channels — Ellyse Mae — Due: 2026-05-07",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
-          ],
-          "blockId": "82238f6e-12ee-4692-87c6-62c986641e39"
-        }
-      ]
-    },
-    "TR-SC-065989": {
-      "notionPageId": "3580bd65-db0b-808a-95dc-c8bd4ae1fc79",
-      "notionUrl": "https://www.notion.so/TR-SC-065989-3580bd65db0b808a95dcc8bd4ae1fc79",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-05-06",
-          "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-065989 · Closer: Jose Membreno",
-            "THIS WEEK'S DECISIONS",
-            "Mark as Buy & Flip in backend (explicit instruction)",
-            "BLOCKERS",
-            "Title/status fields/logic discussion (clear vs undetermined vs awaiting commitment)",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
-          ],
-          "blockId": "acdfe5ab-656c-48ea-8250-0472e5d16bf1"
-        }
-      ]
-    },
-    "TR-SC-065942": {
-      "notionPageId": "3580bd65-db0b-8092-8766-ebfa49a0dd1c",
-      "notionUrl": "https://www.notion.so/TR-SC-065942-3580bd65db0b80928766ebfa49a0dd1c",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-05-06",
-          "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-065942 · Closer: Gabriel Santos",
-            "THIS WEEK'S DECISIONS",
-            "Reviewed — no change (already dropped to ~$8,900 last week)",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
-          ],
-          "blockId": "20b16d51-fe12-4940-82fb-5c59ba2f39eb"
-        }
-      ]
-    },
-    "TR-SC-065176": {
-      "notionPageId": "3580bd65-db0b-809c-9ff4-e2050e802aca",
-      "notionUrl": "https://www.notion.so/TR-SC-065176-3580bd65db0b809c9ff4e2050e802aca",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-05-06",
-          "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-065176 · Closer: Gabriel Santos",
-            "THIS WEEK'S DECISIONS",
-            "Price drop: → $86,900",
-            "ACTION ITEMS",
-            "Update listing price to $86,900 across channels — Ellyse Mae — Due: 2026-05-07",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC",
-            "Property Timeline"
-          ],
-          "blockId": "52599dbc-9540-4397-bd3a-350c36c1572b"
+          "blockId": "cbf2ec2d-177c-46d4-a8b3-fd318f8caaaa"
         }
       ]
     },
@@ -343,21 +261,21 @@
         }
       ]
     },
-    "TR-SC-065455": {
-      "notionPageId": "3580bd65-db0b-80ae-b500-e6dc0125d2fb",
-      "notionUrl": "https://www.notion.so/TR-SC-065455-3580bd65db0b80aeb500e6dc0125d2fb",
+    "TR-SC-066086": {
+      "notionPageId": "3580bd65-db0b-802f-b062-d116930cb9db",
+      "notionUrl": "https://www.notion.so/TR-SC-066086-3580bd65db0b802fb062d116930cb9db",
       "meetings": [
         {
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
-            "🏷️ TR-SC-065455 · Closer: Gabriel Santos",
+            "🏷️ TR-SC-066086 · Closer: Jose Membreno",
             "THIS WEEK'S DECISIONS",
-            "Reviewed — no change (trending well; price drop already done last week)",
+            "Reviewed — no change (keep around ~$9,900; maybe tiny refresh to re-trigger)",
             "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
-          "blockId": "b2d990a3-4a12-41fa-879d-846ac407ba68"
+          "blockId": "82ae9161-09a7-45c2-b278-c8e263118a8c"
         }
       ]
     },
@@ -381,103 +299,185 @@
         }
       ]
     },
-    "TR-SC-064257": {
-      "notionPageId": "3580bd65-db0b-80b7-96f5-f025ecf49345",
-      "notionUrl": "https://www.notion.so/TR-SC-064257-3580bd65db0b80b796f5f025ecf49345",
+    "TR-SC-065989": {
+      "notionPageId": "3580bd65-db0b-808a-95dc-c8bd4ae1fc79",
+      "notionUrl": "https://www.notion.so/TR-SC-065989-3580bd65db0b808a95dcc8bd4ae1fc79",
       "meetings": [
         {
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
-            "🏷️ TR-SC-064257 · Closer: Gabriel Santos",
+            "🏷️ TR-SC-065989 · Closer: Jose Membreno",
             "THIS WEEK'S DECISIONS",
-            "Push buyers urgently to get offer in before Friday; negotiate seller extension only if buyer is under contract",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
-          ],
-          "blockId": "093fe0ac-d4bc-401d-8cbb-70e3609544db"
-        }
-      ]
-    },
-    "TR-SC-063689": {
-      "notionPageId": "3580bd65-db0b-80c2-a42c-e9b496f07ca8",
-      "notionUrl": "https://www.notion.so/TR-SC-063689-3580bd65db0b80c2a42ce9b496f07ca8",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-05-06",
-          "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-063689 · Closer: Jose Membreno",
-            "THIS WEEK'S DECISIONS",
-            "Reviewed — no change (investor lot; pricing control not discussed)",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
-          ],
-          "blockId": "cbf2ec2d-177c-46d4-a8b3-fd318f8caaaa"
-        }
-      ]
-    },
-    "TR-SC-065405": {
-      "notionPageId": "3580bd65-db0b-80cd-a4f3-f1d2e8c58d8b",
-      "notionUrl": "https://www.notion.so/TR-SC-065405-3580bd65db0b80cda4f3f1d2e8c58d8b",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-05-06",
-          "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-065405 · Closer: Gabriel Santos",
-            "THIS WEEK'S DECISIONS",
-            "Price drop: → $65,900 (final clarified)",
+            "Mark as Buy & Flip in backend (explicit instruction)",
             "BLOCKERS",
-            "Non-conventional septic quoted $30k–$50k; use to negotiate if buyer emerges",
-            "ACTION ITEMS",
-            "Update listing price to $65,900 across channels — Ellyse Mae — Due: 2026-05-07",
+            "Title/status fields/logic discussion (clear vs undetermined vs awaiting commitment)",
             "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
-          "blockId": "7d676aab-cc75-4bf6-82ce-62a4458a9a6f"
+          "blockId": "acdfe5ab-656c-48ea-8250-0472e5d16bf1"
         }
       ]
     },
-    "TR-SC-065177": {
-      "notionPageId": "3580bd65-db0b-80d3-b9a2-d6d1bfde8781",
-      "notionUrl": "https://www.notion.so/TR-SC-065177-3580bd65db0b80d3b9a2d6d1bfde8781",
+    "TR-SC-065590": {
+      "notionPageId": "3580bd65-db0b-807a-9bf8-eb68954f69d4",
+      "notionUrl": "https://www.notion.so/TR-SC-065590-3580bd65db0b807a9bf8eb68954f69d4",
       "meetings": [
         {
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
-            "🏷️ TR-SC-065177 · Closer: Gabriel Santos",
+            "🏷️ TR-SC-065590 · Closer: Jose Membreno",
             "THIS WEEK'S DECISIONS",
-            "Price drop: → $179,500",
+            "Price drop: $56,900 → $54,900",
             "ACTION ITEMS",
-            "Update listing price to $179,500 across channels — Ellyse Mae — Due: 2026-05-07",
+            "Update listing price to $54,900 across channels — Ellyse Mae — Due: 2026-05-07",
             "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
-          "blockId": "54631979-fdfe-4a42-bedf-711649e83a8a"
+          "blockId": "82238f6e-12ee-4692-87c6-62c986641e39"
         }
       ]
     },
-    "TR-SC-065948": {
-      "notionPageId": "3580bd65-db0b-80e8-9807-c5197599274c",
-      "notionUrl": "https://www.notion.so/TR-SC-065948-3580bd65db0b80e89807c5197599274c",
+    "TR-SC-065340": {
+      "notionPageId": "3580bd65-db0b-8053-9567-c970b3558717",
+      "notionUrl": "https://www.notion.so/TR-SC-065340-3580bd65db0b80539567c970b3558717",
       "meetings": [
         {
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
-            "🏷️ TR-SC-065948 · Closer: Gabriel Santos",
+            "🏷️ TR-SC-065340 · Closer: Jose Membreno",
             "THIS WEEK'S DECISIONS",
-            "Cash price: → $19,900",
-            "Seller financing updated: SF price $25,000; down $5,000; $500/mo; 12.999%",
-            "ACTION ITEMS",
-            "Update cash price to $19,900 across channels — Ellyse Mae — Due: 2026-05-07",
-            "Update seller financing terms (SF price $25,000; down $5,000; $500/mo; 12.999%) — Ellyse Mae — Due: 2026-05-07",
+            "Reviewed HOA underwriting/spread; decision was to potentially drop a small amount ($200–$1,000) and standardize HOA comp adjustments going forward",
+            "BLOCKERS",
+            "HOA pricing model/comp adjustment needs standardization (team process item)",
             "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
-          "blockId": "efabcaab-b3d3-48c0-b3f6-71bf66295184"
+          "blockId": "7d7e5c46-c9be-46ac-834d-5df7ee92b059"
+        }
+      ]
+    },
+    "TR-SC-063925": {
+      "notionPageId": "3580bd65-db0b-804e-9a28-e264fb7c4f85",
+      "notionUrl": "https://www.notion.so/TR-SC-063925-3580bd65db0b804e9a28e264fb7c4f85",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-063925 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Continue pursuit (deal not dead): put buyer under contract and coordinate seller conversation (seller wants proof of investor)",
+            "ACTION ITEMS",
+            "Send contract with buyer and push to close (neighbor offer ~$250k) — Jose Membreno — Due: 2026-05-08",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
+          "blockId": "a63eff86-5ea8-4aeb-a361-9449df538408"
+        }
+      ]
+    },
+    "TR-SC-066611": {
+      "notionPageId": "3580bd65-db0b-801f-876b-fdb2ca88f95e",
+      "notionUrl": "https://www.notion.so/TR-SC-066611-3580bd65db0b801f876bfdb2ca88f95e",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-06",
+          "label": "📊 Pricing Meeting — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-066611 · Albany, NY (seller: “Smart Luzi”) · acreage not stated · LDS not stated",
+            "PRICING DECISION",
+            "Pricing not stated on this call (Art to set price today and email team)",
+            "Strategy: fast timeline (30-day close); push to market to lock a buyer quickly; likely buy & flip if buyer not locked in time",
+            "RATIONALE",
+            "Comps: Not stated",
+            "Why this price: timeline-driven; prioritize speed to lock buyer",
+            "PROPERTY SHORTCOMINGS"
+          ],
+          "blockId": "5d31d60d-da83-48dd-b543-aaf688acd890"
+        }
+      ]
+    },
+    "TR-SC-066670": {
+      "notionPageId": "3580bd65-db0b-8055-9d96-f15bcd13b813",
+      "notionUrl": "https://www.notion.so/TR-SC-066670-3580bd65db0b80559d96f15bcd13b813",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-06",
+          "label": "📊 Pricing Meeting — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-066670 · Catherine Hilden Burger · 0.2 acres · LDS not stated",
+            "PRICING DECISION",
+            "Final list price: 34,900 (raised from initial 29,500) · Contract price: 15,000 · Floor: not stated · Min spread: not stated",
+            "Strategy: price into a strong infill-lot demand pocket near Baltimore; leverage lack of comps (buyer also lacks comps)",
+            "RATIONALE",
+            "Comps: none stated; pricing derived from nearby sold homes/land",
+            "Why this price: stretch price due to scarcity + proximity to Baltimore",
+            "GENERAL CONSTRAINTS"
+          ],
+          "blockId": "4c35a932-0fd9-45ab-ba91-e806f1563f20"
+        }
+      ]
+    },
+    "TR-SC-066142": {
+      "notionPageId": "3580bd65-db0b-801f-96b0-c61686181702",
+      "notionUrl": "https://www.notion.so/TR-SC-066142-3580bd65db0b801f96b0c61686181702",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-06",
+          "label": "📊 Pricing Meeting — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-066142 · Steven Jeffcoat · 15 acres (subdivide) · LDS not stated",
+            "PRICING DECISION",
+            "Not stated for flag lot on this call (prior discussion referenced 15,000/acre for flag lot and 16,000/acre for other lots; confirm in subdivide spreadsheet)",
+            "Strategy: subdivide into three 5-acre lots; source at least one off-market buyer for the flag lot (no MLS)",
+            "RATIONALE",
+            "Comps: Not stated",
+            "Why this price: avoid pricing confusion across subdivided lots; all costs (survey, septic permits, realtor, etc.) must be baked into per-lot economics",
+            "GENERAL CONSTRAINTS"
+          ],
+          "blockId": "53813281-ad2b-4975-8111-230654c74e2d"
+        }
+      ]
+    },
+    "TR-SC-065391": {
+      "notionPageId": "3560bd65-db0b-80d2-ab9e-f5f8aff91930",
+      "notionUrl": "https://www.notion.so/TR-SC-065391-3560bd65db0b80d2ab9ef5f8aff91930",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-065391 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: → $14,500",
+            "ACTION ITEMS",
+            "Update listing price to $14,500 across channels — Ellyse Mae — Due: 2026-05-07",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
+          "blockId": "52fa6b19-9a0f-46a3-9bf5-52c46c320678"
+        },
+        {
+          "type": "Portfolio Review",
+          "date": "2026-04-29",
+          "label": "📊 Portfolio Review — 2026-04-29",
+          "bullets": [
+            "🏷️ TR-SC-065391 · Virginia commercial lot · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM: 37 days · Days to expire: 41 · Current list price: (not stated) · Notes: appointment set mentioned; Salesforce stage not updated",
+            "Channels: MLS (assumed) + Facebook (mentioned)",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: → $18,900 (per meeting)",
+            "BUYER & LEAD ACTIVITY",
+            "Appointment set mentioned; prior buyer no longer interested"
+          ],
+          "blockId": "502f570a-dbc8-420b-bbcd-b288938d0ce9"
         }
       ]
     }
