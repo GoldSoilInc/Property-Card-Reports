@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-12T10:38:45.351467+00:00",
+  "lastSynced": "2026-05-12T14:38:17.675763+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -78,6 +78,26 @@
             "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
           ],
           "blockId": "efabcaab-b3d3-48c0-b3f6-71bf66295184"
+        }
+      ]
+    },
+    "TR-SC-065177": {
+      "notionPageId": "3580bd65-db0b-80d3-b9a2-d6d1bfde8781",
+      "notionUrl": "https://www.notion.so/TR-SC-065177-3580bd65db0b80d3b9a2d6d1bfde8781",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-06",
+          "label": "📊 Portfolio Review — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-065177 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: → $179,500",
+            "ACTION ITEMS",
+            "Update listing price to $179,500 across channels — Ellyse Mae — Due: 2026-05-07",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
+          "blockId": "54631979-fdfe-4a42-bedf-711649e83a8a"
         }
       ]
     },
