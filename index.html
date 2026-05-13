@@ -513,7 +513,7 @@ const SOURCES = {
   pd:     BASE + 'price-drop-report.csv',
   camp:   BASE + 'outbound-campaigns-leads.csv',
   zillow: BASE + 'zillow-reports.csv',
-  dispo:  BASE + 'dispo-campaigns',
+  dispo:  BASE + 'dispo-campaigns.csv',
   ib:     BASE + 'inbound-leads.csv',
   meetings: BASE + 'notion-meetings.json'
 };
@@ -1095,7 +1095,7 @@ function fmtN(n) { return (n === null || n === undefined || isNaN(n)) ? '—' : 
 function fmtDate(v) { if (!v) return '—'; if (v instanceof Date) return v.toLocaleDateString(); return v.toString().substring(0, 10); }
 function stageClass(s) { return s === 'TAH - Owned' ? 'b-p' : s === 'Due Diligence' ? 'b-a' : s === 'Clear to Flip' ? 'b-bl' : s === 'At Closing' ? 'b-g' : s === 'Clearing to Close' ? 'b-teal' : 'b-gr'; }
 function scoreClass(s) { return s < 45 ? 'sr-r' : s < 65 ? 'sr-a' : 'sr-g'; }
-function campTypeClass(t) { const tl = (t||'').toLowerCase(); return tl.includes('realtor') ? 'b-bl' : tl.includes('investor') ? 'b-teal' : tl.includes('buyer') ? 'b-p' : tl.includes('neighbor') ? 'b-a' : 'b-gr'; }
+function campTypeClass(t) { const tl = (t||'').toLowerCase(); return tl.includes('price reduction') ? 'b-r' : tl.includes('realtor') ? 'b-bl' : tl.includes('investor') ? 'b-teal' : tl.includes('buyer') ? 'b-p' : tl.includes('neighbor') ? 'b-a' : 'b-gr'; }
 function dealTypeClass(t) {
   const tl = (t||'').toLowerCase().trim();
   if (tl.includes('buy') && tl.includes('flip')) return 'b-p';        // Buy & Flip — heavy capital, purple
