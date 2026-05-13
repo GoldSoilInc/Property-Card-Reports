@@ -1628,9 +1628,8 @@ function showCard(id) {
 
     <div class="card-body">
 
-      <!-- TIMELINE — hidden per user request ("hide for now"). Wrap in display:none so all logic still parses
-           but renders no UI. Remove the inline style or delete this wrapper to bring it back. -->
-      <div class="sec" style="display:none">
+      <!-- TIMELINE — price drop milestones for the listing. -->
+      <div class="sec">
         ${(() => {
           const today = new Date();
           const contractDate = l.contractDate ? new Date(l.contractDate) : null;
