@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-19T19:59:01.373393+00:00",
+  "lastSynced": "2026-05-19T21:41:04.300807+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -73,7 +73,12 @@
           "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-065942 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: set to $8,500",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ8BQ5MRYATNSYVKFBXKFHM"
+          ],
           "blockId": "bae0c641-3291-4a9c-8c31-d7434d0bf548"
         },
         {
