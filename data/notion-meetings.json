@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-20T20:25:26.807581+00:00",
+  "lastSynced": "2026-05-20T23:18:05.317551+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -51,6 +51,20 @@
       "notionPageId": "3580bd65-db0b-8054-aece-f33aaeedea7c",
       "notionUrl": "https://www.notion.so/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-065898 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BUYER & LEAD ACTIVITY",
+            "Neighbor buyer: $30k max (awaiting response by Friday)",
+            "ACTION ITEMS\n[ ] Wait for neighbor buyer response; be ready to accept $30k offer for TR-SC-065898 — Gabriel Santos — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "99a29faf-e82a-4adf-bb26-2550d6e993e8"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -179,6 +193,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-065177 · (Maryland) · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: list to $155k",
+            "BLOCKERS",
+            "Realtor slow to provide buyer updates; buyer “still doing due diligence”",
+            "ACTION ITEMS\n[ ] Contact buyer directly to expedite due diligence for TR-SC-065177 — Gabriel Santos — Due:\n[ ] Set list price to $155k for TR-SC-065177 — Ellyse Mae — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "e6e86fec-5ed1-4118-9c2d-3223bb539299"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
           "bullets": [
@@ -245,6 +274,18 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-065176 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: Let contract expire / walk away (5 days left mentioned)",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "cc4bb11f-58ef-497b-a7da-3171fa9f675c"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
           "bullets": [
@@ -276,6 +317,19 @@
       "notionPageId": "3580bd65-db0b-80cd-a4f3-f1d2e8c58d8b",
       "notionUrl": "https://www.notion.so/TR-SC-065405-3580bd65db0b80cda4f3f1d2e8c58d8b",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-065405 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: set to $58,900",
+            "ACTION ITEMS\n[ ] Price drop to $58,900 for TR-SC-065405 — Ellyse Mae — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "d08dffa4-f1b6-4425-af7c-8903a7017310"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -348,6 +402,18 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-062942 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: set to $15,300 (from ~$15k)",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "b67ff3e2-dbc0-45dc-9929-191794213964"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
           "bullets": [
@@ -357,6 +423,25 @@
             "🎤 Source: https://app.fireflies.ai/view/01KQZ8BQ5MRYATNSYVKFBXKFHM"
           ],
           "blockId": "25cf89d2-b4f2-49e6-8681-80969b905226"
+        }
+      ]
+    },
+    "TR-SC-011737": {
+      "notionPageId": "3580bd65-db0b-801d-b1d7-fe808ffd1903",
+      "notionUrl": "https://www.notion.so/TR-SC-011737-3580bd65db0b801db1d7fe808ffd1903",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-011737 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BUYER & LEAD ACTIVITY",
+            "Offer discussed: $4,000 (declined); waiting to see if buyer accepts up to $4,800",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "f6479b09-922b-4dc3-beee-762794267d1f"
         }
       ]
     },
@@ -396,6 +481,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-066541 · Aiken (owned; FB flagged) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: set to $37,990",
+            "BLOCKERS",
+            "FB listing flagged; needs relist and push via buyer base / Marketplace",
+            "ACTION ITEMS\n[ ] Relist / push Facebook Marketplace + buyer-base campaign for TR-SC-066541 (flagged listing) — Ellyse Mae — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "20de443b-4d85-4fea-ab67-4a390a97ebb7"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
           "bullets": [
@@ -412,6 +512,19 @@
       "notionPageId": "3580bd65-db0b-809f-8dc7-cd6eef4398e7",
       "notionUrl": "https://www.notion.so/TR-SC-066403-3580bd65db0b809f8dc7cd6eef4398e7",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-066403 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $69,900 → $59,900",
+            "ACTION ITEMS\n[ ] Price drop to $59,900 for TR-SC-066403 — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "249b8121-1dc8-4048-8f41-f0538a4e1725"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -447,6 +560,19 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-066399 · HOA · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: -$1,000",
+            "ACTION ITEMS\n[ ] Price drop $1,000 for TR-SC-066399 (HOA) — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "87b7a6c5-23b4-4983-8ec7-aae2b0fd6798"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
           "bullets": [
@@ -477,6 +603,19 @@
       "notionPageId": "3580bd65-db0b-8031-835e-cb393ac7e443",
       "notionUrl": "https://www.notion.so/TR-SC-066266-3580bd65db0b8031835ecb393ac7e443",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-066266 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: ~$180k → $150k (149,990/150,000)",
+            "ACTION ITEMS\n[ ] Price drop to ~$150k (149,990/150,000) for TR-SC-066266 (Washington, MD) — Ellyse Mae — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "bbacb09e-09a3-491b-af69-9f6b83b6a645"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -571,6 +710,20 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-065896 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Waiting on recorded deed to list on MLS (timing: “by next Wednesday” mentioned)",
+            "ACTION ITEMS\n[ ] Get recorded deed + list on MLS for TR-SC-065896 once deed recorded — Pracy-Ann Pryce — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "38791b56-fcde-43aa-8d46-9cb4455553aa"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
           "bullets": [
@@ -591,6 +744,19 @@
       "notionPageId": "3580bd65-db0b-807a-9bf8-eb68954f69d4",
       "notionUrl": "https://www.notion.so/TR-SC-065590-3580bd65db0b807a9bf8eb68954f69d4",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-065590 · Cass County, TX · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $53,900 → $51,900 (last attempt before termination; try reassignment)",
+            "ACTION ITEMS\n[ ] Price drop to $51,900 (from $53,900) and try reassignment for TR-SC-065590 — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "e7000966-9999-43ae-98a8-1b92420dbb09"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -623,6 +789,19 @@
       "notionPageId": "3580bd65-db0b-8053-9567-c970b3558717",
       "notionUrl": "https://www.notion.so/TR-SC-065340-3580bd65db0b80539567c970b3558717",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-065340 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: Cancel / terminate (thin margin; HOA contract under $10k spread)",
+            "ACTION ITEMS\n[ ] Cancel / terminate HOA contract (thin margin < $10k) for TR-SC-065340 — Pracy-Ann Pryce — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "91df89cd-2f8b-447f-bd8e-9141d0af8952"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-06",
@@ -695,6 +874,19 @@
       "notionPageId": "3580bd65-db0b-801f-876b-fdb2ca88f95e",
       "notionUrl": "https://www.notion.so/TR-SC-066611-3580bd65db0b801f876bfdb2ca88f95e",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-066611 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: Take offer (verbal $25k; counter $27k) and close fast; request extension if needed",
+            "ACTION ITEMS\n[ ] Negotiate quick close on verbal $25k offer (counter $27k) for TR-SC-066611; request extension if needed — Gabriel Santos — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "3fb17278-a713-48f4-a68c-b660f1cbdc0e"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -811,6 +1003,20 @@
       "notionPageId": "3560bd65-db0b-80d2-ab9e-f5f8aff91930",
       "notionUrl": "https://www.notion.so/TR-SC-065391-3560bd65db0b80d2ab9ef5f8aff91930",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-20",
+          "label": "📊 Portfolio Review — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-065391 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: Get ~30-day extension; call neighbor buyer today to force commitment (don’t disclose $25k offer)",
+            "BLOCKERS",
+            "Risk of large loss if extension not secured / buyer delays",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
+          "blockId": "154faabf-2569-47cd-83fb-c1011810aa88"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
