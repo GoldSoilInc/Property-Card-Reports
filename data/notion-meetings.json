@@ -1,8 +1,52 @@
 {
-  "lastSynced": "2026-05-20T16:57:22.144100+00:00",
+  "lastSynced": "2026-05-20T20:25:26.807581+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-066881": {
+      "notionPageId": "3660bd65-db0b-803b-8703-efb55ae83825",
+      "notionUrl": "https://www.notion.so/TR-SC-066881-3660bd65db0b803b8703efb55ae83825",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-20",
+          "label": "📊 Pricing Meeting — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-066881 · Tonja Barnicle (Milan Township, OH) · 17.29 acres · LDS 5.1",
+            "PRICING DECISION",
+            "Final list price: $339,900 (list as one property on MaxAcres; MLS requires separate listings by county, both at the same price)",
+            "Strategy: Sell all 4 parcels together; MLS listings must cross-reference each other to prevent landlocked confusion",
+            "Anshul’s words: “This has to be sold together… When it goes on Max Acres, this goes as one property… when it goes on MLS… mention clearly the property is sold along with another property…”",
+            "RATIONALE",
+            "Comps: Not stated",
+            "Why this price: Proposed by comps at ~$19,658/acre; approved for listing as one combined package"
+          ],
+          "blockId": "ad8ebaf9-db7f-4420-ada6-fb93fc69930d"
+        }
+      ]
+    },
+    "TR-SC-066882": {
+      "notionPageId": "3640bd65-db0b-8041-b86a-c74d6a464459",
+      "notionUrl": "https://www.notion.so/TR-SC-066882-3640bd65db0b8041b86ac74d6a464459",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-20",
+          "label": "📊 Pricing Meeting — 2026-05-20",
+          "bullets": [
+            "🏷️ TR-SC-066882 · Harmon Maddox (Rhodesdale, MD) · 3.75 acres · LDS 8.1",
+            "PRICING DECISION",
+            "Final list price: $44,500 (raised from $39,900 per Anshul discussion)",
+            "Strategy: List in MLS + Facebook Marketplace; start with Google Pro imagery (no Street View)",
+            "RATIONALE",
+            "Comps: Not stated",
+            "Why this price: Unrestricted use + strong road frontage; target higher spread",
+            "Demand thesis: Broad allowed-structure set (double-wide allowed; RV allowed w/ limits) expands buyer pool"
+          ],
+          "blockId": "f914850f-3203-4bea-8744-c7c1dd11cb7d"
+        }
+      ]
+    },
     "TR-SC-065898": {
       "notionPageId": "3580bd65-db0b-8054-aece-f33aaeedea7c",
       "notionUrl": "https://www.notion.so/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
