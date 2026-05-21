@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-21T16:41:39.074448+00:00",
+  "lastSynced": "2026-05-21T20:02:38.547262+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -761,12 +761,7 @@
           "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
-          "bullets": [
-            "🏷️ TR-SC-065590 · Closer: Jose Membreno",
-            "THIS WEEK'S DECISIONS",
-            "Price drop: set to $53,900 (take $1,000 off)",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ8BQ5MRYATNSYVKFBXKFHM"
-          ],
+          "bullets": [],
           "blockId": "293a61cd-0422-42b3-b069-2bd303e58841"
         },
         {
