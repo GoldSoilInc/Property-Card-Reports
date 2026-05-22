@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-22T19:56:51.118624+00:00",
+  "lastSynced": "2026-05-22T21:18:28.676070+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -276,7 +276,12 @@
           "type": "Portfolio Review",
           "date": "2026-05-20",
           "label": "📊 Portfolio Review — 2026-05-20",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-065176 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: Let contract expire / walk away (5 days left mentioned)",
+            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
+          ],
           "blockId": "cc4bb11f-58ef-497b-a7da-3171fa9f675c"
         },
         {
