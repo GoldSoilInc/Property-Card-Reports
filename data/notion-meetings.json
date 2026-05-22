@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-22T09:40:21.292084+00:00",
+  "lastSynced": "2026-05-22T12:26:58.316527+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -916,6 +916,28 @@
             "PROPERTY SHORTCOMINGS"
           ],
           "blockId": "5d31d60d-da83-48dd-b543-aaf688acd890"
+        }
+      ]
+    },
+    "TR-SC-066652": {
+      "notionPageId": "3580bd65-db0b-80d7-a342-cb19437e4b41",
+      "notionUrl": "https://www.notion.so/TR-SC-066652-3580bd65db0b80d7a342cb19437e4b41",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-13",
+          "label": "📊 Portfolio Review — 2026-05-13",
+          "bullets": [
+            "🏷️ TR-SC-066652 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Set price before MLS goes live: $59,900",
+            "BLOCKERS",
+            "Access / easement entrance may be overgrown; confirm current condition with seller",
+            "ACTION ITEMS",
+            "Ask seller whether easement entrance has been cleared (and current access condition) — Pracy-Ann Pryce — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ8BQ5MRYATNSYVKFBXKFHM"
+          ],
+          "blockId": "9b334016-de8d-43f6-ab69-cc23a48ef68a"
         }
       ]
     },
