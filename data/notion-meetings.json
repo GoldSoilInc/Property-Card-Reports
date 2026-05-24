@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-23T22:58:00.232266+00:00",
+  "lastSynced": "2026-05-24T04:10:50.273446+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -321,13 +321,7 @@
           "type": "Portfolio Review",
           "date": "2026-05-20",
           "label": "📊 Portfolio Review — 2026-05-20",
-          "bullets": [
-            "🏷️ TR-SC-065405 · Closer: Gabriel Santos",
-            "THIS WEEK'S DECISIONS",
-            "Price drop: set to $58,900",
-            "ACTION ITEMS\n[ ] Price drop to $58,900 for TR-SC-065405 — Ellyse Mae — Due:",
-            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
-          ],
+          "bullets": [],
           "blockId": "d08dffa4-f1b6-4425-af7c-8903a7017310"
         },
         {
