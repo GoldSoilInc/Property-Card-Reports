@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-24T23:03:32.201023+00:00",
+  "lastSynced": "2026-05-25T04:21:30.884743+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -938,6 +938,42 @@
             "🎤 Source: https://app.fireflies.ai/view/01KQZ8BQ5MRYATNSYVKFBXKFHM"
           ],
           "blockId": "9b334016-de8d-43f6-ab69-cc23a48ef68a"
+        }
+      ]
+    },
+    "TR-SC-066670": {
+      "notionPageId": "3580bd65-db0b-8055-9d96-f15bcd13b813",
+      "notionUrl": "https://www.notion.so/TR-SC-066670-3580bd65db0b80559d96f15bcd13b813",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-13",
+          "label": "📊 Portfolio Review — 2026-05-13",
+          "bullets": [
+            "🏷️ TR-SC-066670 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: renegotiate to $5,000 or cancel contract",
+            "ACTION ITEMS",
+            "Go back to seller with $5,000 hard line; cancel if not accepted — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ8BQ5MRYATNSYVKFBXKFHM"
+          ],
+          "blockId": "cf3e5fc1-b9e1-49e6-99d6-d16499bfa43c"
+        },
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-05-06",
+          "label": "📊 Pricing Meeting — 2026-05-06",
+          "bullets": [
+            "🏷️ TR-SC-066670 · Catherine Hilden Burger · 0.2 acres · LDS not stated",
+            "PRICING DECISION",
+            "Final list price: 34,900 (raised from initial 29,500) · Contract price: 15,000 · Floor: not stated · Min spread: not stated",
+            "Strategy: price into a strong infill-lot demand pocket near Baltimore; leverage lack of comps (buyer also lacks comps)",
+            "RATIONALE",
+            "Comps: none stated; pricing derived from nearby sold homes/land",
+            "Why this price: stretch price due to scarcity + proximity to Baltimore",
+            "GENERAL CONSTRAINTS"
+          ],
+          "blockId": "4c35a932-0fd9-45ab-ba91-e806f1563f20"
         }
       ]
     },
