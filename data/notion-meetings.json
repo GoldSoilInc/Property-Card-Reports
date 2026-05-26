@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-26T04:06:58.815297+00:00",
+  "lastSynced": "2026-05-26T10:08:36.150091+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -483,15 +483,7 @@
           "type": "Portfolio Review",
           "date": "2026-05-20",
           "label": "📊 Portfolio Review — 2026-05-20",
-          "bullets": [
-            "🏷️ TR-SC-066541 · Aiken (owned; FB flagged) · Closer: Jose Membreno",
-            "THIS WEEK'S DECISIONS",
-            "Price drop: set to $37,990",
-            "BLOCKERS",
-            "FB listing flagged; needs relist and push via buyer base / Marketplace",
-            "ACTION ITEMS\n[ ] Relist / push Facebook Marketplace + buyer-base campaign for TR-SC-066541 (flagged listing) — Ellyse Mae — Due:",
-            "🎤 Source: https://app.fireflies.ai/view/01KRHAQVYKEBAVCV73QM1731RD"
-          ],
+          "bullets": [],
           "blockId": "20de443b-4d85-4fea-ab67-4a390a97ebb7"
         },
         {
