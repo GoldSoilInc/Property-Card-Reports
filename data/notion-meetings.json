@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-05-27T04:20:29.097728+00:00",
+  "lastSynced": "2026-05-27T10:06:18.680959+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -113,7 +113,12 @@
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-065455 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Reviewed — no change (trending well; price drop already done last week)",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
           "blockId": "b2d990a3-4a12-41fa-879d-846ac407ba68"
         }
       ]
@@ -448,7 +453,12 @@
           "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-063689 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Reviewed — no change (investor-owned; limited control discussed)",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ8BQ5MRYATNSYVKFBXKFHM"
+          ],
           "blockId": "49d77af8-67c7-40ca-aece-1346f4c68737"
         },
         {
