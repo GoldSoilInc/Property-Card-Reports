@@ -2124,11 +2124,16 @@ function showCard(id) {
       <!-- DEAL ECONOMICS -->
       <div class="sec">
         <div class="sec-title">Deal economics</div>
-        <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:8px">
+        <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:8px">
           <div class="mc">
             <div class="mc-l">Contract price</div>
             <div class="mc-v">${fmt(pdf.contractP)}</div>
             <div class="mc-s">${l.daysUnder !== null ? l.daysUnder + 'd held' : '—'}</div>
+          </div>
+          <div class="mc">
+            <div class="mc-l">Spread</div>
+            <div class="mc-v ${l.profit !== null && l.profit !== undefined ? (l.profit < 0 ? 'red' : l.profit < 10000 ? 'amber' : 'green') : ''}">${l.profit !== null && l.profit !== undefined ? fmt(l.profit) : '—'}</div>
+            <div class="mc-s">List − contract</div>
           </div>
           <div class="mc">
             <div class="mc-l">Original list price</div>
