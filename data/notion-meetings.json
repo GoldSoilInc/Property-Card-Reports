@@ -1,8 +1,49 @@
 {
-  "lastSynced": "2026-05-28T10:14:59.403930+00:00",
+  "lastSynced": "2026-05-28T16:13:55.132140+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-067094": {
+      "notionPageId": "36e0bd65-db0b-8048-adf5-f51f81efc847",
+      "notionUrl": "https://www.notion.so/TR-SC-067094-36e0bd65db0b8048adf5f51f81efc847",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-067094 · (Ohio; not on MLS yet) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Comps discussed: $13k–$15k/acre average; listed high; under contract $250k",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Waiting for MLS to go live before repricing decisions.",
+            "ACTION ITEMS\n[ ] Forward comps email to Art + comms team — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "223683d3-1731-445c-9e48-3aa19e2d236f"
+        }
+      ]
+    },
+    "TR-SC-066843": {
+      "notionPageId": "36e0bd65-db0b-8084-bcc0-ca520e36f465",
+      "notionUrl": "https://www.notion.so/TR-SC-066843-36e0bd65db0b8084bcc0ca520e36f465",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066843 · (Aiken, SC subdivide) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Realtor campaigns in motion; appointments set",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BUYER & LEAD ACTIVITY",
+            "Neighbor offered $130k; direction was “pick two lots for $130k” as a possible path",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "05103664-5d12-4658-9e3e-fd46823015ef"
+        }
+      ]
+    },
     "TR-SC-066881": {
       "notionPageId": "3660bd65-db0b-803b-8703-efb55ae83825",
       "notionUrl": "https://www.notion.so/TR-SC-066881-3660bd65db0b803b8703efb55ae83825",
@@ -30,6 +71,17 @@
       "notionUrl": "https://www.notion.so/TR-SC-066882-3640bd65db0b8041b86ac74d6a464459",
       "meetings": [
         {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066882 · (Rhodesdale, MD) · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "7ecf0ebd-0e46-46fe-9ffc-f5fd195641dd"
+        },
+        {
           "type": "Pricing Meeting",
           "date": "2026-05-20",
           "label": "📊 Pricing Meeting — 2026-05-20",
@@ -51,6 +103,20 @@
       "notionPageId": "3580bd65-db0b-8054-aece-f33aaeedea7c",
       "notionUrl": "https://www.notion.so/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-065898 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $29,900",
+            "BUYER & LEAD ACTIVITY",
+            "Neighbor offer discussed: $30k; earliest follow-up mentioned: 2026-06-15",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "5ff695ee-eb72-4902-9c91-0af228da6584"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-20",
@@ -99,6 +165,17 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-065455 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "f0b12e8f-342d-4b9f-a722-91a95facf40b"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
           "bullets": [
@@ -127,6 +204,19 @@
       "notionPageId": "3580bd65-db0b-8092-8766-ebfa49a0dd1c",
       "notionUrl": "https://www.notion.so/TR-SC-065942-3580bd65db0b80928766ebfa49a0dd1c",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-065942 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Slope/utilities limiting buildability (market feedback)",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "47fe9681-81ab-4252-8113-7c777a6595eb"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -193,6 +283,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-065177 · (Joppa, MD) · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: set to $150k",
+            "BLOCKERS",
+            "Perk test needed; quotes $1,600–$1,800; ~2 weeks",
+            "ACTION ITEMS\n[ ] Finalize perk test quotes + order perk test — Pracy-Ann Pryce — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "8a56010a-f975-41d2-a95c-be42a48e8fe3"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-20",
           "label": "📊 Portfolio Review — 2026-05-20",
           "bullets": [
@@ -238,6 +343,18 @@
       "notionPageId": "3580bd65-db0b-8008-a177-ede589f9a5a8",
       "notionUrl": "https://www.notion.so/TR-SC-065991-3580bd65db0b8008a177ede589f9a5a8",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-065991 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: cash price to $19,500 (keep seller financing structure)",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "067b3529-a09e-481f-b876-cc7760220d6b"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -402,6 +519,18 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-062942 · (Georgia owned lot) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: small final adjustment discussed ($100–$200)",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "deeae6ca-ee5f-4b8b-a4e7-b9c6333d7b2f"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-20",
           "label": "📊 Portfolio Review — 2026-05-20",
           "bullets": [
@@ -432,6 +561,19 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-011737 · Closer: Jose Membreno",
+            "BUYER & LEAD ACTIVITY",
+            "Neighbor offer discussed: $4,800 (would be a loss)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "aad8a9f6-6e1a-469f-8c83-4a33c027d479"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-20",
           "label": "📊 Portfolio Review — 2026-05-20",
           "bullets": [
@@ -449,6 +591,17 @@
       "notionPageId": "3580bd65-db0b-80c2-a42c-e9b496f07ca8",
       "notionUrl": "https://www.notion.so/TR-SC-063689-3580bd65db0b80c2a42ce9b496f07ca8",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-063689 · (Florida investment property) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "b952b365-c7ab-4543-934c-28233dfa92ec"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -479,6 +632,19 @@
       "notionPageId": "3580bd65-db0b-809c-bab6-c34fe9530c42",
       "notionUrl": "https://www.notion.so/TR-SC-066541-3580bd65db0b809cbab6c34fe9530c42",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066541 · (Owned) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Neighbor complaints re: trespassing mentioned",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "a04e00b5-fa95-4cca-ac84-7bc8be725f06"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-20",
@@ -512,6 +678,19 @@
       "notionPageId": "3580bd65-db0b-809f-8dc7-cd6eef4398e7",
       "notionUrl": "https://www.notion.so/TR-SC-066403-3580bd65db0b809f8dc7cd6eef4398e7",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066403 · (HOA) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "HOA-driven low interest / qualified lead scarcity",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "0524b7a8-fd3f-46ef-b880-744113080a56"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-20",
@@ -560,6 +739,19 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066399 · (HOA) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "HOA-driven low interest / qualified lead scarcity",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "7be73675-2089-470c-8b41-36ab27564b8a"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-20",
           "label": "📊 Portfolio Review — 2026-05-20",
           "bullets": [
@@ -603,6 +795,22 @@
       "notionPageId": "3580bd65-db0b-8031-835e-cb393ac7e443",
       "notionUrl": "https://www.notion.so/TR-SC-066266-3580bd65db0b8031835ecb393ac7e443",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066266 · (Fort Washington) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Appointment scheduled; concerns raised about potential perk issues",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Title commitment not ready yet",
+            "ACTION ITEMS\n[ ] Push to get title commitment ready / status updated — Pracy-Ann Pryce — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "e6a05ef4-09d3-49b0-861f-95c41d9e7077"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-20",
@@ -652,6 +860,22 @@
       "notionPageId": "3580bd65-db0b-80b0-942d-e264b45a20d4",
       "notionUrl": "https://www.notion.so/TR-SC-066089-3580bd65db0b80b0942de264b45a20d4",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066089 · (Maine) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: close purchase; list on MLS at $179,900",
+            "BUYER & LEAD ACTIVITY",
+            "Offline buyer discussed at $140k",
+            "BLOCKERS",
+            "None stated (title ready)",
+            "ACTION ITEMS\n[ ] Prepare docs + close purchase (expiry discussed: 2026-06-25) — Pracy-Ann Pryce — Due:"
+          ],
+          "blockId": "c13fe1f6-c5d7-4a96-a50c-bd4391d8baf2"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -708,6 +932,22 @@
       "notionPageId": "3580bd65-db0b-8061-85cd-d301550f1fab",
       "notionUrl": "https://www.notion.so/TR-SC-065896-3580bd65db0b806185cdd301550f1fab",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-065896 · (Ohio) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Ownership not yet confirmed; perk test pending before purchase",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Perk test must be completed/approved before purchase",
+            "ACTION ITEMS\n[ ] Complete perk test and proceed with purchase once approved — Pracy-Ann Pryce — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "de3301f7-47a0-4439-b8d6-f6dc625d2ea6"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-20",
@@ -876,6 +1116,18 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066611 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "ACTION ITEMS\n[ ] Negotiate quick close on offer; use “meet in the middle” approach (don’t name number first) — Gabriel Santos — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "96cab9ea-c863-4456-a431-52461e8a221c"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-20",
           "label": "📊 Portfolio Review — 2026-05-20",
           "bullets": [
@@ -923,6 +1175,20 @@
       "notionPageId": "3580bd65-db0b-80d7-a342-cb19437e4b41",
       "notionUrl": "https://www.notion.so/TR-SC-066652-3580bd65db0b80d7a342cb19437e4b41",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-066652 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop target discussed: midpoint coaching ($40k–$45k)",
+            "BLOCKERS",
+            "Slope/driveway slope issue requires LDS update",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "6b3a8498-2d21-4a5f-84b0-62fb244ef4d7"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-13",
@@ -1003,6 +1269,17 @@
       "notionPageId": "3560bd65-db0b-80d2-ab9e-f5f8aff91930",
       "notionUrl": "https://www.notion.so/TR-SC-065391-3560bd65db0b80d2ab9ef5f8aff91930",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-05-27",
+          "label": "📊 Portfolio Review — 2026-05-27",
+          "bullets": [
+            "🏷️ TR-SC-065391 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
+          "blockId": "163c42e8-b060-4b8f-8ffb-785d462c5657"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-20",
