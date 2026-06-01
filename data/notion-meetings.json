@@ -1,8 +1,30 @@
 {
-  "lastSynced": "2026-06-01T17:53:39.006303+00:00",
+  "lastSynced": "2026-06-01T21:39:56.235590+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-066583": {
+      "notionPageId": "3720bd65-db0b-8012-9a93-f1744caf6aef",
+      "notionUrl": "https://www.notion.so/TR-SC-066583-3720bd65db0b80129a93f1744caf6aef",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-06-01",
+          "label": "📊 Pricing Meeting — 2026-06-01",
+          "bullets": [
+            "🏷️ TR-SC-066583 · Loretta Lambert · 232 acres · LDS 7",
+            "PRICING DECISION",
+            "Final list price: $234,900 · Contract: $162,400 · Floor: Not stated · Min spread: Not stated",
+            "Strategy: Price to move (avoid overreliance on timber upside) and push to market as wholesale (no SubD).",
+            "Anshul quote: “I just roll with that price. 234,900… that’s a competitive price.”",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Set a competitive per-acre while recognizing timber/harvest timing drives value and focusing on moving the deal."
+          ],
+          "blockId": "439a36fa-0dcf-46d8-a3a5-9e1ee6ab203f"
+        }
+      ]
+    },
     "TR-SC-067094": {
       "notionPageId": "36e0bd65-db0b-8048-adf5-f51f81efc847",
       "notionUrl": "https://www.notion.so/TR-SC-067094-36e0bd65db0b8048adf5f51f81efc847",
@@ -63,6 +85,28 @@
             "Why this price: Proposed by comps at ~$19,658/acre; approved for listing as one combined package"
           ],
           "blockId": "ad8ebaf9-db7f-4420-ada6-fb93fc69930d"
+        }
+      ]
+    },
+    "TR-SC-066346": {
+      "notionPageId": "3640bd65-db0b-8046-a88f-c8957e8ef25b",
+      "notionUrl": "https://www.notion.so/TR-SC-066346-3640bd65db0b8046a88fc8957e8ef25b",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-06-01",
+          "label": "📊 Pricing Meeting — 2026-06-01",
+          "bullets": [
+            "🏷️ TR-SC-066346 · Ann Green · 5 acres · LDS 7.1",
+            "PRICING DECISION",
+            "Final list price: $49,900 · Contract: $25,000 · Floor: Not stated · Min spread: Not stated",
+            "Strategy: List as unrestricted, low-tax, buildable-front acreage despite major electric easement.",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Targeting ~$50k market value while acknowledging the easement reduces buildable area to ~1.72–1.8 acres in front.",
+            "Demand thesis: Budget buyers seeking unrestricted rural lots between Columbia and Augusta."
+          ],
+          "blockId": "1235997f-29a5-4733-adac-6dafdb1b3018"
         }
       ]
     },
