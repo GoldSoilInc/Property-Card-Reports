@@ -1,11 +1,11 @@
 {
-  "lastSynced": "2026-06-02T23:52:25.538911+00:00",
+  "lastSynced": "2026-06-03T04:49:57.266608+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
     "TR-SC-066583": {
       "notionPageId": "3720bd65-db0b-8012-9a93-f1744caf6aef",
-      "notionUrl": "https://www.notion.so/TR-SC-066583-3720bd65db0b80129a93f1744caf6aef",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066583-3720bd65db0b80129a93f1744caf6aef",
       "meetings": [
         {
           "type": "Pricing Meeting",
@@ -27,7 +27,7 @@
     },
     "TR-SC-067094": {
       "notionPageId": "36e0bd65-db0b-8048-adf5-f51f81efc847",
-      "notionUrl": "https://www.notion.so/TR-SC-067094-36e0bd65db0b8048adf5f51f81efc847",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067094-36e0bd65db0b8048adf5f51f81efc847",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -47,7 +47,7 @@
     },
     "TR-SC-066843": {
       "notionPageId": "36e0bd65-db0b-8084-bcc0-ca520e36f465",
-      "notionUrl": "https://www.notion.so/TR-SC-066843-36e0bd65db0b8084bcc0ca520e36f465",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066843-36e0bd65db0b8084bcc0ca520e36f465",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -68,7 +68,7 @@
     },
     "TR-SC-066881": {
       "notionPageId": "3660bd65-db0b-803b-8703-efb55ae83825",
-      "notionUrl": "https://www.notion.so/TR-SC-066881-3660bd65db0b803b8703efb55ae83825",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066881-3660bd65db0b803b8703efb55ae83825",
       "meetings": [
         {
           "type": "Pricing Meeting",
@@ -90,7 +90,7 @@
     },
     "TR-SC-066346": {
       "notionPageId": "3640bd65-db0b-8046-a88f-c8957e8ef25b",
-      "notionUrl": "https://www.notion.so/TR-SC-066346-3640bd65db0b8046a88fc8957e8ef25b",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066346-3640bd65db0b8046a88fc8957e8ef25b",
       "meetings": [
         {
           "type": "Pricing Meeting",
@@ -112,7 +112,7 @@
     },
     "TR-SC-066882": {
       "notionPageId": "3640bd65-db0b-8041-b86a-c74d6a464459",
-      "notionUrl": "https://www.notion.so/TR-SC-066882-3640bd65db0b8041b86ac74d6a464459",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066882-3640bd65db0b8041b86ac74d6a464459",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -145,7 +145,7 @@
     },
     "TR-SC-065898": {
       "notionPageId": "3580bd65-db0b-8054-aece-f33aaeedea7c",
-      "notionUrl": "https://www.notion.so/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -205,7 +205,7 @@
     },
     "TR-SC-065455": {
       "notionPageId": "3580bd65-db0b-80ae-b500-e6dc0125d2fb",
-      "notionUrl": "https://www.notion.so/TR-SC-065455-3580bd65db0b80aeb500e6dc0125d2fb",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065455-3580bd65db0b80aeb500e6dc0125d2fb",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -246,7 +246,7 @@
     },
     "TR-SC-065942": {
       "notionPageId": "3580bd65-db0b-8092-8766-ebfa49a0dd1c",
-      "notionUrl": "https://www.notion.so/TR-SC-065942-3580bd65db0b80928766ebfa49a0dd1c",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065942-3580bd65db0b80928766ebfa49a0dd1c",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -289,7 +289,7 @@
     },
     "TR-SC-065948": {
       "notionPageId": "3580bd65-db0b-80e8-9807-c5197599274c",
-      "notionUrl": "https://www.notion.so/TR-SC-065948-3580bd65db0b80e89807c5197599274c",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065948-3580bd65db0b80e89807c5197599274c",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -323,7 +323,7 @@
     },
     "TR-SC-065177": {
       "notionPageId": "3580bd65-db0b-80d3-b9a2-d6d1bfde8781",
-      "notionUrl": "https://www.notion.so/TR-SC-065177-3580bd65db0b80d3b9a2d6d1bfde8781",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065177-3580bd65db0b80d3b9a2d6d1bfde8781",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -385,7 +385,7 @@
     },
     "TR-SC-065991": {
       "notionPageId": "3580bd65-db0b-8008-a177-ede589f9a5a8",
-      "notionUrl": "https://www.notion.so/TR-SC-065991-3580bd65db0b8008a177ede589f9a5a8",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065991-3580bd65db0b8008a177ede589f9a5a8",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -431,7 +431,7 @@
     },
     "TR-SC-065176": {
       "notionPageId": "3580bd65-db0b-809c-9ff4-e2050e802aca",
-      "notionUrl": "https://www.notion.so/TR-SC-065176-3580bd65db0b809c9ff4e2050e802aca",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065176-3580bd65db0b809c9ff4e2050e802aca",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -476,7 +476,7 @@
     },
     "TR-SC-065405": {
       "notionPageId": "3580bd65-db0b-80cd-a4f3-f1d2e8c58d8b",
-      "notionUrl": "https://www.notion.so/TR-SC-065405-3580bd65db0b80cda4f3f1d2e8c58d8b",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065405-3580bd65db0b80cda4f3f1d2e8c58d8b",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -523,7 +523,7 @@
     },
     "TR-SC-064257": {
       "notionPageId": "3580bd65-db0b-80b7-96f5-f025ecf49345",
-      "notionUrl": "https://www.notion.so/TR-SC-064257-3580bd65db0b80b796f5f025ecf49345",
+      "notionUrl": "https://app.notion.com/p/TR-SC-064257-3580bd65db0b80b796f5f025ecf49345",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -541,7 +541,7 @@
     },
     "TR-SC-063088": {
       "notionPageId": "3580bd65-db0b-8052-bf06-e733465b640f",
-      "notionUrl": "https://www.notion.so/TR-SC-063088-3580bd65db0b8052bf06e733465b640f",
+      "notionUrl": "https://app.notion.com/p/TR-SC-063088-3580bd65db0b8052bf06e733465b640f",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -559,7 +559,7 @@
     },
     "TR-SC-062942": {
       "notionPageId": "3580bd65-db0b-80cd-9023-d9ad6b22d40a",
-      "notionUrl": "https://www.notion.so/TR-SC-062942-3580bd65db0b80cd9023d9ad6b22d40a",
+      "notionUrl": "https://app.notion.com/p/TR-SC-062942-3580bd65db0b80cd9023d9ad6b22d40a",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -601,7 +601,7 @@
     },
     "TR-SC-011737": {
       "notionPageId": "3580bd65-db0b-801d-b1d7-fe808ffd1903",
-      "notionUrl": "https://www.notion.so/TR-SC-011737-3580bd65db0b801db1d7fe808ffd1903",
+      "notionUrl": "https://app.notion.com/p/TR-SC-011737-3580bd65db0b801db1d7fe808ffd1903",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -633,7 +633,7 @@
     },
     "TR-SC-063689": {
       "notionPageId": "3580bd65-db0b-80c2-a42c-e9b496f07ca8",
-      "notionUrl": "https://www.notion.so/TR-SC-063689-3580bd65db0b80c2a42ce9b496f07ca8",
+      "notionUrl": "https://app.notion.com/p/TR-SC-063689-3580bd65db0b80c2a42ce9b496f07ca8",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -674,7 +674,7 @@
     },
     "TR-SC-066541": {
       "notionPageId": "3580bd65-db0b-809c-bab6-c34fe9530c42",
-      "notionUrl": "https://www.notion.so/TR-SC-066541-3580bd65db0b809cbab6c34fe9530c42",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066541-3580bd65db0b809cbab6c34fe9530c42",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -720,7 +720,7 @@
     },
     "TR-SC-066403": {
       "notionPageId": "3580bd65-db0b-809f-8dc7-cd6eef4398e7",
-      "notionUrl": "https://www.notion.so/TR-SC-066403-3580bd65db0b809f8dc7cd6eef4398e7",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066403-3580bd65db0b809f8dc7cd6eef4398e7",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -779,7 +779,7 @@
     },
     "TR-SC-066399": {
       "notionPageId": "3580bd65-db0b-80a6-a505-f301459e81fc",
-      "notionUrl": "https://www.notion.so/TR-SC-066399-3580bd65db0b80a6a505f301459e81fc",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066399-3580bd65db0b80a6a505f301459e81fc",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -837,7 +837,7 @@
     },
     "TR-SC-066266": {
       "notionPageId": "3580bd65-db0b-8031-835e-cb393ac7e443",
-      "notionUrl": "https://www.notion.so/TR-SC-066266-3580bd65db0b8031835ecb393ac7e443",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066266-3580bd65db0b8031835ecb393ac7e443",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -884,7 +884,7 @@
     },
     "TR-SC-066086": {
       "notionPageId": "3580bd65-db0b-802f-b062-d116930cb9db",
-      "notionUrl": "https://www.notion.so/TR-SC-066086-3580bd65db0b802fb062d116930cb9db",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066086-3580bd65db0b802fb062d116930cb9db",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -902,7 +902,7 @@
     },
     "TR-SC-066089": {
       "notionPageId": "3580bd65-db0b-80b0-942d-e264b45a20d4",
-      "notionUrl": "https://www.notion.so/TR-SC-066089-3580bd65db0b80b0942de264b45a20d4",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066089-3580bd65db0b80b0942de264b45a20d4",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -954,7 +954,7 @@
     },
     "TR-SC-065989": {
       "notionPageId": "3580bd65-db0b-808a-95dc-c8bd4ae1fc79",
-      "notionUrl": "https://www.notion.so/TR-SC-065989-3580bd65db0b808a95dcc8bd4ae1fc79",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065989-3580bd65db0b808a95dcc8bd4ae1fc79",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -974,7 +974,7 @@
     },
     "TR-SC-065896": {
       "notionPageId": "3580bd65-db0b-8061-85cd-d301550f1fab",
-      "notionUrl": "https://www.notion.so/TR-SC-065896-3580bd65db0b806185cdd301550f1fab",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065896-3580bd65db0b806185cdd301550f1fab",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -1026,7 +1026,7 @@
     },
     "TR-SC-065590": {
       "notionPageId": "3580bd65-db0b-807a-9bf8-eb68954f69d4",
-      "notionUrl": "https://www.notion.so/TR-SC-065590-3580bd65db0b807a9bf8eb68954f69d4",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065590-3580bd65db0b807a9bf8eb68954f69d4",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -1071,7 +1071,7 @@
     },
     "TR-SC-065340": {
       "notionPageId": "3580bd65-db0b-8053-9567-c970b3558717",
-      "notionUrl": "https://www.notion.so/TR-SC-065340-3580bd65db0b80539567c970b3558717",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065340-3580bd65db0b80539567c970b3558717",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -1104,7 +1104,7 @@
     },
     "TR-SC-064709": {
       "notionPageId": "3580bd65-db0b-80d5-9e42-ef609c389d99",
-      "notionUrl": "https://www.notion.so/TR-SC-064709-3580bd65db0b80d59e42ef609c389d99",
+      "notionUrl": "https://app.notion.com/p/TR-SC-064709-3580bd65db0b80d59e42ef609c389d99",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -1124,7 +1124,7 @@
     },
     "TR-SC-063925": {
       "notionPageId": "3580bd65-db0b-804e-9a28-e264fb7c4f85",
-      "notionUrl": "https://www.notion.so/TR-SC-063925-3580bd65db0b804e9a28e264fb7c4f85",
+      "notionUrl": "https://app.notion.com/p/TR-SC-063925-3580bd65db0b804e9a28e264fb7c4f85",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -1156,7 +1156,7 @@
     },
     "TR-SC-066611": {
       "notionPageId": "3580bd65-db0b-801f-876b-fdb2ca88f95e",
-      "notionUrl": "https://www.notion.so/TR-SC-066611-3580bd65db0b801f876bfdb2ca88f95e",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066611-3580bd65db0b801f876bfdb2ca88f95e",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -1217,7 +1217,7 @@
     },
     "TR-SC-066652": {
       "notionPageId": "3580bd65-db0b-80d7-a342-cb19437e4b41",
-      "notionUrl": "https://www.notion.so/TR-SC-066652-3580bd65db0b80d7a342cb19437e4b41",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066652-3580bd65db0b80d7a342cb19437e4b41",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -1253,7 +1253,7 @@
     },
     "TR-SC-066670": {
       "notionPageId": "3580bd65-db0b-8055-9d96-f15bcd13b813",
-      "notionUrl": "https://www.notion.so/TR-SC-066670-3580bd65db0b80559d96f15bcd13b813",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066670-3580bd65db0b80559d96f15bcd13b813",
       "meetings": [
         {
           "type": "Portfolio Review",
@@ -1289,7 +1289,7 @@
     },
     "TR-SC-066142": {
       "notionPageId": "3580bd65-db0b-801f-96b0-c61686181702",
-      "notionUrl": "https://www.notion.so/TR-SC-066142-3580bd65db0b801f96b0c61686181702",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066142-3580bd65db0b801f96b0c61686181702",
       "meetings": [
         {
           "type": "Pricing Meeting",
@@ -1311,7 +1311,7 @@
     },
     "TR-SC-065391": {
       "notionPageId": "3560bd65-db0b-80d2-ab9e-f5f8aff91930",
-      "notionUrl": "https://www.notion.so/TR-SC-065391-3560bd65db0b80d2ab9ef5f8aff91930",
+      "notionUrl": "https://app.notion.com/p/TR-SC-065391-3560bd65db0b80d2ab9ef5f8aff91930",
       "meetings": [
         {
           "type": "Portfolio Review",
