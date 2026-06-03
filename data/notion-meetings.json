@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-06-03T17:01:22.214638+00:00",
+  "lastSynced": "2026-06-03T21:22:36.342480+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -31,6 +31,20 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-067094 · (Ohio) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Newer listing; feedback: price too high vs comps ($13k–$15k/acre cited)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Waiting for more feedback before repricing.",
+            "ACTION ITEMS\n[ ] Send comps / re-underwrite guidance to Art — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "1f16cb74-ef1d-4f4c-bf0c-9f860bbceee1"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
           "bullets": [
@@ -49,6 +63,22 @@
       "notionPageId": "36e0bd65-db0b-8084-bcc0-ca520e36f465",
       "notionUrl": "https://app.notion.com/p/TR-SC-066843-36e0bd65db0b8084bcc0ca520e36f465",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066843 · (Aiken / Holiness Church Rd) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Realtor campaigns + appointments; leads qualified; no negotiation yet",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BUYER & LEAD ACTIVITY",
+            "Interested FB leads planning to check it out; neighbor interest noted",
+            "ACTION ITEMS\n[ ] Continue lead follow-up and work toward first negotiation — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "23801eb8-72d0-4bbb-ad94-94289672cefa"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -563,6 +593,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-062942 · (GA; owned; slope/unbuildable) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Thin margin; discussion around small final drop",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $14.9k → $14.5k",
+            "ACTION ITEMS\n[ ] Drop list price to $14,500 — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "0929502f-bec5-42ce-a97c-1a0fe728f809"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
           "bullets": [
@@ -605,6 +650,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-011737 · (IL) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Buyer still around; discussion to accept lower to close",
+            "THIS WEEK'S DECISIONS",
+            "Counter/accept at $45 (as discussed)",
+            "ACTION ITEMS\n[ ] Counter buyer at $45 and attempt to close — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "e9a8d718-66e1-47fd-826b-a27fc02671aa"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
           "bullets": [
@@ -635,6 +695,17 @@
       "notionPageId": "3580bd65-db0b-80c2-a42c-e9b496f07ca8",
       "notionUrl": "https://app.notion.com/p/TR-SC-063689-3580bd65db0b80c2a42ce9b496f07ca8",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-063689 · (Investor property; not ours) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "57c762ee-b438-41ee-8c62-67cef760dd10"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -676,6 +747,21 @@
       "notionPageId": "3580bd65-db0b-809c-bab6-c34fe9530c42",
       "notionUrl": "https://app.notion.com/p/TR-SC-066541-3580bd65db0b809cbab6c34fe9530c42",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066541 · (Aiken; owned) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "41 DOM · 21 saves; no appointments; likely price issue (per meeting discussion)",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $35,000 → $29,900",
+            "ACTION ITEMS\n[ ] Drop list price to $29,900 — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "1be7d024-bb32-4c2d-9af9-699c0606b7e6"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -722,6 +808,21 @@
       "notionPageId": "3580bd65-db0b-809f-8dc7-cd6eef4398e7",
       "notionUrl": "https://app.notion.com/p/TR-SC-066403-3580bd65db0b809f8dc7cd6eef4398e7",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066403 · (HOA) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "26 DOM · 7 saves (per meeting discussion)",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $59,900 → $49,900",
+            "ACTION ITEMS\n[ ] Drop list price to $49,900 — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "642cce89-0981-411f-8ec7-04ccd750afa8"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -783,6 +884,22 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066399 · (NC HOA) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Low interest; no appointments",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: cancel contract (per prior + reiterated)",
+            "If not canceled immediately, interim drop discussed to ~$25,900",
+            "ACTION ITEMS\n[ ] Cancel contract / remove from active marketing due to low promise (HOA) — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "7a892b52-601c-4249-aa26-82e6152a403c"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
           "bullets": [
@@ -839,6 +956,21 @@
       "notionPageId": "3580bd65-db0b-8031-835e-cb393ac7e443",
       "notionUrl": "https://app.notion.com/p/TR-SC-066266-3580bd65db0b8031835ecb393ac7e443",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066266 · (Fort Washington, MD) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "47 DOM · 88 saves · 36 days to expire (per meeting discussion)",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $149,990 → $95,000 (aggressive “best price forward”)",
+            "ACTION ITEMS\n[ ] Drop list price to $95,000 (best price forward) — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "cc1b3b1b-826f-4383-b551-886c9a8f89cd"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -904,6 +1036,21 @@
       "notionPageId": "3580bd65-db0b-80b0-942d-e264b45a20d4",
       "notionUrl": "https://app.notion.com/p/TR-SC-066089-3580bd65db0b80b0942de264b45a20d4",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066089 · (Maine) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Plan to close purchase and list on MLS",
+            "THIS WEEK'S DECISIONS",
+            "List on MLS at $169,500 (target: keep under $5,000/acre)",
+            "ACTION ITEMS\n[ ] List on MLS at $169,500 (keep under $5k/acre) — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "d4c3f853-89c7-4b97-a1df-f9ba3906e520"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -976,6 +1123,22 @@
       "notionPageId": "3580bd65-db0b-8061-85cd-d301550f1fab",
       "notionUrl": "https://app.notion.com/p/TR-SC-065896-3580bd65db0b806185cdd301550f1fab",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-065896 · (Ohio) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Under contract; perk test pending (purchase not complete yet)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Perk test completion before purchase / MLS",
+            "ACTION ITEMS\n[ ] Complete perk test and proceed with purchase once approved — Pracy-Ann Pryce — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "ceb06ea3-c36f-4308-af61-5f5f40e4a70d"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
