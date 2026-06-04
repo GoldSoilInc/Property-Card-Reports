@@ -1,12 +1,40 @@
 {
-  "lastSynced": "2026-06-04T15:29:37.723003+00:00",
+  "lastSynced": "2026-06-04T18:24:33.191795+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-024751": {
+      "notionPageId": "3750bd65-db0b-8080-903a-ecacc74f5c2d",
+      "notionUrl": "https://app.notion.com/p/TR-SC-024751-3750bd65db0b8080903aecacc74f5c2d",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-024751",
+            "THIS WEEK'S DECISIONS\nReviewed — added to meeting capture after Fireflies mishearing (PR-SC → TR-SC). Details not captured in transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "576670a2-9cfe-4f50-9bf5-65c803080f13"
+        }
+      ]
+    },
     "TR-SC-066583": {
       "notionPageId": "3720bd65-db0b-8012-9a93-f1744caf6aef",
       "notionUrl": "https://app.notion.com/p/TR-SC-066583-3720bd65db0b80129a93f1744caf6aef",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066583 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — linked from meeting capture cleanup (PR-SC → TR-SC). Details not captured in this transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "d325e76f-33bc-44c1-b2e0-2fff5a3022e6"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-06-01",
@@ -123,6 +151,17 @@
       "notionUrl": "https://app.notion.com/p/TR-SC-066346-3640bd65db0b8046a88fc8957e8ef25b",
       "meetings": [
         {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066346 · (Saluda, SC)",
+            "THIS WEEK'S DECISIONS\nReviewed — added to meeting capture after Fireflies mishearing (TR-SE → TR-SC). Details not captured in transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "87b619e1-982d-44be-a78a-d3d268417731"
+        },
+        {
           "type": "Pricing Meeting",
           "date": "2026-06-01",
           "label": "📊 Pricing Meeting — 2026-06-01",
@@ -144,6 +183,17 @@
       "notionPageId": "3640bd65-db0b-8041-b86a-c74d6a464459",
       "notionUrl": "https://app.notion.com/p/TR-SC-066882-3640bd65db0b8041b86ac74d6a464459",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066882 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — linked from meeting capture cleanup (PR-SC → TR-SC). Details not captured in this transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "17b1d823-aa07-4d3e-ad1f-95465b571173"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -177,6 +227,17 @@
       "notionPageId": "3580bd65-db0b-8054-aece-f33aaeedea7c",
       "notionUrl": "https://app.notion.com/p/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-065898",
+            "THIS WEEK'S DECISIONS\nReviewed — explicitly linked from meeting cleanup (was previously missed due to Fireflies ID parsing). Details not captured in this meeting block yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "a7623ccd-91ad-410b-a4f6-dd1e29caa004"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -239,6 +300,17 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-065455 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — linked from meeting capture cleanup (PR-SC → TR-SC). Details not captured in this transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "0d5de6bc-cc35-4bab-a871-131325e064fa"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
           "bullets": [
@@ -278,6 +350,17 @@
       "notionPageId": "3580bd65-db0b-8092-8766-ebfa49a0dd1c",
       "notionUrl": "https://app.notion.com/p/TR-SC-065942-3580bd65db0b80928766ebfa49a0dd1c",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-065942 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — linked from meeting capture cleanup (PR-SC → TR-SC). Details not captured in this transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "dc1a234b-659f-4b74-84e4-6c0d6680fa7b"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -357,6 +440,17 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-065177 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — linked from meeting capture cleanup (PR-SC → TR-SC). Details not captured in this transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "e87397cf-a07c-43cb-be64-31182008631e"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
           "bullets": [
@@ -417,6 +511,17 @@
       "notionPageId": "3580bd65-db0b-8008-a177-ede589f9a5a8",
       "notionUrl": "https://app.notion.com/p/TR-SC-065991-3580bd65db0b8008a177ede589f9a5a8",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-065991 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — linked from meeting capture cleanup (PR-SC → TR-SC). Details not captured in this transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "9da5ea1d-e2ba-453e-947e-2aed88a3e3f6"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
@@ -1384,6 +1489,17 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-066652 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — linked from meeting capture cleanup (PR-SC → TR-SC). Details not captured in this transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "d5c1d920-ae63-4d7f-a42d-430f8ba45899"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
           "bullets": [
@@ -1476,6 +1592,17 @@
       "notionPageId": "3560bd65-db0b-80d2-ab9e-f5f8aff91930",
       "notionUrl": "https://app.notion.com/p/TR-SC-065391-3560bd65db0b80d2ab9ef5f8aff91930",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-03",
+          "label": "📊 Portfolio Review — 2026-06-03",
+          "bullets": [
+            "🏷️ TR-SC-065391 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — linked from meeting capture cleanup (PR-SC → TR-SC). Details not captured in this transaction timeline yet.",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
+          "blockId": "4ad92c96-eb2b-42d0-97e8-42e63ee4c884"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-05-27",
