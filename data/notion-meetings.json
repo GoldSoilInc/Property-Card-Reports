@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-06-06T08:41:20.958132+00:00",
+  "lastSynced": "2026-06-06T11:38:44.813933+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -209,16 +209,7 @@
           "type": "Pricing Meeting",
           "date": "2026-05-20",
           "label": "📊 Pricing Meeting — 2026-05-20",
-          "bullets": [
-            "🏷️ TR-SC-066882 · Harmon Maddox (Rhodesdale, MD) · 3.75 acres · LDS 8.1",
-            "PRICING DECISION",
-            "Final list price: $44,500 (raised from $39,900 per Anshul discussion)",
-            "Strategy: List in MLS + Facebook Marketplace; start with Google Pro imagery (no Street View)",
-            "RATIONALE",
-            "Comps: Not stated",
-            "Why this price: Unrestricted use + strong road frontage; target higher spread",
-            "Demand thesis: Broad allowed-structure set (double-wide allowed; RV allowed w/ limits) expands buyer pool"
-          ],
+          "bullets": [],
           "blockId": "f914850f-3203-4bea-8744-c7c1dd11cb7d"
         }
       ]
