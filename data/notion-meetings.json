@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-06-10T18:34:50.047083+00:00",
+  "lastSynced": "2026-06-10T22:09:31.124474+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -59,6 +59,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-067094 · (Milan, OH) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Feedback: price too high vs comps ($13k–$17k/acre cited)",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pricing stance: list at $299,000 and run a price-drop campaign",
+            "ACTION ITEMS\n[ ] Update listing to $299,000 and run price-drop campaign — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "cc5f0eb2-36bd-4bb5-a251-1b51d76a2be9"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
           "bullets": [
@@ -91,6 +106,22 @@
       "notionPageId": "36e0bd65-db0b-8084-bcc0-ca520e36f465",
       "notionUrl": "https://app.notion.com/p/TR-SC-066843-36e0bd65db0b8084bcc0ca520e36f465",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066843 · (Wagner, SC subdivide) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Appointments set; buyer inquiries include seller financing asks",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $74,900 → $69,500 to lock 1 buyer pre-close",
+            "Seller financing: first two lots must be cash; seller financing only considered for the third lot after cash lots sell",
+            "BUYER & LEAD ACTIVITY",
+            "SC buyer database + FB groups/marketplace posts driving appointments"
+          ],
+          "blockId": "1340ae7c-bba7-457e-af25-a026a51aec83"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -150,6 +181,22 @@
       "notionPageId": "3640bd65-db0b-8046-a88f-c8957e8ef25b",
       "notionUrl": "https://app.notion.com/p/TR-SC-066346-3640bd65db0b8046a88fc8957e8ef25b",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066346 · (Saluda, SC) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Title company indicates property may be in someone else’s name; deed copy requested; seller can’t locate deed",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Title issue flagged as blocker.",
+            "BLOCKERS",
+            "Title issue: mismatch in ownership name + missing deed copy/explanation",
+            "ACTION ITEMS\n[ ] Provide deed copy + written explanation for title company re: ownership name mismatch — Pracy-Ann Pryce — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "711dcfe3-61e3-4ce6-ac38-9bb4fb173fc5"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -227,6 +274,21 @@
       "notionPageId": "3580bd65-db0b-8054-aece-f33aaeedea7c",
       "notionUrl": "https://app.notion.com/p/TR-SC-065898-3580bd65db0b8054aecef33aaeedea7c",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-065898 · (wetlands) · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "~70% wetlands; neighbor mentioned reviewing by June 15, but team won’t wait",
+            "THIS WEEK'S DECISIONS",
+            "Relist at $28,900 for fresh set of eyes / quick liquidation",
+            "ACTION ITEMS\n[ ] Relist at $28,900 — Gabriel Santos — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "d0352cd7-2cf1-4eb0-8be5-9184c4572e96"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -680,6 +742,22 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-063088 · (Barnwell) · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "MLS traction low; better FB lead flow than MLS",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $18,900 → $17,900 (final)",
+            "Strategic intent: validate true Barnwell clearing price; utilities present (per discussion)",
+            "BUYER & LEAD ACTIVITY",
+            "Appointment set from FB; prior realtor had indicated $17k range previously"
+          ],
+          "blockId": "ccab52d5-cec3-48e0-8baa-f5bc9dbd7e68"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
           "bullets": [
@@ -696,6 +774,21 @@
       "notionPageId": "3580bd65-db0b-80cd-9023-d9ad6b22d40a",
       "notionUrl": "https://app.notion.com/p/TR-SC-062942-3580bd65db0b80cd9023d9ad6b22d40a",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-062942 · (GA; slope) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Repeated feedback: steep slope; appointment scheduled",
+            "THIS WEEK'S DECISIONS",
+            "Relist at $13,999 (fresh eyes)",
+            "ACTION ITEMS\n[ ] Relist at $13,999 — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "5efe3385-3c91-48c4-b6ba-dc5a9326ea51"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -854,6 +947,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066541 · (Aiken, SC; owned) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Neighbor offered $5k; low traction despite campaigns",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $29,900 → $25,900",
+            "ACTION ITEMS\n[ ] Drop list price to $25,900 — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "b264580b-0650-4ce9-9f7c-1cfa0bb358c2"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
           "bullets": [
@@ -913,6 +1021,21 @@
       "notionPageId": "3580bd65-db0b-809f-8dc7-cd6eef4398e7",
       "notionUrl": "https://app.notion.com/p/TR-SC-066403-3580bd65db0b809f8dc7cd6eef4398e7",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066403 · (HOA lot) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "No meaningful leads; 33 days to expire (per meeting)",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $49,900 → $48,900 (final attempt)",
+            "ACTION ITEMS\n[ ] Drop list price to $48,900 — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "c41a20f8-dffd-456d-95a0-26776023aae7"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -989,6 +1112,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066399 · (HOA lot) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "No leads; 33 days to expire (per meeting)",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: let expire / discontinue HOA lots strategy (no further investment)",
+            "ACTION ITEMS\n[ ] Let contract expire / discontinue marketing due to HOA strategy change — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "1cd1969a-56b5-4a05-bbcc-ecb777a13e38"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
           "bullets": [
@@ -1061,6 +1199,22 @@
       "notionPageId": "3580bd65-db0b-8031-835e-cb393ac7e443",
       "notionUrl": "https://app.notion.com/p/TR-SC-066266-3580bd65db0b8031835ecb393ac7e443",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066266 · (Fort Washington, MD) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Buyer concerns: conservation / tree canopy + two streams → buildability/perk risk",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $95,000 → $74,500 (liquidate for cash flow)",
+            "Relist: relist at new price to get fresh eyes",
+            "ACTION ITEMS\n[ ] Drop list price to $74,500 — Jose Membreno — Due:\n[ ] Relist at $74,500 to get fresh eyes — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "c53067d4-3cbd-4a51-9e96-5812d0c68223"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -1228,6 +1382,22 @@
       "notionPageId": "3580bd65-db0b-8061-85cd-d301550f1fab",
       "notionUrl": "https://app.notion.com/p/TR-SC-065896-3580bd65db0b806185cdd301550f1fab",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-065896 · (Ohio) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Under contract $4,000 · perk test in progress (sent to health dept)",
+            "Buyer reported steep slope / “not flat” (unbuildable concern)",
+            "THIS WEEK'S DECISIONS",
+            "Strategic pivot: renegotiate purchase price to $2,000 max due to slope/unbuildable concerns; cancel if seller won’t accept",
+            "BLOCKERS",
+            "Underwriting miss: listing described as flat vs. actual steep slope"
+          ],
+          "blockId": "d0b490dd-7ca5-4f77-845b-bef3bda7459a"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -1487,6 +1657,21 @@
       "notionPageId": "3580bd65-db0b-80d7-a342-cb19437e4b41",
       "notionUrl": "https://app.notion.com/p/TR-SC-066652-3580bd65db0b80d7a342cb19437e4b41",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066652 · (slope) · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "Huge slope; limited traction (two calls, two weeks ago)",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $47,500 → $39,900",
+            "ACTION ITEMS\n[ ] Drop list price to $39,900 — Gabriel Santos — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "a10a7ea4-4bcd-42b2-a81e-d38a93cbfeda"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
