@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-06-11T10:48:18.333706+00:00",
+  "lastSynced": "2026-06-11T16:13:23.662444+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -24,6 +24,17 @@
       "notionPageId": "3720bd65-db0b-8012-9a93-f1744caf6aef",
       "notionUrl": "https://app.notion.com/p/TR-SC-066583-3720bd65db0b80129a93f1744caf6aef",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066583 · (Vermont) · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Recreational-buyer positioning; inbound inquiries.",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "d29799ff-ef2b-469c-ac43-216387c49b06"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -232,6 +243,17 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066882 · (Rhodesdale, MD) · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change (client revisiting; price OK).",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "9e05208b-60c6-484c-9c95-608906759bcb"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
           "bullets": [
@@ -362,6 +384,19 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-065455 · (access issues) · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Waiting before next price adjustment.",
+            "BLOCKERS",
+            "Access concerns for buyers (per discussion)",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "fbbbd8f0-6ce4-4565-b274-ca1e21fdac65"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
           "bullets": [
@@ -412,6 +447,17 @@
       "notionPageId": "3580bd65-db0b-8092-8766-ebfa49a0dd1c",
       "notionUrl": "https://app.notion.com/p/TR-SC-065942-3580bd65db0b80928766ebfa49a0dd1c",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-065942 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "db612e43-8d3c-471d-89dd-2e6a58532cb3"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -502,6 +548,17 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-065177 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change (recent price drop already done; awaiting buyer response).",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "1aeb0f4e-3469-4717-8e71-67410909994c"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
           "bullets": [
@@ -573,6 +630,17 @@
       "notionPageId": "3580bd65-db0b-8008-a177-ede589f9a5a8",
       "notionUrl": "https://app.notion.com/p/TR-SC-065991-3580bd65db0b8008a177ede589f9a5a8",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-065991 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change (offer extension in progress; waiting on seller).",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "6b8b0056-079e-4ee7-991b-8bc01f4258a5"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -848,6 +916,17 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-011737 · (IL) · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change.",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "39f87feb-6d50-4381-a89c-b07c8a804d7f"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
           "bullets": [
@@ -893,6 +972,17 @@
       "notionPageId": "3580bd65-db0b-80c2-a42c-e9b496f07ca8",
       "notionUrl": "https://app.notion.com/p/TR-SC-063689-3580bd65db0b80c2a42ce9b496f07ca8",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-063689 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nDiscussed briefly — no explicit decision captured in transcript excerpt.",
+            "🎤 Source: https://app.fireflies.ai/view/01KT6ZRFPMKDE5R12NBFSS7JWC"
+          ],
+          "blockId": "b5f95841-2a0f-40a3-8ff5-8b3d603f381b"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
@@ -1295,6 +1385,22 @@
       "notionPageId": "3580bd65-db0b-80b0-942d-e264b45a20d4",
       "notionUrl": "https://app.notion.com/p/TR-SC-066089-3580bd65db0b80b0942de264b45a20d4",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-10",
+          "label": "📊 Portfolio Review — 2026-06-10",
+          "bullets": [
+            "🏷️ TR-SC-066089 · (Maine, York County) · 34.55 acres · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Trending well on Facebook; appointments set (Friday)",
+            "Waiting on deed/closing packet to proceed with MLS listing (virtual video ready to add once deed is available)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Need deed / closing packet (unrecorded deed copy acceptable) for MLS listing docs",
+            "ACTION ITEMS\n[ ] Obtain and provide a copy of the unrecorded deed / closing packet to enable MLS listing — Pracy-Ann Pryce — Due:\n[ ] Prepare/update MLS listing and add virtual video once deed is s…"
+          ],
+          "blockId": "fd912e64-a6ad-4f7f-8fb8-bbca98f488cc"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-03",
