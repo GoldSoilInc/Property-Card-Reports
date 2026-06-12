@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-06-12T10:23:37.645318+00:00",
+  "lastSynced": "2026-06-12T15:29:19.633044+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -17,6 +17,28 @@
             "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
           ],
           "blockId": "576670a2-9cfe-4f50-9bf5-65c803080f13"
+        }
+      ]
+    },
+    "TR-SC-067098": {
+      "notionPageId": "3720bd65-db0b-8031-a9ed-e4b2bd362082",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067098-3720bd65db0b8031a9ede4b2bd362082",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-06-11",
+          "label": "📊 Pricing Meeting — 2026-06-11",
+          "bullets": [
+            "🏷️ TR-SC-067098 · Kenneth Bailey · 6.56 acres · LDS 7.1",
+            "PRICING DECISION",
+            "Final list price: $84,900 · Contract price: $42,000",
+            "Strategy: List on MLS + Facebook Marketplace, leaning on riverfront + proximity to Nashville.",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Market value discussed as $85,000; list price set just under that.",
+            "Demand thesis: Riverfront in a strong TN market should support buyer demand."
+          ],
+          "blockId": "a3b2496f-1ea5-420f-b0b2-56cabd529da7"
         }
       ]
     },
