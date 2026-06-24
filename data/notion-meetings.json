@@ -1,8 +1,30 @@
 {
-  "lastSynced": "2026-06-24T12:23:08.102627+00:00",
+  "lastSynced": "2026-06-24T16:26:25.283222+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-066269": {
+      "notionPageId": "3890bd65-db0b-80fb-aef6-d32dd9e3cf1d",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066269-3890bd65db0b80fbaef6d32dd9e3cf1d",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-06-24",
+          "label": "📊 Pricing Meeting — 2026-06-24",
+          "bullets": [
+            "🏷️ TR-SC-066269 · Wake County, NC · 17.67 acres · LDS (not stated)",
+            "PRICING DECISION",
+            "Final list price: $590,000–$595,000 · Contract price: $450,000 · Floor: not stated · Min spread: ~$100,000 target",
+            "Strategy: List off-MLS (NC wholesale/MLS constraints) and sell via Facebook + website + realtor outreach.",
+            "Anshul’s words: “I would list it for 590 or 595.”",
+            "RATIONALE",
+            "Comps: 14.91 acres currently listed ~ $46k/acre (listing price ~$699k); comp mentioned sold 2026-03-06 for $722,000 (water views noted).",
+            "Why this price: create room for ~$100k spread while staying below existing active listing pricing."
+          ],
+          "blockId": "8c379a67-de48-4fda-909d-c50769d8b041"
+        }
+      ]
+    },
     "TR-SC-024751": {
       "notionPageId": "3750bd65-db0b-8080-903a-ecacc74f5c2d",
       "notionUrl": "https://app.notion.com/p/TR-SC-024751-3750bd65db0b8080903aecacc74f5c2d",
