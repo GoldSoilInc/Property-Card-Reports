@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-06-25T12:27:01.154443+00:00",
+  "lastSynced": "2026-06-25T16:30:23.634372+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -1031,6 +1031,18 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-24",
+          "label": "📊 Portfolio Review — 2026-06-24",
+          "bullets": [
+            "🏷️ TR-SC-062942 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: small adjustment ($300–$500) discussed due to slope-related objections",
+            "🎤 Source: https://app.fireflies.ai/view/01KVAWB9XMYG8PVYEHKPKFMQMD"
+          ],
+          "blockId": "fb043ba8-8c73-4f01-8291-0ecb408a1edd"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-10",
           "label": "📊 Portfolio Review — 2026-06-10",
           "bullets": [
@@ -1101,6 +1113,19 @@
       "notionPageId": "3580bd65-db0b-801d-b1d7-fe808ffd1903",
       "notionUrl": "https://app.notion.com/p/TR-SC-011737-3580bd65db0b801db1d7fe808ffd1903",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-24",
+          "label": "📊 Portfolio Review — 2026-06-24",
+          "bullets": [
+            "🏷️ TR-SC-011737 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BUYER & LEAD ACTIVITY",
+            "Buyer stopped responding (per transcript)",
+            "🎤 Source: https://app.fireflies.ai/view/01KVAWB9XMYG8PVYEHKPKFMQMD"
+          ],
+          "blockId": "dfe77bdc-29ac-4a08-9fd1-d6d5892e071c"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-10",
@@ -1224,6 +1249,19 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-06-24",
+          "label": "📊 Portfolio Review — 2026-06-24",
+          "bullets": [
+            "🏷️ TR-SC-066541 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Ongoing low buyer traction noted in prior weeks (per transcript: “tough” / no qualified leads)",
+            "🎤 Source: https://app.fireflies.ai/view/01KVAWB9XMYG8PVYEHKPKFMQMD"
+          ],
+          "blockId": "cbc7c52d-b2af-405c-ae66-e840c6af5c99"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-06-10",
           "label": "📊 Portfolio Review — 2026-06-10",
           "bullets": [
@@ -1298,6 +1336,19 @@
       "notionPageId": "3580bd65-db0b-809f-8dc7-cd6eef4398e7",
       "notionUrl": "https://app.notion.com/p/TR-SC-066403-3580bd65db0b809f8dc7cd6eef4398e7",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-06-24",
+          "label": "📊 Portfolio Review — 2026-06-24",
+          "bullets": [
+            "🏷️ TR-SC-066403 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Discussed need to negotiate seller extension (possibly at ~half price) due to low traction (per transcript)",
+            "🎤 Source: https://app.fireflies.ai/view/01KVAWB9XMYG8PVYEHKPKFMQMD"
+          ],
+          "blockId": "c436634c-5be5-46fb-8e36-a8c6a2845100"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-10",
