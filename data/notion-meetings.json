@@ -1,11 +1,55 @@
 {
-  "lastSynced": "2026-07-20T11:07:07.640521+00:00",
+  "lastSynced": "2026-07-20T14:20:12.640882+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
-    "TR-SC-066269": {
+    "TR-SC-067601": {
+      "notionPageId": "3a30bd65-db0b-80f6-b438-f0ce979c6b4a",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067601-3a30bd65db0b80f6b438f0ce979c6b4a",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-06-24",
+          "label": "📊 Pricing Meeting — 2026-06-24",
+          "bullets": [
+            "🏷️ TR-SC-066269 · Wake County, NC · 17.67 acres · LDS (not stated)",
+            "PRICING DECISION",
+            "Final list price: $590,000–$595,000 · Contract price: $450,000 · Floor: not stated · Min spread: ~$100,000 target",
+            "Strategy: List off-MLS (NC wholesale/MLS constraints) and sell via Facebook + website + realtor outreach.",
+            "Anshul’s words: “I would list it for 590 or 595.”",
+            "RATIONALE",
+            "Comps: 14.91 acres currently listed ~ $46k/acre (listing price ~$699k); comp mentioned sold 2026-03-06 for $722,000 (water views noted).",
+            "Why this price: create room for ~$100k spread while staying below existing active listing pricing."
+          ],
+          "blockId": "3a30bd65-db0b-8089-9d23-f047268edeb5"
+        }
+      ]
+    },
+    "TR-SC-067604": {
+      "notionPageId": "3a30bd65-db0b-80bd-9b26-dc5aafb07c42",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067604-3a30bd65db0b80bd9b26dc5aafb07c42",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-06-24",
+          "label": "📊 Pricing Meeting — 2026-06-24",
+          "bullets": [
+            "🏷️ TR-SC-066269 · Wake County, NC · 17.67 acres · LDS (not stated)",
+            "PRICING DECISION",
+            "Final list price: $590,000–$595,000 · Contract price: $450,000 · Floor: not stated · Min spread: ~$100,000 target",
+            "Strategy: List off-MLS (NC wholesale/MLS constraints) and sell via Facebook + website + realtor outreach.",
+            "Anshul’s words: “I would list it for 590 or 595.”",
+            "RATIONALE",
+            "Comps: 14.91 acres currently listed ~ $46k/acre (listing price ~$699k); comp mentioned sold 2026-03-06 for $722,000 (water views noted).",
+            "Why this price: create room for ~$100k spread while staying below existing active listing pricing."
+          ],
+          "blockId": "3a30bd65-db0b-80b1-84ba-fdef5a9b5c6c"
+        }
+      ]
+    },
+    "TR-SC-06760": {
       "notionPageId": "3890bd65-db0b-80fb-aef6-d32dd9e3cf1d",
-      "notionUrl": "https://app.notion.com/p/TR-SC-066269-3890bd65db0b80fbaef6d32dd9e3cf1d",
+      "notionUrl": "https://app.notion.com/p/TR-SC-06760-3890bd65db0b80fbaef6d32dd9e3cf1d",
       "meetings": [
         {
           "type": "Pricing Meeting",
