@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-07-22T17:25:55.097844+00:00",
+  "lastSynced": "2026-07-22T21:15:03.371173+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -7,6 +7,21 @@
       "notionPageId": "3a30bd65-db0b-80f6-b438-f0ce979c6b4a",
       "notionUrl": "https://app.notion.com/p/TR-SC-067601-3a30bd65db0b80f6b438f0ce979c6b4a",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-07-22",
+          "label": "📊 Portfolio Review — 2026-07-22",
+          "bullets": [
+            "🏷️ TR-SC-067601 · (SC; new) · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "New property (1 day)",
+            "BUYER & LEAD ACTIVITY",
+            "Neighbor offer: $18,400 (declined)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KY55SVVTTMEN2P171VN08W7V"
+          ],
+          "blockId": "6f160107-4157-49b0-8e6b-febab4be656b"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-06-24",
@@ -75,6 +90,17 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-07-22",
+          "label": "📊 Portfolio Review — 2026-07-22",
+          "bullets": [
+            "🏷️ TR-SC-024751 · (Kristen lot) · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: https://app.fireflies.ai/view/01KY55SVVTTMEN2P171VN08W7V"
+          ],
+          "blockId": "2e343e8e-4fbb-46ba-9651-831ab08ffefd"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-07-01",
           "label": "📊 Portfolio Review — 2026-07-01",
           "bullets": [
@@ -105,6 +131,22 @@
       "notionPageId": "3720bd65-db0b-8031-a9ed-e4b2bd362082",
       "notionUrl": "https://app.notion.com/p/TR-SC-067098-3720bd65db0b8031a9ede4b2bd362082",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-07-22",
+          "label": "📊 Portfolio Review — 2026-07-22",
+          "bullets": [
+            "🏷️ TR-SC-067098 · (TN) · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM · Saves: 35 days · 23 saves",
+            "BUYER & LEAD ACTIVITY",
+            "2 qualified clients this week; both passed (price too high; slope/buildability)",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: $65,900 → $59,900",
+            "ACTION ITEMS"
+          ],
+          "blockId": "5239b37e-b906-4788-958b-e5c6c3de1bfb"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-01",
@@ -1145,6 +1187,22 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-07-22",
+          "label": "📊 Portfolio Review — 2026-07-22",
+          "bullets": [
+            "🏷️ TR-SC-063088 · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM · Saves: 48 days · 8 saves",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Visibility: for-sale signage discussed as a lever",
+            "ACTION ITEMS",
+            "Add for-sale signs to lots (as discussed) — Gabriel Santos — Due:"
+          ],
+          "blockId": "3e40afff-d0a1-4bdb-81cc-ce9f50bc5537"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-07-01",
           "label": "📊 Portfolio Review — 2026-07-01",
           "bullets": [
@@ -1192,6 +1250,21 @@
       "notionPageId": "3580bd65-db0b-80cd-9023-d9ad6b22d40a",
       "notionUrl": "https://app.notion.com/p/TR-SC-062942-3580bd65db0b80cd9023d9ad6b22d40a",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-07-22",
+          "label": "📊 Portfolio Review — 2026-07-22",
+          "bullets": [
+            "🏷️ TR-SC-062942 · (GA) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "DOM · Saves: 39 days · 57 saves",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "ACTION ITEMS",
+            "Reassess next week; consider a price drop if no new traction — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KY55SVVTTMEN2P171VN08W7V"
+          ],
+          "blockId": "e0b46280-45e9-4737-aefb-d776da2284b4"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-24",
@@ -1276,6 +1349,21 @@
       "notionPageId": "3580bd65-db0b-801d-b1d7-fe808ffd1903",
       "notionUrl": "https://app.notion.com/p/TR-SC-011737-3580bd65db0b801db1d7fe808ffd1903",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-07-22",
+          "label": "📊 Portfolio Review — 2026-07-22",
+          "bullets": [
+            "🏷️ TR-SC-011737 · (IL; owned ~3 years) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Mentioned as IL property owned ~3 years; investor-based work ongoing; neighbor campaign expected",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "ACTION ITEMS",
+            "Launch/confirm neighbor campaign is running — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KY55SVVTTMEN2P171VN08W7V"
+          ],
+          "blockId": "8654a33a-e9fa-4cd0-8a93-ba10eaf30a84"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-01",
@@ -2369,6 +2457,22 @@
       "notionPageId": "3580bd65-db0b-801f-96b0-c61686181702",
       "notionUrl": "https://app.notion.com/p/TR-SC-066142-3580bd65db0b801f96b0c61686181702",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-07-22",
+          "label": "📊 Portfolio Review — 2026-07-22",
+          "bullets": [
+            "🏷️ TR-SC-066142 · (Holiness Church / Aiken mention) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "DOM · Saves: 14 days · 18 saves",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BUYER & LEAD ACTIVITY",
+            "From FB group: someone planning to check it out this weekend (per transcript)",
+            "ACTION ITEMS",
+            "Continue monitoring; consider a small price drop next week if no progress — Jose Membreno — Due:"
+          ],
+          "blockId": "0c918c15-9e34-4afc-bf55-30288fee8523"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-01",
