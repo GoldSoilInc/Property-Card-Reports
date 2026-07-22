@@ -626,7 +626,7 @@ async function loadFromSheets() {
   }
   if (pdRows.length > 0) { priceDropData = pdRows.filter(r => r['Listing #']); pdOk = true; }
   if (campRows.length > 0) { outboundLeads = campRows.filter(r => r['The Market Hub #']); campOk = true; }
-  if (zillowRows.length > 0) { zillowData = zillowRows.filter(r => r['Listing #']); zillowOk = true; }
+  if (zillowRows.length > 0) { zillowData = zillowRows.filter(r => r['The Market Hub #']); zillowOk = true; }
   if (dispoRows.length > 0) {
     dispoData = dispoRows.filter(r => r['The Market Hub #'] || r['Listing #']);
     dispoOk = true;
@@ -770,20 +770,65 @@ function enrichListingsFromPriceDrop() {
   });
 }
 
+// Parse the Zillow "Snapshot Date" (e.g. "Tue Apr 28 2026 00:00:00 GMT-0500 (Central Daylight Time)")
+function parseZDate(v) {
+  if (!v) return null;
+  const d = new Date(v.toString().replace(/\s*\([^)]*\)\s*$/, '').trim()); // drop "(Central Daylight Time)"
+  return isNaN(d) ? null : d;
+}
+
 function enrichListingsFromZillow() {
   if (!zillowOk || zillowData.length === 0) return;
+  const n = v => (v !== null && v !== undefined && v !== '' && !isNaN(parseFloat(v))) ? parseFloat(v) : null;
+  const norm = s => (s || '').toString().replace(/\s+/g, ' ').trim();
+
+  // Group all snapshots by listing (The Market Hub #), one pass.
+  const byListing = {};
+  zillowData.forEach(r => {
+    const key = norm(r['The Market Hub #']);
+    if (!key) return;
+    (byListing[key] = byListing[key] || []).push(r);
+  });
+
   listings.forEach(l => {
     if (!l.mainListing) return;
-    const zrow = zillowData.find(r => (gv(r, 'Listing #') || '').toString().trim() === l.mainListing.toString().trim());
-    if (!zrow) return;
-    const n = v => (v !== null && v !== undefined && v !== '' && !isNaN(parseFloat(v))) ? parseFloat(v) : null;
-    // Property Performance Report is source of truth for saves/views/dom — only fill from Zillow CSV if Property Performance had no value
-    if (l.saves  === null && n(zrow['Zillow Saves']) !== null) l.saves  = n(zrow['Zillow Saves']);
-    if (l.zViews === null && n(zrow['Zillow Views']) !== null) l.zViews = n(zrow['Zillow Views']);
-    if (l.dom    === null && n(zrow['MLS DOM'])      !== null) l.dom    = n(zrow['MLS DOM']);
-    // Link and capture date are Zillow-CSV-only
-    if (zrow['Zillow Link'] && !l.zillowLink) l.zillowLink = zrow['Zillow Link'];
-    if (zrow['Date Captured']) l.zillowCaptured = zrow['Date Captured'];
+    const rows = byListing[norm(l.mainListing)];
+    if (!rows || rows.length === 0) return;
+
+    // Build a clean, de-duplicated, chronologically sorted series.
+    const series = rows
+      .map(r => ({
+        date: parseZDate(r['Snapshot Date']),
+        views: n(r['Views']),
+        saves: n(r['Saves']),
+        dom: n(r['Days on Market']),
+        link: r['Zillow Link'] || ''
+      }))
+      .filter(p => p.date && (p.views !== null || p.saves !== null))
+      .sort((a, b) => a.date - b.date);
+
+    // Collapse multiple snapshots on the same calendar day — keep the last.
+    const dedup = [];
+    series.forEach(p => {
+      const key = p.date.toISOString().slice(0, 10);
+      const last = dedup[dedup.length - 1];
+      if (last && last._key === key) dedup[dedup.length - 1] = { ...p, _key: key };
+      else dedup.push({ ...p, _key: key });
+    });
+
+    l.zillowSeries = dedup;
+    const latest = dedup[dedup.length - 1];
+    if (!latest) return;
+
+    // Property Performance Report stays source of truth for saves/views/dom —
+    // only backfill from the latest Zillow snapshot when PPR had nothing.
+    if (l.saves  === null && latest.saves !== null) l.saves  = latest.saves;
+    if (l.zViews === null && latest.views !== null) l.zViews = latest.views;
+    if (l.dom    === null && latest.dom   !== null) l.dom    = latest.dom;
+
+    const linkRow = dedup.find(p => p.link) || latest;
+    if (linkRow.link && !l.zillowLink) l.zillowLink = linkRow.link;
+    l.zillowCaptured = latest.date.toISOString().slice(0, 10);
   });
 }
 
@@ -2231,6 +2276,24 @@ function showCard(id) {
             <div class="mc-s">${l.zViews !== null ? 'Total views' : 'Not in report yet'}</div>
           </div>
         </div>
+        ${(() => {
+          const s = l.zillowSeries || [];
+          if (s.length < 2) {
+            return `<div class="muted" style="margin-top:12px;font-size:13px">${s.length === 1 ? 'Only one Zillow snapshot so far — trend appears after the next capture.' : 'No Zillow snapshot history yet — trend appears once snapshots accrue.'}</div>`;
+          }
+          const first = s[0].date, last = s[s.length - 1].date;
+          const span = `${fmtDate(first.toISOString())} – ${fmtDate(last.toISOString())} · ${s.length} snapshots`;
+          return `
+            <div style="display:flex;align-items:center;justify-content:space-between;margin:14px 0 6px">
+              <div class="mc-l" style="margin:0">Views &amp; saves trend</div>
+              <div style="display:flex;gap:14px;font-size:11px;color:var(--text3)">
+                <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#378add;display:inline-block"></span>Views</span>
+                <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:14px;height:2px;background:#ef9f27;display:inline-block"></span>Saves</span>
+              </div>
+            </div>
+            <div class="chart-box" style="height:180px"><canvas id="zTrend_${id}"></canvas></div>
+            <div class="mc-s" style="margin-top:6px">${span}</div>`;
+        })()}
       </div>
 
       <!-- EXPOSURE INDEX -->
@@ -2512,7 +2575,7 @@ function showCard(id) {
     }
     // If row is on screen but the card extends below the fold, do nothing — user can scroll naturally.
   }, 50);
-  setTimeout(() => renderCharts(id, savesData, priceData), 150);
+  setTimeout(() => { renderCharts(id, savesData, priceData); renderZillowTrend(id, l.zillowSeries || []); }, 150);
 }
 
 function closeCard() {
@@ -2656,6 +2719,42 @@ function renderCharts(id, savesData, priceData) {
       }
     });
   }
+}
+
+function renderZillowTrend(id, series) {
+  const el = document.getElementById('zTrend_' + id);
+  if (!el || !series || series.length < 2) return;
+  const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const textColor = dark ? '#9b9a94' : '#888780';
+  const gridColor = dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+
+  const labels = series.map(p => p.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+  const views  = series.map(p => p.views);
+  const saves  = series.map(p => p.saves);
+  const dense  = series.length > 24; // hide markers when there are many daily points
+
+  activeCharts['zt_' + id] = new Chart(el, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Views', data: views, yAxisID: 'yV', borderColor: '#378add', backgroundColor: 'rgba(55,138,221,0.08)',
+          borderWidth: 2, pointRadius: dense ? 0 : 2.5, pointHoverRadius: 4, pointBackgroundColor: '#378add', tension: 0.3, fill: true, spanGaps: true },
+        { label: 'Saves', data: saves, yAxisID: 'yS', borderColor: '#ef9f27', backgroundColor: 'transparent',
+          borderWidth: 2, pointRadius: dense ? 0 : 2.5, pointHoverRadius: 4, pointBackgroundColor: '#ef9f27', tension: 0.3, fill: false, spanGaps: true }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { title: items => items[0]?.label || '' } } },
+      scales: {
+        x: { ticks: { color: textColor, font: { size: 9 }, maxTicksLimit: 8, autoSkip: true, maxRotation: 0 }, grid: { color: gridColor } },
+        yV: { position: 'left',  beginAtZero: true, ticks: { color: '#378add', font: { size: 9 } }, grid: { color: gridColor }, title: { display: true, text: 'Views', color: '#378add', font: { size: 9 } } },
+        yS: { position: 'right', beginAtZero: true, ticks: { color: '#ef9f27', font: { size: 9 }, precision: 0 }, grid: { display: false }, title: { display: true, text: 'Saves', color: '#ef9f27', font: { size: 9 } } }
+      }
+    }
+  });
 }
 
 function destroyCharts() {
