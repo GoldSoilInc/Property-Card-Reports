@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-08-05T21:17:58.798946+00:00",
+  "lastSynced": "2026-08-05T23:06:24.487458+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -7,6 +7,20 @@
       "notionPageId": "3a30bd65-db0b-80f6-b438-f0ce979c6b4a",
       "notionUrl": "https://app.notion.com/p/TR-SC-067601-3a30bd65db0b80f6b438f0ce979c6b4a",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-067601 · Hemingway, SC · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "2-part subdivide: Jose has 3.95; Gabriel has 1.8 (same seller)",
+            "Lead flow: buyers visiting this weekend; 68 days left (per transcript)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: Portfolio Review & Marketing Updates (Fireflies)"
+          ],
+          "blockId": "abcf677a-4e0f-4f3b-946e-2e4a5b3e1259"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-22",
@@ -44,6 +58,22 @@
       "notionPageId": "3a30bd65-db0b-80bd-9b26-dc5aafb07c42",
       "notionUrl": "https://app.notion.com/p/TR-SC-067604-3a30bd65db0b80bd9b26dc5aafb07c42",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-067604 · Hemingway, SC · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Lead flow: 2–3 good leads from FB realtor groups; 2 appointments set",
+            "Not on MLS yet (per transcript)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "BLOCKERS",
+            "Dashboard fields appeared blank (title status / type of deal) — needs investigation",
+            "ACTION ITEMS\n[ ] Confirm/resolve why title status / type-of-deal fields appear blank on the dashboard; fix if it's a data or tooling issue — Art Oaing — Due:"
+          ],
+          "blockId": "a82d70c7-5334-4486-bc2a-9f3549712785"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-06-24",
@@ -90,6 +120,21 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-024751 · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "42 days · 3 saves (per transcript)",
+            "1 lead slow to decide; follow-ups ongoing",
+            "New texting template generated more appointments (per transcript)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: Portfolio Review & Marketing Updates (Fireflies)"
+          ],
+          "blockId": "00acc8bc-31c6-4c91-adaf-dfb4bfb03a37"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-07-22",
           "label": "📊 Portfolio Review — 2026-07-22",
           "bullets": [
@@ -131,6 +176,22 @@
       "notionPageId": "3720bd65-db0b-8031-a9ed-e4b2bd362082",
       "notionUrl": "https://app.notion.com/p/TR-SC-067098-3720bd65db0b8031a9ede4b2bd362082",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-067098 · Smithville TN · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM · Saves: 50 days · 27 saves",
+            "Under contract: $42,000 · Listed: $52,900 (pre-change)",
+            "Qualified leads backed out due to slope",
+            "THIS WEEK'S DECISIONS",
+            "Price drop: (not stated) → $49,900",
+            "Underwriting fix: LDS recalculated to 6.2; max offer should have been $32,000 (per Anshul + Art)"
+          ],
+          "blockId": "9c047843-3311-471e-bc6c-c119c538a22c"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-22",
@@ -278,6 +339,22 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-067094 · (Ohio) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Days to expire: 34 (per transcript)",
+            "Under contract: $250k",
+            "Channels active: neighbor buyer base, Facebook (no replies on FB groups)",
+            "THIS WEEK'S DECISIONS\nPrice drop: (not stated) → $265k (final adjustment).",
+            "BUYER & LEAD ACTIVITY",
+            "No traction from FB groups noted"
+          ],
+          "blockId": "44e7fd89-c1f8-404d-9265-60f62d55f91e"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-07-01",
           "label": "📊 Portfolio Review — 2026-07-01",
           "bullets": [
@@ -356,6 +433,20 @@
       "notionPageId": "36e0bd65-db0b-8084-bcc0-ca520e36f465",
       "notionUrl": "https://app.notion.com/p/TR-SC-066843-36e0bd65db0b8084bcc0ca520e36f465",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-066843 · Holiness Church Rd — Lot 2 · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Offer on the table: $45k (trying to negotiate up)",
+            "THIS WEEK'S DECISIONS\nPrice drop: (not stated) → $57,900 (Anshul target; “close at 55”).",
+            "ACTION ITEMS\n[ ] Update listing price to $57,900 — Sheila Oaing — Due:",
+            "🎤 Source: Portfolio Review & Marketing Updates (Fireflies)"
+          ],
+          "blockId": "68fe1867-4bfe-47a9-8cf0-b47e7f9add77"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-06-24",
@@ -1187,6 +1278,20 @@
       "meetings": [
         {
           "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-063088 · Barnwell SC · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "62 days · 12 saves (per transcript)",
+            "Qualified lead in motion; requested call-back later",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: Portfolio Review & Marketing Updates (Fireflies)"
+          ],
+          "blockId": "957cf379-afea-4153-8eea-778afb48e049"
+        },
+        {
+          "type": "Portfolio Review",
           "date": "2026-07-22",
           "label": "📊 Portfolio Review — 2026-07-22",
           "bullets": [
@@ -1250,6 +1355,21 @@
       "notionPageId": "3580bd65-db0b-80cd-9023-d9ad6b22d40a",
       "notionUrl": "https://app.notion.com/p/TR-SC-062942-3580bd65db0b80cd9023d9ad6b22d40a",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-062942 · Valhalla Dr, Cleveland GA · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "DOM · Saves: 53 days · 52 saves",
+            "Feedback theme: slope makes foundation/build hard (per transcript)",
+            "THIS WEEK'S DECISIONS\nPrice drop: small adjustment (~$200) discussed.",
+            "ACTION ITEMS\n[ ] Do small price drop (~$200) to address slope feedback — Sheila Oaing — Due:",
+            "🎤 Source: Portfolio Review & Marketing Updates (Fireflies)"
+          ],
+          "blockId": "9cb9fee1-f30c-4cf3-aa53-d11e1b4618fa"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-22",
@@ -1349,6 +1469,21 @@
       "notionPageId": "3580bd65-db0b-801d-b1d7-fe808ffd1903",
       "notionUrl": "https://app.notion.com/p/TR-SC-011737-3580bd65db0b801db1d7fe808ffd1903",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-011737 · Blue Stem Dr, Elkhart IL · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Prior neighbor offer: $5,800 (declined previously due to loss)",
+            "THIS WEEK'S DECISIONS",
+            "Try again with neighbor; push $6,500 and/or offer seller financing",
+            "ACTION ITEMS\n[ ] Reach out to neighbor about offer ($6,500 target; accept $5,800 if needed) and offer seller financing option — Sheila Oaing — Due:\n[ ] If neighbor declines, coordinate signboard on…",
+            "🎤 Source: Portfolio Review & Marketing Updates (Fireflies)"
+          ],
+          "blockId": "86fc9f0e-11c9-4536-8ed4-c75577c5f9a0"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-22",
@@ -1513,6 +1648,20 @@
       "notionPageId": "3580bd65-db0b-809c-bab6-c34fe9530c42",
       "notionUrl": "https://app.notion.com/p/TR-SC-066541-3580bd65db0b809cbab6c34fe9530c42",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-066541 · 40 Red Maple Court · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Owned property",
+            "Qualified lead waiting on HOA covenant & restrictions (modular-home approval dependent)",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: Portfolio Review & Marketing Updates (Fireflies)"
+          ],
+          "blockId": "42d3c7a2-9e6e-45aa-98a6-80854a7270dc"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-01",
@@ -2457,6 +2606,21 @@
       "notionPageId": "3580bd65-db0b-801f-96b0-c61686181702",
       "notionUrl": "https://app.notion.com/p/TR-SC-066142-3580bd65db0b801f96b0c61686181702",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-08-05",
+          "label": "📊 Portfolio Review — 2026-08-05",
+          "bullets": [
+            "🏷️ TR-SC-066142 · Holiness Church Rd, Wagner SC · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Owned property",
+            "Buyer/lead: 3 appointments set; 1 buyer interested in the full property",
+            "DOM · Saves: 4 days · 8 saves",
+            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
+            "🎤 Source: Portfolio Review & Marketing Updates (Fireflies)"
+          ],
+          "blockId": "a40ba51f-9bcb-4ca9-9ac4-de1b6b53c867"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-07-22",
