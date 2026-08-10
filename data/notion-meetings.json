@@ -1,8 +1,30 @@
 {
-  "lastSynced": "2026-08-10T15:04:31.269015+00:00",
+  "lastSynced": "2026-08-10T16:59:04.388739+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-067749": {
+      "notionPageId": "3b50bd65-db0b-8025-beb8-de507baded2f",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067749-3b50bd65db0b8025beb8de507baded2f",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-07",
+          "label": "📊 Pricing Meeting — 2026-08-07",
+          "bullets": [
+            "🏷️ TR-SC-067749 · Smiley, TX · 12.2 acres · LDS 5.8",
+            "PRICING DECISION",
+            "Final list price: $99,000 (up from initial $80k idea; intermediate discussion at ~$89,900) · Contract: $50,000",
+            "Strategy: Test a higher price early in a strong market; adjust quickly if traction is weak.",
+            "Anshul: “I shoot for 99 on this one… when you are in a good market… you get a good feedback pretty quick… you can adjust.”",
+            "RATIONALE",
+            "Comps: One comp in 100% floodplain sold ~$8,500/acre (better access); good road-frontage properties in area sell ~$10–11k/acre (per Art).",
+            "Why this price: Strong market proximity (San Antonio / Seguin) supports stretching price to test demand."
+          ],
+          "blockId": "c1a987b4-f8a2-4f72-b7f6-fc3a7dc74a10"
+        }
+      ]
+    },
     "TR-SC-067601": {
       "notionPageId": "3a30bd65-db0b-80f6-b438-f0ce979c6b4a",
       "notionUrl": "https://app.notion.com/p/TR-SC-067601-3a30bd65db0b80f6b438f0ce979c6b4a",
