@@ -1,8 +1,96 @@
 {
-  "lastSynced": "2026-08-18T12:57:03.897899+00:00",
+  "lastSynced": "2026-08-18T14:39:30.914235+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-067872": {
+      "notionPageId": "3c00bd65-db0b-804b-b3c3-f96ac14e2e6d",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067872-3c00bd65db0b804bb3c3f96ac14e2e6d",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-18",
+          "label": "📊 Pricing Meeting — 2026-08-18",
+          "bullets": [
+            "🏷️ TR-SC-067872 · Levern Smith · 0.21 ac · LDS 7.3",
+            "PRICING DECISION",
+            "Lot A (better utilities/area): Final list price: $9,900 · Contract: $2,800",
+            "Lot B (triangle by railroad): Contract: $1,500 · Proposed list price adjusted down: $5,900 (from $6,900)",
+            "Strategy: Move quickly; consider local buyer + neighbors; street-access lot supports sign board.",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Price to move quickly; 2nd lot is inferior location/shape."
+          ],
+          "blockId": "c8e4930a-f1f5-40dc-a784-b85aff712093"
+        }
+      ]
+    },
+    "TR-SC-067777": {
+      "notionPageId": "3bf0bd65-db0b-80eb-bec6-ff46a9c7ab8c",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067777-3bf0bd65db0b80ebbec6ff46a9c7ab8c",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-18",
+          "label": "📊 Pricing Meeting — 2026-08-18",
+          "bullets": [
+            "🏷️ TR-SC-067777 · Melissa Wallace · 1.62 ac · LDS 5.8",
+            "PRICING DECISION",
+            "Final list price: $19,900 · Contract: $6,000 · Market value discussed: $15,000",
+            "Strategy: List just under $20k; emphasize utilities + proximity to Henderson/Longview; confirm title intro call before pushing marketing.",
+            "Anshul: “Between 15k to 20k.”",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Good road frontage + near cities/lake supports pricing above market value estimate."
+          ],
+          "blockId": "46b8c832-b228-4796-9790-900377150fe8"
+        }
+      ]
+    },
+    "TR-SC-067762": {
+      "notionPageId": "3bf0bd65-db0b-80dc-8b81-f9d715bffbba",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067762-3bf0bd65db0b80dc8b81f9d715bffbba",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-18",
+          "label": "📊 Pricing Meeting — 2026-08-18",
+          "bullets": [
+            "🏷️ TR-SC-067762 · Michael Levy · 0.27 ac · LDS 6.8",
+            "PRICING DECISION",
+            "Final list price: $4,900 · Contract: $400",
+            "Strategy: Move fast; primary buyers likely neighbors / major owners inside subdivision; reach out directly.",
+            "Anshul: “We gotta move… these inventory just needs to go.”",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Uncertain near-term buildability/utility setup; price to move quickly."
+          ],
+          "blockId": "0709d2f3-6b4a-484e-b5cc-fdd53080a474"
+        }
+      ]
+    },
+    "TR-SC-067826": {
+      "notionPageId": "3bf0bd65-db0b-80a9-958f-e9d4a0182733",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067826-3bf0bd65db0b80a9958fe9d4a0182733",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-18",
+          "label": "📊 Pricing Meeting — 2026-08-18",
+          "bullets": [
+            "🏷️ TR-SC-067826 · Kuper Mcalpin · 1.64 ac · LDS 7.4",
+            "PRICING DECISION",
+            "Proposed list price discussed: $29,900 · Contract: $17,000",
+            "Strategy: Do not market yet; seller attempting to back out—resolve seller intent first.",
+            "Anshul: “Closer needs to go talk… they hold the responsibility.”",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Market value discussed ~ $30k; list price aligned to market."
+          ],
+          "blockId": "12d60c6f-a239-4656-8a2c-6548129c3b2a"
+        }
+      ]
+    },
     "TR-SC-067749": {
       "notionPageId": "3b50bd65-db0b-8025-beb8-de507baded2f",
       "notionUrl": "https://app.notion.com/p/TR-SC-067749-3b50bd65db0b8025beb8de507baded2f",
