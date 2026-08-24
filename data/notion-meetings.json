@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-08-24T04:52:57.641017+00:00",
+  "lastSynced": "2026-08-24T07:08:46.728151+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -2541,7 +2541,14 @@
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-063925 · Closer: Jose Membreno",
+            "THIS WEEK'S DECISIONS",
+            "Continue pursuit (deal not dead): put buyer under contract and coordinate seller conversation (seller wants proof of investor)",
+            "ACTION ITEMS",
+            "Send contract with buyer and push to close (neighbor offer ~$250k) — Jose Membreno — Due: 2026-05-08",
+            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
+          ],
           "blockId": "a63eff86-5ea8-4aeb-a361-9449df538408"
         }
       ]
