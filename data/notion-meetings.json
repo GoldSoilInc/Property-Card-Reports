@@ -1,8 +1,206 @@
 {
-  "lastSynced": "2026-08-26T16:52:32.408109+00:00",
+  "lastSynced": "2026-08-26T19:53:34.525669+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-067914": {
+      "notionPageId": "3c80bd65-db0b-8010-b4d0-f65a9f0f49f7",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067914-3c80bd65db0b8010b4d0f65a9f0f49f7",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067914 · Williamsburg County, SC · 0.4 ac (two lots) · LDS 6.0",
+            "PRICING DECISION",
+            "Final list price: $14,900 · Contract: $6,500",
+            "Strategy: Sell combined lots; septic noted as value-add",
+            "RATIONALE",
+            "Small in-town lot; shed present; septic mentioned as already in place",
+            "GENERAL CONSTRAINTS",
+            "Confirm septic condition details suitable for buyer-facing copy"
+          ],
+          "blockId": "6593e56c-b7eb-4624-aede-7906300e5468"
+        }
+      ]
+    },
+    "TR-SC-067932": {
+      "notionPageId": "3c70bd65-db0b-8002-a12d-e5fe979aedb0",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067932-3c70bd65db0b8002a12de5fe979aedb0",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067932 · Dickson County, TN · 16 ac · LDS 8.0",
+            "PRICING DECISION",
+            "Final list price: $149,900 · Contract: $190,000",
+            "Strategy: Prioritize listing (utilities + proximity to Nashville); accept first decent offer",
+            "RATIONALE",
+            "~1 hour to Nashville; utilities available; rolling terrain",
+            "ACTION ITEMS\n[ ] Collect signed AIF + photos package; schedule drone footage — Ellyse Tadifa — Due: 2026-08-30",
+            "CLOSER: Jose Membreno\n🎤 Source: https://app.fireflies.ai/view/01M0ZEKTKR2QKMHHJ7HSAPKJZE"
+          ],
+          "blockId": "74886a02-7a6f-41b4-a779-1a44a88447ea"
+        }
+      ]
+    },
+    "TR-SC-067771": {
+      "notionPageId": "3c70bd65-db0b-80c1-8635-c0d89ebdcaae",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067771-3c70bd65db0b80c18635c0d89ebdcaae",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067771 · Anderson County, TX · 1.81 ac · LDS 7.6",
+            "PRICING DECISION",
+            "Final list price: $22,500 · Contract: $12,000",
+            "RATIONALE",
+            "Highway access; wooded; small creek mentioned",
+            "PROPERTY SHORTCOMINGS",
+            "Minor slope + creek/waterway",
+            "ACTION ITEMS\n[ ] Ensure buyer-facing listing copy clearly describes creek/waterway + any setback implications — Ellyse Tadifa — Due: 2026-09-02"
+          ],
+          "blockId": "26bfb653-ce95-4063-b317-b74ca2e3a5e8"
+        }
+      ]
+    },
+    "TR-SC-067938": {
+      "notionPageId": "3c70bd65-db0b-80be-8712-f6fdffd0593b",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067938-3c70bd65db0b80be8712f6fdffd0593b",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067938 · Burleson County, TX · 1 ac · LDS 6.8",
+            "PRICING DECISION",
+            "Final list price: $37,500 · Contract: $13,500",
+            "Strategy: Push to market now; parallel-path deeded easement verification",
+            "GENERAL CONSTRAINTS",
+            "Verify legal access / deeded easement; if missing, negotiate/record easement with front owner",
+            "ACTION ITEMS\n[ ] Verify deeded easement exists (deed/title pull); if missing, draft plan to secure/record easement with front owner — Pracy-Ann Pryce — Due: 2026-08-29\n[ ] 🔴 ESCALATE: Follow up wit…",
+            "CLOSER: Jose Membreno\n🎤 Source: https://app.fireflies.ai/view/01M0ZEKTKR2QKMHHJ7HSAPKJZE"
+          ],
+          "blockId": "f052d1ee-2c24-4cdb-b124-d798e82b035e"
+        }
+      ]
+    },
+    "TR-SC-067936": {
+      "notionPageId": "3c70bd65-db0b-809d-8d3d-fbad76210404",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067936-3c70bd65db0b809d8d3dfbad76210404",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067936 · Madison County, NY · 4.21 ac · LDS 5.0",
+            "PRICING DECISION",
+            "Final list price: $39,500 · Contract: $10,000",
+            "Strategy: Position primarily as commercial use (utilities available); floodplain risk disclosed",
+            "RATIONALE",
+            "Surrounding area described as commercial; utilities available",
+            "PROPERTY SHORTCOMINGS",
+            "Floodplain across property; likely insurance burden"
+          ],
+          "blockId": "8dd50948-548e-429d-addd-dc2100271763"
+        }
+      ]
+    },
+    "TR-SC-067927": {
+      "notionPageId": "3c60bd65-db0b-80f8-a117-c85cce843fbf",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067927-3c60bd65db0b80f8a117c85cce843fbf",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067927 · Fannin County, TX · 6 ac · LDS 9.0",
+            "PRICING DECISION",
+            "Final list price: $139,900 · Contract: $100,000",
+            "Strategy: “Clean” high-quality deal; take a higher shot due to marketability",
+            "RATIONALE",
+            "Flat; right off road; expected fast sale; Dallas area mentioned",
+            "GENERAL CONSTRAINTS",
+            "Reconfirm manufactured/mobile allowance terminology with county"
+          ],
+          "blockId": "a31bd2b4-9e31-42ed-afb9-37ddd1fe755b"
+        }
+      ]
+    },
+    "TR-SC-067885": {
+      "notionPageId": "3c30bd65-db0b-809a-81d9-e0af7ce568fd",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067885-3c30bd65db0b809a81d9e0af7ce568fd",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067885 · Sampson County, NC · 2.15 ac · LDS 7.2",
+            "PRICING DECISION",
+            "Final list price: $74,900 · Contract: $50,000",
+            "Strategy: Position as investment/cash-flow (cell tower ~$6k/yr)",
+            "RATIONALE",
+            "Highway frontage; farmland use; near Fayetteville mentioned",
+            "PROPERTY SHORTCOMINGS",
+            "Confirm build proximity / restrictions tied to tower lease"
+          ],
+          "blockId": "de4a6169-28b4-45c2-ac64-597b1d62f67f"
+        }
+      ]
+    },
+    "TR-SC-067905": {
+      "notionPageId": "3c20bd65-db0b-80f8-a3e4-d424c59e2f19",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067905-3c20bd65db0b80f8a3e4d424c59e2f19",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067905 · Williamsburg County, SC · 2.3 ac · LDS 5.6",
+            "PRICING DECISION",
+            "Final list price: $16,500 · Contract: $6,500",
+            "Strategy: Proceed to market (FB/website; not MLS)",
+            "RATIONALE",
+            "Easement access; flood zone toward the back",
+            "PROPERTY SHORTCOMINGS",
+            "Flood zone in back portion"
+          ],
+          "blockId": "05f5bba8-333e-476f-b51a-dad23bbcb521"
+        }
+      ]
+    },
+    "TR-SC-067916": {
+      "notionPageId": "3c20bd65-db0b-80df-9c7d-e811af172d45",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067916-3c20bd65db0b80df9c7de811af172d45",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-08-26",
+          "label": "📊 Pricing Meeting — 2026-08-26",
+          "bullets": [
+            "🏷️ TR-SC-067916 · Rabun County, GA · 1.35 ac · LDS 7.3",
+            "PRICING DECISION",
+            "Final list price: $17,500 · Contract: $8,500",
+            "Strategy: Start at $17,500; likely buyer at ~$16k; primary push via neighbor campaign",
+            "RATIONALE",
+            "Sloped on both sides; farther from major cities; “bite rate” ~5% mentioned",
+            "PROPERTY SHORTCOMINGS",
+            "Slopes on both sides; buildability still being confirmed"
+          ],
+          "blockId": "fdb6d5cf-fd8a-4d93-82f0-772cd49d95c5"
+        }
+      ]
+    },
     "TR-SC-067872": {
       "notionPageId": "3c00bd65-db0b-804b-b3c3-f96ac14e2e6d",
       "notionUrl": "https://app.notion.com/p/TR-SC-067872-3c00bd65db0b804bb3c3f96ac14e2e6d",
