@@ -1,8 +1,96 @@
 {
-  "lastSynced": "2026-09-18T12:52:04.445059+00:00",
+  "lastSynced": "2026-09-18T17:37:19.049122+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-068119": {
+      "notionPageId": "3de0bd65-db0b-80a3-9e55-d937e0227882",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068119-3de0bd65db0b80a39e55d937e0227882",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-09-18",
+          "label": "📊 Pricing Meeting — 2026-09-18",
+          "bullets": [
+            "🏷️ TR-SC-068119 · Humphreys County / The Woodlands of Nashville · approx. 6.18 acres · LDS 6.6",
+            "PRICING DECISION",
+            "Final list price $54,900 · Contract price $40,000 · Floor/min spread not stated",
+            "Strategy: Launch the gated-subdivision lots with access logistics confirmed for buyers and the sales team.",
+            "Anshul's words on the price call: Approval was to be requested by email; Anshul was not present in the available meeting notes.",
+            "RATIONALE",
+            "Comps: Comp not stated.",
+            "Why this price: The meeting set a $54,900 list against a $40,000 contract price."
+          ],
+          "blockId": "f1725668-4358-40e2-8415-24a67772860f"
+        }
+      ]
+    },
+    "TR-SC-068116": {
+      "notionPageId": "3de0bd65-db0b-804f-b87b-e0e91ebbf66e",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068116-3de0bd65db0b804fb87be0e91ebbf66e",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-09-18",
+          "label": "📊 Pricing Meeting — 2026-09-18",
+          "bullets": [
+            "🏷️ TR-SC-068116 · Morgan County / near Oak Ridge and Knoxville · approx. 12 acres (two lots) · LDS 6.8",
+            "PRICING DECISION",
+            "Final list price $114,900 · Contract price not stated in the available meeting notes · Floor/min spread not stated",
+            "Strategy: Manage the listing directly after the seller's poor prior realtor experience.",
+            "Anshul's words on the price call: Approval was to be requested by email; Anshul was not present in the available meeting notes.",
+            "RATIONALE",
+            "Comps: Comp not stated.",
+            "Why this price: The meeting set a $114,900 list for two residential parcels near Oak Ridge and Knoxville."
+          ],
+          "blockId": "016944e1-c6a2-48fc-9bf1-d1e039a7a4e6"
+        }
+      ]
+    },
+    "TR-SC-068128": {
+      "notionPageId": "3de0bd65-db0b-803d-9419-c6bea3b0722d",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068128-3de0bd65db0b803d9419c6bea3b0722d",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-09-18",
+          "label": "📊 Pricing Meeting — 2026-09-18",
+          "bullets": [
+            "🏷️ TR-SC-068128 · Walton County / near Crestview and Panama City · 5.26 acres · LDS 7.6",
+            "PRICING DECISION",
+            "Final list price $79,900 · Contract price $44,000 · Floor/min spread not stated",
+            "Strategy: Test a $79,900 launch while monitoring a volatile Florida market closely during the first week.",
+            "Anshul's words on the price call: Approval was to be requested by email; Anshul was not present in the transcript.",
+            "RATIONALE",
+            "Comps: Comp not stated; a nearby flat lot was discussed as not comparable to this sloped subject property.",
+            "Why this price: The meeting treated the property as a Florida wild card, with an expected range of $75,000–$80,000 and a $79,900 launch."
+          ],
+          "blockId": "b031c7b8-ad9d-40af-a605-85cda58ae036"
+        }
+      ]
+    },
+    "TR-SC-067957": {
+      "notionPageId": "3de0bd65-db0b-8083-824f-d8a193233e46",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067957-3de0bd65db0b8083824fd8a193233e46",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-09-18",
+          "label": "📊 Pricing Meeting — 2026-09-18",
+          "bullets": [
+            "🏷️ TR-SC-067957 · Thornton / Lake Limestone Coves · 0.88 acres · LDS 5",
+            "PRICING DECISION",
+            "Final list price $59,900 · Contract price $43,000 · Floor/min spread not stated",
+            "Strategy: Replace the stale $65,000 Zillow listing with a fresh MLS and direct-market launch.",
+            "Anshul's words on the price call: Approval was to be requested by email; Anshul was not present in the available meeting notes.",
+            "RATIONALE",
+            "Comps: Comp not stated.",
+            "Why this price: The meeting set a $59,900 list after the prior $65,000 Zillow listing sat without a contract for 441 days."
+          ],
+          "blockId": "dd04e16f-790a-4fa4-9b54-37c6cf85ca1c"
+        }
+      ]
+    },
     "TR-SC-067914": {
       "notionPageId": "3c80bd65-db0b-8010-b4d0-f65a9f0f49f7",
       "notionUrl": "https://app.notion.com/p/TR-SC-067914-3c80bd65db0b8010b4d0f65a9f0f49f7",
