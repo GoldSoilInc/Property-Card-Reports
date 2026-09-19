@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-09-19T12:24:34.052368+00:00",
+  "lastSynced": "2026-09-19T17:07:26.200524+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -2795,14 +2795,7 @@
           "type": "Portfolio Review",
           "date": "2026-05-13",
           "label": "📊 Portfolio Review — 2026-05-13",
-          "bullets": [
-            "🏷️ TR-SC-064709 · Closer: Jose Membreno",
-            "THIS WEEK'S DECISIONS",
-            "Strategic pivot: terminate unless it can be re-contracted at $5,000",
-            "ACTION ITEMS",
-            "Attempt salvage offer at $5,000; otherwise terminate — Jose Membreno — Due:",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ8BQ5MRYATNSYVKFBXKFHM"
-          ],
+          "bullets": [],
           "blockId": "27aed879-3e2d-4636-8a1c-c7127b3ed904"
         }
       ]
