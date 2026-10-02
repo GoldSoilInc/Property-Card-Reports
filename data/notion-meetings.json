@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-02T05:03:28.968924+00:00",
+  "lastSynced": "2026-10-02T12:15:46.790588+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -2313,16 +2313,7 @@
           "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
-          "bullets": [
-            "🏷️ TR-SC-066399 · (NC HOA) · Closer: Jose Membreno",
-            "CURRENT STATE",
-            "Low interest; no appointments",
-            "THIS WEEK'S DECISIONS",
-            "Strategic pivot: cancel contract (per prior + reiterated)",
-            "If not canceled immediately, interim drop discussed to ~$25,900",
-            "ACTION ITEMS\n[ ] Cancel contract / remove from active marketing due to low promise (HOA) — Jose Membreno — Due:",
-            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
-          ],
+          "bullets": [],
           "blockId": "7a892b52-601c-4249-aa26-82e6152a403c"
         },
         {
