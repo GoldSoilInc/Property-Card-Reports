@@ -1,8 +1,162 @@
 {
-  "lastSynced": "2026-10-07T13:03:03.051970+00:00",
+  "lastSynced": "2026-10-07T19:50:38.310611+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-068258": {
+      "notionPageId": "3f10bd65-db0b-8044-89bb-f30d9934787e",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068258-3f10bd65db0b804489bbf30d9934787e",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-10-07",
+          "label": "📊 Pricing Meeting — 2026-10-07",
+          "bullets": [
+            "🏷️ TR-SC-068258 · Connie McGee · 0.40 ac (two 0.2 ac lots) · LDS 5.0",
+            "PRICING DECISION",
+            "Final list price: $44,900 per lot (two separate listings) · Contract: $35,000 (for both) · Floor: Not stated · Min spread: Not stated",
+            "Strategy: Split into two child listings/transactions; price individually based on access.",
+            "Anshul’s words: Not stated",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Not stated"
+          ],
+          "blockId": "015dba1f-c01e-4caa-b796-48cc9d337071"
+        }
+      ]
+    },
+    "TR-SC-068260": {
+      "notionPageId": "3f10bd65-db0b-800c-b79a-c133c40bb611",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068260-3f10bd65db0b800cb79ac133c40bb611",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-10-07",
+          "label": "📊 Pricing Meeting — 2026-10-07",
+          "bullets": [
+            "🏷️ TR-SC-068260 · Paula Raflo · 2.00 ac · LDS 6.8",
+            "PRICING DECISION",
+            "Final list price: $54,900 · Contract: $30,000 · Floor: Not stated · Min spread: Not stated",
+            "Strategy: Ground-photo first (no Street View); target Lynchburg/Roanoke buyers.",
+            "Anshul’s words: Not stated",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Not stated"
+          ],
+          "blockId": "9615bdce-4b00-4eb6-b8de-716a10b5b882"
+        }
+      ]
+    },
+    "TR-SC-067978": {
+      "notionPageId": "3f10bd65-db0b-80d2-a684-d8ed965ba11c",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067978-3f10bd65db0b80d2a684d8ed965ba11c",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-10-07",
+          "label": "📊 Pricing Meeting — 2026-10-07",
+          "bullets": [
+            "🏷️ TR-SC-067978 · Patricia Snyder · 2.65 ac · LDS 6.9",
+            "PRICING DECISION",
+            "Final list price: ~$40,000 · Contract: $25,000 · Floor: Not stated · Min spread: Not stated",
+            "Strategy: Pair pricing with strong drone marketing; position as “family fishing” concept.",
+            "Anshul’s words: Not stated",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Not stated"
+          ],
+          "blockId": "89471a20-ecff-45e6-a285-74adc5c567ab"
+        }
+      ]
+    },
+    "TR-SC-067891": {
+      "notionPageId": "3f10bd65-db0b-80e3-96af-ff29fc661dc8",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067891-3f10bd65db0b80e396afff29fc661dc8",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-10-07",
+          "label": "📊 Pricing Meeting — 2026-10-07",
+          "bullets": [
+            "🏷️ TR-SC-067891 · Frederick Bouyack · 5.64 ac · LDS 6.6",
+            "PRICING DECISION",
+            "Industrial parcel list price: $98,000–$99,000 · Contract: $50,000 · Floor: Not stated · Min spread: Not stated",
+            "21-lot residential package list price: $149,900–$150,000 · Contract: $50,000 (same transaction) · Floor: Not stated · Min spread: Not stated",
+            "Strategy: List industrial parcel separately; market residential lots as one development package (no subdivision execution).",
+            "Anshul’s words: Not stated",
+            "RATIONALE",
+            "Comps: Comp not stated"
+          ],
+          "blockId": "444887af-ccf5-4326-b231-b4e1be6b27a9"
+        }
+      ]
+    },
+    "TR-SC-068262": {
+      "notionPageId": "3f10bd65-db0b-8011-abb8-e239907392c2",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068262-3f10bd65db0b8011abb8e239907392c2",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-10-07",
+          "label": "📊 Pricing Meeting — 2026-10-07",
+          "bullets": [
+            "🏷️ TR-SC-068262 · Patrick Gibbs · 6.32 ac · LDS 7.3",
+            "PRICING DECISION",
+            "Final list price: $54,900 · Contract: $35,000 · Floor: Not stated · Min spread: Not stated",
+            "Strategy: Position buildable area; clarify usable build sites vs flood dip.",
+            "Anshul’s words: Not stated",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Not stated"
+          ],
+          "blockId": "314a7d62-a35f-457e-ada1-e5425310f78a"
+        }
+      ]
+    },
+    "TR-SC-068315": {
+      "notionPageId": "3f10bd65-db0b-806d-bc74-ff1ec35b6e57",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068315-3f10bd65db0b806dbc74ff1ec35b6e57",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-10-07",
+          "label": "📊 Pricing Meeting — 2026-10-07",
+          "bullets": [
+            "🏷️ TR-SC-068315 · Bonnie Margolis · 1.13 ac · LDS 6.6",
+            "PRICING DECISION",
+            "Final list price: $29,900 · Contract: $11,500 · Floor: Not stated · Min spread: Not stated",
+            "Strategy: Emphasize coastal/recreational angle; market into Houston/Port Arthur/Beaumont.",
+            "Anshul’s words: Not stated",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Not stated"
+          ],
+          "blockId": "32a70edb-8aef-4477-ad4d-6449df829f45"
+        }
+      ]
+    },
+    "TR-SC-068285": {
+      "notionPageId": "3f00bd65-db0b-80d5-a027-ee9522aaec5f",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068285-3f00bd65db0b80d5a027ee9522aaec5f",
+      "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-10-07",
+          "label": "📊 Pricing Meeting — 2026-10-07",
+          "bullets": [
+            "🏷️ TR-SC-068285 · Denardus Rucker · 2.00 ac · LDS 6.5",
+            "PRICING DECISION",
+            "Final list price: $14,500 · Contract: $6,000 · Floor: Not stated · Min spread: Not stated",
+            "Strategy: Target Atlanta/Augusta buyer demand; highlight proximity to Milledgeville/Dublin.",
+            "Anshul’s words: Not stated",
+            "RATIONALE",
+            "Comps: Comp not stated",
+            "Why this price: Not stated"
+          ],
+          "blockId": "20dd12b1-e62d-49e8-b8d1-fd96dcad0671"
+        }
+      ]
+    },
     "TR-SC-068119": {
       "notionPageId": "3de0bd65-db0b-80a3-9e55-d937e0227882",
       "notionUrl": "https://app.notion.com/p/TR-SC-068119-3de0bd65db0b80a39e55d937e0227882",
