@@ -1,8 +1,30 @@
 {
-  "lastSynced": "2026-10-22T13:39:34.548475+00:00",
+  "lastSynced": "2026-10-22T18:26:34.130985+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
+    "TR-SC-068306": {
+      "notionPageId": "3f10bd65-db0b-803f-ae39-fda8f4910828",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068306-3f10bd65db0b803fae39fda8f4910828",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-068306 · Fredrick Bouyack · Sandusky County, OH · Closer: Anshul Sharma",
+            "CURRENT STATE",
+            "New listing addition · Days to expire: 66",
+            "Intended sale: one combined industrial parcel/package, not split parcels",
+            "THIS WEEK'S DECISIONS",
+            "List as one combined property; target a contract before month-end.",
+            "BUYER & LEAD ACTIVITY",
+            "High-margin opportunity; approximately $48,000 spread stated."
+          ],
+          "blockId": "d7e48a69-596d-4911-b11c-0e898f8d13c3"
+        }
+      ]
+    },
     "TR-SC-068258": {
       "notionPageId": "3f10bd65-db0b-8044-89bb-f30d9934787e",
       "notionUrl": "https://app.notion.com/p/TR-SC-068258-3f10bd65db0b804489bbf30d9934787e",
@@ -47,10 +69,48 @@
         }
       ]
     },
+    "TR-SC-068282": {
+      "notionPageId": "3f10bd65-db0b-80ba-995d-ec694df76ac7",
+      "notionUrl": "https://app.notion.com/p/TR-SC-068282-3f10bd65db0b80ba995dec694df76ac7",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-068282 · Susan Foley · Bienville County, LA · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Current list price: $29,900 · MLS status: Not listed · Days to expire: 36",
+            "THIS WEEK'S DECISIONS",
+            "No price drop; focus outreach on investors while the AIF is obtained.",
+            "BUYER & LEAD ACTIVITY",
+            "Campaign produced limited leads; investor audience prioritized.",
+            "BLOCKERS"
+          ],
+          "blockId": "150201b2-a11b-440a-a1a4-92fae209bc75"
+        }
+      ]
+    },
     "TR-SC-067978": {
       "notionPageId": "3f10bd65-db0b-80d2-a684-d8ed965ba11c",
       "notionUrl": "https://app.notion.com/p/TR-SC-067978-3f10bd65db0b80d2a684d8ed965ba11c",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-067978 · Patricia Snyder · Coshocton County, OH · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM: 9 days · Current list price: $39,900 · Days to expire: 45–46",
+            "MLS status: Not listed",
+            "THIS WEEK'S DECISIONS",
+            "Hold price for one more week; position as a riverfront/fishing opportunity.",
+            "BUYER & LEAD ACTIVITY",
+            "One fishing-oriented appointment set for the weekend."
+          ],
+          "blockId": "b7eecabc-43e7-4116-889f-a9d4cc245940"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-10-07",
@@ -74,6 +134,22 @@
       "notionUrl": "https://app.notion.com/p/TR-SC-067891-3f10bd65db0b80e396afff29fc661dc8",
       "meetings": [
         {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-067891 · Frederick Bouyack · Sandusky County, OH · Closer: Anshul Sharma",
+            "CURRENT STATE",
+            "Days to expire: 66",
+            "Intended sale: one combined industrial parcel/package, not split parcels",
+            "THIS WEEK'S DECISIONS",
+            "List as one combined property; target a contract before month-end.",
+            "BUYER & LEAD ACTIVITY",
+            "High-margin opportunity; approximately $48,000 spread stated."
+          ],
+          "blockId": "1802d96e-ef88-4992-9d69-2667b5fe7a0f"
+        },
+        {
           "type": "Pricing Meeting",
           "date": "2026-10-07",
           "label": "📊 Pricing Meeting — 2026-10-07",
@@ -95,6 +171,22 @@
       "notionPageId": "3f10bd65-db0b-8011-abb8-e239907392c2",
       "notionUrl": "https://app.notion.com/p/TR-SC-068262-3f10bd65db0b8011abb8e239907392c2",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-068262 · Patrick Gibbs · Harrison County, TX · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM: 5 days · Saves: 8",
+            "MLS status: Ready to list",
+            "THIS WEEK'S DECISIONS",
+            "Hold for one more week; consider a price drop next week if it does not move.",
+            "BUYER & LEAD ACTIVITY",
+            "One appointment set for the weekend; one lead found through manual outreach."
+          ],
+          "blockId": "5b6bebb0-99f4-4202-82b2-fb438be2c071"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-10-07",
@@ -140,6 +232,22 @@
       "notionUrl": "https://app.notion.com/p/TR-SC-068285-3f00bd65db0b80d5a027ee9522aaec5f",
       "meetings": [
         {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-068285 · Denardus Rucker · Wilkinson County, GA · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Brand-new listing · Days to expire: 67",
+            "MLS status: Conflicting: reported off-market, while database shows MLS not selected/ready to list",
+            "THIS WEEK'S DECISIONS",
+            "Reviewed — no price change pending MLS-status verification.",
+            "BUYER & LEAD ACTIVITY",
+            "Realtor outreach campaign underway; no completed buyer activity reported."
+          ],
+          "blockId": "8de19242-b3e5-4a25-804e-2652eac7fb9f"
+        },
+        {
           "type": "Pricing Meeting",
           "date": "2026-10-07",
           "label": "📊 Pricing Meeting — 2026-10-07",
@@ -161,6 +269,22 @@
       "notionPageId": "3de0bd65-db0b-80a3-9e55-d937e0227882",
       "notionUrl": "https://app.notion.com/p/TR-SC-068119-3de0bd65db0b80a39e55d937e0227882",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-068119 · Michael Anderson · Humphreys County, TN · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM: 30 days · Current list price: $52,900 · Days to expire: 49",
+            "MLS status: Not listed",
+            "THIS WEEK'S DECISIONS",
+            "Reviewed — no price change; continue pursuing listing access and buyer activity.",
+            "BUYER & LEAD ACTIVITY",
+            "One appointment set for the weekend; gated-property access code available."
+          ],
+          "blockId": "2458fba7-0e5e-4ffb-8c22-f50aa9729327"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-09-18",
@@ -184,6 +308,22 @@
       "notionUrl": "https://app.notion.com/p/TR-SC-068116-3de0bd65db0b804fb87be0e91ebbf66e",
       "meetings": [
         {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-068116 · Lori Brown · Morgan County, TN · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Current list price: $114,900 · Days to expire: 47",
+            "Feedback: price and slope; one investor appointment set for the weekend.",
+            "THIS WEEK'S DECISIONS",
+            "Price drop to $99,900; this is the floor price.",
+            "BUYER & LEAD ACTIVITY",
+            "New investor scheduled to inspect the property."
+          ],
+          "blockId": "949ea1e5-e07b-43f0-af6a-e12e49b7af73"
+        },
+        {
           "type": "Pricing Meeting",
           "date": "2026-09-18",
           "label": "📊 Pricing Meeting — 2026-09-18",
@@ -205,6 +345,22 @@
       "notionPageId": "3de0bd65-db0b-803d-9419-c6bea3b0722d",
       "notionUrl": "https://app.notion.com/p/TR-SC-068128-3de0bd65db0b803d9419c6bea3b0722d",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-068128 · Cooper Link · Walton County, FL · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM: 28 days · Saves: 69 · Days to expire: 54",
+            "Last price drop: October 1",
+            "THIS WEEK'S DECISIONS",
+            "Price drop to $65,900.",
+            "BUYER & LEAD ACTIVITY",
+            "Three calls received; one appointment set for the weekend. Feedback consistently cites the electric easement."
+          ],
+          "blockId": "6e1c3b76-15e5-4b8a-accd-c5f802b234f9"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-09-18",
@@ -228,6 +384,22 @@
       "notionUrl": "https://app.notion.com/p/TR-SC-067957-3de0bd65db0b8083824fd8a193233e46",
       "meetings": [
         {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-067957 · Ronnie Turrentine · Robertson County, TX · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "DOM: 7 days · Saves: 1 · Days to expire: 47",
+            "MLS status: Listed",
+            "THIS WEEK'S DECISIONS",
+            "Reassign at $48,900 to target the approved assignment spread.",
+            "BUYER & LEAD ACTIVITY",
+            "No calls or qualified leads reported after MLS, neighbor, investor, and Facebook outreach."
+          ],
+          "blockId": "a60e2b2b-307d-4622-b8c2-2103f3007a66"
+        },
+        {
           "type": "Pricing Meeting",
           "date": "2026-09-18",
           "label": "📊 Pricing Meeting — 2026-09-18",
@@ -242,6 +414,50 @@
             "Why this price: The meeting set a $59,900 list after the prior $65,000 Zillow listing sat without a contract for 441 days."
           ],
           "blockId": "dd04e16f-790a-4fa4-9b54-37c6cf85ca1c"
+        }
+      ]
+    },
+    "TR-SC-067999": {
+      "notionPageId": "3d00bd65-db0b-8056-ad35-e56f772ce5b6",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067999-3d00bd65db0b8056ad35e56f772ce5b6",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-067999 · Leonie Walters & Conred D Walters · Jefferson County, GA · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "DOM: 37 days · Saves: 34 · Current list price: $29,900",
+            "THIS WEEK'S DECISIONS",
+            "Price drop to $25,500.",
+            "BUYER & LEAD ACTIVITY",
+            "One appointment set for the weekend.",
+            "ACTION ITEMS"
+          ],
+          "blockId": "b6c07076-c3bb-4b19-8639-03919a3ce97b"
+        }
+      ]
+    },
+    "TR-SC-066084": {
+      "notionPageId": "3c80bd65-db0b-803d-88fa-d5e22ed9e2db",
+      "notionUrl": "https://app.notion.com/p/TR-SC-066084-3c80bd65db0b803d88fad5e22ed9e2db",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-066084 · Robert Henderson · Suwannee County, FL · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "DOM: 33 days · Saves: 86 · Current list price: $74,900 · Days to expire: 32",
+            "THIS WEEK'S DECISIONS",
+            "Hold current price; prioritize limited Facebook Marketplace capacity for higher-margin inventory rather than an immediate reduction.",
+            "BUYER & LEAD ACTIVITY",
+            "Best investor offer reported: $40,000.",
+            "CAMPAIGN STATUS"
+          ],
+          "blockId": "eedc46ac-4e7d-4bce-89c9-b94701d3bee9"
         }
       ]
     },
@@ -359,6 +575,22 @@
       "notionPageId": "3c60bd65-db0b-80f8-a117-c85cce843fbf",
       "notionUrl": "https://app.notion.com/p/TR-SC-067927-3c60bd65db0b80f8a117c85cce843fbf",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-067927 · Roberto Rafael Arredondo · Fannin County, TX · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM: 29 days · Saves: 22 · Current list price: $139,900",
+            "THIS WEEK'S DECISIONS",
+            "No final price change; negotiate the $106,000 offer and survey/closing-cost terms.",
+            "BUYER & LEAD ACTIVITY",
+            "Realtor-represented buyers offered $106,000, contingent on seller-paid survey.",
+            "BLOCKERS"
+          ],
+          "blockId": "c8cec5ad-f631-4ac6-ae4b-3a51c36e1ec5"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-08-26",
@@ -487,6 +719,28 @@
         }
       ]
     },
+    "TR-SC-067854": {
+      "notionPageId": "3bf0bd65-db0b-804f-9c4d-ce3ef7eca642",
+      "notionUrl": "https://app.notion.com/p/TR-SC-067854-3bf0bd65db0b804f9c4dce3ef7eca642",
+      "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-067854 · Randall Collandra · Polk County, TN · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "Current list price: $6,700 · Days to expire: 21",
+            "MLS status: Not listed",
+            "THIS WEEK'S DECISIONS",
+            "Reviewed — hold current price while survey-cost terms are negotiated.",
+            "BUYER & LEAD ACTIVITY",
+            "One buyer indicated at $4,250; buyer requires survey-cost resolution."
+          ],
+          "blockId": "76cb3285-3937-40aa-bd79-9d4475d9860f"
+        }
+      ]
+    },
     "TR-SC-067762": {
       "notionPageId": "3bf0bd65-db0b-80dc-8b81-f9d715bffbba",
       "notionUrl": "https://app.notion.com/p/TR-SC-067762-3bf0bd65db0b80dc8b81f9d715bffbba",
@@ -535,6 +789,22 @@
       "notionPageId": "3b50bd65-db0b-8025-beb8-de507baded2f",
       "notionUrl": "https://app.notion.com/p/TR-SC-067749-3b50bd65db0b8025beb8de507baded2f",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-067749 · Gregory Trumbo · Gonzales County, TX · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "DOM: 35 days · Saves: 235 · Days to expire: 13",
+            "Current list price: $99,500",
+            "THIS WEEK'S DECISIONS",
+            "Pursue the full-price $69,900 buyer through an assignment with the buyer’s realtor; closing-cost coverage remains part of the negotiation.",
+            "BUYER & LEAD ACTIVITY",
+            "One weekend appointment; prior visitors were not interested. Realtor is expected to provide buyer information."
+          ],
+          "blockId": "640890b8-0aca-4610-9022-ea2df2e3b56a"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-08-07",
@@ -1905,6 +2175,22 @@
       "notionPageId": "3580bd65-db0b-80cd-9023-d9ad6b22d40a",
       "notionUrl": "https://app.notion.com/p/TR-SC-062942-3580bd65db0b80cd9023d9ad6b22d40a",
       "meetings": [
+        {
+          "type": "Portfolio Review",
+          "date": "2026-10-22",
+          "label": "📊 Portfolio Review — 2026-10-22",
+          "bullets": [
+            "🏷️ TR-SC-062942 · Valhalla Drive, Cleveland, GA · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Cleveland, GA property; no new DOM, saves, or price figures stated in this review.",
+            "THIS WEEK'S DECISIONS",
+            "Reviewed — no change. Continuing current strategy.",
+            "BUYER & LEAD ACTIVITY",
+            "Feedback remains that the property is slow.",
+            "🎤 Source: https://app.fireflies.ai/view/01M55E9TH6244Y508D3SWHKBFM"
+          ],
+          "blockId": "0b3bf6b9-482f-4cf2-a853-cbcb5f9e9833"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-08-05",
