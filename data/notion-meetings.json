@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-24T12:33:26.881240+00:00",
+  "lastSynced": "2026-10-24T17:18:14.003910+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -2447,11 +2447,7 @@
           "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
-          "bullets": [
-            "🏷️ TR-SC-063689 · (Florida investment property) · Closer: Jose Membreno",
-            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
-            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
-          ],
+          "bullets": [],
           "blockId": "b952b365-c7ab-4543-934c-28233dfa92ec"
         },
         {
