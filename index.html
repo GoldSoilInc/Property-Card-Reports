@@ -328,6 +328,17 @@
           </div>
         </div>
       </div>
+      <!-- Type of Deal — multi-select, options built dynamically -->
+      <div class="ff" id="dealTypeFilterRow" style="display:none">
+        <span class="filter-label">Type of deal</span>
+        <div class="dd" id="dd_dealType" data-all-label="All deal types">
+          <button type="button" class="dd-btn" onclick="ddToggle('dealType', event)">
+            <span class="dd-btn-label">All deal types</span>
+            <span class="dd-chevron">▾</span>
+          </button>
+          <div class="dd-panel" id="dealTypeDropdownPanel"></div>
+        </div>
+      </div>
       <!-- LEI — single-select -->
       <div class="ff">
         <span class="filter-label">LEI</span>
@@ -470,6 +481,7 @@
           <th class="sortable" onclick="setSort('addr')">Property <span class="sort-arrow">↕</span></th>
           <th class="sortable" onclick="setSort('listing')">Listing ID <span class="sort-arrow">↕</span></th>
           <th>LandID</th>
+          <th class="sortable" onclick="setSort('owner')">Owner name <span class="sort-arrow">↕</span></th>
           <th class="sortable" onclick="setSort('pei')">LEI <span class="sort-arrow">↕</span></th>
           <th class="sortable" onclick="setSort('contractP')">Contract price <span class="sort-arrow">↕</span></th>
           <th class="sortable" onclick="setSort('listP')">List price <span class="sort-arrow">↕</span></th>
@@ -503,7 +515,7 @@ let listings = [], camps = [], fbacks = [], outboundLeads = [], priceDropData = 
 let meetingsData = null; // synced from Notion via .github/workflows/sync-notion.yml every 30 min
 let sfOk = false, campOk = false, pdOk = false, zillowOk = false, dispoOk = false, ibOk = false;
 let podFilter = 'all', stageFilter = [], expiryFilter = 'all', stateFilter = [], titleFilter = [], peiFilter = 'all', dropsFilter = 'all', dropAgeFilter = 'all';
-let titleCommitFilter = [], listingStatusFilter = [];
+let titleCommitFilter = [], listingStatusFilter = [], dealTypeFilter = [];
 let priceStaleFilter = false, noMlsFilter = false;
 let sortCol = 'expiry', sortDir = 'asc';
 let activeCardId = null;
@@ -649,6 +661,7 @@ async function loadFromSheets() {
     buildTitleButtons();
     buildTitleCommitDropdown();
     buildListingStatusDropdown();
+    buildDealTypeDropdown();
     renderPortfolio();
     if (activeCardId) showCard(activeCardId);
   }
@@ -1180,6 +1193,7 @@ function renderPortfolio() {
     if (podFilter !== 'all' && l.pod !== podFilter) return false;
     if (stageFilter.length > 0 && !stageFilter.includes(l.stage)) return false;
     if (stateFilter.length > 0 && !stateFilter.includes(l.state)) return false;
+    if (dealTypeFilter.length > 0 && !dealTypeFilter.includes((l.dealType || '').trim())) return false;
     if (titleFilter.length > 0 && !titleFilter.some(label => titleStatusMatches(l.title, label))) return false;
     if (titleCommitFilter.length > 0 && !titleCommitFilter.includes(l.titleCommit)) return false;
     if (listingStatusFilter.length > 0 && !listingStatusFilter.includes(l.listingStatus)) return false;
@@ -1228,6 +1242,7 @@ function renderPortfolio() {
         case 'expiry': { const e = a === l ? (a.expiry === null ? 9999 : a.expiry < 0 ? -9999 : a.expiry) : (b.expiry === null ? 9999 : b.expiry < 0 ? -9999 : b.expiry); return e; }
         case 'addr': return (l.addr || '').toLowerCase();
         case 'listing': return (l.mainListing || '').toLowerCase();
+        case 'owner': return (l.sellerName || '').toLowerCase();
         case 'pei': return calcExposure(l, lc2, ol2);
         case 'contractP': return l.contractP || 0;
         case 'listP': return l.listP || 0;
@@ -1290,6 +1305,7 @@ function renderPortfolio() {
       <td><div class="prop-name" style="font-size:14px;white-space:nowrap">${l.addr}</div><div class="prop-sub">${l.state} · ${l.county}</div></td>
       <td><span style="font-size:14px;font-weight:600;color:var(--blue-text)">${l.mainListing || l.id}</span></td>
       <td>${l.landId ? `<a href="${l.landId}" target="_blank" style="font-size:14px;color:var(--blue-text);text-decoration:none;font-weight:500">LandID ↗</a>` : '<span class="muted">—</span>'}${l.zillowLink ? `<br><a href="${l.zillowLink}" target="_blank" style="font-size:13px;color:var(--teal-text);text-decoration:none;font-weight:500">Zillow ↗</a>` : ''}</td>
+      <td>${l.sellerName ? `<span style="font-size:14px;font-weight:500;white-space:nowrap">${escapeHtml(l.sellerName)}</span>` : '<span class="muted">—</span>'}</td>
       <td><span class="score-ring ${peiColor}">${pei}%</span></td>
       <td>${fmt(l.contractP)}</td>
       <td>${fmt(l.listP)}</td>
@@ -1325,7 +1341,7 @@ function renderPortfolio() {
       const hostTr = document.createElement('tr');
       hostTr.className = 'inline-card-row';
       hostTr.id = 'inline-card-row-' + l.id;
-      hostTr.innerHTML = `<td colspan="15" style="padding:0;background:var(--bg3);border-bottom:0.5px solid var(--border)"><div id="inlineCardArea"></div></td>`;
+      hostTr.innerHTML = `<td colspan="16" style="padding:0;background:var(--bg3);border-bottom:0.5px solid var(--border)"><div id="inlineCardArea"></div></td>`;
       tbody.appendChild(hostTr);
     }
   });
@@ -2852,6 +2868,7 @@ function ddPickMulti(id, value, evt) {
     case 'titleCommit':    arr = titleCommitFilter; break;
     case 'listingStatus':  arr = listingStatusFilter; break;
     case 'state':          arr = stateFilter; break;
+    case 'dealType':       arr = dealTypeFilter; break;
     default: return;
   }
   const idx = arr.indexOf(value);
@@ -2879,6 +2896,7 @@ function ddClearMulti(id, evt) {
     case 'titleCommit':    arr = titleCommitFilter; break;
     case 'listingStatus':  arr = listingStatusFilter; break;
     case 'state':          arr = stateFilter; break;
+    case 'dealType':       arr = dealTypeFilter; break;
     default: return;
   }
   arr.length = 0;
@@ -2962,12 +2980,25 @@ function buildStateButtons() {
   document.getElementById('stateFilterRow').style.display = 'inline-flex';
 }
 
+// Build the multi-select panel for the Type of Deal filter from the data.
+function buildDealTypeDropdown() {
+  const vals = [...new Set(listings.map(l => (l.dealType || '').trim()).filter(Boolean))].sort();
+  if (vals.length === 0) return;
+  const panel = document.getElementById('dealTypeDropdownPanel');
+  panel.innerHTML = vals.map(v =>
+    '<div class="dd-opt" data-value="' + escapeHtml(v) + '" onclick="ddPickMulti(\'dealType\',' + escapeHtml(JSON.stringify(v)) + ',event)">' +
+      '<input type="checkbox"> ' + escapeHtml(v) +
+    '</div>'
+  ).join('') + '<div class="dd-clear" onclick="ddClearMulti(\'dealType\',event)">Clear selection</div>';
+  document.getElementById('dealTypeFilterRow').style.display = 'inline-flex';
+}
+
 // Reset every filter back to "all" / empty selection.
 function clearAllFilters() {
   podFilter = 'all'; expiryFilter = 'all'; peiFilter = 'all'; dropsFilter = 'all'; dropAgeFilter = 'all';
   // Clear arrays in place — the dropdown panels hold checkbox refs that we want to keep working.
   stageFilter.length = 0; stateFilter.length = 0; titleFilter.length = 0;
-  titleCommitFilter.length = 0; listingStatusFilter.length = 0;
+  titleCommitFilter.length = 0; listingStatusFilter.length = 0; dealTypeFilter.length = 0;
   priceStaleFilter = false; noMlsFilter = false;
   // Reset every dropdown's visual state.
   document.querySelectorAll('.dd').forEach(dd => {
