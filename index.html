@@ -858,19 +858,21 @@ function enrichListingsWithPriceData() {
   enrichListingsFromZillow();
 }
 
-// Under Contract price from the "AB UC Price" sheet tab (ab-uc-price.csv).
-// Rule: stage "TAH - Owned"  → AB Total Purchase Price
-//       any other stage      → Under Contract Price
-// Matched on Transaction Name (falls back to PPP Name). If the tab has no row for a
-// property, or the chosen value is blank, the previous contract price is kept.
+// Values from the "AB UC Price" sheet tab (ab-uc-price.csv), matched on Transaction Name
+// (falls back to PPP Name). Anything blank in the tab keeps the dashboard's previous value.
+//   Contract price:   stage "TAH - Owned" → AB Total Purchase Price, otherwise Under Contract Price
+//   Transaction link: Transaction Link
+//   Spread:           Projected Profit
 function enrichListingsFromAbUcPrice() {
   if (!abUcData.length) return;
   const money = v => {
     if (v === null || v === undefined) return null;
-    const str = String(v).replace(/[$,\s]/g, '');
+    let str = String(v).replace(/[$,\s]/g, '');
     if (str === '') return null;
+    const paren = /^\(.*\)$/.test(str);           // accounting negatives, e.g. (1,250.00)
+    if (paren) str = str.slice(1, -1);
     const num = parseFloat(str);
-    return isNaN(num) ? null : num;
+    return isNaN(num) ? null : (paren ? -num : num);
   };
   const norm = v => (v || '').toString().trim().toLowerCase();
   const byTxn = {}, byPpp = {};
@@ -887,10 +889,20 @@ function enrichListingsFromAbUcPrice() {
     const ucPrice = money(gv(r, 'Under Contract Price'));
     const abTotal = money(gv(r, 'AB Total Purchase Price'));
     const value = isOwned ? (abTotal !== null ? abTotal : ucPrice) : ucPrice;
-    if (value === null) return;
-    l.contractP = value;
-    l.contractPSource = isOwned && abTotal !== null ? 'AB Total Purchase Price' : 'Under Contract Price';
-    l.profit = l.listP ? (l.contractP ? l.listP - l.contractP : l.listP) : null;
+    if (value !== null) {
+      l.contractP = value;
+      l.contractPSource = isOwned && abTotal !== null ? 'AB Total Purchase Price' : 'Under Contract Price';
+      l.profit = l.listP ? (l.contractP ? l.listP - l.contractP : l.listP) : null;
+    }
+
+    const link = (gv(r, 'Transaction Link', 'Opportunity Link', 'Transaction URL') || '').toString().trim();
+    if (/^https?:\/\//i.test(link)) l.txnLink = link;
+
+    const projected = money(gv(r, 'Projected Profit', 'Projected Profit ($)'));
+    if (projected !== null) {
+      l.profit = projected;
+      l.profitSource = 'Projected Profit';
+    }
   });
 }
 
