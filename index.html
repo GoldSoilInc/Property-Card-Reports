@@ -865,6 +865,8 @@ function enrichListingsWithPriceData() {
 //   Spread:           Projected Profit
 //   Owner name:       Seller Name
 //   Type of deal:     Type of Deal
+//   Title status:     Title Status
+//   Title commitment: Title Commitment Status
 function enrichListingsFromAbUcPrice() {
   if (!abUcData.length) return;
   const money = v => {
@@ -904,6 +906,10 @@ function enrichListingsFromAbUcPrice() {
     if (seller) l.sellerName = seller;
     const dealType = (gv(r, 'Type of Deal') || '').toString().trim();
     if (dealType) l.dealType = dealType;
+    const titleStatus = (gv(r, 'Title Status') || '').toString().trim();
+    if (titleStatus) l.title = titleStatus;
+    const titleCommit = (gv(r, 'Title Commitment Status', 'Title Commit Status', 'Title Commit. Status') || '').toString().trim();
+    if (titleCommit) l.titleCommit = titleCommit;
 
     const projected = money(gv(r, 'Projected Profit', 'Projected Profit ($)'));
     if (projected !== null) {
