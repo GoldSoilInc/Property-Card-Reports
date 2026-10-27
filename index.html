@@ -863,6 +863,8 @@ function enrichListingsWithPriceData() {
 //   Contract price:   stage "TAH - Owned" → AB Total Purchase Price, otherwise Under Contract Price
 //   Transaction link: Transaction Link
 //   Spread:           Projected Profit
+//   Owner name:       Seller Name
+//   Type of deal:     Type of Deal
 function enrichListingsFromAbUcPrice() {
   if (!abUcData.length) return;
   const money = v => {
@@ -897,6 +899,11 @@ function enrichListingsFromAbUcPrice() {
 
     const link = (gv(r, 'Transaction Link', 'Opportunity Link', 'Transaction URL') || '').toString().trim();
     if (/^https?:\/\//i.test(link)) l.txnLink = link;
+
+    const seller = (gv(r, 'Seller Name') || '').toString().trim();
+    if (seller) l.sellerName = seller;
+    const dealType = (gv(r, 'Type of Deal') || '').toString().trim();
+    if (dealType) l.dealType = dealType;
 
     const projected = money(gv(r, 'Projected Profit', 'Projected Profit ($)'));
     if (projected !== null) {
