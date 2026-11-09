@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-09T12:17:33.044461+00:00",
+  "lastSynced": "2026-11-09T14:12:53.058354+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -2955,7 +2955,15 @@
           "type": "Portfolio Review",
           "date": "2026-06-03",
           "label": "📊 Portfolio Review — 2026-06-03",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-066089 · (Maine) · Closer: Jose Membreno",
+            "CURRENT STATE",
+            "Plan to close purchase and list on MLS",
+            "THIS WEEK'S DECISIONS",
+            "List on MLS at $169,500 (target: keep under $5,000/acre)",
+            "ACTION ITEMS\n[ ] List on MLS at $169,500 (keep under $5k/acre) — Jose Membreno — Due:",
+            "🎤 Source: https://app.fireflies.ai/view/01KSNB4814DMGNVN2ZN32DPAFV"
+          ],
           "blockId": "d4c3f853-89c7-4b97-a1df-f9ba3906e520"
         },
         {
