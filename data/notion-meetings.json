@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-10T12:16:33.474899+00:00",
+  "lastSynced": "2026-11-10T14:12:03.707449+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -3374,7 +3374,14 @@
           "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-066652 · Closer: Gabriel Santos",
+            "THIS WEEK'S DECISIONS",
+            "Price drop target discussed: midpoint coaching ($40k–$45k)",
+            "BLOCKERS",
+            "Slope/driveway slope issue requires LDS update",
+            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
+          ],
           "blockId": "6b3a8498-2d21-4a5f-84b0-62fb244ef4d7"
         },
         {
