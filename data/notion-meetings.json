@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-10T06:18:59.463997+00:00",
+  "lastSynced": "2026-11-10T08:15:59.971745+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -2393,13 +2393,7 @@
           "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
-          "bullets": [
-            "🏷️ TR-SC-011737 · Closer: Jose Membreno",
-            "BUYER & LEAD ACTIVITY",
-            "Neighbor offer discussed: $4,800 (would be a loss)",
-            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
-            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
-          ],
+          "bullets": [],
           "blockId": "aad8a9f6-6e1a-469f-8c83-4a33c027d479"
         },
         {
