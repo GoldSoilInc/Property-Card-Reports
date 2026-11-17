@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-16T22:10:47.522812+00:00",
+  "lastSynced": "2026-11-17T00:31:13.108169+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -1831,15 +1831,7 @@
           "type": "Portfolio Review",
           "date": "2026-05-27",
           "label": "📊 Portfolio Review — 2026-05-27",
-          "bullets": [
-            "🏷️ TR-SC-065177 · (Joppa, MD) · Closer: Gabriel Santos",
-            "THIS WEEK'S DECISIONS",
-            "Price drop: set to $150k",
-            "BLOCKERS",
-            "Perk test needed; quotes $1,600–$1,800; ~2 weeks",
-            "ACTION ITEMS\n[ ] Finalize perk test quotes + order perk test — Pracy-Ann Pryce — Due:",
-            "🎤 Source: https://app.fireflies.ai/view/01KS2TZTDH7X9743H8FBE0GQ80"
-          ],
+          "bullets": [],
           "blockId": "8a56010a-f975-41d2-a95c-be42a48e8fe3"
         },
         {
