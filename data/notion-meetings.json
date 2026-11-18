@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-18T02:17:02.773724+00:00",
+  "lastSynced": "2026-11-18T04:13:00.744726+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -262,44 +262,6 @@
             "Why this price: Not stated"
           ],
           "blockId": "20dd12b1-e62d-49e8-b8d1-fd96dcad0671"
-        }
-      ]
-    },
-    "TR-SC-068119": {
-      "notionPageId": "3de0bd65-db0b-80a3-9e55-d937e0227882",
-      "notionUrl": "https://app.notion.com/p/TR-SC-068119-3de0bd65db0b80a39e55d937e0227882",
-      "meetings": [
-        {
-          "type": "Portfolio Review",
-          "date": "2026-10-22",
-          "label": "📊 Portfolio Review — 2026-10-22",
-          "bullets": [
-            "🏷️ TR-SC-068119 · Michael Anderson · Humphreys County, TN · Closer: Gabriel Santos",
-            "CURRENT STATE",
-            "DOM: 30 days · Current list price: $52,900 · Days to expire: 49",
-            "MLS status: Not listed",
-            "THIS WEEK'S DECISIONS",
-            "Reviewed — no price change; continue pursuing listing access and buyer activity.",
-            "BUYER & LEAD ACTIVITY",
-            "One appointment set for the weekend; gated-property access code available."
-          ],
-          "blockId": "2458fba7-0e5e-4ffb-8c22-f50aa9729327"
-        },
-        {
-          "type": "Pricing Meeting",
-          "date": "2026-09-18",
-          "label": "📊 Pricing Meeting — 2026-09-18",
-          "bullets": [
-            "🏷️ TR-SC-068119 · Humphreys County / The Woodlands of Nashville · approx. 6.18 acres · LDS 6.6",
-            "PRICING DECISION",
-            "Final list price $54,900 · Contract price $40,000 · Floor/min spread not stated",
-            "Strategy: Launch the gated-subdivision lots with access logistics confirmed for buyers and the sales team.",
-            "Anshul's words on the price call: Approval was to be requested by email; Anshul was not present in the available meeting notes.",
-            "RATIONALE",
-            "Comps: Comp not stated.",
-            "Why this price: The meeting set a $54,900 list against a $40,000 contract price."
-          ],
-          "blockId": "f1725668-4358-40e2-8415-24a67772860f"
         }
       ]
     },
