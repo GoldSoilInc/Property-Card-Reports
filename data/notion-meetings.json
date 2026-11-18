@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-18T16:12:08.940536+00:00",
+  "lastSynced": "2026-11-18T18:13:13.023872+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -269,6 +269,22 @@
       "notionPageId": "3de0bd65-db0b-80a3-9e55-d937e0227882",
       "notionUrl": "https://app.notion.com/p/TR-SC-068119-3de0bd65db0b80a39e55d937e0227882",
       "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068119 · 4040 Jack Saunders Road, Waverly, TN · approx. 6.19 acres · LDS 6.6",
+            "PRICING DECISION",
+            "Final list price $29,900 · Contract price not stated · Floor $26,000–$27,000 · Min spread not stated",
+            "Strategy: Market the mountain/lake-area setting as a scenic Lakewood Ranches lot for a 30–60-day sale window.",
+            "RATIONALE",
+            "Comps: Same-subdivision sold comps at approx. $18,000 for 3.56 acres and $14,000 for about 4 acres; active listing considered overpriced; roughly $3,000–$5,000/acre, median about $4,000/acre.",
+            "Why this price: The proposed $29,900 list reflects the comp range while pricing the larger scenic lot below the implied ceiling from the active listing.",
+            "Demand thesis: Mountain and lake-area appeal, nearby attractive homes, and usable access/frontage can attract buyers despite the slope and utility work."
+          ],
+          "blockId": "fe10bd65-db0b-823c-b7c1-01bd9258793a"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-10-22",
