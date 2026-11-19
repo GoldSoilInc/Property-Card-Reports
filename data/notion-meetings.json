@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-19T10:12:04.710064+00:00",
+  "lastSynced": "2026-11-19T12:17:17.116534+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -1102,15 +1102,7 @@
           "type": "Portfolio Review",
           "date": "2026-07-01",
           "label": "📊 Portfolio Review — 2026-07-01",
-          "bullets": [
-            "🏷️ TR-SC-066583 · (VT; newly released) · Closer: Gabriel Santos",
-            "CURRENT STATE",
-            "~23 hours · 18 saves",
-            "BUYER & LEAD ACTIVITY",
-            "2 calls + 2 emails; potential visit this week",
-            "THIS WEEK'S DECISIONS\nReviewed — no change. Continuing current strategy.",
-            "🎤 Source: https://app.fireflies.ai/view/01KVWX8TJ2HFCN1HRXQ4689YB6"
-          ],
+          "bullets": [],
           "blockId": "18a009fa-b4d6-424e-ac79-0f5b0c9f6c85"
         },
         {
