@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-19T18:14:33.018694+00:00",
+  "lastSynced": "2026-11-19T20:12:43.075596+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -31,6 +31,22 @@
       "meetings": [
         {
           "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068258 · Dallas County, TX · 0.40 acres (joint listing) · LDS 5.0",
+            "PRICING DECISION",
+            "No price change stated for the new joint listing · Contract price $35,000.",
+            "Strategy: Sell the unique connected lots to nearby subdivision owners rather than accept a low wholesaler offer.",
+            "Anshul's words on the price call: “I just blast that subdivision.”",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: The property is near Dallas and the connected lots are unusual within the subdivision."
+          ],
+          "blockId": "b100bd65-db0b-8272-99d2-8134225060fc"
+        },
+        {
+          "type": "Pricing Meeting",
           "date": "2026-10-07",
           "label": "📊 Pricing Meeting — 2026-10-07",
           "bullets": [
@@ -51,6 +67,22 @@
       "notionPageId": "3f10bd65-db0b-800c-b79a-c133c40bb611",
       "notionUrl": "https://app.notion.com/p/TR-SC-068260-3f10bd65db0b800cb79ac133c40bb611",
       "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068260 · Bedford County / Goode, VA · 2 acres · LDS 6.8",
+            "PRICING DECISION",
+            "No new price change stated; the property was just relisted.",
+            "Strategy: Replace the AI-edited photo set with Land Insight imagery and allow the relist to gather data.",
+            "GENERAL CONSTRAINTS",
+            "The relist had only been live for about two hours with two saves, so no new pricing conclusion was supported.",
+            "CHANNEL STRATEGY",
+            "Use Land Insight photos while the new listing gains market exposure."
+          ],
+          "blockId": "35d0bd65-db0b-8225-b4db-81804321961a"
+        },
         {
           "type": "Pricing Meeting",
           "date": "2026-10-07",
@@ -95,6 +127,22 @@
       "notionPageId": "3f10bd65-db0b-80d2-a684-d8ed965ba11c",
       "notionUrl": "https://app.notion.com/p/TR-SC-067978-3f10bd65db0b80d2a684d8ed965ba11c",
       "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-067978 · Coshocton County, OH · 2.65 acres · LDS 6.9",
+            "PRICING DECISION",
+            "Final Facebook price: $34,900 · Contract price $25,000 · Floor/min spread not stated.",
+            "Strategy: Close the interested nearby buyer by negotiating the survey/easement economics while keeping a fresh-market option.",
+            "Anshul's words on the price call: “I want to get this closed today.”",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: The buyer lives nearby and wants to build for his son, but an easement affects part of the usable area."
+          ],
+          "blockId": "ff60bd65-db0b-83e6-9026-81d4181cc8f2"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-10-22",
@@ -172,6 +220,22 @@
       "notionUrl": "https://app.notion.com/p/TR-SC-068262-3f10bd65db0b8011abb8e239907392c2",
       "meetings": [
         {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068262 · Harrison County / Marshall, TX · 6.32 acres · LDS 7.3",
+            "PRICING DECISION",
+            "Final list price: $44,900 after a $1,000 drop · Contract price $35,000 · Floor/min spread not stated.",
+            "Strategy: Refresh the listing with stronger imagery while pricing around the floodplain objection.",
+            "Anshul's words on the price call: “The bigger problem with the property ... is floodplain.”",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: Qualified buyers were lost after seeing the slope; buildability must be presented accurately."
+          ],
+          "blockId": "5840bd65-db0b-8241-a6c9-81d2e0b10597"
+        },
+        {
           "type": "Portfolio Review",
           "date": "2026-10-22",
           "label": "📊 Portfolio Review — 2026-10-22",
@@ -211,6 +275,22 @@
       "meetings": [
         {
           "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068315 · Jefferson County / Port Arthur, TX · 1.13 acres · LDS 6.6",
+            "PRICING DECISION",
+            "Relist target: approximately $24,900–$25,000, pending Art's underwriting · Contract price $11,500 · Floor/min spread not stated.",
+            "Strategy: Rebuild presentation with fresh imagery before conceding to the prior $5,000 offer.",
+            "RATIONALE",
+            "Comps: Underwriting was requested; no final comp conclusion was stated.",
+            "Demand thesis: Coastal proximity produced realtor interest, but buyers cited the cost to build near the coast.",
+            "PROPERTY SHORTCOMINGS"
+          ],
+          "blockId": "f100bd65-db0b-8242-9abc-01c75f6940a0"
+        },
+        {
+          "type": "Pricing Meeting",
           "date": "2026-10-07",
           "label": "📊 Pricing Meeting — 2026-10-07",
           "bullets": [
@@ -231,6 +311,22 @@
       "notionPageId": "3f00bd65-db0b-80d5-a027-ee9522aaec5f",
       "notionUrl": "https://app.notion.com/p/TR-SC-068285-3f00bd65db0b80d5a027ee9522aaec5f",
       "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068285 · Wilkinson County, GA · 2 acres · LDS 6.5",
+            "PRICING DECISION",
+            "Final list price: $12,437 · Contract price $6,000 · Floor/min spread not stated.",
+            "Strategy: Make a small, distinctive reduction and clarify frontage visually.",
+            "Anshul's words on the price call: “Totally our price.”",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: A qualified realtor lead was waiting on the client to submit an offer."
+          ],
+          "blockId": "1680bd65-db0b-8336-91c8-81b78711733d"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-10-22",
@@ -286,6 +382,22 @@
           "blockId": "fe10bd65-db0b-823c-b7c1-01bd9258793a"
         },
         {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068119 · Humphreys County / The Woodlands of Nashville, TN · 6.18 acres · LDS 6.6",
+            "PRICING DECISION",
+            "Final list price: $45,900 after a $1,000 drop · Contract price $40,000 · Floor/min spread not stated.",
+            "Strategy: Price through the HOA objection and continue qualified-lead outreach.",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: Campaigns produced no appointment; the HOA restrictions are the dominant objection.",
+            "PROPERTY SHORTCOMINGS"
+          ],
+          "blockId": "fbe0bd65-db0b-8248-a2c4-8121d95f7446"
+        },
+        {
           "type": "Portfolio Review",
           "date": "2026-10-22",
           "label": "📊 Portfolio Review — 2026-10-22",
@@ -323,6 +435,22 @@
       "notionPageId": "3de0bd65-db0b-804f-b87b-e0e91ebbf66e",
       "notionUrl": "https://app.notion.com/p/TR-SC-068116-3de0bd65db0b804fb87be0e91ebbf66e",
       "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068116 · Morgan County, TN · 12.74 acres · LDS 6.8",
+            "PRICING DECISION",
+            "Final list price: $90,500 · Contract price $85,358 · Floor/min spread not stated.",
+            "Strategy: Make a modest reduction on a slow listing while recognizing the existing photo set is dated.",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: 52 days on market and 39 saves indicate attention but insufficient conversion.",
+            "GENERAL CONSTRAINTS"
+          ],
+          "blockId": "2820bd65-db0b-839e-9f89-81712d08d6c1"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-10-22",
@@ -362,6 +490,22 @@
       "notionUrl": "https://app.notion.com/p/TR-SC-068128-3de0bd65db0b803d9419c6bea3b0722d",
       "meetings": [
         {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-068128 · Walton County, FL · 5.26 acres · LDS 7.6",
+            "PRICING DECISION",
+            "Final list price: $49,900 after a $1,000 drop · Contract price $44,000 · Floor/min spread not stated.",
+            "Strategy: Reduce price while addressing the repeated easement, slope, and wetland objections.",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: Qualified leads appeared after the prior price drop, but objections remain consistent.",
+            "PROPERTY SHORTCOMINGS"
+          ],
+          "blockId": "c320bd65-db0b-82ec-8ece-01f90cea968c"
+        },
+        {
           "type": "Portfolio Review",
           "date": "2026-10-22",
           "label": "📊 Portfolio Review — 2026-10-22",
@@ -400,6 +544,22 @@
       "notionUrl": "https://app.notion.com/p/TR-SC-067957-3de0bd65db0b8083824fd8a193233e46",
       "meetings": [
         {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-067957 · Thornton, TX · 0.88 acres · LDS 5.0",
+            "PRICING DECISION",
+            "Final list price: approximately $59,400 after a $500 drop · Contract price $43,000 · Floor/min spread not stated.",
+            "Strategy: Make the same small reduction used for the other slow listings.",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: 35 days on market and one save indicate weak traction.",
+            "PROPERTY SHORTCOMINGS"
+          ],
+          "blockId": "fb50bd65-db0b-8310-9180-018288434711"
+        },
+        {
           "type": "Portfolio Review",
           "date": "2026-10-22",
           "label": "📊 Portfolio Review — 2026-10-22",
@@ -437,6 +597,22 @@
       "notionPageId": "3d00bd65-db0b-8056-ad35-e56f772ce5b6",
       "notionUrl": "https://app.notion.com/p/TR-SC-067999-3d00bd65db0b8056ad35e56f772ce5b6",
       "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-067999 · Jefferson County, GA · 4.94 acres · LDS 5.8",
+            "PRICING DECISION",
+            "Final list price: approximately $29,400 after a $500 drop · Contract price $20,000 · Floor/min spread not stated.",
+            "Strategy: Use a small immediate reduction to restart activity before contract expiration.",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Demand thesis: One appointment was scheduled; a $10,000 pre-view offer was not treated as final.",
+            "GENERAL CONSTRAINTS"
+          ],
+          "blockId": "c600bd65-db0b-8330-8a3b-014f803c974f"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-10-22",
@@ -591,6 +767,22 @@
       "notionPageId": "3c60bd65-db0b-80f8-a117-c85cce843fbf",
       "notionUrl": "https://app.notion.com/p/TR-SC-067927-3c60bd65db0b80f8a117c85cce843fbf",
       "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-067927 · Fannin County / Leonard, TX · 6 acres · LDS 9.0",
+            "PRICING DECISION",
+            "Contract price $100,000; a buyer offer around $90,000 was discussed; a further figure around $106,000 was transcribed incompletely, so no final approved list price was stated.",
+            "Strategy: Resolve the buyer/price path rather than accept an unexplained discount.",
+            "RATIONALE",
+            "Comps: Not stated.",
+            "Why this price: The transcript contains an incomplete price reference (“106…”).",
+            "Demand thesis: Not stated."
+          ],
+          "blockId": "7480bd65-db0b-82ce-bdc9-01c488012c0c"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-10-22",
@@ -2191,6 +2383,22 @@
       "notionPageId": "3580bd65-db0b-80cd-9023-d9ad6b22d40a",
       "notionUrl": "https://app.notion.com/p/TR-SC-062942-3580bd65db0b80cd9023d9ad6b22d40a",
       "meetings": [
+        {
+          "type": "Pricing Meeting",
+          "date": "2026-11-18",
+          "label": "📊 Pricing Meeting — 2026-11-18",
+          "bullets": [
+            "🏷️ TR-SC-062942 · Valhalla Drive, Cleveland, GA · acreage not stated · LDS not stated",
+            "PRICING DECISION",
+            "No price change stated; keep the current strategy.",
+            "Strategy: Refresh the owned listing with stronger aerial imagery.",
+            "Anshul's words on the price call: “Throw Land Insight photos on it.”",
+            "GENERAL CONSTRAINTS",
+            "The transcript did not state current list price, contract price, acreage, LDS, comps, or property-specific shortcomings.",
+            "CHANNEL STRATEGY"
+          ],
+          "blockId": "5c40bd65-db0b-8300-b878-816bbccc1856"
+        },
         {
           "type": "Portfolio Review",
           "date": "2026-10-22",
