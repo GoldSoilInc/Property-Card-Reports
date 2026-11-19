@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-19T14:13:04.205234+00:00",
+  "lastSynced": "2026-11-19T16:13:06.145307+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -99,7 +99,16 @@
           "type": "Portfolio Review",
           "date": "2026-10-22",
           "label": "📊 Portfolio Review — 2026-10-22",
-          "bullets": [],
+          "bullets": [
+            "🏷️ TR-SC-067978 · Patricia Snyder · Coshocton County, OH · Closer: Gabriel Santos",
+            "CURRENT STATE",
+            "DOM: 9 days · Current list price: $39,900 · Days to expire: 45–46",
+            "MLS status: Not listed",
+            "THIS WEEK'S DECISIONS",
+            "Hold price for one more week; position as a riverfront/fishing opportunity.",
+            "BUYER & LEAD ACTIVITY",
+            "One fishing-oriented appointment set for the weekend."
+          ],
           "blockId": "b7eecabc-43e7-4116-889f-a9d4cc245940"
         },
         {
