@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-23T16:12:17.014186+00:00",
+  "lastSynced": "2026-11-23T18:13:56.748741+00:00",
   "transactionPropertyName": "Transaction",
   "databaseId": "b90c1ecab1f9414cbf4792ac34126d00",
   "byTransaction": {
@@ -2290,12 +2290,7 @@
           "type": "Portfolio Review",
           "date": "2026-05-06",
           "label": "📊 Portfolio Review — 2026-05-06",
-          "bullets": [
-            "🏷️ TR-SC-064257 · Closer: Gabriel Santos",
-            "THIS WEEK'S DECISIONS",
-            "Push buyers urgently to get offer in before Friday; negotiate seller extension only if buyer is under contract",
-            "🎤 Source: https://app.fireflies.ai/view/01KQZ1N2JDG1V0QRR277CMCHYC"
-          ],
+          "bullets": [],
           "blockId": "093fe0ac-d4bc-401d-8cbb-70e3609544db"
         }
       ]
